@@ -1,0 +1,1 @@
+ create table user(id int not null primary key auto_increment,firstname varchar(50) not null,lastname varchar(100) not null, gender varchar(1) not null,dob date not null);
