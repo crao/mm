@@ -1,7 +1,5 @@
 package com.my.controllers;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
