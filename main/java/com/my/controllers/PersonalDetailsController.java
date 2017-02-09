@@ -1,7 +1,5 @@
 package com.my.controllers;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.my.binding.PersonalDetailsModel;
 import com.my.binding.PreferencesBinding;
 import com.my.model.Member;
 import com.my.model.PersonalDetails;
-import com.my.model.Preferences;
 import com.my.service.MemberService;
 import com.my.service.PersonalDetailsService;
 
