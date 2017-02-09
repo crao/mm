@@ -15,7 +15,6 @@ import com.my.binding.PersonalDetailsModel;
 import com.my.binding.PreferencesBinding;
 import com.my.model.Member;
 import com.my.model.PersonalDetails;
-import com.my.model.Preferences;
 import com.my.service.MemberService;
 import com.my.service.PersonalDetailsService;
 
