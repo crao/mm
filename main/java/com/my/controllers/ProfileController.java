@@ -26,7 +26,7 @@ public class ProfileController {
 			BindingResult bindingResult,
 			Model model,
 			HttpSession httpSession){
-		
+		Long userId = (Long)httpSession.getAttribute("userId");
 		model.addAttribute("search", new SearchBinding());
 		return "profile";
 	}

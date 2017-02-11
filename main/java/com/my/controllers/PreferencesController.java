@@ -41,7 +41,7 @@ public class PreferencesController {
 	
 	
 	@RequestMapping(value="/preferences",method=RequestMethod.GET)
-	public String start(Model model,@RequestParam(value="status",required=false)String status,HttpSession session){
+	public String start(Model model,@RequestParam(value="status",required=false)String status,@RequestParam(value="userId",required=false)String userId,HttpSession session){
 		if(status==null)
 			return "preferences";
 		else{
@@ -58,12 +58,21 @@ public class PreferencesController {
 			Model model,
 			HttpSession httpSession){
 		String status=null;
-		Preferences preferences = new Preferences();
+		
+		Long userId = (Long)httpSession.getAttribute("userId");
 		//Member member = memberService.getMemberById(preferencesBinding.getMemberId());
 		Object memberObj = httpSession.getAttribute("member");
-		Member member=null;
-		if(memberObj!=null)
+		Member member= memberService.getMemberById(userId);
+		if(memberObj!=null&& member==null)
 			member = (Member) memberObj;
+		
+		Preferences preferences = preferencesService.getPreferencesByMember(member);
+
+		if(preferences!=null){
+			return "redirect:/preferences?status="+status+"?userId="+userId;
+		}
+				
+		preferences = new Preferences();		
 		preferences.setMember(member);
 		preferences.setMinAge(preferencesBinding.getMinAge());
 		preferences.setMaxAge(preferencesBinding.getMaxAge());
@@ -119,7 +128,7 @@ public class PreferencesController {
 		model.addAttribute("matchList", personalDetails);
 		
 		
-		return "redirect:/preferences?status="+status;
+		return "redirect:/preferences?status="+status+"?userId="+userId;
 		
 	}
 	

@@ -1,6 +1,7 @@
 package com.my.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -54,6 +56,9 @@ public class Member {
 	
 	@OneToOne(mappedBy="member")
 	private Preferences preferences;
+	
+	@OneToMany(mappedBy="member")
+	private List<Photo> photos;
 
 	public Member(long id,String firstName, String lastName, int age, String gender) {
 		this.memberId = id;
@@ -218,6 +223,14 @@ public class Member {
 
 	public void setPreferences(Preferences preferences) {
 		this.preferences = preferences;
+	}
+
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
 	}
 
 	

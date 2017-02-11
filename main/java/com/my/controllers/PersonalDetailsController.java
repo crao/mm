@@ -28,7 +28,7 @@ public class PersonalDetailsController {
 	
 	
 	@RequestMapping(value="/personaldetails",method=RequestMethod.GET)
-	public String initialize(Model model,@RequestParam(value="status",required=false)String status){
+	public String initialize(Model model,@RequestParam(value="status",required=false)String status, @RequestParam(value="userId",required=false)String userId){
 		model.addAttribute("personaldetails", new PersonalDetailsModel());
 		if(status==null)
 			return "personaldetails";
@@ -41,12 +41,22 @@ public class PersonalDetailsController {
 			BindingResult bindingResult,
 			Model model,
 			HttpSession httpSession){
+		
+		Long userId = (Long)httpSession.getAttribute("userId");
+		
+		
 		String status=null;
 		Object memberObj = httpSession.getAttribute("member");
-		Member member=null;
-		if(memberObj!=null)
+		Member member= memberService.getMemberById(userId);
+		if(memberObj!=null&& member==null)
 			member = (Member) memberObj;
-		PersonalDetails personaldetailsBean = new PersonalDetails();		 
+		
+		PersonalDetails personaldetailsBean = personalDetailsService.getPersonalDetailsByMember(member);
+		
+		if(personaldetailsBean!=null){
+			return "redirect:/personaldetails?status="+status+"?userId="+userId;
+		} 
+		personaldetailsBean = new PersonalDetails();		 
 	    personaldetailsBean.setMember(member);
 	    personaldetailsBean.setMaritalStatus(personaldetailsModel.getMaritalStatus());
 		personaldetailsBean.setHeight(personaldetailsModel.getHeight());
@@ -84,7 +94,7 @@ public class PersonalDetailsController {
 		
 		if(personalDetails>=1)
 			status="success";
-		return "redirect:/personaldetails?status="+status;
+		return "redirect:/personaldetails?status="+status+"?userId="+userId;
 	}
 
 }
