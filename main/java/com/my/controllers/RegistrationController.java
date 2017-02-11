@@ -36,7 +36,7 @@ public class RegistrationController {
 	private MemberService memberService;
 
 	@RequestMapping(value="/register",method=RequestMethod.GET)
-	public String initialize(Model model,@RequestParam(value="status",required=false)String status){
+	public String initialize(Model model,@RequestParam(value="status",required=false)String status,@RequestParam(value="userId",required=false)String userId){
 		model.addAttribute("personaldetails", new PersonalDetailsModel());		
 		if(status==null)
 			return "home";
@@ -104,6 +104,7 @@ public class RegistrationController {
 				status="success";
 			}
 			httpSession.setAttribute("member", member);
+			httpSession.setAttribute("userId", userId);
 			
 			myCache.put(Long.toString(userId), member);
 			
@@ -117,7 +118,7 @@ public class RegistrationController {
 		personalDetailsModel.setUserId(userId);
 		model.addAttribute("personaldetails", personalDetailsModel);
 		
-		return "redirect:/register?status="+status;
+		return "redirect:/register?status="+status+"?userId="+userId;
 	}
 
 }

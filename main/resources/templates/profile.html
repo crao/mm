@@ -9,7 +9,7 @@
   
    <link rel="stylesheet" href="css/bootstrap.min.css"/>    
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	
+	<script type="text/javascript" th:src="@{js/main.js}"></script>
   <link rel="stylesheet" href="css/index.css" />
   
   
@@ -223,11 +223,15 @@ display: inline-block;
 			<!-- 	<input type="file" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif"/>
 				<label for="fileUpload">
 				<img src="../static/Capture.PNG" th:src="@{images/Capture.PNG}"  class="img-responsive" width="220" height="180"></img>
-				</label>  -->
+				</label> 
+				<img src="img/user.jpg" th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"></img>
+				
+				 -->
 					
-				<input type="file" id="imgupload"/>
-				<a href="#" onclick="$('#imgupload').trigger('click'); return false;">
-				<img src="../static/Capture.PNG" th:src="@{images/Capture.PNG}"  class="img-responsive" width="220" height="180"></img></a>
+				
+				<a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
+				<img th:src="@{(member.photos !=null ? 'img/user.jpg' : '')}"   class="img-responsive" width="220" height="180"></img>
+				</a>
 				
 				<p><span th:text="${member.firstName}"></span> &nbsp; <span th:text="${member.lastName}"> &nbsp; </span> </p>
 				<p> R2229300 </p>
