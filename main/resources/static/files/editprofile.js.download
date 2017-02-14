@@ -1,0 +1,3750 @@
+function fnHideForm(infoid,formid,menudivid,menulink){
+         clicktoCancelga(infoid,menudivid);
+         if(infoid == "partnerdesc") {
+                  var addeditid = 'addpartnerprefdesc';
+                  var txtareaedit = 'partnerdesctextarea';
+         } else if(infoid == "familydesc") {
+                  var addeditid = 'addfamilydesc';
+                  var txtareaedit = 'FAMILYDESCRIPTION';
+	} else if(infoid == "hobbiesinfo") {             
+	        var addeditid = 'addhobbiedesc';
+	        var txtareaedit = 'HOBBIESAVAILABLE';
+         } else {
+                  var addeditid = '';
+                  var txtareaedit = '';
+         }
+    if($("#"+txtareaedit).val() == 0) {
+        $("#"+txtareaedit).val('');
+    }
+
+    if(((infoid == "partnerdesc" || infoid == "familydesc" || infoid == "hobbiesinfo") && $("#"+txtareaedit).val() == "") || (infoid =="happymrginfo" && $("#hmtextbox").val() == "Tell us what matters to you the most")) {
+        var linktext = 'Add';
+    }else {
+        var linktext = 'Edit';
+    } 
+	if(formid == "happymrgform"){
+		$('a#'+menudivid+'link').html('<span style="font-size:18px;" class="" id="'+addeditid+'">'+linktext+'</span>');
+	}
+	else{
+		$('a#'+menudivid+'link').html('<span class="" id="'+addeditid+'">'+linktext+'</span>');
+	}
+           
+
+ 
+    $('#'+menudivid).removeClass("menuedit");
+    $('#'+menudivid).addClass("menunormal");
+    $('#'+formid).slideUp('slow');   
+    $('#'+infoid).slideDown('slow'); 
+    $('#closeopendivval').val(0);
+    $('#opendivid').val(formid);
+    $('#hidedivid').val(infoid);
+    $('#sameopendivid').val(formid);
+    $('#samehidedivid').val(infoid);
+    $('#menunamedivid').val(menudivid);
+    $('#'+menulink).removeClass('');
+    $('#'+menulink).addClass('');
+    $('#'+menulink).parent('div').removeClass('fright');
+    $('#'+menulink).parent('div').addClass('fright');
+       
+}
+
+function fnShowHide(infoid,formid,menudivid,formname,topscroll,menulink,galink){
+		//Right Panel GA
+		 if(($('a#'+menudivid+'link').text() == 'Edit' || $('a#'+menudivid+'link').text() == 'Add' || $('a#'+menudivid+'link').text() == 'Close') && (galink != undefined && galink != 'gaother')) {
+		 urlrep="//"+curDomain+"/profiledetail/myprofile.php?gaact=ED"+galink+"&gasrc=EDPR";
+		 _gaq.push(['_trackPageview',urlrep]);
+		 }
+         clicktoEditClose(infoid,menudivid,galink);
+         if(infoid == "partnerdesc") {
+                  var addeditid = 'addpartnerprefdesc';
+                  var txtareaedit = 'partnerdesctextarea';
+         } else if(infoid == "familydesc") {
+                  var addeditid = 'addfamilydesc';
+                  var txtareaedit = 'FAMILYDESCRIPTION';
+	 } else if(infoid == "hobbiesinfo") {             
+        var addeditid = 'addhobbiedesc';
+        var txtareaedit = 'HOBBIESAVAILABLE';
+         } else {
+                  var addeditid = '';
+                  var txtareaedit = '';
+         }
+         
+         
+    $("#spellCheckDiv0").css({
+        "width":"100%"
+    });
+	
+	if(formname=="MATRIEDUCATIONINFO"){
+		lcval = $("#Occupation_val").val();
+		domain = $("#domain").val();
+		var occupationcategory_val=$("input[name='OCCUPATIONCATEGORY']:checked").val();
+		$("#newoccuption").empty();
+		$.ajax({     
+			type: 'GET',
+			url: '//profile.'+domain+'matrimony.com/register/ajax_registration.php',  
+			data: 'type=Occupationedit'+'&Occupation_val='+occupationcategory_val+'&Occupation='+lcval+'&regocc=1',
+			success: function(data){
+				$("#newoccuption").append(data);
+			}
+		});
+		if(occupationcategory_val==5){
+			$("#INCOME_CURRENCYSPAN").val("0");
+			$("#INCOMESPAN").val("");
+			var divval = document.getElementById("body1");
+			divval.style.display = "none";
+		}
+		if(lcval=='102' || lcval=='67' || lcval=='72')
+	    		dgebid('INCOME_CURRENCYSPAN').value='';
+	} 
+
+
+    if($('#closeopendivval').val()==0){ 
+        $(".alist").css("display","none"); 
+        $(".alist").html('');
+        $('a#'+menudivid+'link').text('Close');     		
+        $('#'+menudivid).removeClass("menunormal");
+        $('#'+menudivid).addClass("menuedit");
+        $('#'+infoid).slideUp('slow');   // div close
+        $('#'+formid).slideDown('slow'); // div open
+        $('#closeopendivval').val(1);
+        $('#opendivid').val(formid);
+        $('#hidedivid').val(infoid);
+        $('#sameopendivid').val(formid);
+        $('#samehidedivid').val(infoid);
+        $('#menunamedivid').val(menudivid);
+        $('#'+menulink).removeClass('');
+        $('#'+menulink).addClass('');
+        $('#'+menulink).parent('div').removeClass('fright');
+        $('#'+menulink).parent('div').addClass('fright');
+        
+        if ($(window).scrollTop() < 110) {
+            setTimeout(function(){
+                $(window).scrollTop($('#'+topscroll).offset().top-150);
+            },500);         
+        } else {
+            setTimeout(function(){
+                $(window).scrollTop($('#'+topscroll).offset().top-46);
+            },500);         
+        }
+        
+        
+       
+    }else{	//alert('else');
+	$(".alist").css("display","none"); 
+	 $(".alist").html('');
+        if($('a#'+menudivid+'link').text() == 'Close')
+        {
+            $('#'+menulink).removeClass('');
+            $('#'+menulink).addClass('');
+            $('#'+menulink).parent('div').removeClass('fright');
+            $('#'+menulink).parent('div').addClass('fright');
+        }
+        else if($('a#'+menudivid+'link').text() == 'Edit')
+        {
+            $('#'+menulink).removeClass('');
+            $('#'+menulink).addClass('');
+            $('#'+menulink).parent('div').removeClass('fright');
+            $('#'+menulink).parent('div').addClass('fright');
+        }
+		else if($('a#'+menudivid+'link').text() == 'Add')
+        {
+            $('#'+menulink).removeClass('');
+            $('#'+menulink).addClass('');
+            $('#'+menulink).parent('div').removeClass('fright');
+            $('#'+menulink).parent('div').addClass('fright');
+        }
+            
+        
+        setTimeout(function(){
+            $(window).scrollTop($('#'+topscroll).offset().top-46);
+        },500);
+        var opendivid = $('#opendivid').val();
+        var hidedivid = $('#hidedivid').val();
+        if(arguments[3]=="" || arguments[3]==undefined){
+            $('form[name="'+formname+'"]')[0].reset();
+            $('.errortxt').html('');
+        }
+        if(infoid!=hidedivid && formid!=opendivid){  //alert('second if');
+            prevopenedmenuid = $('#menunamedivid').val();  
+            if(prevopenedmenuid == "partnerdescmenu") {
+                var addeditid = 'addpartnerprefdesc';
+                var txtareaedit = 'partnerdesctextarea';
+            } else if(prevopenedmenuid == "familydescmenu") {       
+                var addeditid = 'addfamilydesc';
+                var txtareaedit = 'FAMILYDESCRIPTION';
+            } else if(prevopenedmenuid == "hobbiesmenu") {             
+                var addeditid = 'addhobbiedesc';
+                var txtareaedit = 'HOBBIESAVAILABLE';                
+            } else {
+                var addeditid = '';
+                var txtareaedit = '';
+            }
+            if($("#"+txtareaedit).val() == 0) {
+                $("#"+txtareaedit).val('');
+            }
+            if(((prevopenedmenuid == "partnerdescmenu" || prevopenedmenuid == "familydescmenu" || prevopenedmenuid == "hobbiesmenu") && $("#"+txtareaedit).val() == "") || (prevopenedmenuid == "happymrgmenu" && $("#hmtextbox").val() == "Tell us what matters to you the most")) {
+                var linktext = 'Add'; 
+            } else {
+				var linktext = 'Edit';
+            }
+            	
+			if(prevopenedmenuid=="happymrgmenu")
+            $('a#'+prevopenedmenuid+'link').html('<div class="fright " id="'+addeditid+'">'+linktext+'</div>');
+			else
+			$('a#'+prevopenedmenuid+'link').html('<span class="fright " id="'+addeditid+'">'+linktext+'</span>');
+            $('a#'+prevopenedmenuid+'link').removeClass('');
+            $('a#'+prevopenedmenuid+'link').addClass('');
+            $('a#'+prevopenedmenuid+'link').parent('div').removeClass('fright');
+            $('a#'+prevopenedmenuid+'link').parent('div').addClass('fright');
+            $('#'+prevopenedmenuid).removeClass("menuedit");
+            $('#'+prevopenedmenuid).addClass("menunormal");
+            $('#'+opendivid).slideUp('slow');
+            $('#'+hidedivid).slideDown('slow');
+            $('#menunamedivid').val(menudivid);
+            $('a#'+menudivid+'link').text('Close');   	
+            $('#'+menudivid).removeClass("menunormal");
+            $('#'+menudivid).addClass("menuedit");
+            $('#'+infoid).slideUp('slow'); 
+            $('#'+formid).slideDown('slow');
+ 
+            $('#opendivid').val(formid);
+            $('#hidedivid').val(infoid);
+            $('#sameopendivid').val(formid);
+            $('#samehidedivid').val(infoid);
+            setTimeout(function(){
+                $(window).scrollTop($('#'+topscroll).offset().top-46);
+            },500);
+            
+        }else{  //alert('second else');
+            opendivid = $('#opendivid').val();
+            hidedivid = $('#hidedivid').val();	
+            var sameopendivid = $('#sameopendivid').val();
+            var samehidedivid = $('#samehidedivid').val();		 
+
+            if(sameopendivid == opendivid){ //alert('third if');
+		if($("#"+txtareaedit).val() == 0) {
+                    $("#"+txtareaedit).val('');
+                }
+				if(((infoid == "partnerdesc" || infoid == "familydesc" || infoid == "hobbiesinfo") && $("#"+txtareaedit).val() == "") || ($("#menunamedivid").val() == "happymrgmenu" && $("#hmtextbox").val() == "Tell us what matters to you the most")) {
+                    var linktext = 'Add'; 
+                } else {
+                    var linktext = 'Edit'; 
+                }
+		$('a#'+menudivid+'link').html('<div class="fright" id="'+addeditid+'">'+linktext+'</div>');    
+                $('#'+menudivid).removeClass("menuedit");
+                $('#'+menudivid).addClass("menunormal");
+				
+                $('#'+opendivid).slideUp('slow'); 
+                $('#'+hidedivid).slideDown('slow');
+                $('#sameopendivid').val(infoid);
+                $('#samehidedivid').val(formid);
+                setTimeout(function(){
+                    $(window).scrollTop($('#'+topscroll).offset().top-46);
+                },500);
+            }else{ //alert('third else');
+                $('a#'+menudivid+'link').text('Close'); 	
+                $('#'+menudivid).removeClass("menunormal");
+                $('#'+menudivid).addClass("menuedit");
+                $('#'+hidedivid).slideUp('slow');  
+                $('#'+opendivid).slideDown('slow');
+                $('#sameopendivid').val(formid);
+                $('#samehidedivid').val(infoid);	
+                if(arguments[3]=="" || arguments[3]==undefined){
+                    $('form[name="'+formname+'"]')[0].reset();
+                    $('.errortxt').html('');
+                }
+                setTimeout(function(){
+                    $(window).scrollTop($('#'+topscroll).offset().top-46);
+                },500);
+            }	
+            setTimeout(function(){
+                $(window).scrollTop($('#'+topscroll).offset().top-46);
+            },500);
+        }
+    }	
+       
+    
+}
+function reseterror()
+{
+    $('.errortxt').html('');
+}
+function getCurrencyVal(){
+    var currencytype = $('#INCOME_CURRENCYSPAN :selected').val(); 
+    $('#INCOMESPAN').focus();
+}
+var basicupdateselfi=1;
+var partlocselfi=1;
+var eduselfi=1;
+function newPartnerPrefUpdate(domainname,uptype)
+{
+	var happymarriageopt = $('#happymarriageopt').val();
+    var SUBCASTE = GOTHRA = INSTATE = USASTATE = CITY = STAR = CITIZENSHIP = "";
+    var OTHERRELIGION = 0;
+
+    STAGE = $('#STAGE :selected').val();
+    ENAGE = $('#ENAGE :selected').val();
+    SYSSTAGE = $('#SYSSTAGE').val();
+    SYSENDAGE = $('#SYSENDAGE').val();
+    FROMFEET = $('#FROMFEET :selected').val();
+    TOFEET = $('#TOFEET :selected').val();
+	SYSFROMFEET = $('#SYSFROMFEET').val();
+    SYSTOFEET = $('#SYSTOFEET').val();
+    RELIGION = $('#RELIGION :selected').val();
+    OLDSUBCASTE = $('#OLDSUBCASTE').val();
+    var FROMINCOME = $('#STANNUALINCOME :selected').val();
+    var TOINCOME = $('#ENDANNUALINCOME :selected').val();
+    HAVECHILDREN = $('input[name=HAVECHILDREN]:checked').val();
+    PHYSICALSTATUS = $('input[name=PHYSICALSTATUS]:checked').val(); 
+    var MATCHEDUCATIONID = '';
+	if(STAGE ==0 || ENAGE ==0){
+		dgebid("ageerr").innerHTML='Please Choose the Age';
+		dgebid("STAGE").focus();
+	}
+    $('input[name=PPEDUCATION]:checked').each(function(){		
+        MATCHEDUCATIONID = MATCHEDUCATIONID+"~"+$(this).val();
+    });
+    var EDUCATION = '';
+    $('input[name=EDUCATIONRIGHT]:checked').each(function(){		
+        EDUCATION = EDUCATION+"~"+$(this).val();
+    });
+    CASTE_OUT = $('#CASTE_OUT').val();
+    CASTE = CASTE_OUT.replace(/Caste_/g,'');
+	CASTE_ARR = CASTE.split('~');
+	
+	if(CASTE_ARR!='' && CASTE_ARR.length>=2){
+		SUBCASTE = "";
+	}else{
+		SUBCASTE = $('#SUBCASTE_OUT').val();
+	}
+    GOTHRA = $('#GOTHRA').val();
+    MOTHERTONGUE = $('#MOTHERTONGUE_OUT').val();
+    OCCUPATION = $('#OCCUPATION_OUT').val();
+    var COUNTRY_OUT = $('#COUNTRY_OUT').val();
+	COUNTRY = COUNTRY_OUT.replace(/cnt_/g,'');
+    //Countryreplace = COUNTRY_OUT.replace(/cnt_/g,'');
+    //COUNTRY = Countryreplace.replace(/0~/,'');
+    
+    var STATE_OUT = $('#STATE_OUT').val();
+	STATE = STATE_OUT.replace(/state_/g,'');
+	STATE_ARR = STATE.split('~');
+	INSTATE = '';
+	USASTATE = '';
+	if(STATE_ARR!=''){
+		$.each(STATE_ARR, function( state_index, state_value ) {
+			if(state_value<100){
+				INSTATE = INSTATE+"~"+state_value;
+			}else{
+				USASTATE = USASTATE+"~"+state_value;
+			}
+		});
+	}
+	INSTATE = INSTATE.slice(1);
+	USASTATE = USASTATE.slice(1);
+		
+    var CITY_OUT = $('#CITY_OUT').val();
+    CITY = CITY_OUT.replace(/[0-9]*#/g,'');
+    STAR = $('#STAR_OUT').val();
+	var CITIZENSHIP_OUT = $('#CITIZENSHIP_OUT').val();
+	CITIZENSHIP = CITIZENSHIP_OUT.replace(/cnt_/g,'');
+    var MARITAL_STATUS="";
+    $('input[name=MARITAL_STATUS]:checked').each(function(){		
+        MARITAL_STATUS = MARITAL_STATUS+"~"+$(this).val();
+    });
+
+    var EATINGHABITS="";
+    for (i=0; i<=3; i++){
+        var eatchecked = $('#EATINGHABITS'+i).is(":checked");
+        if (eatchecked){
+            EATINGHABITS = EATINGHABITS+"~"+$('#EATINGHABITS'+i).val();
+        }
+    }
+
+    var DRINKING="";
+    $('input[name=DRINKING]:checked').each(function(){		
+        DRINKING = DRINKING+"~"+$(this).val();
+    });
+
+    var SMOKING="";
+    $('input[name=SMOKING]:checked').each(function(){		
+        SMOKING = SMOKING+"~"+$(this).val();
+    });
+
+    var MANGLIK="";
+    $('input[name=MANGLIK1]:checked').each(function(){		
+        MANGLIK = MANGLIK+"~"+$(this).val();
+    });
+    var partnerdesc = encodeURIComponent($('#partnerdesctextarea').val())+"!~!"+encodeURIComponent($('#oldpartnerdesc').val());
+    OTHERRELIGION = $('input[name=OTHERRELIGION]:checked').val();
+    var url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+    param = "happymarriageopt="+happymarriageopt+"&STAGE="+STAGE+"&ENAGE="+ENAGE+"&SYSSTAGE="+SYSSTAGE+"&SYSENDAGE="+SYSENDAGE+"&FROMFEET="+FROMFEET+"&TOFEET="+TOFEET+"&SYSFROMFEET="+SYSFROMFEET+"&SYSTOFEET="+SYSTOFEET+"&MARITAL_STATUS="+MARITAL_STATUS+"&RELIGION="+RELIGION+"&CASTE="+CASTE+"&EATINGHABITS="+EATINGHABITS+"&MANGLIK="+MANGLIK+"&GOTHRA="+GOTHRA+"&MOTHERTONGUE="+MOTHERTONGUE+"&EDUCATION="+EDUCATION+"&MATCHEDUCATIONID="+MATCHEDUCATIONID+"&INSTATE="+INSTATE+"&USASTATE="+USASTATE+"&OCCUPATION="+OCCUPATION+"&COUNTRY="+COUNTRY+"&SUBCASTE="+SUBCASTE+"&STAR="+STAR+"&CITY="+CITY+"&CITIZENSHIP="+CITIZENSHIP+"&FROMINCOME="+FROMINCOME+"&TOINCOME="+TOINCOME+"&DRINKING="+DRINKING+"&SMOKING="+SMOKING+"&HAVECHILDREN="+HAVECHILDREN+"&PHYSICALSTATUS="+PHYSICALSTATUS+"&INCLUDEOTHERRELIGION="+OTHERRELIGION+"&partnerdesc="+partnerdesc+"&type="+uptype;
+
+    if(uptype =='partnerprefbasicupdate'){
+        if(validateform()) {
+            /*if(updateselbasicval()==false || updateselreligionval()==false) {
+                return false;
+            }*/
+            if (basicupdateselfi==1) {
+             var photoselfie = "&photoselfie=any";
+             basicupdateselfi++;
+            }else{
+                  var photoselfie = "";     
+            }
+             
+            param = param+"&EDITFORM=9"+photoselfie;
+			
+            var urlrep = url+"?gaact=BRPUPP&gasrc=EDPR";
+            _gaq.push(['_trackPageview',urlrep]);
+           
+         $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           var templateURL = "//profile."+domainname+".com/profiledetail/myprofile.php";
+                           var templateParam = "info=basicprofessional&part=ppbasic&rt="+new Date().getTime();
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'partnerprefbasicinfo\',\'partnerprefbasicform\',\'partnerprefbasicmenu\',\'MatriForm\',\'BasicPartner\',\'\',\'gaother\');jqajaxRequest(\''+templateURL+'\',\'POST\',\''+templateParam+'\',\'BasicPartner\');" class="">close</div>').appendTo("#cboxContent");
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'583'});
+                           } else {
+                                    $.colorbox.resize({height:'95',width:'560'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);                  
+            }
+        });            
+           
+        }
+    }
+    else 
+    {
+        if(uptype =='partnerprefprofupdate')
+        {
+            if(updateselprofval()==false) {
+                return false;
+            }
+			
+		if(dgebid("incomeerr").innerHTML!=""){
+			return false;
+		}
+            param = param+"&EDITFORM=10";
+            
+            var urlrep = url+"?gaact=PPUPP&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+        }
+        else if(uptype =='partnerpreflocationupdate')
+        {
+            if(updatesellocationval()==false) {
+                return false;
+            }
+            param = param+"&EDITFORM=11";
+            var urlrep = url+"?gaact=LPUPP&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+        }
+        else if(uptype =='partnerprefdescupdate')
+        {
+            param = param+"&EDITFORM=12";
+    	    var urlrep = url+"?gaact=PDUPP&gasrc=EDPR";
+   	    _gaq.push(['_trackPageview',urlrep]);
+        }
+        if(uptype =='partnerprefprofupdate' && eduselfi==1 ) {
+         
+         var photoselfie = "&photoselfie=any";
+         eduselfi++;
+        }else if(uptype =='partnerpreflocationupdate' && partlocselfi==1){
+         
+         var photoselfie = "&photoselfie=any";
+         partlocselfi++;
+        }else{
+         var photoselfie='';
+        }
+         
+             param =param+photoselfie;
+         $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           var templateURL = "//profile."+domainname+".com/profiledetail/myprofile.php";
+                           if(uptype =='partnerprefprofupdate') {
+                                    var templateParam = "info=basicprofessional&part=pppersonal&rt="+new Date().getTime();
+                                    $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'partnerprefprofinfo\',\'partnerprefprofform\',\'partnerprefprofmenu\',\'MatriForm\',\'ProfessionalPartner\',\'\',\'gaother\');jqajaxRequest(\''+templateURL+'\',\'POST\',\''+templateParam+'\',\'ProfessionalPartner\');" class="">close</div>').appendTo("#cboxContent");                                    
+                           } else if(uptype =='partnerpreflocationupdate') {
+                                    var templateParam = "info=locationlook&part=pplocation&rt="+new Date().getTime();
+				    tplUrl = templateURL;
+					tplParam	=	templateParam;
+				    templateParamProf = "info=basicprofessional&part=pppersonal&rt="+new Date().getTime();
+
+					
+
+                                    $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'partnerpreflocationinfo\',\'partnerpreflocationform\',\'partnerpreflocationmenu\',\'MatriForm\',\'LocationPartner\',\'\',\'gaother\');jqajaxRequest(\''+templateURL+'\',\'POST\',\''+templateParamProf+'\',\'ProfessionalPartner\');" class="">close</div>').appendTo("#cboxContent"); 
+								
+                           }
+                           else if(uptype =='partnerprefdescupdate') {
+                           	
+                           	   var templateParam = "info=locationlook&part=ppdesc&rt="+new Date().getTime();
+                                   $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'partnerdesc\',\'partnerdescform\',\'partnerdescmenu\',\'MatriForm\',\'ppDesc\',\'\',\'gaother\');jqajaxRequest(\''+templateURL+'\',\'POST\',\''+templateParam+'\',\'ppDesc\');" class="">close</div>').appendTo("#cboxContent");           	
+                           		  
+                           }
+                           
+						
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'583'});
+                           } else {
+                                    $.colorbox.resize({height:'95',width:'560'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);        
+
+            },complete: function() {
+		if(uptype =='partnerpreflocationupdate') {
+			jqajaxRequest(tplUrl,'POST',tplParam,'LocationPartner');
+		}
+            }
+        });                   
+    }
+}
+
+function memberDescUpdate(domainname){
+    if(descValidate()){
+		var happymarriageopt = $('#happymarriageopt').val();
+        memdesc = encodeURIComponent($('#DESCRIPTION1').val())+"!~!"+encodeURIComponent($('#oldmemdesc').val());
+        var softTags = memberSoftTagsUpdate("pdesc");
+        url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+        param = "happymarriageopt="+happymarriageopt+"&memdesc="+memdesc+softTags; 
+	
+        param = param+"&EDITFORM=1";
+        var urlrep = url+"?gaact=PDU&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+        
+        $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'prdescinfo\',\'prdescform\',\'abotmembermenu\',\'MATRIBASICDESC\',\'ownWords\',\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'580'});
+                           } else {
+                                    $.colorbox.resize({height:'110',width:'580'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);
+                  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=ownbasic&part=owndetails&rt="+new Date().getTime(),'ownWords');
+            }
+        });
+    }	
+}
+
+function hideloader() {$("#cboxLoadingOverlay,#cboxLoadingGraphic").hide();}
+
+function fnChkUnChkLifestyle(Habitname,val){
+    Habitname = "LIFESTYLE"+Habitname;
+    if(val == 1){
+        dgebid(Habitname+'2').checked=false;
+        dgebid(Habitname+'3').checked=false;
+    } else if(val == 2){
+        dgebid(Habitname+'1').checked=false;
+        dgebid(Habitname+'3').checked=false;
+    } else if(val == 3){
+        dgebid(Habitname+'1').checked=false;
+        dgebid(Habitname+'2').checked=false;
+    }
+}
+
+function familyDetailsUpdate(domainname){
+  var FULLFILLMENTID= $('#REQFULLFILLID').val();
+  var comtype= $('#COMTYPE').val();
+
+  if(arguments[4] =='' || arguments[4] == undefined)
+	var frmlog=0;
+  else 
+	var frmlog = arguments[4]; 
+
+    if (typeof(arguments[3]) === "undefined")
+        var myhomepop=0;
+    else
+        var myhomepop= arguments[3];
+
+    if(arguments[1] =='' || arguments[1] == undefined) var interfamily=0;
+    else var interfamily=1;
+    if (typeof(arguments[2]) === "undefined") var fromvp = 0; 
+    else var fromvp = arguments[2];
+
+    if(familyvalidate(fromvp)){
+        if(fromvp != 1){
+            familyval = $('input[name=FAMILYVALUE]:checked').val();	
+            familytyp = $('input[name=FAMILYTYPE]:checked').val();
+            familystat = $('input[name=FAMILYSTATUS]:checked').val();
+        }
+        else{
+            familyval = $('input[name=FAMILYVALUE]').val();	
+            familytyp = $('input[name=FAMILYTYPE]').val();
+            familystat = $('input[name=FAMILYSTATUS]').val();
+            langdet =  $('input[name=LANGUAGE]').val();
+        }
+	
+		newdropstatus = $('#NEWDROPSTATUS').val();
+		if(newdropstatus == undefined || newdropstatus == 0){
+			newdropstatus = 0;
+			FMSavailable = 0;
+		}else{
+			newdropstatus = 1;
+			FMSavailable = 1;
+		}
+	
+        var timecreated = $('#PROFILETIMECREATED').val();
+		statusStartFrm	= '2016-03-17 16:59:59';
+		if(timecreated > statusStartFrm && FMSavailable == 1)
+		{
+		motherocc =	$('#MOTHEROCCUPATION :selected').val();
+		fatherocc =	$('#FATHEROCCUPATION :selected').val();
+		}
+		else
+		{
+	    motherocc = encodeURIComponent($('#MOTHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDMOTHEROCCUPATION').val());
+	    fatherocc = encodeURIComponent($('#FATHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDFATHEROCCUPATION').val());
+		}
+	   var FamilyVal = $('input[name="FAMILYLOCATIONSTATUS"]:checked').val();
+	   if(FamilyVal==2){
+	   var familycountry = $('#familycountryliv').val()+"!~!"+$('#FAMILYCOUNTRY_LIVINGIN').val();
+	   var familyresistate = encodeURIComponent($('#FAMILYRESIDINGSTATE').val())+"!~!"+encodeURIComponent($('#FAMILYSTATEOLD').val());
+	   var familyresicity = encodeURIComponent($('#FAMILYRESIDINGCITY').val())+"!~!"+encodeURIComponent($('#FAMILYCITYOLD').val());
+	   var familyresidist = $('#FAMILYRESIDINGDISTRICT').val();
+	   } else if(FamilyVal==1) {
+	   var familycountry = $('#SAMERESIDINGCOUNTRY_LIVINGIN').val()+"!~!"+$('#FAMILYCOUNTRY_LIVINGIN').val();
+	   var familyresistate = encodeURIComponent($('#SAMERESIDINGSTATE').val())+"!~!"+encodeURIComponent($('#FAMILYSTATEOLD').val());
+	   var familyresicity = encodeURIComponent($('#SAMERESIDINGCITY').val())+"!~!"+encodeURIComponent($('#FAMILYCITYOLD').val());
+	   var familyresidist = $('#SAMERESIDINGDISTRICT').val();
+	   }
+	   else{
+	   var familycountry = '';
+	   var familyresistate = '';
+	   var familyresicity = '';
+	   var familyresidist = '';
+	   }
+		
+        if($('#ANCESTRALORIGIN').val() == "Enter your ancestral/family origin state") {
+            ancestral = "!~!"+encodeURIComponent($('#OLDANCESTRALORIGIN').val());
+        }else {
+            ancestral = encodeURIComponent($('#ANCESTRALORIGIN').val())+"!~!"+encodeURIComponent($('#OLDANCESTRALORIGIN').val());
+        }
+       var happymarriageopt = $('#happymarriageopt').val();
+        brotherVal = $('#BROTHERS :selected').val();
+        brothermarriedVal = $('#MARRIEDBROTHERS :selected').val();
+        sisterVal = $('#SISTERS :selected').val();
+        sistermarriedVal = $('#MARRIEDSISTERS :selected').val();
+        ancestralstateon = $('#ANCESTRALSTATEON').val();
+		oldbrotherVal = $('#OLDBROTHERS').val();
+		oldbrothersmarriedval = $('#OLDBROTHERSMARRIED').val();
+		oldoldsistersval = $('#OLDSISTERS').val();
+		oldsistersmarriedval = $('#OLDSISTERSMARRIED').val();		
+
+        if(ancestralstateon == "yes") {
+            ancestralstate = $('#ANCESTRALSTATE :selected').val();
+            ancestralstateupdate = "&ansstate="+ancestralstate;
+        } else	{
+            ancestralstateupdate = "";
+        }
+        var photoselfie=$('#MATRIFAMILYINFO').find('input[name="photo_familyinfo"]').val();
+		
+        var softTags = memberSoftTagsUpdate("fam");
+
+        url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+        param = "happymarriageopt="+happymarriageopt+"&familyval="+familyval+"&familytype="+familytyp+"&familystatus="+familystat+"&motherocc="+motherocc+"&fatherocc="+fatherocc+ancestralstateupdate+"&ancestral="+ancestral+"&brotherVal="+brotherVal+"&brothermarriedVal="+brothermarriedVal+"&sisterVal="+sisterVal+"&sistermarriedVal="+sistermarriedVal+"&familycountry="+familycountry+"&familyresistate="+familyresistate+"&familyresicity="+familyresicity+"&familyresidist="+familyresidist+"&interfamily="+fromvp+"&type=familydetailsupdate"+softTags+"&oldbrotherVal="+oldbrotherVal+"&oldbrothersmarriedval="+oldbrothersmarriedval+"&oldoldsistersval="+oldoldsistersval+"&oldsistersmarriedval="+oldsistersmarriedval+"&NEWDROPSTATUS="+newdropstatus+"&timecreated="+timecreated;
+        param = param+"&EDITFORM=6&photoselfie="+photoselfie;
+		
+		if(FULLFILLMENTID!='')
+		{
+			param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+		}
+        if(fromvp == 1){           
+            var urlrep = url+"?fromvp=1&gaact=ADDFMSUB&gasrc=VP";
+        _gaq.push(['_trackPageview',urlrep]);
+        } else if(interfamily==1){
+            var urlrep = url+"?gaact=ADDFMSUB&gasrc=INTPFU";
+        _gaq.push(['_trackPageview',urlrep]);		    
+        } else if(fromvp == 2){
+            var urlrep = url+"?gaact=PC&gasrc=ADDFMSUBMH";
+        _gaq.push(['_trackPageview',urlrep]);
+        } else {
+           var urlrep = url+"?gaact=FDU&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);		    
+        }
+        if(fromvp == 1)
+            param += "&setmemcache=1&lang="+langdet;
+        if(interfamily==1){
+            param += "&Interaddeducation=1";
+        }        
+         $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+            beforeSend: function(){ 
+                    if(fromvp == 1){
+		        $("#familyhidedivform").html('<div id="showfamilyinfo"><div style="float:left; display:inline; width:590px;"><div style="float:left; display:block;  background:url(//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/profile-completness-corner.png) no-repeat left; width:43px; height:120px;"><!-- &nbsp; --></div><div style="float:left; display:inline; width:451px; box-shadow:3px 3px 3px #888888;   background:#f4f4f4; height:70px; "><a href="javascript:;" onclick="stop_event(event);showFamily();"><div style="margin-top:15px;margin-right:15px;" class="fright tipfectClose"><!--  --></div></a> </div></div><div style="float:left; display:inline; margin-top:-70px;   width:494px;  background:#f4f4f4;  box-shadow:3px 3px 3px #888888;height:135px;"><div style="padding:35px 40px 80px 40px;"><div class="clr5 paddl5 paddb5 boldtxt"><span style="padding-left:100px"><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif"></center></span></div></div></div></div>');
+			$("#familyhidediv").css("display", "none");
+                    }
+                   else if(fromvp != 1) {
+                        $.colorbox({
+                            html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',
+                            scrolling:false
+                        });                
+                        $("#cboxClose").remove();
+                        if(fromvp == 2){
+							if(DOMAINARRAY['domainnameshort']=='marathi' && frmlog==1){	
+								$('<div id="cboxClose" style="" onclick="$.colorbox.close();window.top.location.assign(\'/dailymatch/dailymatch.php?frmpg=loginpg\');" class="">close</div>').appendTo("#cboxContent"); 
+							}
+							else{
+								$('<div id="cboxClose" style="" onclick="$.colorbox.close();window.top.location.assign(\'/login/myhome.php\');" class="">close</div>').appendTo("#cboxContent");
+							}
+                        }
+                        else
+                            {
+                               $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'familyinfo\',\'familyform\',\'familymenu\',\'MATRIFAMILYINFO\',\'FamilyInformation\',\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");
+                            }
+                            
+                        if(happymarriageopt == '') {
+                            $.colorbox.resize({height:'300',width:'580'});
+                        } else {
+                            $.colorbox.resize({height:'110',width:'580'});
+                        }
+		    }
+        },
+        success: function (response) {  
+            if(myhomepop==1){  
+                   $('#cboxLoadedContent').html('<div class="hdtxt boldtxt clr4 paddb10" style="text-align: center;">Your Family Details has been updated successfully.</div>');
+                   $.colorbox.resize({height:'100',width:'580'});
+                }
+            else if(fromvp == 1){
+                    $("#familyhidedivform").html('<div id="showfamilyinfo"><div style="float:left; display:inline; width:590px;"><div style="float:left; display:block;  background:url(//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/profile-completness-corner.png) no-repeat left; width:43px; height:120px;"><!-- &nbsp; --></div><div style="float:left; display:inline; width:451px; box-shadow:3px 3px 3px #888888;   background:#f4f4f4; height:70px; "><a href="javascript:;" onclick="stop_event(event);showFamily();"><div style="margin-top:15px;margin-right:15px;" class="fright tipfectClose"><!--  --></div></a> </div></div><div style="float:left; display:inline; margin-top:-70px;   width:494px;  background:#f4f4f4;  box-shadow:3px 3px 3px #888888;height:135px;"><div style="padding:35px 40px 80px 40px;"><div class="clr5 paddl5 paddb5 boldtxt"><span style="padding-left:100px"><center><div class="hdtxt boldtxt clr4 paddb10" style="text-align: center;">Your Family Details has been updated successfully.</div></center></span></div></div></div></div>');
+                    $("#familyhidediv").css("display", "none");					
+		    ga('send', 'event', domain_mt+"-AddDetails", "VP-AddFamily","Saved", {"nonInteraction": true});
+		    _gaq.push(['_trackEvent',domain_mt+'-AddDetails', 'VP-AddFamily', 'Saved']);
+            }
+	    else {
+            $('#cboxLoadedContent').html(response);
+            jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=professionalfamily&part=familydetails&rt="+new Date().getTime(),'FamilyInformation');
+	    }
+        }
+    });         
+        
+}    	
+}
+
+function showFamily(){
+    $("#familyhidedivform").css("display", "none");
+    $("#familydescdisporg").show();
+    $("#familydescdisppartial").hide();
+}
+
+function familyDescUpdate(domainname){
+	var FULLFILLMENTID= $('#REQFULLFILLID').val();
+	var comtype= $('#COMTYPE').val();
+
+	var happymarriageopt = $('#happymarriageopt').val();
+    var familydesc = encodeURIComponent($('#FAMILYDESCRIPTION').val())+"!~!"+encodeURIComponent($('#oldfamilydesc').val());
+   var photoselfie=$('#aboutfamily').find('input[name="photo_abtfamily"]').val();
+    var softTags = memberSoftTagsUpdate("fdesc");
+    var url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+    var param = "happymarriageopt="+happymarriageopt+"&familydesc="+familydesc+softTags;
+    param = param+"&EDITFORM=7&photoselfie="+photoselfie;
+
+	if(FULLFILLMENTID!='')
+	{
+		param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+	}
+
+    var urlrep = url+"?gaact=AMF&gasrc=EDPR";
+    _gaq.push(['_trackPageview',urlrep]);
+         $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'familydesc\',\'familydescform\',\'familydescmenu\',\'aboutfamily\',\'AboutFamily\',\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'580'});
+                           } else {
+                                    $.colorbox.resize({height:'110',width:'580'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);
+                  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=professionalfamily&part=aboutfamilydetails&rt="+new Date().getTime(),'AboutFamily');
+            }
+        });     
+    
+}
+
+function partnerDescUpdate(domainname){
+    var happymarriageopt = $('#happymarriageopt').val();
+    var partnerdesc = encodeURIComponent($('#partnerdesctextarea').val())+"!~!"+encodeURIComponent($('#oldpartnerdesc').val());
+    
+    var url = "//profile."+domainname+".com/modify/editprofileupdate.php";
+    var param = "happymarriageopt="+happymarriageopt+"&partnerdesc="+partnerdesc;      
+
+    param = param+"&EDITFORM=12";
+    var urlrep = url+"?gaact=PDUPP&gasrc=EDPR";
+    _gaq.push(['_trackPageview',urlrep]);
+         $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'partnerdesc\',\'partnerdescform\',\'partnerdescmenu\',\'MatriForm\',\'ppDesc\',\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'580'});
+                           } else {
+                                    $.colorbox.resize({height:'110',width:'580'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);
+                  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=locationlook&part=ppdesc&rt="+new Date().getTime(),'ppDesc');
+            }
+        });     
+}
+
+function educationDetailsUpdate(domainname){	
+	
+	var FULLFILLMENTID= $('#REQFULLFILLID').val();
+	var comtype= $('#COMTYPE').val();
+
+    if (typeof(arguments[1]) === "undefined")
+        var myhomepop=0;
+    else
+        var myhomepop= arguments[1];
+
+    if(educationvalidate()){
+		var happymarriageopt = $('#happymarriageopt').val();
+        eductioncatg = $('#EDUCATION :selected').val(); 
+        oldeductioncatg = $('#OLDEDUCATION').val(); 
+        occupationcatg = $('#newoccuption :selected').val(); 
+        educationdetail = encodeURIComponent($('#OTHEREDUCATION').val())+"!~!"+encodeURIComponent($('#OLDOTHEREDUCATION').val());
+        addondegree = $('#ADDITIONALEDUCATION :selected').val();
+        occupationdetail = encodeURIComponent($('#OTHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDOTHEROCCUPATION').val());
+        employedin = $('input[name=OCCUPATIONCATEGORY]:checked').val(); 
+        oldemployedin = $('#OLDOCCUPATIONCATEGORY').val(); 
+        annualincome = $('input[name=INCOMETYPE]:checked').val(); 
+        currencytype = $('#INCOME_CURRENCYSPAN :selected').val(); 
+        oldcurrencytype = $('#OLDINCOMECURRENCY').val(); 	
+        currencyval = encodeURIComponent($('#INCOMESPAN').val());
+        currencyval = currencyval.split('%2C').join('');   
+        currencyval = currencyval.replace(/,/g, "");
+        if(currencyval == "Enter Income" || currencyval == "" || currencyval == 0){
+            currencyval = "";
+            currencytype = "";
+            annualincome = "";
+        }	
+	
+        oldcurrencyval = encodeURIComponent($('#OLDINCOMESPAN').val());
+        oldcurrencyval = oldcurrencyval.replace(/,/g, "");
+        if(oldcurrencyval == "" || oldcurrencyval == 0){
+            oldcurrencyval = "";
+            oldcurrencytype = "";
+        }
+	
+        if(currencytype != "" || oldcurrencytype != "") {
+            currencytype = currencytype+"!~!"+oldcurrencytype;
+        }
+        if(currencyval != "" || oldcurrencyval != "") {
+            currencyval = currencyval+"!~!"+oldcurrencyval;
+        }	
+	
+        college = encodeURIComponent($('#COLLEGE').val());
+        oldcollege = encodeURIComponent($('#OLD_COLLEGE').val());
+        
+        autocmplytvalid = $('#autocmplytvalid').val();
+        profilemodFlg = $('#profilemodFlg').val();
+				
+        var softTags = memberSoftTagsUpdate("edu");
+		
+        if(addondegree == undefined)
+            addondegree = 0;
+
+        if(college == undefined){
+            collegeAvail = 0;
+        } else {
+            collegeAvail = 1;
+        }
+        profileverified = $('#PROFILEVERIFIED').val();
+        url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+        param = "happymarriageopt="+happymarriageopt+"&eductioncatg="+eductioncatg+"&occupationcatg="+occupationcatg+"&educationdetail="+educationdetail+"&addondegree="+addondegree+"&occupationdetail="+occupationdetail+"&employedin="+employedin+"&annualincome="+annualincome+"&currencytype="+currencytype+"&currencyval="+currencyval+"&college="+college+"&oldcollege="+oldcollege+"&autocmplytvalid="+autocmplytvalid+"&profilemodFlg="+profilemodFlg+"&type=edudetailsupdate"+softTags+"&collegeAvail="+collegeAvail+"&oldemployedin="+oldemployedin+"&oldeductioncatg="+oldeductioncatg+"&profileverified="+profileverified;   
+		
+		if(FULLFILLMENTID!='')
+		{
+			param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+		}
+
+        param = param+"&EDITFORM=5";
+        if(myhomepop == 1 && arguments[2] == 'income') {
+            var urlrep = url+"?gaact=PC&gasrc=MYHMEANIN";
+        } else if(myhomepop == 1 && arguments[2] == 'education') {
+            var urlrep = url+"?gaact=PC&gasrc=MYHMEEDU";
+        } else {
+            var urlrep = url+"?gaact=PIU&gasrc=EDPR";
+        }
+        _gaq.push(['_trackPageview',urlrep]);
+         $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                    $.colorbox({
+                        html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',
+                        scrolling:false
+                    });
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           if(myhomepop==1){  
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();window.top.location.assign(\'/login/myhome.php\');" class="">close</div>').appendTo("#cboxContent");
+                       } else {
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'professioninfo\',\'professionform\',\'educationmenu\',\'MATRIEDUCATIONINFO\',\'ProfessionalInformation\',\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");
+                       }
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'580'});
+                           } else {
+                                    $.colorbox.resize({height:'110',width:'580'});
+                           } 
+                  },
+            success: function (response) {
+		if(myhomepop==1){                    
+                     $('#cboxLoadedContent').html('<div class="hdtxt boldtxt clr4 paddb10 paddt5" style="text-align: center;">Your Professional Information has been updated successfully.</div>');
+                } else {
+                  $('#cboxLoadedContent').html(response);
+                  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=professionalfamily&part=professionaldetails&rt="+new Date().getTime(),'ProfessionalInformation');
+		}
+            }
+        });   
+    }
+}
+
+function memberProfUpdate(domainname){
+	var FULLFILLMENTID= $('#REQFULLFILLID').val();
+	var comtype = $('#COMTYPE').val();
+    if(primaryvalidate()){
+		var happymarriageopt = $('#happymarriageopt').val();
+
+		var secondname = $('#NAME').val().toLowerCase().split(' ').join('');
+		
+		if(((secondname == 'later' ||  secondname == 'onrequest') || ($('#NAME1').val() == 'later' || $('#NAME1').val() == 'onrequest')) && $('#NAME').val() != $('#NAME1').val()){
+		
+			var category = 'Form-RealName-EditProfile-'+domainname;
+			_gaq.push(['_trackEvent',category, ' RegForm-RealName-Field', 'Filled-Submitted']); 	
+			ga('send', {'hitType': 'event', 'eventCategory': category, 'eventAction': 'RegForm-RealName-Field', 'eventLabel': 'Filled-Submitted'});
+		}
+
+        memname = encodeURIComponent($('#NAME').val())+"!~!"+encodeURIComponent($('#NAME1').val());
+        memcreated = $('#CREATEDBY').val();
+        memage = $('#AGE1').val();
+        memdobmonth = $('#DOBMONTH').val();
+        memdobday = $('#DOBDAY').val();
+        memdobyr = $('#DOBYEAR').val();
+        memhtfeet = $('#FEET').val();
+        memhtcms = $('#CMS').val();
+        memwtkgs = $('#KGS').val();
+        memwtlbs = $('#LBS').val();
+        memmaritalstatus = $('#MARITAL_STATUS').val()+"!~!"+$('#OLD_MARITAL').val();
+       
+		
+        var memoldnoofchild=''
+        if($('#MARITAL_STATUS').val()==1 && ($('#OLD_NOOFCHILDREN').val()==0 || $('#OLD_NOOFCHILDREN').val()==null || $('#OLD_NOOFCHILDREN').val()=='undefined' )){
+            memoldnoofchild='';
+        }else{
+            memoldnoofchild=$('#OLD_NOOFCHILDREN').val();
+        }
+		
+        memnochild = $('#NOOFCHILDREN').val()+"!~!"+memoldnoofchild;
+
+        var memchildlivingst='';
+
+        if(typeof($('input[name=CHILDLIVINGWITHME]:checked').val()) == 'undefined'){
+            memchildlivingst='';
+        }else{
+            memchildlivingst=$('input[name=CHILDLIVINGWITHME]:checked').val();
+        }
+        var memoldchildliving=''
+        if($('#OLD_CHILDRENLIVING').val()==1){
+            memoldchildliving='Y';
+        }
+        if($('#OLD_CHILDRENLIVING').val()==2){
+            memoldchildliving='N';
+        }
+
+        memchildliving = memchildlivingst+"!~!"+memoldchildliving;
+        membodytype = $('input[name=BODY_TYPE]:checked').val();
+        memcomplexion = $('input[name=COMPLEXION]:checked').val();
+        memphysicalstatus = $('input[name=PHYSICAL_STATUS]:checked').val();
+        memmothertongue = $('#newmothertongue').val()+"!~!"+$('#OLD_MOTHERTONGUE').val();
+        memknowtoread=$('input[name=KNOWTOREAD]:checked').val();
+		
+		
+        if(typeof($('input[name=EATING_HABITS]:checked').val()) != 'undefined'){
+            memeatingval=$('input[name=EATING_HABITS]:checked').val();
+        } else {
+            memeatingval='';
+        }
+        if(typeof($('input[name=SMOKING_HABITS]:checked').val()) != 'undefined'){
+            memsmokingval=$('input[name=SMOKING_HABITS]:checked').val();
+        } else {
+            memsmokingval='';
+        }
+        if(typeof($('input[name=DRINKING_HABITS]:checked').val()) != 'undefined'){
+            memdrinkingval=$('input[name=DRINKING_HABITS]:checked').val();
+        } else {
+            memdrinkingval='';
+        }
+
+        var softTags = memberSoftTagsUpdate("basic");
+
+        url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+        param = "happymarriageopt="+happymarriageopt+"&memname="+memname+"&memage="+memage+"&memcreated="+memcreated+"&memdobmonth="+memdobmonth+"&memdobday="+memdobday+"&memdobyr="+memdobyr+"&memhtfeet="+memhtfeet+"&memhtcms="+memhtcms+"&memwtkgs="+memwtkgs+"&memwtlbs="+memwtlbs+"&memmaritalstatus="+memmaritalstatus+"&memnochild="+memnochild+"&memchildliving="+memchildliving+"&membodytype="+membodytype+"&memcomplexion="+memcomplexion+"&memphysicalstatus="+memphysicalstatus+"&memmothertongue="+memmothertongue+"&memknowtoread="+memknowtoread+"&memeatingval="+memeatingval+"&memsmokingval="+memsmokingval+"&memdrinkingval="+memdrinkingval+softTags;
+		if(FULLFILLMENTID!=''){
+		param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+		}
+        param = param+"&EDITFORM=2";
+	
+        var urlrep = url+"?gaact=BDU&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+       
+        if($('#OLD_MARITAL').val()!=$('#MARITAL_STATUS').val() || $('#NOOFCHILDREN').val()!=memoldnoofchild || memchildlivingst!=memoldchildliving || $('#OLD_MOTHERTONGUE').val()!=$('#newmothertongue').val() || $('#NAME').val() != $('#NAME1').val())
+        { 
+            param = param+"&onetimeedit=1";
+        }
+
+        $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'basicinfo\',\'basicform\',\'basicmenu\',\'MATRIBASICINFO\',\'BasicInformation\',\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");         
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'580'});
+                           } else {
+                                    $.colorbox.resize({height:'110',width:'580'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);
+                  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=ownbasic&part=basicdetails&rt="+new Date().getTime(),'BasicInformation');
+            }
+        });
+    }
+}
+
+function memberHobbiesUpdate(domainname){
+    var allHobbies = '', allInterest = '', allMusic = '', allRead = '', allMovie = '', allSports = '', allFood = '', allDress = '', allLang = '';
+	var happymarriageopt = $('#happymarriageopt').val();
+    $('input[name=HOBBIES]:checked').each(function(){		
+        allHobbies = allHobbies+"~"+$(this).val();
+    });
+    $('input[name=INTEREST]:checked').each(function(){		
+        allInterest = allInterest+"~"+$(this).val();
+    });
+    $('input[name=MUSIC]:checked').each(function(){		
+        allMusic = allMusic+"~"+$(this).val();
+    });
+    $('input[name=READ]:checked').each(function(){		
+        allRead = allRead+"~"+$(this).val();
+    });
+    $('input[name=MOVIE]:checked').each(function(){		
+        allMovie = allMovie+"~"+$(this).val();
+    });
+    $('input[name=SPORTS]:checked').each(function(){		
+        allSports = allSports+"~"+$(this).val();
+    });
+    $('input[name=FOOD]:checked').each(function(){		
+        allFood = allFood+"~"+$(this).val();
+    });
+    $('input[name=DRESS]:checked').each(function(){		
+        allDress = allDress+"~"+$(this).val();
+    });
+    $('input[name=SPOKENLANG]:checked').each(function(){		
+        allLang = allLang+"~"+$(this).val();
+    });
+	
+    var hobbiesdesc = encodeURIComponent($('#HOBBIESDESC').val())+"!~!"+encodeURIComponent($('#HOBBIESDESC1').val());
+    var interestdesc = encodeURIComponent($('#INTERESTDESC').val())+"!~!"+encodeURIComponent($('#INTERESTDESC1').val());
+    var musicdesc = encodeURIComponent($('#MUSICDESC').val())+"!~!"+encodeURIComponent($('#MUSICDESC1').val());
+    var readdesc = encodeURIComponent($('#READDESC').val())+"!~!"+encodeURIComponent($('#READDESC1').val());
+    var moviedesc = encodeURIComponent($('#MOVIEDESC').val())+"!~!"+encodeURIComponent($('#MOVIEDESC1').val());
+    var sportsdesc = encodeURIComponent($('#SPORTSDESC').val())+"!~!"+encodeURIComponent($('#SPORTSDESC1').val());
+    var fooddesc = encodeURIComponent($('#FOODDESC').val())+"!~!"+encodeURIComponent($('#FOODDESC1').val());
+    var dressdesc = encodeURIComponent($('#DRESSDESC').val())+"!~!"+encodeURIComponent($('#DRESSDESC1').val());
+    var langdesc = encodeURIComponent($('#SPOKENLANGDESC').val())+"!~!"+encodeURIComponent($('#SPOKENLANGDESC1').val());
+    var newHI = $('#newHI').val();
+    var photoselfie=$('#MATRIHOBBIESINFO').find('input[name="photoselfie"]').val();
+    var softTags = memberSoftTagsUpdate("hobb");
+
+    url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+    param = "happymarriageopt="+happymarriageopt+"&hobbies="+allHobbies+"&hobbiesdesc="+hobbiesdesc+"&interest="+allInterest+"&interestdesc="+interestdesc+"&music="+allMusic+"&musicdesc="+musicdesc+"&read="+allRead+"&readdesc="+readdesc+"&movie="+allMovie+"&moviedesc="+moviedesc+"&sports="+allSports+"&sportsdesc="+sportsdesc+"&food="+allFood+"&fooddesc="+fooddesc+"&dress="+allDress+"&dressdesc="+dressdesc+"&lang="+allLang+"&langdesc="+langdesc+"&type=hobbiesdetupdate"+softTags+"&newHI="+newHI;   
+ 
+    param = param+"&EDITFORM=8&photoselfie="+photoselfie; 
+    
+    var urlrep = url+"?gaact=HIU&gasrc=EDPR";
+    _gaq.push(['_trackPageview',urlrep]);
+         $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'hobbiesinfo\',\'hobbiesform\',\'hobbiesmenu\',\'MATRIHOBBIESINFO\',\'Hobby\',\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'580'});
+                           } else {
+                                    $.colorbox.resize({height:'110',width:'580'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);
+                  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=hobbylast&part=hobbydetails&rt="+new Date().getTime(),'Hobby');
+            }
+        });     
+}
+
+function memberHobbiesInterestUpdate(domainname,hobavilable)
+{
+	var allHobbies = '', allMusic = '', allSports = '', allLang = '';
+	var Hobintpage = $('#Hobbiespage').val();
+	if(hobavilable==1)
+	{
+	 allHobbies= Hobintpage;
+	}
+	else
+	{
+	$('input[name=HOBBIES]:checked').each(function(){		
+		allHobbies = allHobbies+"~"+$(this).val();
+	});
+	}
+	$('input[name=MUSIC]:checked').each(function(){		
+		allMusic = allMusic+"~"+$(this).val();
+	});
+	$('input[name=SPORTS]:checked').each(function(){		
+		allSports = allSports+"~"+$(this).val();
+	});
+	$('input[name=SPOKENLANG]:checked').each(function(){		
+		allLang = allLang+"~"+$(this).val();
+	});
+	
+	var hobbiesdesc = encodeURIComponent($('#HOBBIESDESC').val())+"!~!"+encodeURIComponent($('#HOBBIESDESC1').val());
+	var musicdesc = encodeURIComponent($('#MUSICDESC').val())+"!~!"+encodeURIComponent($('#MUSICDESC1').val());
+	var sportsdesc = encodeURIComponent($('#SPORTSDESC').val())+"!~!"+encodeURIComponent($('#SPORTSDESC1').val());
+	var langdesc = encodeURIComponent($('#SPOKENLANGDESC').val())+"!~!"+encodeURIComponent($('#SPOKENLANGDESC1').val());
+	
+	url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+	param = "hobbies="+allHobbies+"&hobbiesdesc="+hobbiesdesc+"&music="+allMusic+"&musicdesc="+musicdesc+"&sports="+allSports+"&sportsdesc="+sportsdesc+"&lang="+allLang+"&langdesc="+langdesc+"&newHI=1";   
+
+	param = param+"&EDITFORM=8";
+	
+	var urlrep = url+"?gaact=HIU&gasrc=EDPR";
+	_gaq.push(['_trackPageview',urlrep]);
+		 $.ajax({  
+			url: url,	
+			type: "POST",
+			data: param,
+			success: function (response) {
+				window.location.href = "//profile."+domainname+".com/register/complete_registration.php";
+
+			}     
+		});     
+}
+
+function memberReligionUpdate(domainname){
+	var FULLFILLMENTID= $('#REQFULLFILLID').val();
+	var comtype= $('#COMTYPE').val();
+	var memstarold = '';
+	var memraasiold = '';
+    if(religionvalidate()){
+		var happymarriageopt = $('#happymarriageopt').val();
+        memreligion = $('#newrealigion').val()+"!~!"+$('#OLD_RELIGION').val();
+        memcaste = $('#CASTE').val()+"!~!"+$('#OLD_CASTE').val();
+        memcastenobar = $('input[name=CASTENOBAR]:checked').val();
+        var memloldsubcaste='';
+        if($('#LSUBCASTEOLD').val()==0){
+            memloldsubcaste='null';
+        }else{
+            memloldsubcaste=$('#LSUBCASTEOLD').val();
+        }
+        memhidsubcaste = $('#hidsubcaste').val();
+        memsubcaste = $('#LSUBCASTE').val()+"!~!"+memloldsubcaste;
+        memsubcasteothers = encodeURIComponent($('#SUBCASTE').val())+"!~!"+encodeURIComponent($('#SUBCASTEOLD').val());
+        var memoldselgothra='';
+        if($('#OLDGOTHRAID').val()==0){
+            memoldselgothra='';
+        }else{
+            memoldselgothra=$('#OLDGOTHRAID').val();
+        }
+        memgothra = $('#SELGOTHRA').val()+"!~!"+ memoldselgothra;
+        memgothramseltxt = encodeURIComponent($('#GOTHRAM').val())+"!~!"+encodeURIComponent($('#GOTHRAMOLD').val());
+        memgothramfreetxt = encodeURIComponent($('#GOTHRAM1').val())+"!~!"+encodeURIComponent($('#GOTHRAM1OLD').val());
+
+        memstar = $('#STAR').val();
+        memraasi = $('#RAASI').val();
+
+		memstarold = $('#STAROLD').val();
+        memraasiold = $('#RAASIOLD').val();
+
+        memsuddhajadhagam = $('input[name=SUDDHAJADHAGAM]:checked').val();
+        if(isNaN(memsuddhajadhagam)){
+            memsuddhajadhagam = 0;
+        }
+        memmanglik = $('input[name=MANGLIK]:checked').val();
+        
+        if(memmanglik == 1)
+        {
+        	
+	    	var MANGLIK_M="";
+		var Mangcount =0;
+	    	$('input[name=MANGLIK_M]:checked').each(function(){		
+	        MANGLIK_M1 = MANGLIK_M + parseInt($(this).val());        
+	        Mangcount += parseInt(MANGLIK_M1);	        
+	        memmanglik = Mangcount;
+	    	});
+			
+		}
+		if(memmanglik ==1 && Mangcount ==0)
+		{
+			$("#errordosham").show();	
+			$("#errordosham").html('Please select any dosha');
+			return false;	
+		}else{
+		
+			$("#errordosham").hide();
+			$("#errordosham").html('');
+			
+		}
+        memcasteother = encodeURIComponent($('#casteother').val())+"!~!"+encodeURIComponent($('#casteotherold').val());
+
+        memzodiac = $('#ZODICSIGN').val();
+		
+        url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+        param = "happymarriageopt="+happymarriageopt+"&memreligion="+memreligion+"&memcaste="+memcaste+"&memcastenobar="+memcastenobar+"&memsubcaste="+memsubcaste+"&memsubcasteothers="+memsubcasteothers+"&memgothra="+memgothra+"&memgothramseltxt="+memgothramseltxt+"&memgothramfreetxt="+memgothramfreetxt+"&memstar="+memstar+"&memraasi="+memraasi+"&memsuddhajadhagam="+memsuddhajadhagam+"&memmanglik="+memmanglik+"&memcasteother="+memcasteother+"&memzodiac="+memzodiac+"&memstarold="+memstarold+"&memraasiold="+memraasiold;
+		
+		if(FULLFILLMENTID!='')
+		{
+			param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+		}
+
+        param =param+"&EDITFORM=3";
+        var urlrep = url+"?gaact=RIU&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+        if($('#OLD_RELIGION').val()!=$('#newrealigion').val() || $('#OLD_CASTE').val()!=$('#CASTE').val() || $('#LSUBCASTE').val()!=memloldsubcaste || $('#SUBCASTE').val()!=$('#SUBCASTEOLD').val() || $('#casteother').val()!= $('#casteotherold').val() || $('#SELGOTHRA').val()!=memoldselgothra || $('#GOTHRAM').val()!=$('#GOTHRAMOLD').val() || $('#GOTHRAM1').val()!=$('#GOTHRAM1OLD').val())
+        {	
+            param = param+"&onetimeedit=1";
+        }
+
+        $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'religiousinfo\',\'religiousform\',\'religiousmenu\',\'MATRIRELIGIONINFO\',\'ReligiousInformation\',\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");         
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'580'});
+                           } else {
+                                    $.colorbox.resize({height:'110',width:'580'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);
+                  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=religiouslocation&part=religiousdetails&rt="+new Date().getTime(),'ReligiousInformation');
+                  
+				 setTimeout(function(){
+					jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=basicprofessional&part=ppbasic&rt="+new Date().getTime(),'BasicPartner');
+				 },1500); 			  
+
+            }
+        });
+  
+    }
+}
+
+function memberLocationUpdate(domainname){ 
+    if(locationvalidate()){
+		var happymarriageopt = $('#happymarriageopt').val();
+       var memcountry = $('#countryliv').val()+"!~!"+$('#COUNTRY_LIVINGIN').val();
+       var memcitizen = $('#citizenshipliv').val();
+       var memresistatus = $('#RESIDENTSTATUS').val();
+       var memresistate = encodeURIComponent($('#RESIDINGSTATE').val())+"!~!"+encodeURIComponent($('#RESIDINGSTATEOLD').val());
+       var memresicity = encodeURIComponent($('#RESIDINGCITY').val())+"!~!"+encodeURIComponent($('#RESIDINGCITYOLD').val());
+       var memresidist = $('#RESIDINGDISTRICT').val();
+
+	   var memcountrynew = $('#countryliv').val();
+	   var memresistatenew = $('#RESIDINGSTATE').val();
+	   var memresicitynew=$('#RESIDINGCITY').val();
+
+       var url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+       var param = "happymarriageopt="+happymarriageopt+"&memcountry="+memcountry+"&memcitizen="+memcitizen+"&memresistatus="+memresistatus+"&memresistate="+memresistate+"&memresicity="+memresicity+"&memresidist="+memresidist;
+
+        param = param+"&EDITFORM=4";
+
+        var urlrep = url+"?gaact=LOCU&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+        $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();
+                           $('<div id="cboxClose" style="" onclick="$.colorbox.close();fnShowHide(\'locationinfo\',\'locationform\',\'locationmenu\',\'MATRIRELIGIONINFO\',\'LocationInformation\' ,\'\',\'gaother\');" class="">close</div>').appendTo("#cboxContent");     
+                           if(happymarriageopt == '') {
+                                    $.colorbox.resize({height:'300',width:'580'});
+                           } else {
+                                    $.colorbox.resize({height:'110',width:'580'});
+                           }
+                  },
+            success: function (response) {
+                  $('#cboxLoadedContent').html(response);
+                  MemLoc(memcountrynew,memresistatenew,memresicitynew,memresidist)
+				  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=religiouslocation&part=locationdetails&rt="+new Date().getTime(),'LocationInformation');
+				  
+            }
+        });        
+    }
+}
+
+function MemLoc(memcountrynew,memresistatenew,memresicitynew,memresidist){
+	$('#SAMERESIDINGCOUNTRY_LIVINGIN').val(memcountrynew);
+	$('#SAMERESIDINGSTATE').val(memresistatenew);
+	$('#SAMERESIDINGCITY').val(memresicitynew);
+}
+function focusUpdatePart(focustype){	
+    $('#closeopendivval').val(0);
+    $('#opendivid').val('');
+    $('#hidedivid').val('');
+    $('#sameopendivid').val('');
+    $('#samehidedivid').val('');
+    $('#menunamedivid').val('');
+    refreshurl = location.href;
+    orgurl=refreshurl.split("?");
+    orgurl=orgurl[0].split("#");	
+    if(orgurl[1]==undefined){ 
+        location.href=orgurl[0]+"#"+focustype;	
+        setTimeout('window.location.reload()',4000);				
+    }else{  
+        location.href=orgurl[0]+"#"+focustype;	
+        window.location.reload();
+    }
+}
+
+function showEmail(){
+    dgebid('emaillink').style.display='none';
+    dgebid('emaillbl').style.display='block';
+    dgebid('cpwdlbl').style.display='none';
+    dgebid('cpwdlink').style.display='block';
+}
+function showcpwd(){
+    dgebid('cpwdlink').style.display='none';
+    dgebid('cpwdlbl').style.display='block';
+    dgebid('emaillbl').style.display='none';
+    dgebid('emaillink').style.display='block';
+}
+function clearContainerHtml(id,ttab,cname)
+{
+    for (i=1; i<=ttab; i++){
+        containers = cname + i;
+        if(id != i && containers!=undefined){
+            dgebid(containers).innerHTML ="";
+        }		
+    } 
+}
+
+function subtab(nid,id,ttab,cname,csson,cssoff) {		
+    for (i=1; i<=ttab; i++){
+        var container = cname + i;
+        if(nid+id == nid+i){
+            dgebid(container).style.display = "block";
+            dgebid(nid+i).className= csson;
+        }
+        else{
+            dgebid(container).style.display = "none";
+            dgebid(nid+i).className= cssoff;
+        }
+    }
+}
+
+function ChkEmptyEdit(obj,obj_type,rowid,spanname,msg)
+{	
+    if (obj_type=="text" || obj_type=="password" || obj_type=="textarea" || obj_type=="file")
+    {
+        var objValue;
+        objValue = obj.value.replace(/\s+$/,"");
+        if (objValue.length == 0)
+        {
+            document.getElementById(rowid).className="normalrow";
+            document.getElementById(spanname).innerHTML=msg;
+            return true;
+        } 
+        else {
+            document.getElementById(rowid).className="normalrow";
+            document.getElementById(spanname).innerHTML=" ";
+            return false;
+        }
+    } 
+	
+    if (obj_type == "select") 
+    {
+        if (obj.selectedIndex==0)
+        {
+            document.getElementById(spanname).innerHTML=msg;
+            return true;
+        } 
+        else {
+            document.getElementById(spanname).innerHTML="";
+            return false;
+        }
+        return true;	
+    } 
+	
+    if (obj_type == "radio" || obj_type == "checkbox") 
+    {
+        var objlength=obj.length
+        var objcount=0;
+        for (i=0;i<objlength;i++ )
+        {
+            if(obj[i].checked){
+                objcount=1;
+                break;
+            }else{
+                objcount=0;
+            }
+        }
+        if(objcount==0)
+        {
+            document.getElementById(rowid).className="normalrow";
+            document.getElementById(spanname).innerHTML=msg;
+        }
+        else{
+            document.getElementById(rowid).className="normalrow";
+            document.getElementById(spanname).innerHTML=" ";
+        }
+		
+        return true;
+    } 
+	
+    return false;
+}
+
+function citizen(){
+    var frmLocInfo = document.MATRILOCATIONINFO;
+    if(frmLocInfo.CITIZENSHIP.value==frmLocInfo.COUNTRY.value)
+    {
+        frmLocInfo.RESIDENTSTATUS.value=0;
+        frmLocInfo.RESIDENTSTATUS.disabled=true;
+    }
+    else
+    {
+        frmLocInfo.RESIDENTSTATUS.selectedIndex=0;
+        frmLocInfo.RESIDENTSTATUS.disabled=false;
+    }
+}
+
+function backTop(){
+    if($('#container1').css('display') == 'block'){
+        // hide #back-top first
+        $('#container1').after('<div style="display: none;" id="back-top" class="active"><a href="#l1"><span></span></a></div>');
+        $("#back-top").hide();
+        // fade in #back-top
+        $(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 300) {
+                    $('#back-top').fadeIn();
+                } else {
+                    $('#back-top').fadeOut();
+                }
+            });
+        });
+    }
+}
+
+function imageSlider(){
+    var speed = 100;
+    $(".prev").click(function() {
+        var now1 = $(this).parent().next("div.gallery").children(':visible'),
+        last1 = $(this).next("div.gallery").children(':last'),
+        prev1 = now1.prev();
+        iv1 = prev1.prev().index();
+        prev1 = prev1.index() == -1 ? last1 : prev1;
+        if(iv1 == -1 )
+        {
+            $(".prev").css('display','none');
+        }
+        else
+        {
+            $(".next").css('display','block');
+        }
+        now1.fadeOut(speed, function() {
+            prev1.fadeIn(speed);
+        });
+    });
+
+    $(".next").click(function() {
+        var now = $(this).parent().next("div.gallery").children(':visible'),
+        first = $(this).parent().next("div.gallery").children(':first'),
+        next = now.next();
+        iv = next.next().index();
+        next = next.index() == -1 ? first : next;
+        if(iv == -1 )
+        {
+            $(".next").css('display','none');
+        }
+        else
+        {
+            $(".prev").css('display','block');
+        }
+        now.fadeOut(speed, function() {
+            next.fadeIn(speed);
+        });
+    });
+}
+
+function memberSoftTagsUpdate(type)
+{
+
+    var allHobbies = '', allInterest = '', allMusic = '', allRead = '', allMovie = '', allSports = '', allFood = '', edu = '', basic = '', fam = '', fdesc = '', hobb = '', pdesc = '', memolddesc = '', memsmokingval = '', memdrinkingval = '', familyval = '', familytyp = '', familystat = '', familyolddesc = '', eductioncatg = '', employedin = '', photoAvailable = '', photoRank = '';
+
+    memolddesc = encodeURIComponent($('#oldmemdesc').val());  
+		
+    if(typeof($('input[name=SMOKING_HABITS]:checked').val()) != 'undefined'){
+        memsmokingval=$('input[name=SMOKING_HABITS]:checked').val();
+    } else {
+        memsmokingval='';
+    }
+    if(typeof($('input[name=DRINKING_HABITS]:checked').val()) != 'undefined'){
+        memdrinkingval=$('input[name=DRINKING_HABITS]:checked').val();
+    } else {
+        memdrinkingval='';
+    }
+
+    $('input[name=HOBBIES]:checked').each(function(){		
+        allHobbies = allHobbies+"~"+$(this).val();
+    });
+    $('input[name=INTEREST]:checked').each(function(){		
+        allInterest = allInterest+"~"+$(this).val();
+    });
+    $('input[name=MUSIC]:checked').each(function(){		
+        allMusic = allMusic+"~"+$(this).val();
+    });
+    $('input[name=READ]:checked').each(function(){		
+        allRead = allRead+"~"+$(this).val();
+    });
+    $('input[name=MOVIE]:checked').each(function(){		
+        allMovie = allMovie+"~"+$(this).val();
+    });
+    $('input[name=SPORTS]:checked').each(function(){		
+        allSports = allSports+"~"+$(this).val();
+    });
+    $('input[name=FOOD]:checked').each(function(){		
+        allFood = allFood+"~"+$(this).val();
+    });
+    familyval = $('input[name=FAMILYVALUE]:checked').val();	
+    familytyp = $('input[name=FAMILYTYPE]:checked').val();
+    familystat = $('input[name=FAMILYSTATUS]:checked').val();
+    familyolddesc = encodeURIComponent($('#oldfamilydesc').val());   
+    eductioncatg = $('#EDUCATION :selected').val(); 
+    occupationcatg = $('#newoccuption :selected').val(); 
+		
+    photoAvailable = $('#photoAvailable').val(); 
+    photoRank = $('#photoRank').val(); 
+
+    edu = "&eductioncatg="+eductioncatg+"&occupationcatg="+occupationcatg;
+    basic = "&memsmokingval="+memsmokingval+"&memdrinkingval="+memdrinkingval;
+    fam = "&familyval="+familyval+"&familytype="+familytyp+"&familystatus="+familystat;
+    fdesc = "&familyolddesc="+familyolddesc;
+    hobb = "&hobbies="+allHobbies+"&interest="+allInterest+"&music="+allMusic+"&read="+allRead+"&movie="+allMovie+"&sports="+allSports+"&food="+allFood;
+    pdesc = "&memolddesc="+memolddesc;
+	
+    if(type == "edu")
+    {
+        edu = '';
+    } 
+    else if(type == "basic")
+    {
+        basic = '';
+    }
+    else if(type == "fam")
+    {
+        fam = ''; 
+    }
+    else if(type == "fdesc")
+    {
+        fdesc = ''; 
+    }
+    else if(type == "hobb")
+    {
+        hobb = ''; 
+    }
+    else if(type == "pdesc")
+    {
+        pdesc = '';
+    }
+
+    param =  "&softTags=YES&photoAvailable="+photoAvailable+"&photoRank="+photoRank+edu+basic+fam+fdesc+hobb+pdesc;		
+    return param;
+			 
+}
+
+function updateSoftTags()
+{
+    var argument = newTags = newTagsArg = uncheckedTags = uncheckedTagsArg = MemTags = memberTagsArg = SysTags = SysTagsArg = deletedTags = deletedTagsArg = '';
+    var tagFlag = 0;  
+    var SysTags = $('#SysTags').val();
+    var MemTags = $('#MemTags').val();
+    var deletedTags = $('#DeletedTags').val();
+    var totelement = document.editTagPop.elements.length;
+    for (k=0; k<totelement; k++)
+    {
+        var type = document.editTagPop.elements[k].type;
+        if ((type == "checkbox") && (document.editTagPop.elements[k].checked == true) && (document.editTagPop.elements[k].value == "unselect")){
+            newTags = newTags+","+document.editTagPop.elements[k].name;
+        } else if((type == "checkbox") && (document.editTagPop.elements[k].checked == false) && (document.editTagPop.elements[k].value == "select")){
+            uncheckedTags = uncheckedTags+","+document.editTagPop.elements[k].name;
+        }
+        if ((type == "checkbox") && (document.editTagPop.elements[k].checked == true) && tagFlag !=1){
+            tagFlag =1;   
+        }
+		
+    }
+    if(SysTags != "")
+    {
+        SysTagsArg = '&sysTags='+encodeURIComponent(SysTags);
+    }
+    if(MemTags != "")
+    {
+        memberTagsArg = '&memTags='+encodeURIComponent(MemTags);
+    }
+
+    if (newTags != "")
+    {
+        newTagsArg = '&newTags='+encodeURIComponent(newTags);
+    } 
+
+    if(tagFlag == 1)
+    {
+	 $('#edit').html('Add / Edit');
+    }
+    else
+    {
+	 $('#edit').html('Add Now');
+    }
+
+    if(uncheckedTags != "")
+    {
+        uncheckedTagsArg = '&uncheckedTags='+encodeURIComponent(uncheckedTags);
+    } 
+    if(deletedTags != "")
+    {
+        deletedTagsArg = '&deletedTags='+encodeURIComponent(deletedTags);
+    }
+
+    if(newTags != "" || uncheckedTags != "")
+    {		
+        $.ajax({     
+            type: 'GET',
+            cache: false,
+            url: '//'+curDomain+'/profiledetail/editprofiletags.php',  
+            data: 'type=U'+SysTagsArg+memberTagsArg+deletedTagsArg+newTagsArg+uncheckedTagsArg+'&rand='+genNumbers(), 
+            beforeSend: function(){
+                $("#softdiv").html('<div style="margin-top:40px;"><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif"></center></div>');
+            },
+            success: function(data){
+                if(data != ''){
+                    $("#softdiv").html(data);
+                }
+            }
+        });
+    }
+}
+
+
+function updatePersonalTags()
+{
+    var argument = PersonalnewTags = PerosnalnewTagsArg = Personalarray ='';
+    var PersonaltagFlag = 0;  
+	var totalelement = document.editPTagPop.elements.length;
+	var Personalarray = $('#Personalarray').val();
+	$("input[name='personal[]']:checked").each(function(){
+	    PersonalnewTags += $(this).val()+",";
+	});
+	for (j=0; j<totalelement; j++)
+	{
+	var type = document.editPTagPop.elements[j].type;
+		if((type == "checkbox") && (document.editPTagPop.elements[j].checked == true) && PersonaltagFlag !=1){
+		PersonaltagFlag =1;   
+		}
+	}
+    if (PersonalnewTags != "")
+    {
+        PerosnalnewTagsArg = '&PersonalnewTags='+encodeURIComponent(PersonalnewTags);
+    } 
+    if(Personalarray != "")
+    {
+        PersonalarrayArg = '&Personalarray='+encodeURIComponent(Personalarray);
+    }
+    if(PersonaltagFlag == 1)
+    {
+	 $('#Pedit').html('Add / Edit');
+    }
+    else
+    {
+	 $('#Pedit').html('Add / Edit');
+    }
+    if(PersonalnewTags != "" || PersonalnewTags=='')
+    {		
+        $.ajax({     
+            type: 'GET',
+            cache: false,
+            url: '//'+curDomain+'/profiledetail/editpersonaltags.php',  
+            data: 'type=U'+PerosnalnewTagsArg+PersonalarrayArg+'&rand='+genNumbers(), 
+            beforeSend: function(){
+                $("#softdiv1").html('<div style="margin-top:40px;"><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif"></center></div>');
+            },
+            success: function(data){
+                if(data != ''){
+                    $("#softdiv1").html(data);
+                }
+            }
+        });
+    }
+}
+
+function updatehobbiesTags()
+{
+	var argument = HobbiesnewTags = HobbiesnewTagsArg = InterestnewTags= InterestnewTagsArg = HobTagsArg = IntTagsArg = '';
+	var HobInttagFlag = 0; 
+	var HobTags = $('#HobTags').val();
+	var IntTags = $('#IntTags').val();
+	var telement = document.editHITagPop.elements.length;
+	$("input[name='Hobbies[]']:checked").each(function(){
+            HobbiesnewTags += $(this).val()+"~";
+        });
+	$("input[name='Interest[]']:checked").each(function(){
+            InterestnewTags += $(this).val()+"~";
+        });
+	for (l=0; l<telement; l++)
+	{
+        var type = document.editHITagPop.elements[l].type;
+		if ((type == "checkbox") && (document.editHITagPop.elements[l].checked == true) && HobInttagFlag !=1){
+		HobInttagFlag =1;   
+		}
+	}
+	if(HobTags != "")
+	{
+        HobTagsArg = '&hobTags='+encodeURIComponent(HobTags);
+	}
+	if(IntTags != "")
+	{
+        IntTagsArg = '&intTags='+encodeURIComponent(IntTags);
+	}
+	if (HobbiesnewTags != "")
+	{
+        HobbiesnewTagsArg = '&HobbiesnewTags='+encodeURIComponent(HobbiesnewTags);
+	}
+	if (InterestnewTags != "")
+	{
+        InterestnewTagsArg = '&InterestnewTags='+encodeURIComponent(InterestnewTags);
+	}
+	if(HobInttagFlag == 1)
+	{
+	 $('#hedit').html('Add / Edit');
+	}
+	else
+	{
+	 $('#hedit').html('Add / Edit');
+	}
+    if(HobbiesnewTags != "" || InterestnewTags != "" || HobbiesnewTags == "" || InterestnewTags == "")
+    {		
+        $.ajax({     
+            type: 'GET',
+            cache: false,
+            url: '//'+curDomain+'/profiledetail/edithobbiestags.php',  
+            data: 'type=U'+HobbiesnewTagsArg+InterestnewTagsArg+HobTagsArg+IntTagsArg+'&rand='+genNumbers(), 
+            beforeSend: function(){
+                $("#softdiv2").html('<div style="margin-top:40px;"><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif"></center></div>');
+            },
+            success: function(data){
+                if(data != ''){
+                    $("#softdiv2").html(data);
+                }
+            }
+        });
+    }
+}
+
+function siblingschk(value){
+
+    var selval = $("#"+value).val();
+    if(selval == 99){
+        $("#MARRIED"+value).val(99);
+        $("#MARRIED"+value).prop('disabled','disabled');
+    }
+    else{
+        $("#MARRIED"+value).val(99);
+        $("#MARRIED"+value).prop('disabled',false);
+    }
+}
+function siblingschkd(value){
+
+    var selval = $("#"+value).val();
+    if(selval == 99){
+        $("#MARRIED"+value).val(99);
+        $("#MARRIED"+value).prop('disabled','disabled');
+    }
+    else{
+        $("#MARRIED"+value).val(99);
+        $("#MARRIED"+value).prop('disabled',false);
+    }
+}
+
+var resval,resarray,typingTimeout,Axhr,ajxf,ajxprog;
+ajxf = ajxprog = 0;
+
+function getAutolist(){ 
+    var resval = new Array();
+    $('#autocmplytvalid').val("0");
+    $('#COLLEGE').keyup(function(e){
+
+ var myhomeinst = $("#myhomeinst").val();
+ if(myhomeinst == 1)
+ {
+     myhomeinstcount = 4;
+ } else {
+     myhomeinstcount = 10;
+ }
+        var keynum;
+        if(window.e){ // IE
+            keynum = e.keyCode;
+        }else{
+            if(e.which) // Netscape/Firefox/Opera
+                keynum = e.which;
+            else  
+                keynum = e.keyCode;
+        }
+
+        if(!((keynum <=123 && keynum >=112)||(keynum <=40 && keynum >=37)||(keynum <=18 && keynum >=16)))
+        {
+
+            var serchStr = $.trim($('#COLLEGE').val());
+
+            $('#autolist').hide();
+            if(serchStr.length>3){
+                clearTimeout(typingTimeout);
+                typingTimeout = setTimeout( function()
+                {
+                    $('.college_ajx_img').show();
+                    if(ajxf == 1)
+                    {
+                        Axhr.abort();
+                    }
+                    Axhr = $.ajax({
+                        type: 'GET',
+                        url: '//'+curDomain+'/profiledetail/institutionautocomplete.php',
+                        data: {
+                            term: 	serchStr,
+                            myhomeinstcount : myhomeinstcount
+                        },
+                        beforeSend:function(){
+                            ajxf =1;
+                        }, 
+                        timeout: 30000,
+                        success : function (res){	
+                            if(res !="")
+                            {
+                                ajxprog=1;
+                                resval  =	res.split("~");
+                                if(resval[0] !="nomatch" && resval[0] !="")
+                                {
+                                    $('#autolist').html(resval[0]);
+                                    $('#autolist').show();
+                                    resarray = resval[1].split("^");
+                                    var Arrt = $.inArray(serchStr,resarray);
+                                    if(Arrt != -1)
+                                    {
+                                        $('#autocmplytvalid').val("1");
+                                    }
+                                    else
+                                    {
+                                        $('#autocmplytvalid').val("0");
+                                    }
+                                }
+                                else{
+                                    $('#autocmplytvalid').val("0");
+                                    $('#autolist').hide();
+                                }
+                                $('.college_ajx_img').hide();
+                            }
+                        },
+                        complete: function (jqXHR,textStatus) { 
+                            if(textStatus == 'timeout'){
+                                Axhr.abort();
+                            }
+                            ajxf =0;
+                        }
+					
+					
+					
+                    });
+                }, 500);
+            }
+            else{
+		
+                $('#autolist').hide();
+                $('.college_ajx_img').hide();
+                clearTimeout(typingTimeout);
+		
+                if(ajxprog == 1)
+                {
+                    Axhr.abort();
+                }
+		
+                $('#autocmplytvalid').val("0");
+		
+            }
+        }
+	
+    });
+	
+
+}
+
+$( document ).ready(function() {
+	
+    $('html').click(function() {	
+        if($('#autolist').is(':visible')) {
+            $('#autolist').hide();
+        }
+    });
+		
+			
+    $('#COLLEGE').keydown(function(){
+        if(typingTimeout)
+            clearTimeout(typingTimeout);
+    });
+});
+
+
+function showCollege(){
+    if($('select#EDUCATION').val() != '47'){
+        $('.collegesh').show();
+        $('#autocmplytvalid').val("0");
+        $('#COLLEGE').val('');
+    }else{
+        $('.collegesh').hide();
+        $('#COLLEGE').val('');
+        $('#autocmplytvalid').val("0");
+    }
+}
+
+function autoFB(gval){
+    $('.autocmplyt').val(gval.replace("%","'"));
+    $('#autocmplytvalid').val("1");
+    $('#autolist').hide();
+}
+
+function editftocms()
+{    
+    if($("#FEET").val()!=0)
+    {
+        var feet_val=$("#FEET").val();
+        if(feet_val.indexOf("-")!=-1)
+        {
+            var htarr=feet_val.split("-");
+            var incms=parseInt(htarr[0])*30.48+parseInt(htarr[1])*2.54;
+            $("#CMS").val(Math.round(incms));
+        }
+        else
+        {
+            var incms=parseInt(feet_val)*30.48;
+            $("#CMS").val(Math.round(incms));
+        }
+        $("#INCMS").val("0");
+    }
+}
+
+function editcmstof()
+{
+    if($("#CMS").val()!=0)
+    {
+        var cms_val=$("#CMS").val();
+        var feet=parseInt(cms_val)/30.48;
+        feet=feet.toString();
+        var f1=feet.split(".");
+        var f2="0."+f1[1];
+        var inc=Math.round(f2*100)
+        inc=Math.round(inc*0.12)
+        if (inc>=12)
+        {
+            inc=inc-12;
+            f1[0]=parseInt(f1[0])+1;
+        }
+        if(inc==0)
+        {
+            $("#FEET").val(f1[0]);
+        }else{
+            $("#FEET").val(f1[0]+"-"+inc);
+        }
+
+        $("#INCMS").val("1");
+    }
+}
+
+
+function kgs_chang()
+{
+    if(dgebid("COUNTRY").value!="98")
+    {
+        if($("#KGS").val()>0){
+            $("#LBS").val(Math.round(parseInt($("#KGS").val())*2.2046));
+            $("#INLBS").val("0");			
+        }
+    }
+}
+
+function lbs_chang()
+{
+    if(dgebid("CountrySelected").value!="98")  {
+        if(dgebid("LBS").value>0){
+            dgebid("KGS").value=Math.round(parseInt(dgebid("LBS").value)/2.2046);
+            $("#INLBS").val("1");		  
+        }
+    }
+}
+
+
+function kgs_changd()
+{
+    $('.error').remove();
+    if(dgebid("COUNTRY").value!="98")
+    {
+        if($("#KGSD").val()>0){
+            $("#LBSD").val(Math.round(parseInt($("#KGSD").val())*2.2046));
+            $("#INLBS").val("0");			
+        }
+        if($("#KGSD").val() == 0){
+            $("#LBSD").val("0"); 
+        }
+    }
+    
+    
+}
+
+function lbs_changd()
+{
+    $('.error').remove();
+    if(dgebid("CountrySelected").value!="98")  {
+        if(dgebid("LBSD").value>0){
+            dgebid("KGSD").value=Math.round(parseInt(dgebid("LBSD").value)/2.2046);
+            $("#INLBS").val("1");		  
+        }
+        if($("#LBSD").val() == 0){
+            $("#KGSD").val("0"); 
+        }
+    }
+}
+
+function agechecking(gender)
+{
+    if(gender == 'M' && $("#AGE1").val()<21){
+        $('#ageerror').text('Age Should Above 21');
+    }else if(gender == 'F' && $("#AGE1").val()<18){
+        $('#ageerror').text('Age Should Above 18');
+    }
+    else
+    {
+        $('#ageerror').text('');
+    }
+}
+
+function incomevalidation()
+{
+    if($('#FROMINCOME').val < $('#TOINCOME'))
+    {
+        ('#incomeerr').text('Invalid Income');
+    }
+    else
+    {
+        $('#incomeerr').text('');
+    }
+}
+function statevalidate()
+{
+    $(".newresstate").remove();
+    $("#locresidingcity").html('');
+    if($("#RESIDINGSTATE option:selected").val() == 0)
+    {
+        $(".newrescity").remove();
+        $(".rescity").after("<div class='newrescity'><br></div>");
+    }
+    else
+    {
+        $(".newrescity").remove();
+    }
+}
+function changeknowtoread()
+{
+	if($("#newmothertongue option:selected").text() != '--Select Mother Tongue--') {
+    $("#lblknow").text($("#newmothertongue option:selected").text()); }
+	else {
+    $("#mothertong").text('Please select the mother tongue of the prospect');
+	$("#lblknow").text();}
+}
+function cancelScroll(formdivname)
+{
+    setTimeout(function(){
+        $(window).scrollTop($('#'+formdivname).offset().top-46);
+       
+    },1000);
+}
+
+function showlink(Id,showdetails,domainname,position){
+		$(".alist").hide();
+         var showDivId = Id+'inside';
+	 var ldhtml='<center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:30px;"></center>';
+         $('#'+Id).html('<div style="position: absolute; display: block;z-index:10000;top:9px;"><div class="tiptopArrow" style="position:absolute;left:20px; top:-9px;"></div><div style="position:absolute; right:8px; top:8px; z-index:10000;"><a href="javascript:;" onclick="$(\'#'+Id+'\').hide();$(\'#'+Id+'\').html(\'\');" style="z-index:15000;"><span class="tipfectClose"></span></a></div><div class="srhres-tooltip paddt15" id="'+showDivId+'" style="'+position+'"></div><div class="clear"><!-- --</div></div>');
+         $('#'+Id).show();
+         $.ajax({
+                  url:"//profile."+domainname+".com/profiledetail/myprofile.php",
+                  type:"POST",
+                  data: "info="+showdetails+"&rt="+new Date().getTime(),
+                  beforeSend:function(){
+                           $('#'+showDivId).html(ldhtml);
+                  },
+                  success:function(htmls){
+                           $('#'+showDivId).html(htmls);
+                  }
+         });
+
+         $('#closeopendivval').val(0);
+         $('#opendivid').val('basicform');
+         $('#hidedivid').val('basicinfo');
+         $('#sameopendivid').val('basicform');
+         $('#samehidedivid').val('basicinfo');
+         $('#menunamedivid').val('basicmenu');
+} 
+
+
+function memberProfUpdatenew(domainname,tooltip,tooltip1,galink){
+		var FULLFILLMENTID= $('#REQFULLFILLID').val();
+		var comtype= $('#COMTYPE').val();
+        memname = encodeURIComponent($('#NAME').val())+"!~!"+encodeURIComponent($('#NAME1').val());
+        memcreated = $('#CREATEDBY').val();
+        memage = $('#AGE1').val();
+        memdobmonth = $('#DOBMONTH').val();
+        memdobday = $('#DOBDAY').val();
+        memdobyr = $('#DOBYEAR').val();
+        memhtfeet = $('#FEET').val();
+        memhtcms = $('#CMS').val();
+        memwtkgs = $('#KGS').val();
+        memwtlbs = $('#LBS').val();
+        if(tooltip == 'weighttooltip')
+        {
+            if($('#KGSD').val() == 0 || $('#KGSD').val() == 'undefined')
+            {
+                $(".err").html("Please Select Weight details");
+				$(".err").css("color","red");
+                return false;
+            }
+            else if($('#KGSD').val() != 'undefined')
+            {
+                memwtkgs = $('#KGSD').val();
+                memwtlbs = $('#LBSD').val();
+            }
+        }
+        memmaritalstatus = $('#MARITAL_STATUS').val()+"!~!"+$('#OLD_MARITAL').val();
+        var memoldnoofchild=''
+        if($('#MARITAL_STATUS').val()==1 && ($('#OLD_NOOFCHILDREN').val()==0 || $('#OLD_NOOFCHILDREN').val()==null || $('#OLD_NOOFCHILDREN').val()=='undefined' )){
+            memoldnoofchild='';
+        }else{
+            memoldnoofchild=$('#OLD_NOOFCHILDREN').val();
+        }
+		
+        memnochild = $('#NOOFCHILDREN').val()+"!~!"+memoldnoofchild;
+
+        var memchildlivingst='';
+
+        if(typeof($('input[name=CHILDLIVINGWITHME]:checked').val()) == 'undefined'){
+            memchildlivingst='';
+        }else{
+            memchildlivingst=$('input[name=CHILDLIVINGWITHME]:checked').val();
+        }
+        var memoldchildliving=''
+        if($('#OLD_CHILDRENLIVING').val()==1){
+            memoldchildliving='Y';
+        }
+        if($('#OLD_CHILDRENLIVING').val()==2){
+            memoldchildliving='N';
+        }
+
+        memchildliving = memchildlivingst+"!~!"+memoldchildliving;
+        membodytype = $('input[name=BODY_TYPE]:checked').val();
+        memcomplexion = $('input[name=COMPLEXION]:checked').val();
+
+        if(tooltip == 'bodycomplextooltip')
+        {
+
+            if((typeof($('input[name=BODY_TYPE]:checked').val()) == 'undefined') && (typeof($('input[name=COMPLEXION]:checked').val()) == 'undefined'))
+            {
+                $(".errbodycomplex").html('Please Select Body Type and Complexion details.');
+				$(".errbodycomplex").css("color","red");
+                return false;
+            }
+            else if((typeof($('input[name=BODY_TYPE]:checked').val()) == 'undefined') && (typeof($('input[name=COMPLEXION]:checked').val()) != 'undefined'))
+            {
+				 $(".errbodycomplex").html('Please Select Body Type.');
+ 				$(".errbodycomplex").css("color","red");
+                return false;
+            }
+            else if((typeof($('input[name=BODY_TYPE]:checked').val()) != 'undefined') && (typeof($('input[name=COMPLEXION]:checked').val()) == 'undefined'))
+            {
+				$(".errbodycomplex").html('&nbsp');
+     			 $(".errbodycomplexshow").html('Please Select Complexion.');
+ 				$(".errbodycomplexshow").css("color","red");
+                return false;
+            }
+            else{
+                membodytype = $('input[name=BODY_TYPE]:checked').val();
+                memcomplexion = $('input[name=COMPLEXION]:checked').val();
+            }
+        }
+        if(tooltip == 'bodytypetooltip')
+        {
+            if((typeof($('input[name=BODY_TYPE]:checked').val()) == 'undefined'))
+            {
+				$(".errbody").html('Please Select Body Type.');
+ 				$(".errbody").css("color","red");
+                return false;
+            }
+            else{
+                membodytype = $('input[name=BODY_TYPE]:checked').val();
+            }
+        }
+        if(tooltip == 'complexiontooltip')
+        {
+            if((typeof($('input[name=COMPLEXION]:checked').val()) == 'undefined'))
+            {
+				$(".errcomplex").html('Please Select Complexion.');
+ 				$(".errcomplex").css("color","red");
+                return false;
+            }
+            else{
+                memcomplexion = $('input[name=COMPLEXION]:checked').val();
+            }
+        }
+        memphysicalstatus = $('input[name=PHYSICAL_STATUS]:checked').val();
+        memmothertongue = $('#newmothertongue').val()+"!~!"+$('#OLD_MOTHERTONGUE').val();
+        memknowtoread=$('input[name=KNOWTOREAD]:checked').val();
+        memeatingval=$('input[name=EATING_HABITS]:checked').val();
+        memsmokingval=$('input[name=SMOKING_HABITS]:checked').val();
+        memdrinkingval=$('input[name=DRINKING_HABITS]:checked').val();
+        if(tooltip == 'eatingtooltip')
+        {
+            if(typeof($('input[name=EATING_HABITS]:checked').val()) == 'undefined')
+            {
+				$(".erreating").html('Please Select Eating Habits');
+ 				$(".erreating").css("color","red");
+                return false;
+            }
+            else if(typeof($('input[name=EATING_HABITS]:checked').val()) != 'undefined'){
+                memeatingval=$('input[name=EATING_HABITS]:checked').val();
+            }
+       
+        }
+        if(tooltip == 'smokingtooltip')
+        {
+            if(typeof($('input[name=SMOKING_HABITS]:checked').val()) == 'undefined')
+            {
+				$(".errsmoking").html('Please Select Smoking Habits.');
+ 				$(".errsmoking").css("color","red");
+                return false;
+            }
+            else if(typeof($('input[name=SMOKING_HABITS]:checked').val()) != 'undefined'){
+                memsmokingval=$('input[name=SMOKING_HABITS]:checked').val();
+            }
+        }
+        if(tooltip == 'drinkingtooltip')
+        {
+            if(typeof($('input[name=DRINKING_HABITS]:checked').val()) == 'undefined')
+            {
+				$(".errdrinking").html('Please Select Drinking Habits.');
+ 				$(".errdrinking").css("color","red");
+                return false;
+            }
+            else if(typeof($('input[name=DRINKING_HABITS]:checked').val()) != 'undefined'){
+                memdrinkingval=$('input[name=DRINKING_HABITS]:checked').val();
+            }
+        }
+        var softTags = memberSoftTagsUpdate("basic");
+
+        url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+        param = "memname="+memname+"&memage="+memage+"&memcreated="+memcreated+"&memdobmonth="+memdobmonth+"&memdobday="+memdobday+"&memdobyr="+memdobyr+"&memhtfeet="+memhtfeet+"&memhtcms="+memhtcms+"&memwtkgs="+memwtkgs+"&memwtlbs="+memwtlbs+"&memmaritalstatus="+memmaritalstatus+"&memnochild="+memnochild+"&memchildliving="+memchildliving+"&membodytype="+membodytype+"&memcomplexion="+memcomplexion+"&memphysicalstatus="+memphysicalstatus+"&memmothertongue="+memmothertongue+"&memknowtoread="+memknowtoread+"&memeatingval="+memeatingval+"&memsmokingval="+memsmokingval+"&memdrinkingval="+memdrinkingval+softTags;
+		if(FULLFILLMENTID!='')
+		{
+			param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+		}
+
+        param = param+"&EDITFORM=2";
+
+        var urlrep = url+"?gaact="+galink+"&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+       
+        if($('#OLD_MARITAL').val()!=$('#MARITAL_STATUS').val() || $('#NOOFCHILDREN').val()!=memoldnoofchild || memchildlivingst!=memoldchildliving || $('#OLD_MOTHERTONGUE').val()!=$('#newmothertongue').val())
+        { 
+            param = param+"&onetimeedit=1";
+        }
+	var ldhtml='<center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="top:20px;"></center>';		
+        $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,						
+	    beforeSend:function(){
+	    $("#"+tooltip).html('<div class="srhres-tooltip" style="position: absolute; z-index: 1001; padding:5px; margin:9px 0px; width: 150px;"><div style="position:absolute; left:5px; top:-10px; z-index:1001;"><div class="tiptopArrow"></div></div><a href="javascript:void(0)" onclick="$(\'#'+tooltip+'\').remove();" style="float:right;"><span class="tipfectClose"></span></a><div class="mediumtxt successContent txt-left" style="padding:15px 0 10px 5px;">'+ldhtml+'</div></div>');
+	    },
+            success: function(){
+                $.ajax({
+                    url:"//profile."+domainname+".com/profiledetail/myprofile.php",
+                    type:"POST",
+                    data: "info=ownbasic&part=basicdetails&rt="+new Date().getTime(),
+                    success: function(msg)
+                    {
+                        dgebid('BasicInformation').innerHTML = msg;
+			$("#"+tooltip).html('<div class="srhres-tooltip" style="position: absolute; z-index: 1001; padding:5px; margin:9px 0px; width: 150px;"><div style="position:absolute; left:5px; top:-10px; z-index:1001;"><div class="tiptopArrow"></div></div><a href="javascript:void(0)" onclick="$(\'#'+tooltip+'\').remove();" style="float:right;"><span class="tipfectClose"></span></a><div class="mediumtxt successContent txt-left" style="padding:15px 0 10px 5px;">'+tooltip1+'</div></div>');
+                        $("#eatingtooltip").removeClass('eatinghabits');
+                        $("#smokingtooltip").removeClass('smokinghabits');
+                        
+                    }
+                })                        
+            }
+        });          
+    
+}
+
+
+function familyDetailsUpdatenew(domainname,tooltip,tooltip1,galink){
+    	var FULLFILLMENTID= $('#REQFULLFILLID').val();
+		var comtype = $('#COMTYPE').val();
+    if (typeof(arguments[3]) === "undefined")
+        var myhomepop=0;
+    else
+        var myhomepop= arguments[3];
+    if(arguments[1] == 'familystatustooltip' || arguments[1] == 'fatheroccupationtooltip' || arguments[1] == 'motheroccupationtooltip' || arguments[1] == 'ancfamilyorgintooltip' || arguments[1] == 'noofbrotherstooltip' || arguments[1] == 'noofsisterstooltip') var interfamily=0;
+    if(arguments[1] =='' || arguments[1] == undefined) var interfamily=0;
+    else var interfamily=1;
+    if (typeof(arguments[2]) === "undefined") var fromvp = 0; 
+    else var fromvp = arguments[2];
+
+      
+    if(fromvp != 1){
+        familyval = $('input[name=FAMILYVALUE]:checked').val();	
+        familytyp = $('input[name=FAMILYTYPE]:checked').val();
+        familystat = $('input[name=FAMILYSTATUS]:checked').val();
+    }
+    else{
+        familyval = $('input[name=FAMILYVALUE]').val();	
+        familytyp = $('input[name=FAMILYTYPE]').val();
+        familystat = $('input[name=FAMILYSTATUS]').val();
+        langdet =  $('input[name=LANGUAGE]').val();
+    }
+    
+    if(tooltip == 'familystatustooltip')
+    {
+        if((typeof($('input[name=FAMILYSTATUS]:checked').val()) == 'undefined'))
+        {
+			$(".errfamilystatus").html('Please Select Family Status.');
+ 				$(".errfamilystatus").css("color","red");
+            return false;
+        }
+        else{
+            familystat = $('input[name=FAMILYSTATUS]:checked').val();
+        }
+    }
+    
+    motherocc = encodeURIComponent($('#MOTHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDMOTHEROCCUPATION').val());
+    fatherocc = encodeURIComponent($('#FATHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDFATHEROCCUPATION').val());
+    
+    if(tooltip == 'fatheroccupationtooltip')
+    {
+        if($('#FATHEROCCUPATION').val() == '')
+        {
+			$(".errfatheroccupation").html('Please Select Father Occupation.');
+ 				$(".errfatheroccupation").css("color","red");
+            return false;
+        }
+        else{
+            fatherocc = encodeURIComponent($('#FATHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDFATHEROCCUPATION').val());
+        }
+    }
+    if(tooltip == 'motheroccupationtooltip')
+    {
+        if($('#MOTHEROCCUPATION').val() == '')
+        {
+			$(".errmotheroccupation").html('Please Select Mother Occupation.');
+ 				$(".errmotheroccupation").css("color","red");
+            return false;
+        }
+        else{
+            motherocc = encodeURIComponent($('#MOTHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDMOTHEROCCUPATION').val());
+        }
+    }
+    
+    if($('#ANCESTRALORIGIN').val() == "Enter your ancestral/family origin state") {
+        ancestral = "!~!"+encodeURIComponent($('#OLDANCESTRALORIGIN').val());
+    }else {
+        ancestral = encodeURIComponent($('#ANCESTRALORIGIN').val())+"!~!"+encodeURIComponent($('#OLDANCESTRALORIGIN').val());
+    }
+    
+    if(tooltip == 'ancfamilyorgintooltip')
+    {
+
+        if($('#ANCESTRALORIGIN').val() == '')
+        {
+			$(".errancfamilyorgin").html('Please Select Ancestral / Family Orgin.');
+ 				$(".errancfamilyorgin").css("color","red");
+            return false;
+        }
+        else{
+            ancestral = encodeURIComponent($('#ANCESTRALORIGIN').val())+"!~!"+encodeURIComponent($('#OLDANCESTRALORIGIN').val());
+        }
+    }
+    brotherVal = $('#BROTHERS :selected').val();
+    brothermarriedVal = $('#MARRIEDBROTHERS :selected').val();
+    if(tooltip == 'noofbrotherstooltip')
+    {
+        if($('#BROTHERSD :selected').val() == 0 && $('#MARRIEDBROTHERSD :selected').val() == 0)
+        {
+			$(".errnoofbrothers").html('Please Select No of Brothers and Brothers Married.');
+ 				$(".errnoofbrothers").css("color","red");
+            return false;
+        }
+		else if(($('#BROTHERSD :selected').val() < $('#MARRIEDBROTHERSD :selected').val()) && $('#MARRIEDBROTHERSD :selected').val() != 99)
+        {
+			$(".errnoofbrothers").html('Incorrect selection. Number of Married Brothers Cannot Exceed Number of Brothers.');
+ 				$(".errnoofbrothers").css("color","red");
+            return false;
+        }
+        else{
+            brotherVal = $('#BROTHERSD :selected').val();
+            brothermarriedVal = $('#MARRIEDBROTHERSD :selected').val();
+        }
+    }
+    
+    sisterVal = $('#SISTERS :selected').val();
+    sistermarriedVal = $('#MARRIEDSISTERS :selected').val();
+    if(tooltip == 'noofsisterstooltip')
+    {
+        if($('#SISTERSD :selected').val() == 0 && $('#MARRIEDSISTERSD :selected').val() == 0)
+        {
+			$(".errnoofsisters").html('Please Select No of Sisters and Sisters Married.');
+ 				$(".errnoofsisters").css("color","red");
+            return false;
+        }
+		else if(($('#SISTERSD :selected').val() < $('#MARRIEDSISTERSD :selected').val()) && $('#MARRIEDSISTERSD :selected').val() != 99)
+        {
+			$(".errnoofsisters").html('Incorrect Selection. Number of Married Sisters Cannot Exceed Number of Sisters.');
+ 				$(".errnoofsisters").css("color","red");
+            return false;
+        }
+        else{
+            sisterVal = $('#SISTERSD :selected').val();
+            sistermarriedVal = $('#MARRIEDSISTERSD :selected').val();
+        }
+    }
+    
+    ancestralstateon = $('#ANCESTRALSTATEON').val();	
+
+    if(ancestralstateon == "yes") {
+        ancestralstate = $('#ANCESTRALSTATE :selected').val();
+        ancestralstateupdate = "&ansstate="+ancestralstate;
+    } else	{
+        ancestralstateupdate = "";
+    }
+    var ldhtml='<center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="top:20px;"></center>';
+    var softTags = memberSoftTagsUpdate("fam");
+
+    url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+    param = "familyval="+familyval+"&familytype="+familytyp+"&familystatus="+familystat+"&motherocc="+motherocc+"&fatherocc="+fatherocc+ancestralstateupdate+"&ancestral="+ancestral+"&brotherVal="+brotherVal+"&brothermarriedVal="+brothermarriedVal+"&sisterVal="+sisterVal+"&sistermarriedVal="+sistermarriedVal+"&type=familydetailsupdate"+softTags;  
+	if(FULLFILLMENTID!=''){
+		param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+	}
+    param = param+"&EDITFORM=6";
+    if(fromvp == 1){
+        param = param+"&fromvp=1&gaact=ADDFMSUB&gasrc=VP";
+        var urlrep = url+param;
+    _gaq.push(['_trackPageview',urlrep]);
+    } else if(interfamily==1){
+        param = param+"&gaact=ADDFMSUB&gasrc=INTPFU";
+        var urlrep = url+param;
+    _gaq.push(['_trackPageview',urlrep]);		    
+    } else if(fromvp == 2){
+        param = param+"&gaact=ADDFMSUB&gasrc=MH";
+        var urlrep = url+param;
+    _gaq.push(['_trackPageview',urlrep]);
+    } else {
+        var urlrep = url+"?gaact="+galink+"&gasrc=EDPR";
+    _gaq.push(['_trackPageview',urlrep]);		    
+    }
+    if(fromvp == 1)
+        param += "&setmemcache=1&lang="+langdet;
+    if(interfamily==1){
+        param += "&Interaddeducation=1";
+    }
+                
+                
+
+    $.ajax({  
+        url: url,	
+        type: "POST",
+        data: param,		
+        success: function (response){
+            if(myhomepop==1){
+                pcnextskip();
+                RegGATrack('GA','MH-submitfamily',0,1);
+            }
+            else{
+                if(fromvp == 1){
+                    $("#familyhidedivform").html(response);
+                    $("#familyhidediv").css("display", "none");
+                }
+                else{
+                    $.ajax({
+                        url:"//profile."+domainname+".com/profiledetail/myprofile.php",
+                        type:"POST",
+                        data: "info=professionalfamily&part=familydetails&rt="+new Date().getTime(),
+                        beforeSend:function(){
+                            $("#"+tooltip).html('<div class="srhres-tooltip" style="position: absolute; z-index: 1001; padding:5px; margin:9px 0px; width: 150px;"><div style="position:absolute; left:5px; top:-10px; z-index:1001;"><div class="tiptopArrow"></div></div><a href="javascript:void(0)" onclick="$(\'#'+tooltip+'\').remove();" style="float:right;"><span class="tipfectClose"></span></a><div class="mediumtxt successContent txt-left" style="padding:15px 0 10px 5px;">'+ldhtml+'</div></div>');
+                        },
+                        success: function(msg)
+                        {
+                        
+                            dgebid('FamilyInformation').innerHTML = msg;
+                            $("#"+tooltip).html('<div class="srhres-tooltip" style="position: absolute; z-index: 1001; padding:5px; margin:9px 0px; width: 150px;"><div style="position:absolute; left:33px; top:-10px; z-index:1001;"><div class="tiptopArrow"></div></div><a href="javascript:void(0)" onclick="$(\'#'+tooltip+'\').remove();" style="float:right;"><span class="tipfectClose"></span></a><div class="mediumtxt successContent txt-left" style="padding:15px 0 10px 5px;">'+tooltip1+'</div></div>');
+                            $("#noofbrotherstooltip").removeClass('noofbrothers');
+                        $("#noofsisterstooltip").removeClass('noofsisters');
+                        }
+                    })
+                }
+            }
+        }
+    });	
+}
+function educationDetailsUpdatenew(domainname,tooltip,tooltip1,galink){
+		var FULLFILLMENTID= $('#REQFULLFILLID').val();
+		var comtype = $('#COMTYPE').val();
+    if (typeof(arguments[1]) === "undefined")
+        var myhomepop=0;
+    else
+        var myhomepop= arguments[1];
+    eductioncatg = $('#EDUCATION :selected').val(); 
+    //occupationcatg = $('#newoccuption :selected').val(); 
+	if($('#newoccuption :selected').val()==''){
+		occupationcatg = $('#Occupation_val').val();
+	}else{
+		occupationcatg = $('#newoccuption :selected').val();
+	}
+    educationdetail = encodeURIComponent($('#OTHEREDUCATION').val())+"!~!"+encodeURIComponent($('#OLDOTHEREDUCATION').val());
+    
+    if(tooltip == 'educationdetailtooltip')
+    {
+        if($('#OTHEREDUCATION').val() == '')
+        {
+			$(".erreducationdetail").html('Please Select Education Detail');
+ 		    $(".erreducationdetail").css("color","red");
+            return false;
+        }
+        else{
+            educationdetail = encodeURIComponent($('#OTHEREDUCATION').val())+"!~!"+encodeURIComponent($('#OLDOTHEREDUCATION').val());
+        }
+    }
+    
+    addondegree = $('#ADDITIONALEDUCATION :selected').val();
+    occupationdetail = encodeURIComponent($('#OTHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDOTHEROCCUPATION').val());
+    
+    if(tooltip == 'occupationdetailtooltip')
+    {
+        if($('#OTHEROCCUPATION').val() == '')
+        {
+			$(".erroccupationdetail").html('Please Select Occupation Detail');
+ 				$(".erroccupationdetail").css("color","red");
+            return false;
+        }
+        else{
+            occupationdetail = encodeURIComponent($('#OTHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDOTHEROCCUPATION').val());
+        }
+    }
+    employedin = $('input[name=OCCUPATIONCATEGORY]:checked').val(); 
+    annualincome = $('input[name=INCOMETYPE]:checked').val(); 
+    currencytype = $('#INCOME_CURRENCYSPAN :selected').val(); 
+    oldcurrencytype = $('#OLDINCOMECURRENCY').val(); 	
+    currencyval = encodeURIComponent($('#INCOMESPAN').val());
+    currencyval = currencyval.split('%2C').join('');
+    
+    currencyval = currencyval.replace(/,/g, "");
+    
+    if(currencyval == "Enter Income" || currencyval == "" || currencyval == 0){
+        currencyval = "";
+        currencytype = "";
+        annualincome = "";
+    }	
+	
+    oldcurrencyval = encodeURIComponent($('#OLDINCOMESPAN').val());
+    oldcurrencyval = oldcurrencyval.replace(/,/g, "");
+    if(oldcurrencyval == "" || oldcurrencyval == 0){
+        oldcurrencyval = "";
+        oldcurrencytype = "";
+    }
+	
+    if(currencytype != "" || oldcurrencytype != "") {
+        currencytype = currencytype+"!~!"+oldcurrencytype;
+    }
+    if(currencyval != "" || oldcurrencyval != "") {
+        currencyval = currencyval+"!~!"+oldcurrencyval;
+    }	
+   
+    if(tooltip == 'annualincometooltip')
+    {
+		currencyvalnew = currencyval.split('%2C').join('');
+                currencyvalnew = currencyvalnew.replace("!~!","");
+        if(typeof($('input[name=INCOMETYPE]:checked').val()) == 'undefined')
+        {
+			$(".errannualincome").html('Please select the Income type');
+ 				$(".errannualincome").css("color","red");
+            return false;
+        }  
+        if($('#INCOME_CURRENCYSPAN :selected').val() == '')
+        {
+			$(".errannualincome").html('Please select the relevant Currency');
+ 				$(".errannualincome").css("color","red");
+            return false;
+        } 
+    	if(isNaN(currencyvalnew))
+	{
+	  $(".errannualincome").html('Please enter valid Income');
+ 	  $(".errannualincome").css("color","red");
+          return false;
+        }
+	if(currencyval == 'Enter%20Income!~!' || currencyvalnew == '')
+        {
+	 $(".errannualincome").html('Please enter the Income');
+ 	 $(".errannualincome").css("color","red");
+         return false;
+        }
+        else{
+           annualincome = $('input[name=INCOMETYPE]:checked').val(); 
+    currencytype = $('#INCOME_CURRENCYSPAN :selected').val(); 
+    oldcurrencytype = $('#OLDINCOMECURRENCY').val(); 	
+    currencyval = encodeURIComponent($('#INCOMESPAN').val());
+    currencyval = currencyval.replace(/,/g, "");
+    if(currencyval == "Enter Income" || currencyval == "" || currencyval == 0){
+        currencyval = "";
+        currencytype = "";
+        annualincome = "";
+    }	
+	
+    oldcurrencyval = encodeURIComponent($('#OLDINCOMESPAN').val());
+    oldcurrencyval = oldcurrencyval.replace(/,/g, "");
+    if(oldcurrencyval == "" || oldcurrencyval == 0){
+        oldcurrencyval = "";
+        oldcurrencytype = "";
+    }
+	
+    if(currencytype != "" || oldcurrencytype != "") {
+        currencytype = currencytype+"!~!"+oldcurrencytype;
+    }
+    if(currencyval != "" || oldcurrencyval != "") {
+        currencyval = currencyval+"!~!"+oldcurrencyval;
+    }	
+        }
+    } 
+
+    college = encodeURIComponent($('#COLLEGE').val());
+    oldcollege = encodeURIComponent($('#OLD_COLLEGE').val());
+    if(tooltip == 'collegeinstitutetooltip')
+    {
+        if($('#COLLEGE').val() == '')
+        {
+			$(".errcollegeinstitute").html('Please Enter College / Institution');
+ 				$(".errcollegeinstitute").css("color","red");
+            return false;
+        }
+        else{
+            college = encodeURIComponent($('#COLLEGE').val());
+        }
+    }
+    
+    autocmplytvalid = $('#autocmplytvalid').val();
+    profilemodFlg = $('#profilemodFlg').val();
+		
+    var softTags = memberSoftTagsUpdate("edu");
+		
+    if(addondegree == undefined)
+        addondegree = 0;
+
+    if(college == undefined){
+        collegeAvail = 0;
+    } else {
+        collegeAvail = 1;
+    }
+     currencyval = currencyval.split('%2C').join('');
+		
+    url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+    param = "eductioncatg="+eductioncatg+"&occupationcatg="+occupationcatg+"&educationdetail="+educationdetail+"&addondegree="+addondegree+"&occupationdetail="+occupationdetail+"&employedin="+employedin+"&annualincome="+annualincome+"&currencytype="+currencytype+"&currencyval="+currencyval+"&college="+college+"&oldcollege="+oldcollege+"&autocmplytvalid="+autocmplytvalid+"&profilemodFlg="+profilemodFlg+"&type=edudetailsupdate"+softTags+"&collegeAvail="+collegeAvail;   
+	if(FULLFILLMENTID!=''){
+		param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+	}
+    param = param+"&EDITFORM=5";
+    var urlrep = url+"?gaact="+galink+"&gasrc=EDPR";
+    _gaq.push(['_trackPageview',urlrep]);
+    var ldhtml='<center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="top:20px;"></center>';
+    $.ajax({  
+        url: url,	
+        type: "POST",
+        data: param,
+        beforeSend:function(){
+            $("#"+tooltip).html('<div class="srhres-tooltip" style="position: absolute; z-index: 1001; padding:5px; margin:9px 0px; width: 150px;"><div style="position:absolute; left:5px; top:-10px; z-index:1001;"><div class="tiptopArrow"></div></div><a href="javascript:void(0)" onclick="$(\'#'+tooltip+'\').remove();" style="float:right;"><span class="tipfectClose"></span></a><div class="mediumtxt successContent txt-left" style="padding:15px 0 10px 5px;">'+ldhtml+'</div></div>');
+        },
+        success: function (response){
+            if(myhomepop==1){
+                pcnextskip();
+                RegGATrack('GA','MH-submitedu',0,1);
+            }else {
+                $.ajax({
+                    url:"//profile."+domainname+".com/profiledetail/myprofile.php",
+                    type:"POST",
+                    data: "info=professionalfamily&part=professionaldetails&rt="+new Date().getTime(),
+                    success: function(msg)
+                    {
+                        dgebid('ProfessionalInformation').innerHTML = msg;
+                       $("#"+tooltip).html('<div class="srhres-tooltip" style="position: absolute; z-index: 1001; padding:5px; margin:9px 0px; width: 150px;"><div style="position:absolute; left:33px; top:-10px; z-index:1001;"><div class="tiptopArrow"></div></div><a href="javascript:void(0)" onclick="$(\'#'+tooltip+'\').remove();" style="float:right;"><span class="tipfectClose"></span></a><div class="mediumtxt successContent txt-left" style="padding:15px 0 10px 5px;">'+tooltip1+'</div></div>');
+                    }
+                })
+                    
+            } 
+                              
+        } 
+    });	     	
+//}
+}
+
+
+function memberReligionUpdatenew(domainname,tooltip,tooltip1,galink){
+	var FULLFILLMENTID= $('#REQFULLFILLID').val();
+	var comtype = $('#COMTYPE').val();
+    memreligion = $('#newrealigion').val()+"!~!"+$('#OLD_RELIGION').val();
+    memcaste = $('#CASTE').val()+"!~!"+$('#OLD_CASTE').val();
+    memcastenobar = $('input[name=CASTENOBAR]:checked').val();
+    var memloldsubcaste='';
+	var memstarold = '';
+	var memraasiold = '';
+    if($('#LSUBCASTEOLD').val()==0){
+        memloldsubcaste='';
+    }else{
+        memloldsubcaste=$('#LSUBCASTEOLD').val();
+    }
+    memsubcaste = $('#LSUBCASTE').val()+"!~!"+memloldsubcaste;
+    memsubcasteothers = encodeURIComponent($('#SUBCASTE').val())+"!~!"+encodeURIComponent($('#SUBCASTEOLD').val());
+
+	 if(tooltip == 'subcastetooltip')
+    {
+        if($('#SUBCASTE').val() == '' || $('#SUBCASTE').val() == 'undefined')
+        {
+			$(".errsubcaste").html('Please Select Star / Raasi');
+ 				$(".errsubcaste").css("color","red");
+            return false;
+        }
+        else if($('#SUBCASTE').val() != 'undefined')
+        {
+               memsubcasteothers = encodeURIComponent($('#SUBCASTE').val())+"!~!"+encodeURIComponent($('#SUBCASTEOLD').val());
+        }
+    }
+    var memoldselgothra='';
+    if($('#OLDGOTHRAID').val()==0){
+        memoldselgothra='';
+    }else{
+        memoldselgothra=$('#OLDGOTHRAID').val();
+    }
+    memgothra = $('#SELGOTHRA').val()+"!~!"+ memoldselgothra;
+    memgothramseltxt = encodeURIComponent($('#GOTHRAM').val())+"!~!"+encodeURIComponent($('#GOTHRAMOLD').val());
+    memgothramfreetxt = encodeURIComponent($('#GOTHRAM1').val())+"!~!"+encodeURIComponent($('#GOTHRAM1OLD').val());
+    memstar = $('#STAR').val();
+    memraasi = $('#RAASI').val();
+    if(tooltip == 'starrasitooltip')
+    {
+        if($('#STARD').val() == 0 || $('#STARD').val() == 'undefined')
+        {
+			$(".errstarrasi").html('Please Select Star / Raasi');
+ 				$(".errstarrasi").css("color","red");
+            return false;
+        }
+        else if($('#STARD').val() != 'undefined')
+        {
+            memstar = $('#STARD').val();
+            memraasi = $('#RAASID').val();
+			memstarold = $('#STAROLD').val();
+        }
+    }
+    if(tooltip == 'rasitooltip')
+    {
+        if($('#RAASID').val() == 0 || $('#RAASID').val() == 'undefined')
+        {
+			$(".errrasi").html('Please Select Raasi');
+ 				$(".errrasi").css("color","red");
+            return false;
+        }
+        else if($('#RAASID').val() != 'undefined')
+        {
+            memraasi = $('#RAASID').val();
+			memraasiold = $('#RAASIOLD').val();
+        }
+    }
+    memsuddhajadhagam = $('input[name=SUDDHAJADHAGAM]:checked').val();
+    if(isNaN(memsuddhajadhagam)){
+        memsuddhajadhagam = 0;
+    }
+    memmanglik = $('input[name=MANGLIK]:checked').val();
+    if(tooltip == 'chevvaidoshamtooltip')
+    {
+        if(typeof($('input[name=MANGLIK]:checked').val()) == 'undefined')
+        {
+			$(".errchevvaidosham").html('Please Select Dosham');
+ 				$(".errchevvaidosham").css("color","red");
+            return false;
+        }
+        else{
+            memmanglik = $('input[name=MANGLIK]:checked').val();
+        }
+    }
+    if(memmanglik == 1)
+        {
+        	
+	    	var MANGLIK_M="";
+		var Mangcount =0;
+	    	$('input[name=MANGLIK_M]:checked').each(function(){		
+	        MANGLIK_M1 = MANGLIK_M + parseInt($(this).val());        
+	        Mangcount += parseInt(MANGLIK_M1);	        
+	        memmanglik = Mangcount;
+	    	});
+			
+		}
+		
+		if(memmanglik ==1 && Mangcount ==0)
+		{
+			$(".errdosham").show();	
+			$(".errdosham").html('Please Select Dosham');
+ 			$(".errdosham").css("color","red");
+			
+			return false;	
+		}else{
+		
+			$(".errdosham").hide();
+			$(".errdosham").html('');
+			
+		}
+    memcasteother = encodeURIComponent($('#casteother').val())+"!~!"+encodeURIComponent($('#casteotherold').val());
+    memzodiac = $('#ZODICSIGN').val();
+
+    url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+    param = "memreligion="+memreligion+"&memcaste="+memcaste+"&memcastenobar="+memcastenobar+"&memsubcaste="+memsubcaste+"&memsubcasteothers="+memsubcasteothers+"&memgothra="+memgothra+"&memgothramseltxt="+memgothramseltxt+"&memgothramfreetxt="+memgothramfreetxt+"&memstar="+memstar+"&memraasi="+memraasi+"&memsuddhajadhagam="+memsuddhajadhagam+"&memmanglik="+memmanglik+"&memcasteother="+memcasteother+"&memzodiac="+memzodiac+"&memstarold="+memstarold+"&memraasiold="+memraasiold;
+	if(FULLFILLMENTID!=''){
+		param = param+"&FULLFILLMENTID="+FULLFILLMENTID+"&COMTYPE="+comtype;
+	}
+    param =param+"&EDITFORM=3";
+    var urlrep = url+"?gaact="+galink+"&gasrc=EDPR";
+    _gaq.push(['_trackPageview',urlrep]);
+    if($('#OLD_RELIGION').val()!=$('#newrealigion').val() || $('#OLD_CASTE').val()!=$('#CASTE').val() || $('#LSUBCASTE').val()!=memloldsubcaste || $('#SUBCASTE').val()!=$('#SUBCASTEOLD').val() || $('#casteother').val()!= $('#casteotherold').val() || $('#SELGOTHRA').val()!=memoldselgothra || $('#GOTHRAM').val()!=$('#GOTHRAMOLD').val() || $('#GOTHRAM1').val()!=$('#GOTHRAM1OLD').val())
+    {	
+        param = param+"&onetimeedit=1";	
+		
+    }
+    var ldhtml='<center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="top:20px;"></center>';
+    $.ajax({  
+        url: url,	
+        type: "POST",
+        data: param,						
+        success: function (response){
+            $.ajax({
+                url:"//profile."+domainname+".com/profiledetail/myprofile.php",
+                type:"POST",
+                data: "info=religiouslocation&part=religiousdetails&rt="+new Date().getTime(),
+                beforeSend:function(){
+                    $("#"+tooltip).html('<div class="srhres-tooltip" style="position: absolute; z-index: 1001; padding:5px; margin:9px 0px; width: 150px;"><div style="position:absolute; left:5px; top:-10px; z-index:1001;"><div class="tiptopArrow"></div></div><a href="javascript:void(0)" onclick="$(\'#'+tooltip+'\').remove();" style="float:right;"><span class="tipfectClose"></span></a><div class="mediumtxt successContent txt-left" style="padding:15px 0 10px 5px;">'+ldhtml+'</div></div>');
+                },
+                success: function(msg)
+                {
+                    dgebid('ReligiousInformation').innerHTML = msg;
+                  $("#"+tooltip).html('<div class="srhres-tooltip" style="position: absolute; z-index: 1001; padding:5px; margin:9px 0px; width: 150px;"><div style="position:absolute; left:5px; top:-10px; z-index:1001;"><div class="tiptopArrow"></div></div><a href="javascript:void(0)" onclick="$(\'#'+tooltip+'\').remove();" style="float:right;"><span class="tipfectClose"></span></a><div class="mediumtxt successContent txt-left" style="padding:15px 0 10px 5px;">'+tooltip1+'</div></div>');
+                }
+            })
+               
+        }
+    });		 
+}
+
+function slideClose(tooltip,tooltip1,galink)
+{
+     urlrep = "//"+curDomain+"/profiledetail/myprofile.php?gaact="+galink+"&gasrc=EDPR";
+     _gaq.push(['_trackPageview',urlrep]);
+    $("#"+tooltip).slideToggle("slow");
+    $("#"+tooltip1).slideToggle("slow");  
+}
+function hideAllBut(id) {
+	$(".alist").hide();
+	$("#"+id).show();
+}
+
+function tellus()
+{
+	$('#happypopup').remove();
+	$('#hmchangecontent').show();
+	$('#happymarriagepopup').css('width','455');
+	$.colorbox.resize({width:'540px'});
+}
+function othrtxthob(a, b){
+if(eval("document.MATRIHOBBIESINFO."+a+".checked==true")){ 
+    eval("document.MATRIHOBBIESINFO."+b+".disabled = false");
+}
+else{
+    eval("document.MATRIHOBBIESINFO."+b+".value = ''");
+    eval("document.MATRIHOBBIESINFO."+b+".disabled = true");
+
+}
+}
+
+function backcolor(lightclass,darkclass,id)
+{
+	$('a').removeClass("bgclr2");
+    $('#'+id).addClass("bgclr2");
+}
+function profilecompletnessclose(profileid,gaid)
+{
+	urlrep = "//"+curDomain+"/profiledetail/myprofile.php?gaact="+gaid+"&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+	$('#'+profileid).slideUp();
+}
+function clicktoCancelga(infoid,menudivid)
+{    
+        gaurl="//"+curDomain+"/profiledetail/myprofile.php?";
+        if(infoid == 'happymrginfo') { urlrep = gaurl+'?gaact=CANPIHM&gasrc=EDPR';
+		} else if(infoid == 'prdescinfo') { urlrep = gaurl+'?gaact=CANPIDI&gasrc=EDPR';
+		} else if(infoid == 'basicinfo') {  urlrep = gaurl+'?gaact=CANPIBI&gasrc=EDPR';
+		} else if(infoid == 'religiousinfo') {  urlrep = gaurl+'?gaact=CANPIRI&gasrc=EDPR';
+		} else if(infoid == 'locationinfo') {  urlrep = gaurl+'?gaact=CANPILI&gasrc=EDPR';
+		} else if(infoid == 'professioninfo') {  urlrep = gaurl+'?gaact=CANPIPI&gasrc=EDPR';
+		} else if(infoid == 'familyinfo') {  urlrep = gaurl+'?gaact=CANPIFI&gasrc=EDPR';
+		} else if(infoid == 'familydesc') {  urlrep = gaurl+'?gaact=CANPIFD&gasrc=EDPR';
+		} else if(infoid == 'hobbiesinfo') {  urlrep = gaurl+'?gaact=CANPIHI&gasrc=EDPR';
+		} else if(infoid == 'partnerprefbasicinfo') {  urlrep = gaurl+'?gaact=CANPPBI&gasrc=EDPR';
+		} else if(infoid == 'partnerprefprofinfo') {  urlrep = gaurl+'?gaact=CANPPPI&gasrc=EDPR';
+		} else if(infoid == 'partnerpreflocationinfo') {  urlrep = gaurl+'?gaact=CANPPLI&gasrc=EDPR';
+		} else if(infoid == 'partnerdesc') {  urlrep = gaurl+'?gaact=CANPPDE&gasrc=EDPR';
+		}		
+		if($('a#'+menudivid+'link').text() == 'Close') {	
+		 _gaq.push(['_trackPageview',urlrep]);
+		}
+}
+function clicktoEditClose(infoid,menudivid,galink)
+{
+    gaurl="//"+curDomain+"/profiledetail/myprofile.php";
+    if(infoid == 'happymrginfo') { galinkm = 'PIHM';
+		} else if(infoid == 'prdescinfo') { galinkm = 'PIDI';
+		} else if(infoid == 'basicinfo') {  galinkm = 'PIBI';
+		} else if(infoid == 'religiousinfo') {  galinkm = 'PIRI';
+		} else if(infoid == 'locationinfo') {  galinkm = 'PILI';
+		} else if(infoid == 'professioninfo') {  galinkm = 'PIPI';
+		} else if(infoid == 'familyinfo') {  galinkm = 'PIFI';
+		} else if(infoid == 'familydesc') {  galinkm = 'PIFD';
+		} else if(infoid == 'hobbiesinfo') {  galinkm = 'AddHob';
+		} else if(infoid == 'partnerprefbasicinfo') {  galinkm = 'bpprp';
+		} else if(infoid == 'partnerprefprofinfo') {  galinkm = 'PPPI';
+		} else if(infoid == 'partnerpreflocationinfo') {  galinkm = 'PPLI';
+		} else if(infoid == 'partnerdesc') {  galinkm = 'PPDE';
+		}
+		if(($('a#'+menudivid+'link').text() == 'Edit' || $('a#'+menudivid+'link').text() == 'Add') && (galink == undefined && galink != 'gaother')) {
+		 urlrep = gaurl+"?gaact=ED"+galinkm+"&gasrc=EDPR";
+                 _gaq.push(['_trackPageview',urlrep]);
+		 } else if($('a#'+menudivid+'link').text() == 'Close' && (galink == undefined && galink != 'gaother')) {
+		 urlrep = gaurl+"?gaact=CL"+galinkm+"&gasrc=EDPR";
+                 _gaq.push(['_trackPageview',urlrep]);
+		 }
+}
+function slideClosemyhome(gasrc)
+{
+  urlrep = "//"+curDomain+"/login/myhome.php?gaact=PC&gasrc="+gasrc;
+  _gaq.push(['_trackPageview',urlrep]);
+   $.colorbox.close();
+}
+function gafbli(gaact)
+{
+  urlrep = "//"+curDomain+"/profiledetail/myprofile.php?gaact="+gaact+"&gasrc=EDPR";
+  _gaq.push(['_trackPageview',urlrep]);
+}
+
+function PartnerPrefUPdate(domainname)
+{
+    if(validateform('intermediatepp')) {
+	var STAGE = $('#STAGE :selected').val();
+    var ENAGE = $('#ENAGE :selected').val(); 
+    var SYSSTAGE = $('#SYSSTAGE').val();
+    var SYSENDAGE = $('#SYSENDAGE').val();
+	var FROMFEET = $('#FROMFEET :selected').val();
+    var TOFEET = $('#TOFEET :selected').val();
+    
+	var SYSFROMFEET = $('#SYSFROMFEET').val();
+    var SYSTOFEET = $('#SYSTOFEET').val();
+	var MARITAL_STATUS="";
+
+	/*marital status*/
+	if($("input[name='MARITAL_STATUS']:checked").val()==undefined) 
+	{
+		$("#matrialstatus_err").html("Select marital status");
+		$(window).scrollTop($('#matrialstatusrow').offset().top);
+		return false;
+	}else{
+		$("#matrialstatus_err").html("");
+		$('input[name=MARITAL_STATUS]:checked').each(function(){
+			MARITAL_STATUS = MARITAL_STATUS+"~"+$(this).val();
+		});
+	}
+
+	var HAVECHILDREN = $('input[name=HAVECHILDREN]:checked').val();
+	
+	/*physical status*/
+	if ($("input[name='PHYSICALSTATUS']:checked").val()==undefined) 
+	{
+		$("#physicaltatus_err").html("Select physical status");
+		$(window).scrollTop($('#physicalstatusrow').offset().top);
+		return false;
+	}
+	else
+	{
+		$("#physicaltatus_err").html("");
+		var PHYSICALSTATUS = $('input[name=PHYSICALSTATUS]:checked').val();
+	}
+
+	/*Eating habits*/
+	if ($("input[name='EATINGHABITS']:checked").val()==undefined) 
+	{
+		$("#eatinghabits_err").html("Select eating habits");
+		$(window).scrollTop($('#eatinghabitsrow').offset().top);
+		return false;
+	}
+	else
+	{
+		$("#eatinghabits_err").html("");
+		var EATINGHABITS="";
+		$('input[name=EATINGHABITS]:checked').each(function(){
+		EATINGHABITS = EATINGHABITS+"~"+$(this).val();
+		});
+	}
+	/*Drinking habits*/
+	if ($("input[name='DRINKING']:checked").val()==undefined) 
+	{
+		$("#drinkhabits_err").html("Select drinking habits");
+		$(window).scrollTop($('#drinkhabitsrow').offset().top);
+		return false;
+	}
+	else
+	{
+		$("#drinkhabits_err").html("");
+		var DRINKING="";
+		$('input[name=DRINKING]:checked').each(function(){
+		DRINKING = DRINKING+"~"+$(this).val();
+		});
+	}
+	/*smoking habits*/
+	if ($("input[name='SMOKING']:checked").val()==undefined) 
+	{
+		$("#smokinghabits_err").html("Select smoke habits");
+		$(window).scrollTop($('#smokehabitsrow').offset().top);
+		return false;
+	}
+	else
+	{
+		$("#smokinghabits_err").html("");
+		var SMOKING="";
+		$('input[name=SMOKING]:checked').each(function(){
+		SMOKING = SMOKING+"~"+$(this).val();
+		});
+	}
+	/*Religion */
+	if($("#RELIGION").val()==""){
+		$("#religion_err").html("Select religion");
+		$(window).scrollTop($('#religionrow').offset().top);
+		return false;
+	}
+	else{
+		$("#religion_err").html("");
+		var RELIGION = $('#RELIGION :selected').val();
+	}
+	var FROMINCOME = $('#STANNUALINCOME :selected').val();
+    var TOINCOME = $('#ENDANNUALINCOME :selected').val();
+    var PARTNERDESC = encodeURIComponent($('#PARTNERDESC').val())+"!~!"+encodeURIComponent($('#oldpartnerdesc').val());
+	var MATCHEDUCATIONID = '';
+    $('input[name=PPEDUCATION]:checked').each(function(){		
+        MATCHEDUCATIONID = MATCHEDUCATIONID+"~"+$(this).val();
+    });
+    var EDUCATION = '';
+    $('input[name=EDUCATIONRIGHT]:checked').each(function(){		
+        EDUCATION = EDUCATION+"~"+$(this).val();
+    });
+	var MOTHERTONGUE = $('#MOTHERTONGUE_OUT').val();
+        var MANGLIK = '';
+    $('input[name=MANGLIK1]:checked').each(function(){		
+        MANGLIK = MANGLIK+"~"+$(this).val();
+    });
+    var OCCUPATION = $('#OCCUPATION_OUT').val();
+    
+	/*caste*/
+	if($('#CASTE_OUT').val()==""){
+	 	$("#caste_err").html("Select caste");
+		$(window).scrollTop($('#casterow').offset().top);
+		return false;
+	}
+	else
+	{
+		$("#caste_err").html("");
+		var CASTE_OUT = $('#CASTE_OUT').val();
+		Caste = CASTE_OUT.replace(/Caste_/g,'');
+	}
+	/*Star*/
+	if($('#STAR_OUT').val()==""){
+		$("#star_err").html("Select star");
+		$(window).scrollTop($('#starrow').offset().top);
+		return false;
+	}
+	else{
+		$("#star_err").html("");
+		var STAR_OUT = $('#STAR_OUT').val();
+	}
+	var COUNTRY_OUT = $('#COUNTRY_OUT').val();
+	Country = COUNTRY_OUT.replace(/cnt_/g,'');
+    //Countryreplace = COUNTRY_OUT.replace(/cnt_/g,'');
+    //Country = Countryreplace.replace(/0~/,'');
+	var STATE_OUT = $('#STATE_OUT').val();
+	STATE = STATE_OUT.replace(/state_/g,'');
+	var CITY_OUT = $('#CITY_OUT').val();
+       CITY = CITY_OUT.replace(/[0-9]*#/g,'');
+	var CITIZENSHIP_OUT = $('#CITIZENSHIP_OUT').val();
+	CITIZENSHIP = CITIZENSHIP_OUT.replace(/cnt_/g,'');
+	var GOTHRA = $('#GOTHRA_OUT').val();	
+	var SUBCASTE = $('#SUBCASTE_OUT').val();
+        var INCLUDEOTHERRELIGION = $('input[name=OTHERRELIGION]:checked').val();
+	url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+    var param = "STAGE="+STAGE+"&ENAGE="+ENAGE+"&SYSSTAGE="+SYSSTAGE+"&SYSENDAGE="+SYSENDAGE+"&FROMFEET="+FROMFEET+"&TOFEET="+TOFEET+"&SYSFROMFEET="+SYSFROMFEET+"&SYSTOFEET="+SYSTOFEET+"&MARITAL_STATUS="+MARITAL_STATUS
+				+"&HAVECHILDREN="+HAVECHILDREN+"&PHYSICALSTATUS="+PHYSICALSTATUS+"&EATINGHABITS="+EATINGHABITS+"&DRINKING="+DRINKING+"&SMOKING="+SMOKING+"&RELIGION="+RELIGION+"&FROMINCOME="+FROMINCOME+"&TOINCOME="+TOINCOME+"&partnerdesc="+PARTNERDESC+"&EDUCATION="+EDUCATION+"&MATCHEDUCATIONID="+MATCHEDUCATIONID+"&MOTHERTONGUE="+MOTHERTONGUE+"&CASTE="+Caste+"&STAR="+STAR_OUT+"&MANGLIK="+MANGLIK+"&COUNTRY="+Country+"&STATE="+STATE+"&CITY="+CITY+"&OCCUPATION="+OCCUPATION+"&SUBCASTE="+SUBCASTE+"&GOTHRA="+GOTHRA+"&CITIZENSHIP="+CITIZENSHIP+"&INCLUDEOTHERRELIGION="+INCLUDEOTHERRELIGION;
+                
+	param = param+"&EDITFORM=13";
+	$.ajax({  
+	url: url,	
+	type: "POST",
+	data: param,
+	success: function (response) {
+	
+	window.location.assign("//www."+domainname+".com/payments/paymentoptions.php?pge=reg&gaact=PAY&gasrc=REG");
+		}
+	});            
+        } 
+}
+
+function memberProfileCompelete(domainname,gasource,reqflag){
+	
+	var  memeatingval='';
+	var educationdetail 			= encodeURIComponent($('#OTHEREDUCATION').val());
+        var occupationdetail 	= encodeURIComponent($('#OTHEROCCUPATION').val());
+	if(typeof($('input[name=EATING_HABITS]:checked').val()) != 'undefined'){
+            memeatingval=$('input[name=EATING_HABITS]:checked').val();
+        } 
+        if(typeof($('input[name=SMOKING_HABITS]:checked').val()) != 'undefined'){
+            var memsmokingval=$('input[name=SMOKING_HABITS]:checked').val();
+        } else {
+            var memsmokingval='';
+        }
+        if(typeof($('input[name=DRINKING_HABITS]:checked').val()) != 'undefined'){
+            var memdrinkingval=$('input[name=DRINKING_HABITS]:checked').val();
+        } else {
+            var memdrinkingval='';
+        }	
+		if($('#STAR').val()!=0){
+			var memstar = $('#STAR').val();
+		}else	
+			var memstar ='';
+
+        var memoldselgothra='';
+        if($('#OLDGOTHRAID').val()==0){
+            var memoldselgothra='';
+        }else{
+            var memoldselgothra=$('#OLDGOTHRAID').val();
+        }
+		
+		if($('#GOTHRAM1').val() !="Enter Your Gothram"){
+			var memgothramfreetxt = encodeURIComponent($('#GOTHRAM1').val());
+		}else
+			var memgothramfreetxt ='';
+        if($('#ANCESTRALORIGIN').val() != "Enter your ancestral/family origin state") {
+            var ancestral = encodeURIComponent($('#ANCESTRALORIGIN').val());
+        }else
+			var ancestral='';
+		if ((educationdetail!='' && educationdetail !='undefined') || (occupationdetail!='' && occupationdetail !='undefined')||  memeatingval!='' || memsmokingval!='' || memdrinkingval!='' || (memstar !='' && memstar != undefined) || (ancestral!='' && ancestral!='undefined') || (memgothramfreetxt!='' && memgothramfreetxt!='undefined'))
+			 callGA(0);
+			 
+		if(gasource == 'REQINFO')
+             {
+		var garesult='';
+		var nofillcnt=0;
+		var flagcount=0;		
+	
+		if(occupationdetail!='' && occupationdetail!='undefined')		
+			garesult='OCC';
+		if(educationdetail!='' && educationdetail !='undefined')
+			garesult=garesult+'EDU';
+		if(memeatingval!='')
+			garesult=garesult+'EAT';
+		if(memsmokingval!='')
+			garesult=garesult+'SMO';
+		if(memdrinkingval!='')
+			garesult=garesult+'DRI';
+		if(ancestral!='' && ancestral!='undefined')
+			garesult=garesult+'ANC';
+	
+		if(reqflag!='')
+		{	
+		  reqarr=reqflag.split("^");
+		  Occflag=reqarr[0];
+		  Eduflag=reqarr[1];	
+		  Eatflag=reqarr[2];
+		  Smoflag=reqarr[3];
+		  Driflag=reqarr[4];
+		  Ancflag=reqarr[5];
+		
+		flagcount=parseInt(Occflag)+parseInt(Eduflag)+parseInt(Eatflag)+parseInt(Smoflag)+parseInt(Driflag)+parseInt(Ancflag);	
+		
+		if(Occflag==1 && occupationdetail=='')
+			nofillcnt=nofillcnt+1;
+		if(Eduflag==1 && educationdetail=='')
+			nofillcnt=nofillcnt+1;
+		if(Eatflag==1 && memeatingval=='')
+			nofillcnt=nofillcnt+1;
+		if(Smoflag==1 && memsmokingval=='')
+			nofillcnt=nofillcnt+1;
+		if(Driflag==1 && memdrinkingval=='')
+			nofillcnt=nofillcnt+1;
+		if(Ancflag==1 && ancestral=='')
+	    		nofillcnt=nofillcnt+1;
+				
+		if(nofillcnt==flagcount)
+		{
+			GAeventTrk('Profile-Comp-Field-Fill', 'Submit', 'NoFillSubmit');
+			ga('send', {'hitType': 'event','eventCategory': 'Profile-Comp-Field-Fill-'+DOMAINARRAY['domainnameshort'].toUpperCase(), 'eventAction': 'Submit', 'eventLabel':'NoFillSubmit'});
+		}
+		 else
+		{
+			GAeventTrk('Profile-Comp-Field-Fill', 'Submit', garesult);
+		    ga('send', {'hitType': 'event','eventCategory': 'Profile-Comp-Field-Fill-'+DOMAINARRAY['domainnameshort'].toUpperCase(), 'eventAction': 'Submit', 'eventLabel':garesult});		
+		}		
+		}
+		
+		}
+		
+         url   = "//profile."+domainname+".com/modify/editprofileupdate.php";
+		param = "occupationdetail="+occupationdetail+"&educationdetail="+educationdetail+"&memeatingval="+memeatingval+"&memsmokingval="+memsmokingval+"&memdrinkingval="+memdrinkingval+"&memstar="+memstar+"&memgothramseltxt="+memgothramfreetxt+"&ancestral="+ancestral+"&EDITFORM=15";		
+        if(gasource=='REQINFO')
+		   var urlrep = url+"?gaact=PDU&gasrc=REQINFO";
+	   else 
+		  var urlrep = url+"?gaact=PDU&gasrc=EDPR";
+        _gaq.push(['_trackPageview',urlrep]);
+        
+        $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,
+		  beforeSend: function(){
+                           $.colorbox({html:'<div style=""><center><img src="//'+DOMAINARRAY['domainnameimgs']+'/bmimgs/small_loading.gif" style="padding-top:85px;"></center></div>',scrolling:false});
+                           $("#cboxClose").remove();                                 
+                           $.colorbox.resize({height:'95',width:'500'});
+             },
+            success: function (response) {
+                $('#cboxLoadedContent').html('<div class="hdtxt boldtxt clr4 paddb15" style="text-align: center;">Your Profile Information updated successfully</div>');
+				$('<div id="cboxClose" style="" onclick="$.colorbox.close();window.top.location.assign(\'/profiledetail/myprofile.php?gaact=PCEDIT&gasrc=EDPR\');" class="">close</div>').appendTo("#cboxContent");
+            }
+        });
+
+}
+function showhide(yes)
+	{
+		
+		if(yes==1)	
+		{
+			$("#doshamdiv").show();		
+		}		
+		else
+		{			
+			$(".errdosham").html('');	
+			$("#errordosham").html('');	
+			$("#doshamdiv").hide();		
+		}
+		
+	}
+
+function familyDetailsUpdatenewdesign(domainname,tooltip)
+{
+var educationdetail = encodeURIComponent($('#OTHEREDUCATIONR').val())+"!~!"+encodeURIComponent($('#OLDOTHEREDUCATION').val());
+addondegree = $('#ADDITIONALEDUCATION :selected').val();
+var occupationdetail = encodeURIComponent($('#OTHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDOTHEROCCUPATION').val());
+    if(tooltip == 'occ')
+    {
+        if($('#OTHEROCCUPATIONR').val() == '')
+        {
+			$("#erroccupationdetailr").html('Please Select Occupation Detail');
+ 			$("#erroccupationdetailr").css("color","red");
+            return false;
+        }
+        else{
+            var occupationdetail = encodeURIComponent($('#OTHEROCCUPATIONR').val())+"!~!"+encodeURIComponent($('#OLDOTHEROCCUPATION').val());
+        }
+        var action = 'AddProfessional'; 
+    }
+    eductioncatg = $('#EDUCATION :selected').val(); 
+    occupationcatg = $('#newoccuption :selected').val(); 
+    educationdetail = encodeURIComponent($('#OTHEREDUCATION').val())+"!~!"+encodeURIComponent($('#OLDOTHEREDUCATION').val());
+    if(tooltip == 'edu')
+    {
+        if($('#OTHEREDUCATIONR').val() == '')
+        {
+			$("#erreducationdetailr").html('Please Select Education Detail');
+ 		    $("#erreducationdetailr").css("color","red");
+            return false;
+        }
+        else{
+            var educationdetail = encodeURIComponent($('#OTHEREDUCATIONR').val())+"!~!"+encodeURIComponent($('#OLDOTHEREDUCATION').val());
+        }
+     var action = 'AddAcademics';     
+    }
+	
+	
+	
+	if(tooltip == 'ance')
+    	{
+		//hindi
+		if($('#ANCESTRALSTATEONR').val()=="yes") {
+			if($('#ANCESTRALSTATER').val()=="0") {
+				dgebid('ancestralstater').innerHTML="Please select Ancestral state";dgebid('ancestraloriginr').innerHTML="&nbsp;";$('#ANCESTRALSTATER').focus();
+				return false;
+			} else if($('#ANCESTRALSTATER').val() == 9999 && ($('#ANCESTRALORIGINR').val() == "" || $('#ANCESTRALORIGINR').val() == "Enter your ancestral/family origin state")) {
+				 dgebid('ancestraloriginr').innerHTML="Please enter Ancestral state";dgebid('ancestralstater').innerHTML="&nbsp;";$('#ANCESTRALORIGINR').focus();
+				return false;     
+			} 
+		}
+		
+		//other then hindi		
+		if($('#ANCESTRALSTATEONR').val()=="no") {
+			if($('#ANCESTRALORIGINR').val() == "") {
+				 dgebid('ancestraloriginr').innerHTML="Please enter Ancestral state";
+				 return false; 
+			}else{
+				ancestral = encodeURIComponent($('#ANCESTRALORIGINR').val())+"!~!"+encodeURIComponent($('#OLDANCESTRALORIGINR').val());
+			}
+		} 
+		var action = 'AddAncestralOrigin';  
+    }
+	
+	ancestralstateon = $('#ANCESTRALSTATEONR').val();
+	if(ancestralstateon == "yes") {
+		ancestralstate = $('#ANCESTRALSTATER :selected').val();
+		ancestralstateupdate = "&ansstate="+ancestralstate;
+	} else	{
+		ancestralstateupdate = "";
+	}
+	
+	if($('#ANCESTRALORIGINR').val() == "Enter your ancestral/family origin state") {
+		ancestral = "!~!"+encodeURIComponent($('#OLDANCESTRALORIGINR').val());
+	}else {
+		ancestral = encodeURIComponent($('#ANCESTRALORIGINR').val())+"!~!"+encodeURIComponent($('#OLDANCESTRALORIGINR').val());
+	}
+	
+	
+    employedin = $('input[name=OCCUPATIONCATEGORY]:checked').val(); 
+    annualincome = $('input[name=INCOMETYPE]:checked').val(); 
+    currencytype = $('#INCOME_CURRENCYSPAN :selected').val(); 
+    oldcurrencytype = $('#OLDINCOMECURRENCY').val(); 
+    if(tooltip == 'annualincome')	
+    currencyval = encodeURIComponent($('#INCOMESPANR').val());
+    else
+    currencyval = encodeURIComponent($('#INCOMESPAN').val());
+
+    currencyval = currencyval.split('%2C').join('');
+    
+    currencyval = currencyval.replace(/,/g, "");
+    
+    if(currencyval == "Enter Income" || currencyval == "" || currencyval == 0){
+        currencyval = "";
+        currencytype = "";
+        annualincome = "";
+    }	
+	
+    oldcurrencyval = encodeURIComponent($('#OLDINCOMESPAN').val());
+    oldcurrencyval = oldcurrencyval.replace(/,/g, "");
+    if(oldcurrencyval == "" || oldcurrencyval == 0){
+        oldcurrencyval = "";
+        oldcurrencytype = "";
+    }
+	
+    if(currencytype != "" || oldcurrencytype != "") {
+        currencytype = currencytype+"!~!"+oldcurrencytype;
+    }
+    if(currencyval != "" || oldcurrencyval != "") {
+        currencyval = currencyval+"!~!"+oldcurrencyval;
+    }			
+   
+    if(tooltip == 'annualincome')
+    {
+		currencyvalnew = currencyval.split('%2C').join('');
+        currencyvalnew = currencyvalnew.replace("!~!","");
+     
+        if(typeof($('input[name=INCOMETYPER]:checked').val()) == 'undefined')
+        {
+			$(".errannualincome").html('Please select the Income type');
+ 			$(".errannualincome").css("color","red");
+            return false;
+        }  
+        if($('#INCOME_CURRENCYSPANR :selected').val() == '')
+        {
+			$(".errannualincome").html('Please select the relevant Currency');
+ 				$(".errannualincome").css("color","red");
+            return false;
+        } 
+    	if(isNaN(currencyvalnew))
+		{
+		  $(".errannualincome").html('Please enter valid Income');
+	 	  $(".errannualincome").css("color","red");
+          return false;
+        }
+       
+		if(currencyval == 'Enter%20Income!~!' || currencyvalnew == '')
+        {
+		 $(".errannualincome").html('Please enter the Income');
+	 	 $(".errannualincome").css("color","red");
+         return false;
+        }
+        else{
+	    annualincome = $('input[name=INCOMETYPER]:checked').val(); 
+	    currencytype = $('#INCOME_CURRENCYSPANR :selected').val(); 
+	    oldcurrencytype = $('#OLDINCOMECURRENCY').val(); 	
+	    currencyval = encodeURIComponent($('#INCOMESPANR').val());
+	    currencyval = currencyval.replace(/,/g, "");
+	    if(currencyval == "Enter Income" || currencyval == "" || currencyval == 0){
+	        currencyval = "";
+	        currencytype = "";
+	        annualincome = "";
+	    }	
+	
+	    oldcurrencyval = encodeURIComponent($('#OLDINCOMESPAN').val());
+	    oldcurrencyval = oldcurrencyval.replace(/,/g, "");
+	    if(oldcurrencyval == "" || oldcurrencyval == 0){
+	        oldcurrencyval = "";
+	        oldcurrencytype = "";
+	    }
+		
+	    if(currencytype != "" || oldcurrencytype != "") {
+	        currencytype = currencytype+"!~!"+oldcurrencytype;
+	    }
+	    if(currencyval != "" || oldcurrencyval != "") {
+	        currencyval = currencyval+"!~!"+oldcurrencyval;
+	    }	
+      }
+    } 
+    college = encodeURIComponent($('#COLLEGE').val());
+    oldcollege = encodeURIComponent($('#OLD_COLLEGE').val());
+    if(tooltip == 'college')
+    {
+        if($('#COLLEGER').val() == '')
+        {
+			$(".errcollegeinstituter").html('Please Enter College / Institution');
+ 			$(".errcollegeinstituter").css("color","red");
+            return false;
+        }
+        else{
+            college = encodeURIComponent($('#COLLEGER').val());
+        }
+    } 
+    
+    autocmplytvalid = $('#autocmplytvalid').val();
+    profilemodFlg = $('#profilemodFlg').val();
+		
+    var softTags = memberSoftTagsUpdate("edu");
+		
+    if(addondegree == undefined)
+        addondegree = 0;
+
+    if(college == undefined){
+        collegeAvail = 0;
+    } else {
+        collegeAvail = 1;
+    }
+     currencyval = currencyval.split('%2C').join('');
+   //End Educaction and Occupation 
+   
+   // Start Family
+    motherocc = encodeURIComponent($('#MOTHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDMOTHEROCCUPATION').val());
+    fatherocc = encodeURIComponent($('#FATHEROCCUPATION').val())+"!~!"+encodeURIComponent($('#OLDFATHEROCCUPATION').val());
+    
+    
+    	familyval = $('input[name=FAMILYVALUE]').val();	
+        familytyp = $('input[name=FAMILYTYPE]').val();
+        familystat = $('input[name=FAMILYSTATUS]').val();
+        langdet =  $('input[name=LANGUAGE]').val();
+    
+    if(tooltip == 'fatstatus')
+    {
+    	 if($('#FATHEROCCUPATIONR').val() == '')
+        {
+			$("#errfatheroccupationr").html('Please Select Father Occupation.');
+ 			$("#errfatheroccupationr").css("color","red");
+            return false;
+        }
+        else{
+            fatherocc = encodeURIComponent($('#FATHEROCCUPATIONR').val())+"!~!"+encodeURIComponent($('#OLDFATHEROCCUPATION').val());
+            $("#errfatheroccupationr").html('');
+        }
+      var action = 'PrntOcc-Father'; 
+    }
+    
+    if(tooltip == 'motstatus')
+    {
+     if($('#MOTHEROCCUPATIONR').val() == '')
+        {
+			$("#errmotheroccupationr").html('Please Select Mother Occupation.');
+ 			$("#errmotheroccupationr").css("color","red");
+            return false;
+        }
+        else{
+            motherocc = encodeURIComponent($('#MOTHEROCCUPATIONR').val())+"!~!"+encodeURIComponent($('#OLDMOTHEROCCUPATION').val());
+            $("#errmotheroccupationr").html('');
+        }
+        var action = 'PrntOcc-Mother'; 
+     } 
+     
+    brotherVal = $('#BROTHERS :selected').val();
+    brothermarriedVal = $('#MARRIEDBROTHERS :selected').val();
+   
+    if(tooltip == 'brother')
+    {
+        if($('#BROTHERSDRP :selected').val() == 0 && $('#MARRIEDBROTHERSDRP :selected').val() == 0)
+        {
+			$("#errnoofbrothersr").html('Please Select No of Brothers and Brothers Married.');
+ 				$("#errnoofbrothersr").css("color","red");
+            return false;
+        }
+		else if(($('#BROTHERSDRP :selected').val() < $('#MARRIEDBROTHERSDRP :selected').val()) && $('#MARRIEDBROTHERSDRP :selected').val() != 99)
+        {
+			$("#errnoofbrothersr").html('Incorrect selection. Number of Married Brothers Cannot Exceed Number of Brothers.');
+ 				$("#errnoofbrothersr").css("color","red");
+            return false;
+        }
+        else if($('#BROTHERSDRP :selected').val() != 0 && $('#MARRIEDBROTHERSDRP :selected').val() == 0)
+        {
+			$("#errnoofbrothersr").html('Please Select No of Brothers Married.');
+ 				$("#errnoofbrothersr").css("color","red");
+            return false;
+        }
+        else{
+            brotherVal = $('#BROTHERSDRP :selected').val();
+            brothermarriedVal = $('#MARRIEDBROTHERSDRP :selected').val();
+        }
+        
+        var action = 'AddSiblings-Brother'; 
+    }
+ 
+    sisterVal = $('#SISTERS :selected').val();
+    sistermarriedVal = $('#MARRIEDSISTERS :selected').val();
+    if(tooltip == 'sister')
+    {
+        if($('#SISTERSDRP :selected').val() == 0 && $('#MARRIEDSISTERSDRP :selected').val() == 0)
+        {
+			$("#errnoofsistersr").html('Please Select No of Sisters and Sisters Married.');
+ 				$("#errnoofsistersr").css("color","red");
+            return false;
+        }
+		else if(($('#SISTERSDRP :selected').val() < $('#MARRIEDSISTERSDRP :selected').val()) && $('#MARRIEDSISTERSDRP :selected').val() != 99)
+        {
+			$("#errnoofsistersr").html('Incorrect Selection. Number of Married Sisters Cannot Exceed Number of Sisters.');
+ 				$("#errnoofsistersr").css("color","red");
+            return false;
+        }
+        else if($('#SISTERSDRP :selected').val() != 0 && $('#MARRIEDSISTERSDRP :selected').val() == 0)
+        {
+			$("#errnoofsistersr").html('Please Select No of Sisters Married.');
+ 				$("#errnoofsistersr").css("color","red");
+            return false;
+        }
+        else{
+            sisterVal = $('#SISTERSDRP :selected').val();
+            sistermarriedVal = $('#MARRIEDSISTERSDRP :selected').val();
+        }
+        
+        var action = 'AddSibilings-Sister'; 
+    }
+		oldbrotherVal = $('#OLDBROTHERS').val();
+		oldbrothersmarriedval = $('#OLDBROTHERSMARRIED').val();
+		oldoldsistersval = $('#OLDSISTERS').val();
+		oldsistersmarriedval = $('#OLDSISTERSMARRIED').val();	
+    // Family End
+     
+     //Basic 
+          
+     	memname = encodeURIComponent($('#NAME').val())+"!~!"+encodeURIComponent($('#NAME1').val());
+        memcreated = $('#CREATEDBY').val();
+        memage = $('#AGE1').val();
+        memdobmonth = $('#DOBMONTH').val();
+        memdobday = $('#DOBDAY').val();
+        memdobyr = $('#DOBYEAR').val();
+        memhtfeet = $('#FEET').val();
+        memhtcms = $('#CMS').val();
+        memwtkgs = $('#KGS').val();
+        memwtlbs = $('#LBS').val();       
+        memmaritalstatus = $('#MARITAL_STATUS').val()+"!~!"+$('#OLD_MARITAL').val();
+        
+        var memoldnoofchild=''
+        if($('#MARITAL_STATUS').val()==1 && ($('#OLD_NOOFCHILDREN').val()==0 || $('#OLD_NOOFCHILDREN').val()==null || $('#OLD_NOOFCHILDREN').val()=='undefined' )){
+            memoldnoofchild='';
+        }else{
+            memoldnoofchild=$('#OLD_NOOFCHILDREN').val();
+        }
+		
+        memnochild = $('#NOOFCHILDREN').val()+"!~!"+memoldnoofchild;
+
+        var memchildlivingst='';
+
+        if(typeof($('input[name=CHILDLIVINGWITHME]:checked').val()) == 'undefined'){
+            memchildlivingst='';
+        }else{
+            memchildlivingst=$('input[name=CHILDLIVINGWITHME]:checked').val();
+        }
+        var memoldchildliving=''
+        if($('#OLD_CHILDRENLIVING').val()==1){
+            memoldchildliving='Y';
+        }
+        if($('#OLD_CHILDRENLIVING').val()==2){
+            memoldchildliving='N';
+        }
+
+        memchildliving = memchildlivingst+"!~!"+memoldchildliving;
+        membodytype = $('input[name=BODY_TYPE]:checked').val();
+        memcomplexion = $('input[name=COMPLEXION]:checked').val();       
+        memphysicalstatus = $('input[name=PHYSICAL_STATUS]:checked').val();
+        memmothertongue = $('#newmothertongue').val()+"!~!"+$('#OLD_MOTHERTONGUE').val();
+        memknowtoread=$('input[name=KNOWTOREAD]:checked').val();
+        memeatingval=$('input[name=EATING_HABITS]:checked').val();
+        memsmokingval=$('input[name=SMOKING_HABITS]:checked').val();
+        memdrinkingval=$('input[name=DRINKING_HABITS]:checked').val();
+        
+        if(tooltip == 'eat')
+        {
+            if(typeof($('input[name=EATING_HABITS]:checked').val()) == 'undefined')
+            {
+				$(".erreating").html('Please Select Eating Habits');
+ 				$(".erreating").css("color","red");
+                return false;
+            }
+            else if(typeof($('input[name=EATING_HABITS]:checked').val()) != 'undefined'){
+                memeatingval=$('input[name=EATING_HABITS]:checked').val();
+            }
+       
+        }        
+        if(tooltip == 'smoke')
+        {
+            if(typeof($('input[name=SMOKING_HABITS]:checked').val()) == 'undefined')
+            {
+				$(".errsmoking").html('Please Select Smoking Habits.');
+ 				$(".errsmoking").css("color","red");
+                return false;
+            }
+            else if(typeof($('input[name=SMOKING_HABITS]:checked').val()) != 'undefined'){
+                memsmokingval=$('input[name=SMOKING_HABITS]:checked').val();
+            }
+        }
+        if(tooltip == 'drink')
+        {
+            if(typeof($('input[name=DRINKING_HABITS]:checked').val()) == 'undefined')
+            {
+				$(".errdrinking").html('Please Select Drinking Habits.');
+ 				$(".errdrinking").css("color","red");
+                return false;
+            }
+            else if(typeof($('input[name=DRINKING_HABITS]:checked').val()) != 'undefined'){
+                memdrinkingval=$('input[name=DRINKING_HABITS]:checked').val();
+            }
+        }
+        var softTags = memberSoftTagsUpdate("basic");
+		var url = "//profile."+domainname+".com/modify/editprofileupdate.php";
+        if(tooltip =='eat' || tooltip == 'drink' || tooltip == 'smoke')
+    	{
+        param = "memname="+memname+"&memage="+memage+"&memcreated="+memcreated+"&memdobmonth="+memdobmonth+"&memdobday="+memdobday+"&memdobyr="+memdobyr+"&memhtfeet="+memhtfeet+"&memhtcms="+memhtcms+"&memwtkgs="+memwtkgs+"&memwtlbs="+memwtlbs+"&memmaritalstatus="+memmaritalstatus+"&memnochild="+memnochild+"&memchildliving="+memchildliving+"&membodytype="+membodytype+"&memcomplexion="+memcomplexion+"&memphysicalstatus="+memphysicalstatus+"&memmothertongue="+memmothertongue+"&memknowtoread="+memknowtoread+"&memeatingval="+memeatingval+"&memsmokingval="+memsmokingval+"&memdrinkingval="+memdrinkingval+softTags;
+
+        param = param+"&EDITFORM=2";
+             
+        if($('#OLD_MARITAL').val()!=$('#MARITAL_STATUS').val() || $('#NOOFCHILDREN').val()!=memoldnoofchild || memchildlivingst!=memoldchildliving || $('#OLD_MOTHERTONGUE').val()!=$('#newmothertongue').val())
+        { 
+            param = param+"&onetimeedit=1";
+        }
+        }
+     //End Basic
+	else if(tooltip == 'brother' || tooltip == 'sister' || tooltip == 'motstatus' || tooltip == 'fatstatus' || tooltip == 'ance')
+	{	
+		var param = "familyval="+familyval+"&familytype="+familytyp+"&familystatus="+familystat+"&motherocc="+motherocc+"&fatherocc="+fatherocc+ancestralstateupdate+"&ancestral="+ancestral+"&brotherVal="+brotherVal+"&brothermarriedVal="+brothermarriedVal+"&sisterVal="+sisterVal+"&sistermarriedVal="+sistermarriedVal+"&type=familydetailsupdate"+"&oldbrotherVal="+oldbrotherVal+"&oldbrothersmarriedval="+oldbrothersmarriedval+"&oldoldsistersval="+oldoldsistersval+"&oldsistersmarriedval="+oldsistersmarriedval+softTags;  
+		param = param+"&EDITFORM=6";	
+	}
+	else if(tooltip == 'annualincome' || tooltip == 'college' || tooltip =='edu' || tooltip =='occ')
+    {    	
+	var param = "eductioncatg="+eductioncatg+"&occupationcatg="+occupationcatg+"&educationdetail="+educationdetail+"&addondegree="+addondegree+"&occupationdetail="+occupationdetail+"&employedin="+employedin+"&annualincome="+annualincome+"&currencytype="+currencytype+"&currencyval="+currencyval+"&college="+college+"&oldcollege="+oldcollege+"&autocmplytvalid="+autocmplytvalid+"&profilemodFlg="+profilemodFlg+"&type=edudetailsupdate"+softTags+"&collegeAvail="+collegeAvail;   
+    param = param+"&EDITFORM=5";
+   
+    }
+	
+     $.ajax({  
+            url: url,	
+            type: "POST",
+            data: param,	
+            success: function (response) {
+                  if(tooltip =='eat' || tooltip == 'drink' || tooltip == 'smoke')
+                  {
+				  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=ownbasic&part=basicdetails&rt="+new Date().getTime(),'BasicInformation');                  
+				  GAeventTrk(action, 'Edit-Profile-MidPan-Comp-'+domainname, 'Submit');	
+				  }else if(tooltip == 'brother' || tooltip == 'sister' || tooltip == 'motstatus' || tooltip == 'fatstatus' || tooltip == 'ance'){
+                  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=professionalfamily&part=familydetails&rt="+new Date().getTime(),'FamilyInformation');
+                  GAeventTrk(action, 'Edit-Profile-MidPan-Comp-'+domainname, 'Submit'); 
+				  }else if(tooltip == 'annualincome' || tooltip == 'college' || tooltip =='edu' || tooltip =='occ'){
+				  jqajaxRequest("//profile."+domainname+".com/profiledetail/myprofile.php",'POST',"info=professionalfamily&part=professionaldetails&rt="+new Date().getTime(),'ProfessionalInformation'); 
+				  GAeventTrk(action, 'Edit-Profile-MidPan-Comp-'+domainname, 'Submit');
+                  }
+				  var increment = 0;
+				  Skip();
+				  setTimeout(function(){
+				    $('.extended').html($(".redisval").val());
+				    var showPCiconval = $(".redisval").val();
+				    var Result = showPCiconval.replace(/%/g,'');
+				    var showPCiconval = 5 * Math.round(Result/5);
+				     $("#showPCiconval").addClass("topnav-pfcomp"+showPCiconval);
+				 }, 3000);
+            }
+        }); 
+    
+}

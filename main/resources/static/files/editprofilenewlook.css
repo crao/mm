@@ -1,0 +1,23 @@
+.boxbtmline{-webkit-box-shadow: 0px 5px 0px 0px #dadada;-moz-box-shadow: 0px 5px 0px 0px #dadada;box-shadow: 0px 5px 0px 0px #dadada;}
+.colonedit{background:url('//imgs.bharatmatrimony.com/bmimgs/colon.gif') no-repeat 0 8px;}
+#addpartnerprefdesc{float:left}
+#right_PartnerPreference,#right_HobbiesInterests,#right_TrustBadge,#right_Horoscope{margin-bottom:15px;}
+.editboxhover .edithover{font-size:18px; line-height:35px;  text-align: center;  text-decoration: none;  display: block;background:#f1f1f1;}
+.editboxhover .edithover span{font-size:12px;color:#0274cb}
+.editboxhover a:hover{background:#f58320;color:#ffffff;}
+.editboxhover a:hover span{background:#f58320;color:#ffffff;}
+.diagram {display: inline-block;margin: 2em;}
+.select {background: url(//imgs.bharatmatrimony.com/bmimgs/edit-select-arrow.gif) no-repeat 90% 13px;border:1px solid #dadada;border-radius:4px;-webkit-appearance:none;-moz-appearance:none;font-size: 14px;}
+.txtbrderedit{border-radius:4px;border:1px solid #dadada;}
+#softdiv a#edit{background:#f58320}
+select::-ms-expand {    display: none;}
+option{font-size:14px;}
+#addhobbiedesc{float:left}
+
+a#happymrgmenulink div{float:none;}
+#softdiv a{border-radius: 0px !important;}
+#softdiv a:hover{border-radius: 0px !important;}
+#addmoreui a{background:none !important;}
+#addmoreui a:hover{background:none;color: #0274CB;text-decoration: none;outline: none;}
+			
+
