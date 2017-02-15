@@ -48,6 +48,7 @@ public class Member {
 	private String country;
 	private String mobile;
 	private int countryCode;
+	private boolean profilePic;
 	
 	//@OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
 	//@PrimaryKeyJoinColumn
@@ -231,6 +232,14 @@ public class Member {
 
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
+	}
+
+	public boolean isProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(boolean profilePic) {
+		this.profilePic = profilePic;
 	}
 
 	

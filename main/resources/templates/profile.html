@@ -220,18 +220,25 @@ display: inline-block;
 	
 				<div class="col-sm-4">
 				
-			<!-- 	<input type="file" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif"/>
-				<label for="fileUpload">
-				<img src="../static/Capture.PNG" th:src="@{images/Capture.PNG}"  class="img-responsive" width="220" height="180"></img>
-				</label> 
-				<img src="img/user.jpg" th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"></img>
+				<!--  <input type="file" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif"/> -->
 				
-				 -->
-					
-				
-				<a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
-				<img th:src="@{(member.photos !=null ? 'img/user.jpg' : '')}"   class="img-responsive" width="220" height="180"></img>
+					<a th:href="@{'myPhotos?userId='+  ${session.userId} +'profilePic='+{member.profilePic}" >				
+						<img th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"
+						th:if="${#lists.isEmpty(member.photos) and member.gender=='M'}"></img>
+						
+						<img th:src="@{img/place_holder.png}"   class="img-responsive" width="220" height="180"
+						th:if="${#lists.isEmpty(member.photos) and member.gender=='F'}"></img>
+						
+						<img th:src=""   class="img-responsive" width="220" height="180"
+						th:if="${not #lists.isEmpty(member.photos)}"></img>
+				    </a>
+		
+			 
+			 <!--
+			 	<a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
+				<img th:src="@{(#lists.isEmpty(member.photos) ? 'img/user.jpg' : 'img/user.jpg')}"   class="img-responsive" width="220" height="180"></img>
 				</a>
+				 -->
 				
 				<p><span th:text="${member.firstName}"></span> &nbsp; <span th:text="${member.lastName}"> &nbsp; </span> </p>
 				<p> R2229300 </p>
