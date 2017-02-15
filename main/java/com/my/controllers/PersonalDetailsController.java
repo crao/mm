@@ -59,11 +59,14 @@ public class PersonalDetailsController {
 		personaldetailsBean = new PersonalDetails();		 
 	    personaldetailsBean.setMember(member);
 	    personaldetailsBean.setMaritalStatus(personaldetailsModel.getMaritalStatus());
+	    personaldetailsBean.setBirthTime(personaldetailsModel.getBirthTime());
+	    personaldetailsBean.setBirthPlace(personaldetailsModel.getBirthPlace());
 		personaldetailsBean.setHeight(personaldetailsModel.getHeight());
 		personaldetailsBean.setWeight(personaldetailsModel.getWeight());
 		personaldetailsBean.setGothra(personaldetailsModel.getGothra());
 		personaldetailsBean.setBodyType(personaldetailsModel.getBodyType());
 		personaldetailsBean.setComplexion(personaldetailsModel.getComplexion());
+		personaldetailsBean.setPhysicalStatus(personaldetailsModel.getPhysicalStatus());
 		personaldetailsBean.setManglik(personaldetailsModel.getManglik());
 		personaldetailsBean.setDosh(personaldetailsModel.getDosh());
 		personaldetailsBean.setStarSign(personaldetailsModel.getStar());
@@ -73,7 +76,7 @@ public class PersonalDetailsController {
 		personaldetailsBean.setSmokingHabits(personaldetailsModel.getSmokinghabits());
 		personaldetailsBean.setFamilyStatus(personaldetailsModel.getFamilystatus());
 		personaldetailsBean.setFamilyType(personaldetailsModel.getFamilytype());
-		personaldetailsBean.setFamilyValues(personaldetailsModel.getFamilyvalue());
+		personaldetailsBean.setFamilyValues(personaldetailsModel.getFamilyValues());
 		personaldetailsBean.setEducation(personaldetailsModel.getEducation());
 		personaldetailsBean.setOccupationcategory(personaldetailsModel.getOccupationcategory());
 		personaldetailsBean.setOccupation(personaldetailsModel.getOccupation());
@@ -87,6 +90,7 @@ public class PersonalDetailsController {
 		personaldetailsBean.setCountryP(personaldetailsModel.getCountryP());
 		personaldetailsBean.setResidingstateP(personaldetailsModel.getResidingstateP());
 		personaldetailsBean.setResidingcityP(personaldetailsModel.getResidingcityP());
+		personaldetailsBean.setCitizenship(personaldetailsModel.getCitizenship());
 		
 		httpSession.setAttribute("member", member);
 		model.addAttribute("preferences", new PreferencesBinding());

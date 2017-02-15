@@ -133,7 +133,7 @@
 											</section>
 											<section class="col1 col-4">
 												<label class="input">
-													<input type="time" name="income" th:feild="*{birthTime}" id="BIRTHTIME"  placeholder="Enter Birth Time" />
+													<input type="time" name="birthTime" th:feild="*{birthTime}" id="BIRTHTIME"  placeholder="Enter Birth Time" />
 												</label>
 											</section>
 											<section class="col1 col-5">
@@ -166,7 +166,7 @@
 											<section class="col1 col-2">
 												<label class="select">
 													<select size="1" name="heightInches" class="form-control"  id="FEET" onchange="feetToCms(this.value, 'CMS')">
-														<option value="0">Feet/Inches</option>
+														<option value="Not Mentioned">Feet/Inches</option>
 														<option value="4-6" >4ft 6in</option>
 														<option value="4-7" >4ft 7in</option>
 														<option value="4-8" >4ft 8in</option>
@@ -209,7 +209,7 @@
 											<section class="col col-2">
 												<label class="select">
 													<select name="height" th:feild="*{height}" size="1" class="form-control" id="CMS" onchange="cmsToFeet(this.value, 'FEET')">
-														<option value="0"> Cms </option>
+														<option value="Not Mentioned"> Cms </option>
 														<option value="137">137cm</option>
 														<option value="138">138cm</option>
 														<option value="139">139cm</option>
@@ -487,7 +487,7 @@
 											<section class="col1 col-9">
 												<label class="select">
 													<select name="education" th:feild="*{education}" id="EDUCATION" class="form-control" >
-														<option value="0">- Select -</option>								
+														<option value="Not Mentioned">- Select -</option>								
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Engineering / Computers --'>
 														<option value='Aeronautical Engineering'>Aeronautical Engineering</option>
 														<option value='B.Arch'>B.Arch</option>
@@ -631,7 +631,7 @@
 											<section class="col1 col-9">
 												<label class="select">
 													<select name="occupation" th:feild="*{occupation}" id="OCCUPATION" class="form-control">
-														<option value="">Please choose one.</option>
+														<option value="Not Mentioned">Please choose one.</option>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- ADMIN --'>
 														<option value="Manager">Manager</option>
 														<option value="Supervisor">Supervisor</option>
@@ -742,130 +742,129 @@
 											<section class="col1 col-5">
 												<label class="select">
 													<select name="incomecurrency" th:feild="*{incomecurrency}" id="INCOME_CURRENCY" class="form-control" >
-														<option selected="selected" value="">Select currency</option>
-														<option value="America (United States) Dollars - USD">America (United States) Dollars – USD</option>
-														<option value="Afghanistan Afghanis - AFN">Afghanistan Afghanis – AFN</option>
-														<option value="Albania Leke - ALL">Albania Leke – ALL</option>
-														<option value="Algeria Dinars - DZD">Algeria Dinars – DZD</option>
-														<option value="Argentina Pesos - ARS">Argentina Pesos – ARS</option>
-														<option value="Australia Dollars - AUD">Australia Dollars – AUD</option>
-														<option value="Austria Schillings - ATS">Austria Schillings – ATS</option>
+														<option selected="selected" value="Not Mentioned">Select currency</option>
+														<option value="USD">America (United States) Dollars – USD</option>
+														<option value="AFN">Afghanistan Afghanis – AFN</option>
+														<option value="ALL">Albania Leke – ALL</option>
+														<option value="DZD">Algeria Dinars – DZD</option>
+														<option value="ARS">Argentina Pesos – ARS</option>
+														<option value="AUD">Australia Dollars – AUD</option>
+														<option value="ATS">Austria Schillings – ATS</option>
 														 
-														<option value="Bahamas Dollars - BSD">Bahamas Dollars – BSD</option>
-														<option value="Bahrain Dinars - BHD">Bahrain Dinars – BHD</option>
-														<option value="Bangladesh Taka - BDT">Bangladesh Taka – BDT</option>
-														<option value="Barbados Dollars - BBD">Barbados Dollars – BBD</option>
-														<option value="Belgium Francs - BEF">Belgium Francs – BEF</option>
-														<option value="Bermuda Dollars - BMD">Bermuda Dollars – BMD</option>
+														<option value="BSD">Bahamas Dollars – BSD</option>
+														<option value="BHD">Bahrain Dinars – BHD</option>
+														<option value="BDT">Bangladesh Taka – BDT</option>
+														<option value="BBD">Barbados Dollars – BBD</option>
+														<option value="BEF">Belgium Francs – BEF</option>
+														<option value="BMD">Bermuda Dollars – BMD</option>
 														 
-														<option value="Brazil Reais - BRL">Brazil Reais – BRL</option>
-														<option value="Bulgaria Leva - BGN">Bulgaria Leva – BGN</option>
-														<option value="Canada Dollars - CAD">Canada Dollars – CAD</option>
-														<option value="CFA BCEAO Francs - XOF">CFA BCEAO Francs – XOF</option>
-														<option value="CFA BEAC Francs - XAF">CFA BEAC Francs – XAF</option>
-														<option value="Chile Pesos - CLP">Chile Pesos – CLP</option>
+														<option value="BRL">Brazil Reais – BRL</option>
+														<option value="BGN">Bulgaria Leva – BGN</option>
+														<option value="CAD">Canada Dollars – CAD</option>
+														<option value="XOF">CFA BCEAO Francs – XOF</option>
+														<option value="XAF">CFA BEAC Francs – XAF</option>
+														<option value="CLP">Chile Pesos – CLP</option>
 														 
-														<option value="China Yuan Renminbi - CNY">China Yuan Renminbi – CNY</option>
-														<option value="RMB (China Yuan Renminbi) - CNY">RMB (China Yuan Renminbi) – CNY</option>
-														<option value="Colombia Pesos - COP">Colombia Pesos – COP</option>
-														<option value="CFP Francs - XPF">CFP Francs – XPF</option>
-														<option value="Costa Rica Colones - CRC">Costa Rica Colones – CRC</option>
-														<option value="Croatia Kuna - HRK">Croatia Kuna – HRK</option>
+														<option value="CNY">China Yuan Renminbi – CNY</option>
+														<option value="CNY">RMB (China Yuan Renminbi) – CNY</option>
+														<option value="COP">Colombia Pesos – COP</option>
+														<option value="XPF">CFP Francs – XPF</option>
+														<option value="CRC">Costa Rica Colones – CRC</option>
+														<option value="HRK">Croatia Kuna – HRK</option>
 														 
-														<option value="Cyprus Pounds - CYP">Cyprus Pounds – CYP</option>
-														<option value="Czech Republic Koruny - CZK">Czech Republic Koruny – CZK</option>
-														<option value="Denmark Kroner - DKK">Denmark Kroner – DKK</option>
-														<option value="Deutsche (Germany) Marks - DEM">Deutsche (Germany) Marks – DEM</option>
-														<option value="Dominican Republic Pesos - DOP">Dominican Republic Pesos – DOP</option>
-														<option value="Dutch (Netherlands) Guilders - NLG">Dutch (Netherlands) Guilders – NLG</option>
+														<option value="CYP">Cyprus Pounds – CYP</option>
+														<option value="CZK">Czech Republic Koruny – CZK</option>
+														<option value="DKK">Denmark Kroner – DKK</option>
+														<option value="DEM">Deutsche (Germany) Marks – DEM</option>
+														<option value="DOP">Dominican Republic Pesos – DOP</option>
+														<option value="NLG">Dutch (Netherlands) Guilders – NLG</option>
 														 
-														<option value="Eastern Caribbean Dollars - XCD">Eastern Caribbean Dollars – XCD</option>
-														<option value="Egypt Pounds - EGP">Egypt Pounds – EGP</option>
-														<option value="Estonia Krooni - EEK">Estonia Krooni – EEK</option>
-														<option value="Euro - EUR">Euro – EUR</option>
-														<option value="Fiji Dollars - FJD">Fiji Dollars – FJD</option>
-														<option value="Finland Markkaa - FIM">Finland Markkaa – FIM</option>
+														<option value="XCD">Eastern Caribbean Dollars – XCD</option>
+														<option value="EGP">Egypt Pounds – EGP</option>
+														<option value="EEK">Estonia Krooni – EEK</option>
+														<option value="EUR">Euro – EUR</option>
+														<option value="FJD">Fiji Dollars – FJD</option>
+														<option value="FIM">Finland Markkaa – FIM</option>
 														 
-														<option value="France Francs - FRF*">France Francs – FRF*</option>
-														<option value="Germany Deutsche Marks - DEM">Germany Deutsche Marks – DEM</option>
-														<option value="Gold Ounces - XAU">Gold Ounces – XAU</option>
-														<option value="Greece Drachmae - GRD">Greece Drachmae – GRD</option>
-														<option value="Guatemalan Quetzal - GTQ">Guatemalan Quetzal – GTQ</option>
-														<option value="Holland (Netherlands) Guilders - NLG">Holland (Netherlands) Guilders – NLG</option>
-														<option value="Hong Kong Dollars - HKD">Hong Kong Dollars – HKD</option>
+														<option value="FRF">France Francs – FRF*</option>
+														<option value="DEM">Germany Deutsche Marks – DEM</option>
+														<option value="XAU">Gold Ounces – XAU</option>
+														<option value="GRD">Greece Drachmae – GRD</option>
+														<option value="GTQ">Guatemalan Quetzal – GTQ</option>
+														<option value="NLG">Holland (Netherlands) Guilders – NLG</option>
+														<option value="HKD">Hong Kong Dollars – HKD</option>
 														 
-														<option value="Hungary Forint - HUF">Hungary Forint – HUF</option>
-														<option value="Iceland Kronur - ISK">Iceland Kronur – ISK</option>
-														<option value="IMF Special Drawing Right - XDR">IMF Special Drawing Right – XDR</option>
-														<option value="India Rupees - INR">India Rupees – INR</option>
-														<option value="Indonesia Rupiahs - IDR">Indonesia Rupiahs – IDR</option>
-														<option value="Iran Rials - IRR">Iran Rials – IRR</option>
+														<option value="HUF">Hungary Forint – HUF</option>
+														<option value="ISK">Iceland Kronur – ISK</option>
+														<option value="XDR">IMF Special Drawing Right – XDR</option>
+														<option value="INR">India Rupees – INR</option>
+														<option value="IDR">Indonesia Rupiahs – IDR</option>
+														<option value="IRR">Iran Rials – IRR</option>
 														 
-														<option value="Iraq Dinars - IQD">Iraq Dinars – IQD</option>
-														<option value="Ireland Pounds - IEP*">Ireland Pounds – IEP*</option>
-														<option value="Israel New Shekels - ILS">Israel New Shekels – ILS</option>
-														<option value="Italy Lire - ITL*">Italy Lire – ITL*</option>
-														<option value="Jamaica Dollars - JMD">Jamaica Dollars – JMD</option>
-														<option value="Japan Yen - JPY">Japan Yen – JPY</option>
+														<option value="IQD">Iraq Dinars – IQD</option>
+														<option value="IEP">Ireland Pounds – IEP*</option>
+														<option value="ILS">Israel New Shekels – ILS</option>
+														<option value="ITL">Italy Lire – ITL*</option>
+														<option value="JMD">Jamaica Dollars – JMD</option>
+														<option value="JPY">Japan Yen – JPY</option>
 														 
-														<option value="Jordan Dinars - JOD">Jordan Dinars – JOD</option>
-														<option value="Kenya Shillings - KES">Kenya Shillings – KES</option>
-														<option value="Korea (South) Won - KRW">Korea (South) Won – KRW</option>
-														<option value="Kuwait Dinars - KWD">Kuwait Dinars – KWD</option>
-														<option value="Lebanon Pounds - LBP">Lebanon Pounds – LBP</option>
-														<option value="Luxembourg Francs - LUF">Luxembourg Francs – LUF</option>
+														<option value="JOD">Jordan Dinars – JOD</option>
+														<option value="KES">Kenya Shillings – KES</option>
+														<option value="KRW">Korea (South) Won – KRW</option>
+														<option value="KWD">Kuwait Dinars – KWD</option>
+														<option value="LBP">Lebanon Pounds – LBP</option>
+														<option value="LUF">Luxembourg Francs – LUF</option>
 														 
-														<option value="Malaysia Ringgits - MYR">Malaysia Ringgits – MYR</option>
-														<option value="Malta Liri - MTL">Malta Liri – MTL</option>
-														<option value="Mauritius Rupees - MUR">Mauritius Rupees – MUR</option>
-														<option value="Mexico Pesos - MXN">Mexico Pesos – MXN</option>
-														<option value="Morocco Dirhams - MAD">Morocco Dirhams – MAD</option>
-														<option value="Netherlands Guilders - NLG">Netherlands Guilders – NLG</option>
+														<option value="MYR">Malaysia Ringgits – MYR</option>
+														<option value="MTL">Malta Liri – MTL</option>
+														<option value="MUR">Mauritius Rupees – MUR</option>
+														<option value="MXN">Mexico Pesos – MXN</option>
+														<option value="MAD">Morocco Dirhams – MAD</option>
+														<option value="NLG">Netherlands Guilders – NLG</option>
 														 
-														<option value="New Zealand Dollars - NZD">New Zealand Dollars – NZD</option>
-														<option value="Norway Kroner - NOK">Norway Kroner – NOK</option>
-														<option value="Oman Rials - OMR">Oman Rials – OMR</option>
-														<option value="Pakistan Rupees - PKR">Pakistan Rupees – PKR</option>
-														<option value="Palladium Ounces - XPD">Palladium Ounces – XPD</option>
-														<option value="Peru Nuevos Soles - PEN">Peru Nuevos Soles – PEN</option>
+														<option value="NZD">New Zealand Dollars – NZD</option>
+														<option value="NOK">Norway Kroner – NOK</option>
+														<option value="OMR">Oman Rials – OMR</option>
+														<option value="PKR">Pakistan Rupees – PKR</option>
+														<option value="XPD">Palladium Ounces – XPD</option>
+														<option value="PEN">Peru Nuevos Soles – PEN</option>
 														 
-														<option value="Philippines Pesos - PHP">Philippines Pesos – PHP</option>
-														<option value="Platinum Ounces - XPT">Platinum Ounces – XPT</option>
-														<option value="Poland Zlotych - PLN">Poland Zlotych – PLN</option>
-														<option value="Portugal Escudos - PTE">Portugal Escudos – PTE</option>
-														<option value="Qatar Riyals - QAR">Qatar Riyals – QAR</option>
-														<option value="Romania New Lei - RON">Romania New Lei – RON</option>
+														<option value="PHP">Philippines Pesos – PHP</option>
+														<option value="XPT">Platinum Ounces – XPT</option>
+														<option value="PLN">Poland Zlotych – PLN</option>
+														<option value="PTE">Portugal Escudos – PTE</option>
+														<option value="QAR">Qatar Riyals – QAR</option>
+														<option value="RON">Romania New Lei – RON</option>
 														 
-														<option value="Romania Lei - ROL">Romania Lei – ROL</option>
-														<option value="Russia Rubles - RUB">Russia Rubles – RUB</option>
-														<option value="Saudi Arabia Riyals - SAR">Saudi Arabia Riyals – SAR</option>
-														<option value="Silver Ounces - XAG">Silver Ounces – XAG</option>
-														<option value="Singapore Dollars - SGD">Singapore Dollars – SGD</option>
-														<option value="Slovakia Koruny - SKK">Slovakia Koruny – SKK</option>
+														<option value="ROL">Romania Lei – ROL</option>
+														<option value="RUB">Russia Rubles – RUB</option>
+														<option value="SAR">Saudi Arabia Riyals – SAR</option>
+														<option value="XAG">Silver Ounces – XAG</option>
+														<option value="SGD">Singapore Dollars – SGD</option>
+														<option value="SKK">Slovakia Koruny – SKK</option>
 														 
-														<option value="Slovenia Tolars - SIT">Slovenia Tolars – SIT</option>
-														<option value="South Africa Rand - ZAR">South Africa Rand – ZAR</option>
-														<option value="South Korea Won - KRW">South Korea Won – KRW</option>
-														<option value="Spain Pesetas - ESP">Spain Pesetas – ESP</option>
-														<option value="Special Drawing Rights (IMF) - XDR">Special Drawing Rights (IMF) – XDR</option>
-														<option value="Sri Lanka Rupees - LKR">Sri Lanka Rupees – LKR</option>
+														<option value="SIT">Slovenia Tolars – SIT</option>
+														<option value="ZAR">South Africa Rand – ZAR</option>
+														<option value="KRW">South Korea Won – KRW</option>
+														<option value="ESP">Spain Pesetas – ESP</option>
+														<option value="XDR">Special Drawing Rights (IMF) – XDR</option>
+														<option value="LKR">Sri Lanka Rupees – LKR</option>
 														 
-														<option value="Sudan Dinars - SDD">Sudan Dinars – SDD</option>
-														<option value="Sweden Kronor - SEK">Sweden Kronor – SEK</option>
-														<option value="Switzerland Francs - CHF">Switzerland Francs – CHF</option>
-														<option value="Taiwan New Dollars - TWD">Taiwan New Dollars – TWD</option>
-														<option value="Thailand Baht - THB">Thailand Baht – THB</option>
-														<option value="Trinidad and Tobago Dollars - TTD">Trinidad and Tobago Dollars – TTD</option>
+														<option value="SDD">Sudan Dinars – SDD</option>
+														<option value="SEK">Sweden Kronor – SEK</option>
+														<option value="CHF">Switzerland Francs – CHF</option>
+														<option value="TWD">Taiwan New Dollars – TWD</option>
+														<option value="THB">Thailand Baht – THB</option>
+														<option value="TTD">Trinidad and Tobago Dollars – TTD</option>
 														 
-														<option value="Tunisia Dinars - TND">Tunisia Dinars – TND</option>
-														<option value="Turkey New Lira - TRY">Turkey New Lira – TRY</option>
-														<option value="United Arab Emirates Dirhams - AED">United Arab Emirates Dirhams – AED</option>
-														<option value="United Kingdom Pounds - GBP">United Kingdom Pounds – GBP</option>
-														<option value="United States Dollars - USD">United States Dollars – USD</option>
-														<option value="Venezuela Bolivares - VEB">Venezuela Bolivares – VEB</option>
+														<option value="TND">Tunisia Dinars – TND</option>
+														<option value="TRY">Turkey New Lira – TRY</option>
+														<option value="AED">United Arab Emirates Dirhams – AED</option>
+														<option value="GBP">United Kingdom Pounds – GBP</option>
+														<option value="VEB">Venezuela Bolivares – VEB</option>
 														 
-														<option value="Vietnam Dong - VND">Vietnam Dong – VND</option>
-														<option value="Zambia Kwacha - ZMK">Zambia Kwacha – ZMK</option>
+														<option value="VND">Vietnam Dong – VND</option>
+														<option value="ZMK">Zambia Kwacha – ZMK</option>
 													</select> 
 													<i></i>
 												</label>
@@ -888,7 +887,7 @@
 											<section class="col1 col-3">
 												<label class="select">
 													<select  th:feild="*{country}" class="form-control countries" name="country" id="countryId sel1">
-    													<option value="">Select Country</option>
+    													<option value="Not Mentioned">Select Country</option>
 													</select> 
 													<i></i>
 												</label>
@@ -917,15 +916,15 @@
 											</section>
 											<section class="col1 col-3">
 												<label class="select">
-													<select  th:feild="*{countryP}" class="form-control countries" name="country" id="countryId sel1">
-    													<option value="">Select Country</option>
+													<select  th:feild="*{countryP}" class="form-control countries" name="countryP" id="countryId sel1">
+    													<option value="Not Mentioned">Select Country</option>
 													</select> 
 													<i></i>
 												</label>
 											</section>
 											<section class="col1 col-3">
 												<label class="select">
-													<select th:feild="*{residingstateP}" class="form-control states" name="residingstate" id="sel12 stateId">
+													<select th:feild="*{residingstateP}" class="form-control states" name="residingstateP" id="sel12 stateId">
 													   <option value="">Select State</option>
 													</select>
 													<i></i>
@@ -933,9 +932,29 @@
 											</section>
 											<section class="col1 col-3">
 												<label class="select">
-													<select th:feild="*{residingcityP}" class="form-control cities" id="sel13 cityId" name="residingcity">
+													<select th:feild="*{residingcityP}" class="form-control cities" id="sel13 cityId" name="residingcityP">
 														<option value="">Select City</option>
 													</select>
+													<i></i>
+												</label>
+											</section>
+											
+										</div>
+										<div class="row">
+											<section class="col1">
+												<label class="label">Citizenship:</label>
+											</section>
+											<section class="col1 col-3">
+												<label class="select">
+													<select  th:feild="*{citizenship}" class="form-control countries" name="citizenship" id="citizenship">
+    													<option value="Not Mentioned">Select Country</option>
+    													<option value="India">India</option>
+    													<option value="USA">USA</option>
+    													<option value="UAE">UAE</option>
+    													<option value="UK">UK</option>
+    													<option value="France">France</option>
+    													<option value="Germany">Germany</option>
+													</select> 
 													<i></i>
 												</label>
 											</section>
@@ -1046,7 +1065,7 @@
 											<section class="col col-4">
 												<label class="select">
 													<select name="star" th:feild="*{star}" id="STAR" class="form-control" >
-														<option value="0" selected="selected">- Please Select Star -</option>
+														<option value="Not Mentioned" selected="selected">- Please Select Star -</option>
 														<option value="Aswini">Aswini</option>
 														<option value="Bharani">Bharani</option>
 														<option value="Kruthika">Kruthika</option>
@@ -1084,7 +1103,7 @@
 											<section class="col1 col-4">
 												<label class="select">
 													<select name="raasi" th:feild="*{raasi}" id="RAASI" class="form-control" >
-														<option selected="selected" value="">Select Raasi</option>
+														<option selected="selected" value="Not Mentioned">Select Raasi</option>
 														<option value="Mesha (Aries)">Mesha (Aries)</option>
 														<option value="Vrishabha (Taurus)">Vrishabha (Taurus)</option>
 														<option value="Mithun (Gemini)">Mithun (Gemini)</option>
