@@ -122,92 +122,9 @@
 					<div class="col-md-9">
 						<div class="profile-body">
 							<div class="profile-bio">
-								<form class="sky-form" method="post">
-									<div class="row row-new-1">
-										<div class="col-md-4">
-											<img class="img-responsive md-margin-bottom-10" src="img/user.jpg" alt=""/>
-											<!--<a class="btn-u btn-u-sm" href="#">Change Picture</a>-->
-										</div>
-										<div class="col-md-8">
-											<div class="row">
-												<div class="col-md-5">
-													<h2><label class="label no-padding">Trupti Anchaliya</label></h2>
-												</div>
-												<div class="col-md-7">
-													<label class="label no-padding">(Profile Created: ForSelf)</label>
-												</div>
-											</div>
-											
-											<div class="row">
-												<div class="col-md-1">
-													<label class="label no-padding"><strong>Age:</strong></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding">24</label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding"><strong>Height: </strong></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding"> 5' 4"</label>
-												</div>
-												<div class="col-md-7">
-												</div>	
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Father's Name:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Premchand Ancahliya</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Mother's Name:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Surekha Ancahliya</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Location:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Thane, Mumbai</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Education:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">MSc. Computer Science</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Profession:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Web Developer and SEO Analyst, 3D Power, Aurangabad.</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													
-												</div>
-												<div class="col-md-3"></div>
-												<div class="col-md-6">
-													<a class="btn-u btn-u-sm" href="#">View Full Profile</a>
-												</div>
-											</div>
-										
-										</div>	
-									</div>
+								<form class="sky-form" method="post">									
 									
-									<div class="row row-new-1">
+									<div class="row row-new-1" th:each="member : ${members}">
 										<div class="col-md-4">
 											<img class="img-responsive md-margin-bottom-10" src="img/user.jpg" alt=""/>
 											<!--<a class="btn-u btn-u-sm" href="#">Change Picture</a>-->
@@ -215,25 +132,25 @@
 										<div class="col-md-8">
 											<div class="row">
 												<div class="col-md-5">
-													<h2><label class="label no-padding">Trupti Anchaliya</label></h2>
+													<h2><label class="label no-padding" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label></h2>
 												</div>
 												<div class="col-md-7">
-													<label class="label no-padding">(Profile Created: ForSelf)</label>
+													<label class="label no-padding">Profile Created For: </label>
 												</div>
 											</div>
 											
 											<div class="row">
 												<div class="col-md-1">
-													<label class="label no-padding"><strong>Age:</strong></label>
+													<label class="label no-padding" ><strong>Age:</strong></label>
 												</div>
 												<div class="col-md-2">
-													<label class="label no-padding">24</label>
+													<label class="label no-padding" th:text="${member.age}"></label>
 												</div>
 												<div class="col-md-2">
 													<label class="label no-padding"><strong>Height: </strong></label>
 												</div>
 												<div class="col-md-2">
-													<label class="label no-padding"> 5' 4"</label>
+													<label class="label no-padding" th:text="${member.personalDetails.height}"></label>
 												</div>
 												<div class="col-md-7">
 												</div>	
@@ -243,7 +160,7 @@
 													<label class="label no-padding"><strong>Father's Name:</strong></label>
 												</div>
 												<div class="col-md-9">
-													<label class="label no-padding">Premchand Ancahliya</label>
+													<label class="label no-padding" th:text="${member.personalDetails.fatherName}"></label>
 												</div>
 											</div>
 											<div class="row">
@@ -251,7 +168,7 @@
 													<label class="label no-padding"><strong>Mother's Name:</strong></label>
 												</div>
 												<div class="col-md-9">
-													<label class="label no-padding">Surekha Ancahliya</label>
+													<label class="label no-padding" th:text="${member.personalDetails.motherName}">Surekha Ancahliya</label>
 												</div>
 											</div>
 											<div class="row">
@@ -259,7 +176,7 @@
 													<label class="label no-padding"><strong>Location:</strong></label>
 												</div>
 												<div class="col-md-9">
-													<label class="label no-padding">Thane, Mumbai</label>
+													<label class="label no-padding" th:text="${member.personalDetails.residingcity}"></label>
 												</div>
 											</div>
 											<div class="row">
@@ -267,7 +184,7 @@
 													<label class="label no-padding"><strong>Education:</strong></label>
 												</div>
 												<div class="col-md-9">
-													<label class="label no-padding">MSc. Computer Science</label>
+													<label class="label no-padding" th:text="${member.personalDetails.education}"></label>
 												</div>
 											</div>
 											<div class="row">
@@ -275,7 +192,7 @@
 													<label class="label no-padding"><strong>Profession:</strong></label>
 												</div>
 												<div class="col-md-9">
-													<label class="label no-padding">Web Developer and SEO Analyst, 3D Power, Aurangabad.</label>
+													<label class="label no-padding" th:text="${member.personalDetails.occupation}"></label>
 												</div>
 											</div>
 											<div class="row">

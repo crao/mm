@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.my.binding.HomeSearch;
 import com.my.binding.SearchBinding;
 import com.my.dao.SearchDao;
 import com.my.model.Member;
@@ -19,6 +20,10 @@ public class SearchService {
 	public List<Result> getMatches(Member member, SearchBinding searchBinding) {
 		return searchDao.findMatches(member,searchBinding);
 		
+	}
+	
+	public List<Member> basicSearch(HomeSearch homeSearch){
+		return searchDao.basicSearch(homeSearch);
 	}
 
 }

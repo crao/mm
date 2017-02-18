@@ -8,9 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.my.binding.HomeSearch;
 import com.my.binding.SearchBinding;
 import com.my.constants.Constants;
 import com.my.model.Member;
@@ -21,6 +22,9 @@ public class SearchDao {
 	
 	@PersistenceContext
 	EntityManager em;
+	
+	@Autowired
+	MemberDao memberDao;
 	
 	private static final String BASE_QUERY = "select m.memberId,m.firstName,m.lastName,m.email,m.dob,"
 			+ "pd.height,pd.weight,pd.maritalStatus from Member m join m.personalDetails pd where m.gender =:gender";
@@ -56,6 +60,7 @@ public class SearchDao {
 		
 		 List<Object[]> resultsObj = q.getResultList();
 		 List<Result> results = new ArrayList<>();
+	
 		 
 		
 		 for(Object[] obj:resultsObj){
@@ -65,11 +70,44 @@ public class SearchDao {
 			 result.setLastName((String)obj[2]);
 			 result.setEmail((String)obj[3]);
 			results.add(result);	 
+			
 		 }
 	
 		
 		return results;
 		
+	}
+	
+	/**
+	 * TODO : OPTIMIZE
+	 * @param homeSearch
+	 * @return
+	 */
+	public List<Member> basicSearch(HomeSearch homeSearch){
+		
+		StringBuilder strbuilder = new StringBuilder(BASE_QUERY);
+		
+		Query q = em.createQuery(strbuilder.toString());
+		q.setParameter(Constants.GENDER, homeSearch.getBrideGroom());
+		
+		 List<Object[]> resultsObj = q.getResultList();
+		 List<Result> results = new ArrayList<>();
+		 List<Member> members = new ArrayList<>();
+		 
+		
+		 for(Object[] obj:resultsObj){
+			 Result result = new Result();
+			 result.setMemberId((Long)obj[0]);
+			 result.setFirstName((String)obj[1]);
+			 result.setLastName((String)obj[2]);
+			 result.setEmail((String)obj[3]);
+			results.add(result);	
+			Member member = memberDao.findByMemberId((Long)obj[0]);
+			memberDao.findByMemberId((Long)obj[0]);
+			members.add(member);
+		 }
+		
+		 return members;
 	}
 
 }
