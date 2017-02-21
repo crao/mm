@@ -69,9 +69,9 @@
 						</button>
 
 						<!-- Navbar Brand -->
-						<div class="navbar-brand">
+						<div class="navbar-brand no-padding">
 							<a href="index.html">
-								<img class="shrink-logo" src="img/logo2.jpg" alt="Logo"/>
+								<img class="shrink-logo" src="img/logo2.png" alt="Logo"/>
 							</a>
 						</div>
 						<!-- ENd Navbar Brand -->
@@ -125,8 +125,17 @@
 				
 				<div class="row">
 					<div class="col-md-3">
-						<img class="img-responsive profile-img margin-bottom-20" src="img/user1.jpg" alt=""></img>
-
+						
+						<a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
+								<img th:src="@{img/man.png}"   class="img-responsive" width="220" height="180"
+								th:if="${#lists.isEmpty(member.photos) and member.gender=='M'}"></img>
+								
+								<img th:src="@{img/women.png}"   class="img-responsive" width="220" height="180"
+								th:if="${#lists.isEmpty(member.photos) and member.gender=='F'}"></img>
+								
+								<img th:src=""   class="img-responsive" width="220" height="180"
+								th:if="${not #lists.isEmpty(member.photos)}"></img>
+						</a>
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li class="list-group-item">
 								<a href="#"><i class="fa fa-bar-chart-o"></i>Overall</a>
@@ -248,7 +257,7 @@
 															<b>Height:</b>
 														</div>
 														<div class="col-md-5">
-															<span th:text="${personalDetails.height}"> 168 cm &nbsp; </span>
+															<span th:text="${personalDetails.height}">&nbsp; </span>
 														</div>
 													</div><br/>
 													<div class="row">
@@ -323,7 +332,7 @@
 																		<label class="label"><b>Birth Place:</b></label>
 																	</section>
 																	<section class="col1 col-3">
-																		<label class="label" th:text="${personalDetails.birthTime}"></label>
+																		<label class="label" th:text="${personalDetails.birthPlace}"></label>
 																	</section>
 																</div>
 																<div class="row">
@@ -1740,7 +1749,7 @@
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo2.jpg" alt="company logo" /></a>
+							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo2.png" alt="company logo" /></a>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 						</div><!--/col-md-3-->
