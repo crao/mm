@@ -2767,12 +2767,12 @@
 }
 
 .flat-testimonials .flat-testimonials-in p:before {
-  content: "“";
+  content: "â€œ";
   padding-right: 5px;
 }
 
 .flat-testimonials .flat-testimonials-in p:after {
-  content: "”";
+  content: "â€�";
   padding-left: 5px;
 }
 
@@ -6477,7 +6477,8 @@
 
 /*Footer Logo*/
 .footer-logo {
-	margin: 17px 0 20px;
+	/*margin: 17px 0 20px;*/
+	height:90px;
 }
 
 /*Latest List*/
