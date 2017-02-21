@@ -60,10 +60,10 @@
 							<span class="icon-bar"></span>
 						</button>
 
-						<!-- Navbar Brand -->
-						<div class="navbar-brand">
+						<!-- Navbar Brand --> 
+						<div class="navbar-brand no-padding">
 							<a href="index.html">
-								<img class="shrink-logo" src="img/logo2.jpg" alt="Logo" />
+								<img class="shrink-logo" src="img/logo2.png" alt="Logo" />
 							</a>
 						</div>
 						<!-- ENd Navbar Brand -->
@@ -970,7 +970,7 @@
 											<section class="col1 col-3">
 												<label class="select">
 													<select  th:feild="*{country}" class="form-control countries" name="country" id="countryId sel1">
-    													<option value="">Select Country</option>
+    													<option value="Not Mentioned">Select Country</option>
 													</select> 
 													<i></i>
 												</label>
@@ -978,7 +978,7 @@
 											<section class="col1 col-3">
 												<label class="select">
 													<select th:feild="*{state}" class="form-control states" name="state" id="sel12 stateId">
-													   <option value="">Select State</option>
+													   <option value="Not Mentioned">Select State</option>
 													</select>
 													<i></i>
 												</label>
@@ -986,7 +986,7 @@
 											<section class="col1 col-3">
 												<label class="select">
 													<select th:feild="*{residingcity}" class="form-control cities" id="sel13 cityId" name="residingcity">
-														<option value="">Select City</option>
+														<option value="Not Mentioned">Select City</option>
 													</select>
 													<i></i>
 												</label>
@@ -1000,7 +1000,7 @@
 											<section class="col1 col-3">
 												<label class="select">
 													<select  th:feild="*{countryP}" class="form-control countries" name="countryP" id="countryId sel1">
-    													<option value="">Select Country</option>
+    													<option value="Not Mentioned">Select Country</option>
 													</select> 
 													<i></i>
 												</label>
@@ -1008,7 +1008,7 @@
 											<section class="col1 col-3">
 												<label class="select">
 													<select th:feild="*{residingstateP}" class="form-control states" name="residingstateP" id="sel12 stateId">
-													   <option value="">Select State</option>
+													   <option value="Not Mentioned">Select State</option>
 													</select>
 													<i></i>
 												</label>
@@ -1016,13 +1016,32 @@
 											<section class="col1 col-3">
 												<label class="select">
 													<select th:feild="*{residingcityP}" class="form-control cities" id="sel13 cityId" name="residingcityP">
-														<option value="">Select City</option>
+														<option value="Not Mentioned">Select City</option>
 													</select>
 													<i></i>
 												</label>
 											</section>
 										</div>
 										
+										<div class="row">
+											<section class="col1">
+												<label class="label">Citizenship:</label>
+											</section>
+											<section class="col1 col-3">
+												<label class="select">
+													<select  th:feild="*{citizenship}" class="form-control countries" name="citizenship" id="citizenship">
+    													<option value="Not Mentioned">Select Country</option>
+    													<option value="India">India</option>
+    													<option value="USA">USA</option>
+    													<option value="UAE">UAE</option>
+    													<option value="UK">UK</option>
+    													<option value="France">France</option>
+    													<option value="Germany">Germany</option>
+													</select> 
+													<i></i>
+												</label>
+											</section>
+										</div>
 									</fieldset>
 									
 									
@@ -1060,7 +1079,7 @@
 											<section class="col col-4">
 												<label class="select">
 													<select name="star" th:feild="*{star}" id="STAR" class="form-control" >
-														<option value="0" selected="selected">- Please Select Star -</option>
+														<option value="Not Mentioned" selected="selected">- Please Select Star -</option>
 														<option value="Aswini">Aswini</option>
 														<option value="Bharani">Bharani</option>
 														<option value="Kruthika">Kruthika</option>
@@ -1098,7 +1117,7 @@
 											<section class="col1 col-4">
 												<label class="select">
 													<select name="raasi" th:feild="*{raasi}" id="RAASI" class="form-control" >
-														<option selected="selected" value="">Select Raasi</option>
+														<option selected="selected" value="Not Mentioned">Select Raasi</option>
 														<option value="Mesha (Aries)">Mesha (Aries)</option>
 														<option value="Vrishabha (Taurus)">Vrishabha (Taurus)</option>
 														<option value="Mithun (Gemini)">Mithun (Gemini)</option>
@@ -1143,7 +1162,7 @@
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo2.jpg" alt="company logo" /></a>
+							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo2.png" alt="company logo" /></a>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 						</div><!--/col-md-3-->
