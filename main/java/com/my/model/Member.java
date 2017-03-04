@@ -58,7 +58,7 @@ public class Member {
 	@OneToOne(mappedBy="member")
 	private Preferences preferences;
 	
-	@OneToMany(mappedBy="member")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="member")
 	private List<Photo> photos;
 
 	public Member(long id,String firstName, String lastName, int age, String gender) {
