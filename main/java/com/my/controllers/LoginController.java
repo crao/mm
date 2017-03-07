@@ -61,15 +61,18 @@ public class LoginController {
 		String password = login.getPassword();
 		if(userEmail!=null){
 			Member member = memberService.getMemberByEmail(userEmail);
-			PersonalDetails personalDetails = personalDetailsService.getPersonalDetailsByMember(member);
-			Preferences preferences = preferencesService.getPreferencesByMember(member);
-			if(password.equals(member.getPassword())){
-				httpSession.setAttribute("member", member);
-				model.addAttribute("member", member);
-				model.addAttribute("personalDetails", personalDetails);
-				model.addAttribute("preferences", preferences);
-				return "redirect:/profile?status=success&userId="+member.getmemberId();
-			}				
+			if(member!=null){
+				httpSession.setAttribute("userId", member.getmemberId());
+				PersonalDetails personalDetails = personalDetailsService.getPersonalDetailsByMember(member);
+				Preferences preferences = preferencesService.getPreferencesByMember(member);
+				if(password.equals(member.getPassword())){
+					httpSession.setAttribute("member", member);
+					model.addAttribute("member", member);
+					model.addAttribute("personalDetails", personalDetails);
+					model.addAttribute("preferences", preferences);
+					return "redirect:/profile?status=success&userId="+member.getmemberId();
+				}	
+			}
 		}		
 		return "home";		
 	}
