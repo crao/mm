@@ -131,3 +131,25 @@ select::-ms-expand {
 .paddt5{padding-top:5px}
 
 .paddt15{padding-top:15px}
+.topmargin-40{margin-top:40px}
+
+.service-block-v1 i {
+    left: 0%;
+    top: 30%;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+    line-height: 62px;
+    margin-left: -30px;
+    text-align: center;
+    position: absolute;
+    background: #72c02c;
+    display: inline-block;
+}
+
+.box{display:none}
+
+.padding-all{padding:20px 50px 0px;}
+
+label.one{display:inherit}

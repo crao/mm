@@ -720,9 +720,10 @@
 ------------------------------------*/
 .service-block-v1 {
   margin-top: 20px;
-  text-align: center;
+  /*text-align: center;*/
   position: relative;
-  padding: 45px 20px 20px;
+  /*padding: 45px 20px 20px;*/
+  padding: 20px 50px 20px;
   border: 1px solid #f2f2f2;
 }
 
@@ -2767,12 +2768,12 @@
 }
 
 .flat-testimonials .flat-testimonials-in p:before {
-  content: "â€œ";
+  content: "“";
   padding-right: 5px;
 }
 
 .flat-testimonials .flat-testimonials-in p:after {
-  content: "â€�";
+  content: "”";
   padding-left: 5px;
 }
 
