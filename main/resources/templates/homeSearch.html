@@ -43,58 +43,7 @@
 <body class="header-fixed header-fixed-space">
 	<div class="wrapper">
 		<!--=== Header v6 ===-->
-		<div class="header-v6 header-classic-white header-sticky">
-			<!-- Navbar -->
-			<div class="navbar mega-menu" role="navigation">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="menu-container">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-
-						<!-- Navbar Brand -->
-						<div class="navbar-brand no-padding">
-							<a href="index.html">
-								<img class="shrink-logo" src="img/logo2.png" alt="Logo"/>
-							</a>
-						</div>
-						<!-- ENd Navbar Brand -->
-						<!-- End Header Inner Right -->
-					</div>
-
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse navbar-responsive-collapse">
-						<div class="menu-container">
-							<ul class="nav navbar-nav">
-								<!-- Home -->
-								<li class=""><a href="#">Register</a></li>
-								<li class="dropdown">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Search</a>
-									<ul class="dropdown-menu">
-										<li><a target="_blank" href="#">Regular Search</a></li>
-										<li><a target="_blank" href="#">Advance Search</a></li>
-										<li><a target="_blank" href="#">Keyword Search</a></li>
-									</ul>
-								</li>
-								<li  class="dropdown">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Services</a>
-										<ul class="dropdown-menu">
-											<li><a target="_blank" href="#">Asistance Service</a></li>
-											<li><a target="_blank" href="#">Matrimony directory</a></li>
-										</ul>
-								</li>
-								<li><a href="#">Upgrade</a></li> 
-							</ul>
-						</div>
-					</div><!--/navbar-collapse-->
-				</div>
-			</div>
-			<!-- End Navbar -->
-		</div>
+	<div th:replace="common :: topNav"></div>
 		<!--=== End Header v6 ===-->
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
@@ -122,174 +71,10 @@
 					<div class="col-md-9">
 						<div class="profile-body">
 							<div class="profile-bio">
-								<form class="sky-form" method="post">
-									<div class="row row-new-1">
-										<div class="col-md-4">
-											<img class="img-responsive md-margin-bottom-10" src="img/user.jpg" alt=""/>
-											<!--<a class="btn-u btn-u-sm" href="#">Change Picture</a>-->
-										</div>
-										<div class="col-md-8">
-											<div class="row">
-												<div class="col-md-5">
-													<h2><label class="label no-padding">Trupti Anchaliya</label></h2>
-												</div>
-												<div class="col-md-7">
-													<label class="label no-padding">(Profile Created: ForSelf)</label>
-												</div>
-											</div>
-											
-											<div class="row">
-												<div class="col-md-1">
-													<label class="label no-padding"><strong>Age:</strong></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding">24</label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding"><strong>Height: </strong></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding"> 5' 4"</label>
-												</div>
-												<div class="col-md-7">
-												</div>	
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Father's Name:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Premchand Ancahliya</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Mother's Name:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Surekha Ancahliya</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Location:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Thane, Mumbai</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Education:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">MSc. Computer Science</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Profession:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Web Developer and SEO Analyst, 3D Power, Aurangabad.</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													
-												</div>
-												<div class="col-md-3"></div>
-												<div class="col-md-6">
-													<a class="btn-u btn-u-sm" href="#">View Full Profile</a>
-												</div>
-											</div>
-										
-										</div>	
-									</div>
+								<form class="sky-form" method="post">									
 									
-									<div class="row row-new-1">
-										<div class="col-md-4">
-											<img class="img-responsive md-margin-bottom-10" src="img/user.jpg" alt=""/>
-											<!--<a class="btn-u btn-u-sm" href="#">Change Picture</a>-->
-										</div>
-										<div class="col-md-8">
-											<div class="row">
-												<div class="col-md-5">
-													<h2><label class="label no-padding">Trupti Anchaliya</label></h2>
-												</div>
-												<div class="col-md-7">
-													<label class="label no-padding">(Profile Created: ForSelf)</label>
-												</div>
-											</div>
-											
-											<div class="row">
-												<div class="col-md-1">
-													<label class="label no-padding"><strong>Age:</strong></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding">24</label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding"><strong>Height: </strong></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding"> 5' 4"</label>
-												</div>
-												<div class="col-md-7">
-												</div>	
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Father's Name:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Premchand Ancahliya</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Mother's Name:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Surekha Ancahliya</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Location:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Thane, Mumbai</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Education:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">MSc. Computer Science</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Profession:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding">Web Developer and SEO Analyst, 3D Power, Aurangabad.</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													
-												</div>
-												<div class="col-md-3"></div>
-												<div class="col-md-6">
-													<a class="btn-u btn-u-sm" href="#">View Full Profile</a>
-												</div>
-											</div>
-										
-										</div>	
-									</div>
+									<div th:replace="common :: searchResults"></div>
+							
 									
 								</form>
 								
@@ -321,7 +106,7 @@
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo2.png" alt=""/></a>
+							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo1.png" alt=""/></a>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 						</div><!--/col-md-3-->

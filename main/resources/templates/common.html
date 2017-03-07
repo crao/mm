@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+
+<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/style.css"></link>
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="css/header-v6.css"></link>
+	<link rel="stylesheet" href="css/footer-v1.css"></link>
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="css/animate.css"></link>
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css"></link>
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" href="css/sky-forms.css"></link>
+	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
+	<link rel="stylesheet" href="css/dark.css"></link>
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="css/custom.css"></link>
+	
+	
+
+</head>
+
+	<!--=== Header v6 ===-->
+		<div th:fragment="topNav" class="header-v6 header-classic-white header-sticky">
+			<!-- Navbar -->
+			<div class="navbar mega-menu" role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="menu-container">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<!-- Navbar Brand -->
+						<div class="navbar-brand no-padding">
+							<a href="index.html">
+								<img class="shrink-logo" src="img/logo1.png" alt="Logo"/>
+							</a>
+						</div>
+						<!-- ENd Navbar Brand -->
+						<!-- End Header Inner Right -->
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<div class="menu-container">
+							<ul class="nav navbar-nav">
+								<!-- Home -->
+								<li class=""><a href="#">Home</a></li>
+								<li class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Search</a>
+									<ul class="dropdown-menu">
+										<li><a target="_blank" th:href="@{/search}">Regular Search</a></li>
+										<li><a target="_blank" href="#">Advance Search</a></li>
+										<li><a target="_blank" href="#">Keyword Search</a></li>
+									</ul>
+								</li>
+								<li  class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Services</a>
+										<ul class="dropdown-menu">
+											<li><a target="_blank" href="#">Asistance Service</a></li>
+											<li><a target="_blank" href="#">Matrimony directory</a></li>
+										</ul>
+								</li>
+								<li><a href="#">Upgrade</a></li> 
+							</ul>
+						</div>
+					</div><!--/navbar-collapse-->
+				</div>
+			</div>
+			<!-- End Navbar -->
+	
+	</div>
+		<!--=== End Header v6 ===-->
+		
+		
+		
+				<div th:fragment="searchResults" class="row row-new-1" th:each="member : ${members}">
+										<div class="col-md-4">																
+										<img th:src="@{img/user.jpg}"   class="img-responsive md-margin-bottom-10" 
+											th:if="${member.gender=='M'}"></img>											
+										<img th:src="@{img/place_holder.png}"   class="img-responsive md-margin-bottom-10" 
+											th:if="${member.gender=='F'}"></img>
+										
+											
+											<!--<a class="btn-u btn-u-sm" href="#">Change Picture</a>-->
+										</div>
+										<div class="col-md-8">
+											<div class="row">
+												<div class="col-md-5">
+													<h2><label class="label no-padding" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label></h2>
+													<label class="label fleft no-padding">Profile Created For: </label><label class="label fleft no-padding" th:text="${member.profileFor}"></label>
+												</div>
+												<div class="col-md-7">
+													
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-md-1">
+													<label class="label no-padding" ><strong>Age:</strong></label>
+												</div>
+												<div class="col-md-2">
+													<label class="label no-padding" th:text="${member.age} + ' years'"></label>
+												</div>
+												<div class="col-md-2">
+													<label class="label no-padding"><strong>Height: </strong></label>
+												</div>
+												<div class="col-md-2">
+													<label class="label no-padding" th:text="${member.personalDetails.height} + ' cm'"></label>
+												</div>
+												<div class="col-md-7">
+												</div>	
+											</div>
+											<div class="row">
+												<div class="col-md-3">
+													<label class="label no-padding"><strong>Father's Name:</strong></label>
+												</div>
+												<div class="col-md-9">
+													<label class="label no-padding" th:text="${member.personalDetails.fatherName}"></label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-3">
+													<label class="label no-padding"><strong>Mother's Name:</strong></label>
+												</div>
+												<div class="col-md-9">
+													<label class="label no-padding" th:text="${member.personalDetails.motherName}">Surekha Ancahliya</label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-3">
+													<label class="label no-padding"><strong>Location:</strong></label>
+												</div>
+												<div class="col-md-9">
+													<label class="label no-padding" th:text="${member.personalDetails.residingcity}"></label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-3">
+													<label class="label no-padding"><strong>Education:</strong></label>
+												</div>
+												<div class="col-md-9">
+													<label class="label no-padding" th:text="${member.personalDetails.education}"></label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-3">
+													<label class="label no-padding"><strong>Profession:</strong></label>
+												</div>
+												<div class="col-md-9">
+													<label class="label no-padding" th:text="${member.personalDetails.occupation}"></label>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-3">
+													
+												</div>
+												<div class="col-md-3"></div>
+												<div class="col-md-6">
+													<a class="btn-u btn-u-sm" th:href="@{/profile?status=success(userId=${member.memberId})}">View Full Profile</a>
+												</div>
+											</div>
+										
+										</div>	
+									</div>
+</html>
+
+
+
+
