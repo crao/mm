@@ -42,9 +42,9 @@ public class SearchController {
 		if(memberObj!=null)
 			member = (Member) memberObj;
 		
-		List<Result> results = searchService.getMatches(member,searchBinding);
+		List<Member> results = searchService.getMatches(member,searchBinding);
 		
-		model.addAttribute("results", results);
+		model.addAttribute("members", results);
 		
 		return "results";
 	}

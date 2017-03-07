@@ -2,6 +2,7 @@ package com.my.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,14 +13,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.my.binding.PreferencesBinding;
 import com.my.binding.SearchBinding;
+import com.my.model.Member;
+import com.my.service.MemberService;
 
 @Controller
 public class ProfileController {
+	
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping(value="/profile",method=RequestMethod.GET)
 	public String start(Model model,@RequestParam(value="status",required=false)String status,
 			@RequestParam(value="userId",required=false)String userId,HttpSession session){
 		model.addAttribute("member",session.getAttribute("member"));
+		if(userId!=null || !userId.equals("")){
+			Member member = memberService.getMemberById(Long.parseLong(userId));
+			model.addAttribute("member",member);
+			
+		}
 		//model.addAttribute("personalDetails",session.getAttribute("personalDetails"));
 		//model.addAttribute("preferences", session.getAttribute("preferences"));
 		return "profile";

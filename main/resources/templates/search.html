@@ -26,10 +26,14 @@
 
 	<!-- CSS Customization -->
 
+	<!-- JS -->
+	<script type="text/javascript" src="js/my.js"></script>
 </head>
 
 <body>
 	<div class="wrapper">
+	
+	<div th:replace="common :: topNav"></div>
 		<!--=== Header ===-->
 		<div class="header">
 			
@@ -202,23 +206,25 @@
 												
 												<div class="col-md-3">
 													<label class="select">
-														<select name="fromHeight" th:feild="*{fromHeight}">
+														<select name="fromHeightSel" onchange="feetToCms(this.value, 'fromHt')">
 															<option value="0">- Feet/Inches -</option>
                                         <option value="4-6" selected="">4ft 6in</option><option value="4-7">4ft 7in</option><option value="4-8">4ft 8in</option><option value="4-9">4ft 9in</option><option value="4-10">4ft 10in</option><option value="4-11">4ft 11in</option><option value="5">5ft</option><option value="5-1">5ft 1in</option><option value="5-2">5ft 2in</option><option value="5-3">5ft 3in</option><option value="5-4">5ft 4in</option><option value="5-5">5ft 5in</option><option value="5-6">5ft 6in</option><option value="5-7">5ft 7in</option><option value="5-8">5ft 8in</option><option value="5-9">5ft 9in</option><option value="5-10">5ft 10in</option><option value="5-11">5ft 11in</option><option value="6">6ft</option><option value="6-1">6ft 1in</option><option value="6-2">6ft 2in</option><option value="6-3">6ft 3in</option><option value="6-4">6ft 4in</option><option value="6-5">6ft 5in</option><option value="6-6">6ft 6in</option><option value="6-7">6ft 7in</option><option value="6-8">6ft 8in</option><option value="6-9">6ft 9in</option><option value="6-10">6ft 10in</option><option value="6-11">6ft 11in</option><option value="7">7ft</option>
 														</select>
 													</label>
 												</div>
+												<input type="hidden" name="fromHeight" th:feild="*{fromHeight}" id="fromHt"></input>
 												<div class="col-md-1">
 													<label style="margin-top:8px">To</label>
 												</div>
 												<div class="col-md-3">
 													<label class="select">
-														<select name="toHeight" th:feild="*{toHeight}">
+														<select name="toHeightSel" onchange="feetToCms(this.value, 'toHt')">
 															<option value="0">- Feet/Inches -</option>
 				    	<option value="4-6">4ft 6in</option><option value="4-7">4ft 7in</option><option value="4-8">4ft 8in</option><option value="4-9">4ft 9in</option><option value="4-10" selected="">4ft 10in</option><option value="4-11">4ft 11in</option><option value="5">5ft</option><option value="5-1">5ft 1in</option><option value="5-2">5ft 2in</option><option value="5-3">5ft 3in</option><option value="5-4">5ft 4in</option><option value="5-5">5ft 5in</option><option value="5-6">5ft 6in</option><option value="5-7">5ft 7in</option><option value="5-8">5ft 8in</option><option value="5-9">5ft 9in</option><option value="5-10">5ft 10in</option><option value="5-11">5ft 11in</option><option value="6">6ft</option><option value="6-1">6ft 1in</option><option value="6-2">6ft 2in</option><option value="6-3">6ft 3in</option><option value="6-4">6ft 4in</option><option value="6-5">6ft 5in</option><option value="6-6">6ft 6in</option><option value="6-7">6ft 7in</option><option value="6-8">6ft 8in</option><option value="6-9">6ft 9in</option><option value="6-10">6ft 10in</option><option value="6-11">6ft 11in</option><option value="7">7ft</option> 
 														</select>
 													</label>
 												</div>
+												<input type="hidden" name="toHeight" th:feild="*{toHeight}" id="toHt"></input>
 												<div class="col-md-5">
 												</div>
 											</div>
@@ -227,16 +233,16 @@
 											<label class="label">Marital Status</label>
 											<div class="row">
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="martialStatus" th:feild="*{martialStatus}" checked="checked"/><i></i>Never Married</label>
+													<label class="checkbox"><input type="checkbox" name="martialStatus" value="Never Married" th:feild="*{martialStatus}" checked="checked"/><i></i>Never Married</label>
 												</div>
 												<div class="col col-2">
-													<label class="checkbox"><input type="checkbox" name="martialStatus" th:feild="*{martialStatus}"/><i></i>Widowed</label>
+													<label class="checkbox"><input type="checkbox" name="martialStatus" value="Widowed"  th:feild="*{martialStatus}"/><i></i>Widowed</label>
 												</div>
 												<div class="col col-2">
-													<label class="checkbox"><input type="checkbox" name="martialStatus" th:feild="*{martialStatus}"/><i></i>Divorced</label>
+													<label class="checkbox"><input type="checkbox" name="martialStatus" value="Divorced" th:feild="*{martialStatus}"/><i></i>Divorced</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="martialStatus" th:feild="*{martialStatus}"/><i></i>Awaiting Divorced</label>
+													<label class="checkbox"><input type="checkbox" name="martialStatus" value="Awaiting divorce" th:feild="*{martialStatus}"/><i></i>Awaiting Divorced</label>
 												</div>
 											</div>
 										</section>

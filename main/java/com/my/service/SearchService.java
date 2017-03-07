@@ -17,7 +17,7 @@ public class SearchService {
 	@Autowired
 	public SearchDao searchDao;
 
-	public List<Result> getMatches(Member member, SearchBinding searchBinding) {
+	public List<Member> getMatches(Member member, SearchBinding searchBinding) {
 		return searchDao.findMatches(member,searchBinding);
 		
 	}

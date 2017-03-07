@@ -4,8 +4,8 @@ public class SearchBinding {
 	
 	private int fromAge;
 	private int toAge;
-	private String fromHeight;
-	private String toHeight;
+	private int fromHeight;
+	private int toHeight;
 	private String martialStatus;
 	public int getFromAge() {
 		return fromAge;
@@ -19,16 +19,16 @@ public class SearchBinding {
 	public void setToAge(int toAge) {
 		this.toAge = toAge;
 	}
-	public String getFromHeight() {
+	public int getFromHeight() {
 		return fromHeight;
 	}
-	public void setFromHeight(String fromHeight) {
+	public void setFromHeight(int fromHeight) {
 		this.fromHeight = fromHeight;
 	}
-	public String getToHeight() {
+	public int getToHeight() {
 		return toHeight;
 	}
-	public void setToHeight(String toHeight) {
+	public void setToHeight(int toHeight) {
 		this.toHeight = toHeight;
 	}
 	public String getMartialStatus() {

@@ -43,6 +43,10 @@ public class TestMain {
 		boolean isTrue = dir.getAbsoluteFile().exists();
 		if (!isTrue)
 			dir.mkdirs();
+		
+		
+		System.out.println(new Date());
+		System.out.println();
 	}
 
 }

@@ -49,7 +49,9 @@ public class Member {
 	private String mobile;
 	private int countryCode;
 	private boolean profilePic;
-	
+	private Date createdOn;
+	private Date updatedOn;
+	private Date lastOnline;
 	//@OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
 	//@PrimaryKeyJoinColumn
 	@OneToOne(mappedBy="member")
@@ -240,6 +242,30 @@ public class Member {
 
 	public void setProfilePic(boolean profilePic) {
 		this.profilePic = profilePic;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public Date getUpdatedOn() {
+		return updatedOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public void setUpdatedOn(Date updatedOn) {
+		this.updatedOn = updatedOn;
+	}
+
+	public Date getLastOnline() {
+		return lastOnline;
+	}
+
+	public void setLastOnline(Date lastOnline) {
+		this.lastOnline = lastOnline;
 	}
 
 	

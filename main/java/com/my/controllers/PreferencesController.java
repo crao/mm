@@ -99,11 +99,11 @@ public class PreferencesController {
 		preferences.setResidingstateP(preferencesBinding.getResidingstateP());
 		preferences.setResidingCityP(preferencesBinding.getResidingCityP());
 		
-		long preferencesSave = preferencesService.savePreferences(preferences);
-		if(preferencesSave>=1)
+		Preferences preferencesSave = preferencesService.savePreferences(preferences);
+		if(preferencesSave!=null)
 			status="success";
+		member.setPreferences(preferencesSave);
 		
-		long memberId = member.getMemberId();
 		List<Object[]> results = matchDao.matches(member,preferences);
 		
 		for(Object[] result:results){
