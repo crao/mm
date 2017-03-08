@@ -16,17 +16,21 @@ public class VisitWatcherService {
 	private VisitDao visitDao;
 	
 	public boolean save(Visit visit){
-		boolean save;
+		boolean save = false;
 		Visit v = visitDao.save(visit);
 		if(v!=null){
 			save=true;
 		}
 		
-		return true;
+		return save;
 	}
 	
 	public List<Visit> findVistors(long memId){
 		return visitDao.findByMemId(memId);
+	}
+	
+	public Visit findVistor(long vistorId){
+		return visitDao.findByVisitor(vistorId);
 	}
 
 }

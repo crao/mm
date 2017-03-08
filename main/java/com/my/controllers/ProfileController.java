@@ -40,11 +40,14 @@ public class ProfileController {
 			model.addAttribute("member",member);
 			
 			if(visUser!=null){
-				List<Visit> v = visitWatcherService.findVistors(Long.parseLong(userId));
+				List<Visit> v = visitWatcherService.findVistors(Long.parseLong(userId));			
+				Visit visit = visitWatcherService.findVistor(Long.parseLong(visUser));
+				if(visit==null){
+					visit = new Visit();
+					visit.setVisitor(Long.parseLong(visUser));
+					visit.setMemId(Long.parseLong(userId));					
+				}
 				
-				Visit visit = new Visit();
-				visit.setVisitor(Long.parseLong(visUser));
-				visit.setMemId(Long.parseLong(userId));
 				visit.setLastVisit(new Date());
 				visitWatcherService.save(visit);
 			}

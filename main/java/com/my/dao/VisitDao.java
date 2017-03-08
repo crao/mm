@@ -17,5 +17,7 @@ public interface VisitDao extends CrudRepository<Visit, Long>{
 	 * @return
 	 */
 	public List<Visit> findByMemId(long memId);
+	
+	public Visit findByVisitor(long vistor);
 
 }
