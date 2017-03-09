@@ -6,7 +6,8 @@ public class SearchBinding {
 	private int toAge;
 	private int fromHeight;
 	private int toHeight;
-	private String martialStatus;
+	private String maritalStatus;
+
 	public int getFromAge() {
 		return fromAge;
 	}
@@ -31,11 +32,11 @@ public class SearchBinding {
 	public void setToHeight(int toHeight) {
 		this.toHeight = toHeight;
 	}
-	public String getMartialStatus() {
-		return martialStatus;
+	public String getMaritalStatus() {
+		return maritalStatus;
 	}
-	public void setMartialStatus(String martialStatus) {
-		this.martialStatus = martialStatus;
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
 	}
 	
 

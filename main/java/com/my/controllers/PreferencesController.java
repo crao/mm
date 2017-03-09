@@ -98,6 +98,8 @@ public class PreferencesController {
 		preferences.setCountryP(preferencesBinding.getCountryP());
 		preferences.setResidingstateP(preferencesBinding.getResidingstateP());
 		preferences.setResidingCityP(preferencesBinding.getResidingCityP());
+		preferences.setCitizenship(preferencesBinding.getCitizenship());
+		preferences.setGothra(preferencesBinding.getGothra());
 		
 		Preferences preferencesSave = preferencesService.savePreferences(preferences);
 		if(preferencesSave!=null)

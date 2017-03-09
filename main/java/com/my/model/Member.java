@@ -52,6 +52,7 @@ public class Member {
 	private Date createdOn;
 	private Date updatedOn;
 	private Date lastOnline;
+
 	//@OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
 	//@PrimaryKeyJoinColumn
 	@OneToOne(mappedBy="member")
@@ -269,6 +270,6 @@ public class Member {
 	}
 
 	
-	
+
 	
 }

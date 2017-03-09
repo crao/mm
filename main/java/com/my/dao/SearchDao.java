@@ -46,7 +46,7 @@ public class SearchDao {
 		 ParameterExpression<Integer> age = cb.parameter(Integer.class);
 		 
 		 q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),
-				 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),cb.equal(pds.get("maritalStatus"), searchBinding.getMartialStatus()),
+				 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
 				 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight())
 				 );
 		 

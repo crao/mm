@@ -182,15 +182,14 @@
 													<div class="row">
 														<div class="col-md-12">
 															<h2>
-																<label class="label fleft" th:text="${member.firstName}"></label>
-																<label class="label fleft" th:text="${member.lastName}"></label>
+																<label class="label no-padding" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label>
 															</h2>
 														</div>
 													</div>
 													<div class="row">
 														<div class="col col-md-12">
-														<label class="label fleft">Profile Created for </label>
-															<label class="label fleft" th:text="${member.profileFor}"></label>
+															<label class="label fleft no-padding">Profile Created for</label>
+															<label class="label fleft no-padding" th:text="${member.profileFor}"></label>
 														</div>
 													</div>
 													
@@ -202,13 +201,13 @@
 															<b>Age:</b>
 														</div>
 														<div class="col-md-3">
-															<span th:text="${member.age}">  &nbsp; </span>
+															<span th:text="${member.age}+' years'">  &nbsp; </span>
 														</div>
 														<div class="col-md-2">
 															<b>Height:</b>
 														</div>
 														<div class="col-md-5">
-															<span th:text="${member.personalDetails.height}"> 168 cm &nbsp; </span>
+															<span th:text="${member.personalDetails.height}+' cm'">&nbsp; </span>
 														</div>
 													</div><br/>
 													<div class="row">
@@ -232,13 +231,13 @@
 															<b>Place:</b>
 														</div>
 														<div class="col-md-2">
-															<span th:text="${member.personalDetails.residingcity}"> Aurangabad, </span>
+															<span th:text="${member.personalDetails.residingcity}"></span>
 														</div>
 														<div class="col-md-2">
-															<span th:text="${member.personalDetails.residingstate}"> Maharashtra,</span>
+															<span th:text="${member.personalDetails.residingstate}"></span>
 														</div>
 														<div class="col-md-6">
-															<span th:text="${member.personalDetails.country}"> India </span>
+															<span th:text="${member.personalDetails.country}"> </span>
 														</div>
 													</div>
 													
@@ -283,7 +282,7 @@
 																		<label class="label"><b>Birth Place:</b></label>
 																	</section>
 																	<section class="col1 col-3">
-																		<label class="label" th:text="${member.personalDetails.birthTime}"></label>
+																		<label class="label" th:text="${member.personalDetails.birthPlace}"></label>
 																	</section>
 																</div>
 																<div class="row">
@@ -361,13 +360,13 @@
 																		<label class="label"><b>Height :</b></label>
 																	</section>
 																	<section class="col1 col-4">
-																		<label class="label" th:text="${member.personalDetails.height}" ></label>
+																		<label class="label" th:text="${member.personalDetails.height}+' cm'" ></label>
 																	</section>
 																	<section class="col1">
 																		<label class="label"><b>Weight :</b></label>
 																	</section>
 																	<section class="col1 col-3">
-																		<label class="label" th:text="${member.personalDetails.weight}"></label>
+																		<label class="label" th:text="${member.personalDetails.weight}+' kg'"></label>
 																	</section>
 																</div>
 																<div class="row">
@@ -1700,7 +1699,7 @@
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo2.jpg" alt="company logo" /></a>
+							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo1.png" alt="company logo" /></a>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 						</div><!--/col-md-3-->
