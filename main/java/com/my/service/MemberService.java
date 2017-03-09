@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.dao.MemberDao;
+import com.my.dao.MemberDaoTemp;
 import com.my.model.Member;
 
 
@@ -16,7 +17,8 @@ public class MemberService {
 	@Autowired
 	MemberDao memberDao;
 	
-	
+	@Autowired
+	MemberDaoTemp memberDaoTemp;
 	
 	public Member save(Member member) throws SQLException {		
 		return memberDao.save(member);
@@ -30,4 +32,10 @@ public class MemberService {
 		return memberDao.findByMemberId(id);
 	}
 
+	
+	public Member getAllMembers(){
+		return (Member) memberDaoTemp.getAllMembers();
+	}
+	
+	
 }

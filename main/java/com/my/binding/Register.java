@@ -1,36 +1,40 @@
 package com.my.binding;
 
+import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
+
 public class Register {
 
-	private String profileFor;
-	private String firstName;
-	private String lastName;
+	private long memberId;
+
+	private String brandName;
+
 	private String email;
-	private int dayob;
-	private int monthob;
-	private int yearob;
-	private String gender;
+
 	private String password;
-	private String countryCode;
-	private String mobile;
 	
-	public String getProfileFor() {
-		return profileFor;
+	private String mobileNo;
+	
+	private String WorkingHours;
+
+	private String WorkingDays;
+
+	private String city;
+	@NotNull
+	private String category;
+	
+	
+	public long getMemberId() {
+		return memberId;
 	}
-	public void setProfileFor(String profileFor) {
-		this.profileFor = profileFor;
+	public void setMemberId(long memberId) {
+		this.memberId = memberId;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getBrandName() {
+		return brandName;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 	public String getEmail() {
 		return email;
@@ -38,48 +42,41 @@ public class Register {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getDayob() {
-		return dayob;
-	}
-	public void setDayob(int dayob) {
-		this.dayob = dayob;
-	}
-	public int getMonthob() {
-		return monthob;
-	}
-	public void setMonthob(int monthob) {
-		this.monthob = monthob;
-	}
-	public int getYearob() {
-		return yearob;
-	}
-	public void setYearob(int yearob) {
-		this.yearob = yearob;
-	}
-	
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getCountryCode() {
-		return countryCode;
+	public String getMobileNo() {
+		return mobileNo;
 	}
-	public void setCountryCode(String countryCode) {
-		this.countryCode = countryCode;
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
-	public String getMobile() {
-		return mobile;
+	public String getWorkingHours() {
+		return WorkingHours;
 	}
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	} 
-
+	public void setWorkingHours(String workingHours) {
+		WorkingHours = workingHours;
+	}
+	public String getWorkingDays() {
+		return WorkingDays;
+	}
+	public void setWorkingDays(String workingDays) {
+		WorkingDays = workingDays;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
 }

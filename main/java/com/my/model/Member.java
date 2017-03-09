@@ -1,6 +1,7 @@
 package com.my.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -17,133 +19,60 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "members" , uniqueConstraints={@UniqueConstraint(columnNames={"firstname", "lastname","email"})})
+@Table(name = "VendorReg" , uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class Member {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long memberId;
 	@NotNull
-	private String firstName;
-	@NotNull
-	private String lastName;
+	private String brandName;
 	@NotNull
 	@Column(unique=true)
 	private String email;
 	@NotNull
 	private String password;
 	@NotNull
-	private String profileFor;
+	private String mobileNo;
 	@NotNull
-	private Date dob;
-	private int age;
+	private String WorkingHours;
 	@NotNull
-	private String gender;
-	private String address1;
-	private String address2;
+	private String WorkingDays;
+	@NotNull
 	private String city;
-	private String state;
-	private String country;
-	private String mobile;
-	private int countryCode;
+	@NotNull
+	private String category;
+
 	
 	//@OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
 	//@PrimaryKeyJoinColumn
-	@OneToOne(mappedBy="member")
-	private PersonalDetails personalDetails;
 	
-	@OneToOne(mappedBy="member")
-	private Preferences preferences;
 
-	public Member(long id,String firstName, String lastName, int age, String gender) {
+	
+
+	public Member(long id,String brandName, String city) {
 		this.memberId = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.age = age;
-		this.gender = gender;
+		this.brandName = brandName;
+		this.city = city;
+	
 	}
 	
 	public Member() {}
 
-	
-	public long getmemberId() {
+	public long getMemberId() {
 		return memberId;
 	}
 
-	public void setId(long id) {
-		this.memberId = id;
+	public void setMemberId(long memberId) {
+		this.memberId = memberId;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getBrandName() {
+		return brandName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getAddress1() {
-		return address1;
-	}
-
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
-
-	public String getAddress2() {
-		return address2;
-	}
-
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 
 	public String getEmail() {
@@ -162,65 +91,50 @@ public class Member {
 		this.password = password;
 	}
 
-	public Date getDob() {
-		return dob;
+	public String getMobileNo() {
+		return mobileNo;
 	}
 
-	public void setDob(Date dob) {
-		this.dob = dob;
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
 	}
 
-	public String getProfileFor() {
-		return profileFor;
+	public String getWorkingHours() {
+		return WorkingHours;
 	}
 
-	public void setProfileFor(String profileFor) {
-		this.profileFor = profileFor;
+	public void setWorkingHours(String workingHours) {
+		WorkingHours = workingHours;
 	}
 
-	public String getMobile() {
-		return mobile;
+	public String getWorkingDays() {
+		return WorkingDays;
 	}
 
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
+	public void setWorkingDays(String workingDays) {
+		WorkingDays = workingDays;
 	}
 
-	public int getCountryCode() {
-		return countryCode;
+	public String getCity() {
+		return city;
 	}
 
-	public void setCountryCode(int countryCode) {
-		this.countryCode = countryCode;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
-	//@OneToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name="personalDetailsId")
-	public PersonalDetails getPersonalDetails() {
-		return personalDetails;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setPersonalDetails(PersonalDetails personalDetails) {
-		this.personalDetails = personalDetails;
-	}
-
-	public long getMemberId() {
-		return memberId;
-	}
-
-	public void setMemberId(long memberId) {
-		this.memberId = memberId;
-	}
-
-	public Preferences getPreferences() {
-		return preferences;
-	}
-
-	public void setPreferences(Preferences preferences) {
-		this.preferences = preferences;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	
+	
+	
+
 	
 	
 }

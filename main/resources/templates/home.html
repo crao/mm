@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<!--[if !IE]><!-->  <html xmlns:th="http://www.thymeleaf.org"><!--<![endif]-->
 <head>
-	<title>Maratha Matrimony Match</title>
+	<title>Wedding Planner</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8"></meta>
@@ -11,94 +11,294 @@
 	<meta name="description" content=""></meta>
 	<meta name="author" content=""></meta>
 
-	<!-- Favicon 
-	<link rel="shortcut icon" href="favicon.ico">-->
+	<!-- Favicon -->
+
 
 	<!-- CSS Global Compulsory -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css"></link>
 	<link rel="stylesheet" href="css/style.css"></link>
 
 	<!-- CSS Header and Footer -->
-	<link rel="stylesheet" href="css/header-v6.css"></link>
-	<link rel="stylesheet" href="css/footer-v1.css"></link>
+	<link rel="stylesheet" href="css/headers/header-v6.css"></link>
+		<link rel="stylesheet" href="css/headers/custom.css"></link>
+	<link rel="stylesheet" href="css/footers/footer-v6.css"></link>
 
 	<!-- CSS Implementing Plugins -->
-	<link rel="stylesheet" href="css/animate.css"></link>
+	<link rel="stylesheet" href="plugins/animate.css"></link>
 	<link rel="stylesheet" href="plugins/line-icons/line-icons.css"></link>
 	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
-	<link rel="stylesheet" href="css/sky-forms.css"></link>
-	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
+	<link rel="stylesheet" href="plugins/fancybox/source/jquery.fancybox.css"></link>
+	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
+	<link rel="stylesheet" href="plugins/master-slider/masterslider/style/masterslider.css"></link>
+	<link rel='stylesheet' href="plugins/master-slider/masterslider/skins/black-2/style.css"></link>
+
+	<!-- CSS Pages Style -->
+	<link rel="stylesheet" href="css/pages/page_one.css"></link>
+
 	<!-- CSS Theme -->
-	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
-	<link rel="stylesheet" href="css/dark.css"></link>
+	<link rel="stylesheet" href="css/theme-colors/default.css" id="style_color"></link>
+	<link rel="stylesheet" href="css/theme-skins/dark.css"></link>
 
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="css/custom.css"></link>
-	
-	<!--Caseroul-->
-	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
 </head>
 
-<body class="header-fixed">
+<body class="header-fixed header-fixed-space">
 	<div class="wrapper">
 		<!--=== Header v6 ===-->
-		<div class="header-v6 header-white-transparent header-sticky">
+		<div class="header-v6 header-classic-white header-sticky">
 			<!-- Navbar -->
 			<div class="navbar mega-menu" role="navigation">
 				<div class="container">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="menu-container">
-						
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
 
 						<!-- Navbar Brand -->
 						<div class="navbar-brand">
 							<a href="index.html">
-								<img class="default-logo" src="img/logo2.jpg" alt="Logo"></img>
-								<img class="shrink-logo" src="img/logo2.jpg" alt="Logo"></img>
+								<img class="shrink-logo" src="images/logo.png" alt="Logo"></img>
 							</a>
 						</div>
 						<!-- ENd Navbar Brand -->
 
-						
+						<!-- Header Inner Right -->
+						<div class="header-inner-right">
+							<ul class="menu-icons-list">
+								<li class="menu-icons shopping-cart">
+														<i class="menu-icons-style" data-toggle="modal" data-target="#myModal">Login</i>
+								
+							
+
+<!-- Modal -->
+							<div id="myModal" class="modal fade" role="dialog" style="    position: fixed;    opacity: 1.5;">
+							<div class="modal-dialog">
+
+								<!-- Modal content-->
+								<div class="modal-content">
+								<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">X</button>
+								
+                                  </div>
+								  <div class="row ">
+								 <div class="col-sm-1"></div>
+								<div class="col-sm-5">
+								<h2 class="margin-bottom-15">USERS</h2>
+								<input type="text" class="form-control rounded-right" placeholder="Username"></input><br></br>
+								<input type="password" class="form-control rounded-right" placeholder="Password"></input>	<br></br>				
+								<button type="submit" class="btn-u btn-block rounded">Sign In</button><br></br>
+								</div>
+								
+								 <div class="col-sm-5">
+								<h2 class="margin-bottom-15">VENDORS</h2>
+								  <form id="sky-form2" class="sky-form" th:object="${login}" th:action="@{/}" method="post">
+								<input type="text" class="form-control rounded-right" placeholder="Username" th:field="*{email}"></input><br></br>
+								<input type="password" class="form-control rounded-right" placeholder="Password" th:field="*{password}"></input>	<br></br>				
+								<button type="submit" class="btn-u btn-block rounded">Sign In</button><br></br>
+								</form>
+								 </div>	
+								 
+								 <div class="col-sm-1"></div>	
+								</div>
+								<hr></hr>
+								<div class="row " style="color: black;">
+								<div class="col-sm-3"></div>
+								<div class="col-sm-3"></div>
+								<div class="col-sm-6">New to WedMeGood? <span class="highlight">Create Account</span></div>
+								
+								 </div>
+								<br></br><br></br>		
+								</div>
+							
+							</div>
+							</div>
+<div id="myModal1" class="modal fade" role="dialog" style="    position: fixed;    opacity: 1.5;">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">X</button>
+        <h4 class="modal-title">ALREADY HAVE AN ACCOUNT? LOG IN</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-10">
+		<h4>Please share the following details to create your profile</h4>
+			<form action="#" id="sky-form4" class="sky-form" th:object="${register}" th:action="@{/register}"  method="post">
+		<input type="text" class="form-control rounded-right" placeholder="Brand Name" th:field="*{brandName}"></input><br></br>
+		<input type="text" class="form-control rounded-right" placeholder="Email" th:field="*{email}"></input><br></br>
+		<input type="password" class="form-control rounded-right" placeholder="Password"></input><br></br>
+		<input type="password" class="form-control rounded-right" placeholder="Confirm Password" th:field="*{password}"></input><br></br>
+		<input type="text" class="form-control rounded-right" placeholder="Mobile No" th:field="*{mobileNo}"></input><br></br>
+		<div class="row">
+		<div class="col-sm-6">
+		<select size="1" name="heightInches" class="form-control rounded-right"  id="FEET" onchange="" th:field="*{WorkingHours}">
+		<option value="0">Select Working Hours</option>
+        <option value="7">7</option>
+		<option value="8" >8</option>
+		<option value="9" >9</option>
+		</select>
+		</div>
+		<div class="col-sm-6">
+
+		<select size="1" name="heightInches" class="form-control rounded-right"  id="FEET" onchange="" th:field="*{WorkingDays}">
+		<option value="0">Select Working Days</option>	
+        <option value="Monday-Saturday">Monday-Saturday</option>
+		<option value="Tuesday-Sunday" >Tuesday-Sunday</option>
+		<option value="Wednesday-Monday" >Wednesday-Monday</option>
+		<option value="Thursday-Tuesday">Thursday-Tuesday</option>
+		<option value="Friday-Thursday">Friday-Thursday</option>
+		<option value="Saturday-Friday">Saturday-Friday</option>
+		<option value="Sunday-Saturday">Sunday-Saturday</option>
+		</select>
+		</div>
+		</div><br></br>
+		<select size="1" name="heightInches" class="form-control rounded-right"  id="FEET"  th:field="*{city}">
+				<option value="0">Select City</option>
+			<option value="Ahmedabad">Ahmedabad</option> 
+			
+      </select>
+	  <br></br>
+	<select size="1" name="heightInches" class="form-control rounded-right"  id="FEET" onchange="" th:field="*{category}">
+		<option value="0">Select vendor type</option>
+        <option value="0">Select vendor type</option>
+		<option value="Wedding Venues" >Wedding Venues</option>
+		<option value="Wedding Photographers" >Wedding Photographers</option>
+		<option value="Bridal Makeup" >Bridal Makeup</option>
+		<option value="Bridal Wear" >Bridal Wear</option>
+		<option value="Groom Wear" >Groom Wear</option>
+		<option value="Wedding Decorators">Wedding Decorators</option>
+		<option value="Wedding Planner " >Wedding Planner </option>
+		<option value="Wedding Cards">Wedding Cards</option>
+		<option value="Wedding Videography" >Wedding Videography</option>
+		<option value="Mehendi Artist">Mehendi Artist</option>
+		<option value="Wedding Cakes">Wedding Cakes</option>
+		<option value="Wedding Jewellery">Wedding Jewellery</option>
+		<option value="Wedding Catering">Wedding Catering</option>
+		<option value="Trousseau Packers">Trousseau Packers</option>
+		<option value="DJ">DJ</option>
+		<option value="Sangeet Choreographers">Sangeet Choreographers</option>
+		<option value="Wedding Accessories">Wedding Accessories</option>
+		<option value="Wedding Favors">Wedding Favors</option>		
+																						
+	</select><br></br>
+		<button type="submit" class="btn-u btn-block rounded">Sign In</button>
+		</form>
+		</div>
+		<div class="col-sm-1"></div>
+		</div>
+      </div>     
+    </div>
+
+  </div>
+</div>
+								
+		<!-- Modal End -->							
+			
+
+			
+								</li>
+								<li class="menu-icons">
+									<i class="menu-icons-style search search-close search-btn fa fa-search"></i>
+									<div class="search-open">
+										<input type="text" class="animated fadeIn form-control" placeholder="Start searching ..."></input>
+									</div>
+								</li>
+							</ul>
+						</div>
 						<!-- End Header Inner Right -->
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-responsive-collapse">
 						<div class="menu-container">
-							                                                     
-                        <form id="sky-form2" class="sky-form" th:object="${login}" th:action="@{/}" method="post">
-							<div th:if="${param.error}">
-								Invalid username and password.
-							</div>
-							<div th:if="${param.logout}">
-								You have been logged out.
-							</div>
-							<fieldset>
-									<section>
-										<div class="row">
-											<div class="col col-4"></div>
-											<div class="col col-3">
-												<label class="input">
-													<i class="icon-append fa fa-user"></i>
-													<input type="email" placeholder="Email Address" name="username" th:field="*{username}"/>
-												</label>
-											</div>
-											<div class="col col-3">
-												<label class="input">
-													<i class="icon-append fa fa-lock"></i>
-													<input type="password" placeholder="Password" name="password" th:field="*{password}"/>
-												</label>
-												<div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
-											</div>
-											<div class="col col-2">
-												<button type="submit" class="btn-u btn-u-orange">Log in</button>
-											</div>
+							<ul class="nav navbar-nav">
+							
+							
+								<!-- Shortcodes -->
+								<li class="dropdown active" id="menu">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										VENDORS
+									</a>
+									<ul class="dropdown-menu">
+									<div class="row">
+									<div class="col-sm-6">
+										<li><a href="index.html"> Venues</a></li><br></br>
+										<li><a href="index.html">Photographers</a></li><br></br>
+										<li><a href="index.html">Bridal Makeup</a></li><br></br>
+										<li><a href="index.html">Bridal Wear</a></li><br></br>
+										<li><a href="index.html">Groom Wear</a></li><br></br>
+										<li><a href="index.html">Wedding Planner </a></li><br></br>
+                                        <li><a href="index.html">Cards</a></li><br></br>
+									   <li><a href="index.html">Videography</a></li>
+									   </div>
+										<div class="col-sm-6">
+                                         <li><a href="index.html">Mehendi Artist</a></li><br></br>
+										 <li><a href="index.html">Cakes</a></li><br></br>
+									     <li><a href="index.html">Jewellery</a></li><br></br>
+									   	 <li><a href="index.html">Catering</a></li><br></br>
+									     <li><a href="index.html">DJ</a></li><br></br>
+									     <li><a href="index.html">Choreographers</a></li><br></br>
+									   	 <li><a href="index.html">Accessories</a></li><br></br>
+									     <li><a href="index.html">Wedding Favors</a></li>
+										 </div>
 										</div>
-									</section>
-								</fieldset>
-                        </form>
-                    
+										<hr></hr>
+                                    <div class="row">
+									<div class="col-sm-6">
+									<li><a href=""> Are you a Vendor?</a></li>
+									</div>
+									<div class="col-sm-6">
+									<li><a href="index.html" data-toggle="modal" data-target="#myModal1">Register Now</a></li>
+								     </div>
+									</div>
+									</ul>
+								</li>
+							
+
+<!-- Modal -->
+
+								<!-- Home -->
+								<li class="dropdown active" id="menu">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										PHOTOS
+									</a>
+								</li>
+								<!-- End Home -->
+
+								<!-- Pages -->
+								<li class="dropdown active" id="menu">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										REAL WEDDINGS
+									</a>
+							  </li>
+								<!-- End Pages -->
+
+								<!-- Blog -->
+								<li class="dropdown active"  id="menu">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+										BLOG
+									</a>
+						
+								</li>
+								<!-- End Blog -->
+
+							
+
+								
+
+								<!-- End Shortcodes -->
+
+								
+								<!-- End Demo Pages -->
+							</ul>
 						</div>
 					</div><!--/navbar-collapse-->
 				</div>
@@ -106,660 +306,786 @@
 			<!-- End Navbar -->
 		</div>
 		<!--=== End Header v6 ===-->
-
-		<!-- Interactive Slider v2 -->
-		<div class="interactive-slider-v2 img-v4">
-			<div class="container" style="margin-top:90px">
-			<div class="col-md-5"></div>
-				<div class="col-md-5">
-					<!-- Reg-Form -->
-					<form action="#" id="sky-form4" class="sky-form" style="background-color:#eee" th:object="${register}" th:action="@{/register}"  method="post">
-						<header>1st Step to Search your Best Partner</header>
-
-						<fieldset>
-							
-								<section class="row" style="margin-bottom:10px">
-									<div class="col col-md-4">
-										<label class="label">Profile: </label>
-									</div>
-									<div class="col col-md-8">
-										<label class="select">
-											<select name="profileFor" th:field="*{profileFor}">
-												<option value="0" selected="selected">Select Matrimony Profile For</option>
-												<option value="1">Myself</option>
-												<option value="2">Son</option>
-												<option value="3">Daughter</option>
-												<option value="4">Brother</option>
-												<option value="5">Sister</option>
-												<option value="6">Relative</option>
-												<option value="7">Friend</option>
-											</select>
-											<i></i>
-										</label>
-									</div>
-								</section>
-								<section class="row" style="margin-bottom:10px">
-									<div class="col col-md-4">
-										<label class="label">Full Name: </label>
-									</div>
-									<div class="col col-md-4 col-pad">
-										<label class="input">
-											<input type="text" name="firstName" th:field="*{firstName}" placeholder="First Name"></input>
-										</label>
-									</div>
-									<div class="col col-md-4 ">
-										<label class="input">
-											<input type="text" name="lastName" th:field="*{lastName}" placeholder="Last Name"></input>
-										</label>
-									</div>
-								</section>
-								<section class="row" style="margin-bottom:10px">
-									<div class="col col-md-4">
-										<label class="label">Gender: </label>
-									</div>
-									<div class="col col-md-3">
-										<label class="radio"><input type="radio" th:field="*{gender}" id="gendermale" name="gender" value="M" checked="checked"/><i class="rounded-x"></i>Male</label>
-										
-									</div>
-									<div class="col col-md-3">
-										<label class="radio"><input type="radio" th:field="*{gender}" id="gendermale" name="gender" value="F" /><i class="rounded-x"></i>Female</label>
-									</div>
-									<div class="col col-md-2"></div>
-								</section>
-								<section class="row" style="margin-bottom:10px">
-									<div class="col col-md-4">
-										<label class="label">Date Of Birth: </label>
-									</div>
-									<div class="col col-pad col-pad2 noright-padding">
-										<label class="select">
-											<select name="dayob" th:field="*{dayob}">
-												<option value="0" selected="selected">DD</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
-												<option value="3">3</option>
-												<option value="4">4</option>
-												<option value="5">5</option>
-												<option value="6">6</option>
-												<option value="7">7</option>
-												<option value="8">8</option>
-												<option value="9">9</option>
-												<option value="10">10</option>
-												<option value="11">11</option>
-												<option value="12">12</option>
-												<option value="13">13</option>
-												<option value="14">14</option>
-												<option value="15">15</option>
-												<option value="16">16</option>
-												<option value="17">17</option>
-												<option value="18">18</option>
-												<option value="19">19</option>
-												<option value="20">20</option>
-												<option value="21">21</option>
-												<option value="22">22</option>
-												<option value="23">23</option>
-												<option value="24">24</option>
-												<option value="25">25</option>
-												<option value="26">26</option>
-												<option value="27">27</option>
-												<option value="28">28</option>
-												<option value="29">29</option>
-												<option value="30">30</option>
-												<option value="31">31</option>
-											</select>
-											<i></i>
-										</label>
-									</div>
-									<div class="col col-pad col-pad2-1 noright-padding">
-										<label class="select">
-											<select name="monthob" th:field="*{monthob}">
-												<option value="0" selected="selected">MM</option>
-												<option value="1">Jan</option>
-												<option value="2">Feb</option>
-												<option value="3">Mar</option>
-												<option value="4">Apr</option>
-												<option value="5">May</option>
-												<option value="6">Jun</option>
-												<option value="7">July</option>
-												<option value="8">Aug</option>
-												<option value="9">Sep</option>
-												<option value="10">Oct</option>
-												<option value="11">Nov</option>
-												<option value="12">Dec</option>
-											</select>
-											<i></i>
-										</label>
-									</div>
-									<div class="col col-pad col-pad3 noright-padding ">
-										<label class="select">
-											<select name="yearob" th:field="*{yearob}">
-												<option value="0" selected="selected">YYYY</option>
-												<option value="1998">1998</option>
-												<option value="1997">1997</option>
-												<option value="1996">1996</option>
-												<option value="1995">1995</option>
-												<option value="1994">1994</option>
-												<option value="1993">1993</option>
-												<option value="1992">1992</option>
-												<option value="1991">1991</option>
-												<option value="1990">1990</option>
-												<option value="1989">1989</option>
-												<option value="1988">1988</option>
-												<option value="1987">1987</option>
-												<option value="1986">1986</option>
-												<option value="1985">1985</option>
-												<option value="1984">1984</option>
-												<option value="1983">1983</option>
-												<option value="1982">1982</option>
-												<option value="1981">1981</option>
-												<option value="1980">1980</option>
-												<option value="1979">1979</option>
-												<option value="1978">1978</option>
-												<option value="1977">1977</option>
-												<option value="1976">1976</option>
-												<option value="1975">1975</option>
-												<option value="1974">1974</option>
-												<option value="1973">1973</option>
-												<option value="1972">1972</option>
-												<option value="1971">1971</option>
-												<option value="1970">1970</option>
-												<option value="1969">1969</option>
-												<option value="1968">1968</option>
-												<option value="1967">1967</option>
-												<option value="1966">1966</option>
-												<option value="1965">1965</option>
-												<option value="1964">1964</option>
-												<option value="1963">1963</option>
-												<option value="1962">1962</option>
-												<option value="1961">1961</option>
-												<option value="1960">1960</option>
-												<option value="1959">1959</option>
-												<option value="1958">1958</option>
-												<option value="1957">1957</option>
-												<option value="1956">1956</option>
-												<option value="1955">1955</option>
-												<option value="1954">1954</option>
-												<option value="1953">1953</option>
-												<option value="1952">1952</option>
-												<option value="1951">1951</option>
-												<option value="1950">1950</option>
-												<option value="1949">1949</option>
-												<option value="1948">1948</option>
-												<option value="1947">1947</option>
-												<option value="1946">1946</option>
-											</select>
-											<i></i>
-										</label>
-									</div>
-								</section>
-								
-								<section class="row" style="margin-bottom:10px">
-									<div class="col col-md-4">
-										<label class="label">Mobile: </label>
-									</div>
-									<div class="col col-md-3">
-										<label class="select">
-											<select name="countryCode"  th:field="*{countryCode}">
-												<option value="0" selected="selected">CC</option>
-												<option value="91">+91</option>
-												<option value="2">+92</option>
-												<option value="3">+1</option>
-												<option value="4">+44</option>
-											</select>
-											<i></i>
-										</label>
-									</div>
-									<div class="col col-md-5">
-										<label class="input">
-											<input type="text" name="mobile" th:field="*{mobile}" placeholder="Mobile Number"></input>
-										</label>
-									</div>
-								</section>
-							
-								<section class="row" style="margin-bottom:10px">
-									<div class="col col-md-4">
-										<label class="label">Email: </label>
-									</div>
-									<div class="col col-md-8">
-										<label class="input">
-											<i class="icon-append fa fa-envelope"></i>
-											<input type="email" th:field="*{email}" name="email" placeholder="Email address"></input>
-											<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>
-										</label>
-									</div>
-								</section>
-							
-								<section class="row" style="margin-bottom:10px">
-									<div class="col col-md-4">
-										<label class="label">Password: </label>
-									</div>
-									<div class="col col-md-8">
-										<label class="input">
-											<i class="icon-append fa fa-lock"></i>
-											<input type="password" name="password" th:field="*{password}" placeholder="Password" id="password"></input>
-											<b class="tooltip tooltip-bottom-right">Don't forget your password</b>
-										</label>
-									</div>
-								</section>
-						</fieldset>
-						<footer>
-							<div class="col col-md-8">
-										<label class="checkbox" style="line-height:normal; text-align:left; margin-left:15px; font-size:14px"><input type="checkbox" name=""  id="subscription" value="checked" /><i></i>I have read and agree to the  <a href="#">T&amp;C</a> and <a href="#">Privacy Policy</a></label>
-									</div>
-									<div class="col col-md-4">
-									<button type="submit" class="btn-u btn-u-orange" style="margin-left:-25px" value="Register Free">Register free</button>
-									</div>
-						</footer>
-					</form>
-					<!-- End Reg-Form -->
-				</div>
-				<div class="col-md-2"></div>
-			</div>
-		</div>
-		<!-- End Interactive Slider v2 -->
-		
-		<!--=== Content ===-->
-		<div class="content-md">
-			<div class="bg-color-light">
-			<div class="container">
-				<h1 class="h1-1">Find Someone Special</h1>
-				<form id="sky-form2" class="sky-form"  th:object="${homeSearch}" th:action="@{/homeSearch}" method="post">
-					<fieldset>
-							<section>
-								<div class="row">
-								<div class="col col-2"></div>
-									<div class="col col-2">
-										<label class="radio float-left"><input type="radio" th:field="*{brideGroom}" name="brideGroom" value="F" id="bride" checked="checked"/><i class="rounded-x"></i>Bride</label>
-										<label class="radio float-left" style=" margin-left:10px"><input type="radio" th:field="*{brideGroom}" value="M" name="brideGroom" id="groom" /><i class="rounded-x"></i>Groom</label>
-									</div>
-									
-									<div class="col col-3" style=" width:22%">
-									<label class="label float-left">Age: </label>
-										<label class="select float-left">
-											<select name="minAge" th:field="*{minAge}" >
-												<option value="0">From</option>
-												<option value="1" selected="selected">18</option>
-												<option value="2">19</option>
-												<option value="3">20</option>
-												<option value="4">21</option>
-												<option value="3">22</option>
-												<option value="4">23</option>
-												<option value="3">24</option>
-												<option value="4">25</option>
-												<option value="3">26</option>
-												<option value="4">27</option>
-												<option value="3">28</option>
-												<option value="4">29</option>
-												<option value="3">30</option>
-												<option value="4">31</option>
-												<option value="3">32</option>
-												<option value="4">33</option>
-												<option value="3">34</option>
-												<option value="4">35</option>
-												<option value="3">36</option>
-												<option value="4">37</option>
-												<option value="3">38</option>
-												<option value="4">39</option>
-												<option value="3">40</option>
-												<option value="4">41</option>
-												<option value="3">42</option>
-												<option value="4">43</option>
-												<option value="3">44</option>
-												<option value="4">45</option>
-												<option value="3">46</option>
-												<option value="4">47</option>
-												<option value="3">48</option>
-												<option value="4">49</option>
-												<option value="3">50</option>
-												<option value="4">51</option>
-											</select>
-											<i></i>
-										</label>
-										<label class="label float-left">To </label>
-										<label class="select float-left">
-											<select name="maxAge" th:field="*{maxAge}">
-												<option value="0"  disabled="disabled">To</option>
-												<option value="1">18</option>
-												<option value="2">19</option>
-												<option value="3">20</option>
-												<option value="4">21</option>
-												<option value="3">22</option>
-												<option value="4">23</option>
-												<option value="3">24</option>
-												<option value="4">25</option>
-												<option value="3">26</option>
-												<option value="4">27</option>
-												<option value="3">28</option>
-												<option value="4">29</option>
-												<option value="3">30</option>
-												<option value="4">31</option>
-												<option value="3">32</option>
-												<option value="4">33</option>
-												<option value="3">34</option>
-												<option value="4">35</option>
-												<option value="3">36</option>
-												<option value="4">37</option>
-												<option value="3">38</option>
-												<option value="4">39</option>
-												<option value="3" selected="selected">40</option>
-												<option value="4">41</option>
-												<option value="3">42</option>
-												<option value="4">43</option>
-												<option value="3">44</option>
-												<option value="4">45</option>
-												<option value="3">46</option>
-												<option value="4">47</option>
-												<option value="3">48</option>
-												<option value="4">49</option>
-												<option value="3">50</option>
-												<option value="4">51</option>
-											</select>
-											<i></i>
-										</label>
-									</div>
-									<div class="col col-3" style="width:20%;">
-										<label class="label float-left">Marital Status </label>
-										<label class="select float-left">
-											<select name="maritalStatus" th:field="*{maritalStatus}" >
-												<option value="0" selected="selected" disabled="disabled">Select</option>
-												<option value="Never Married">Never Married</option>
-												<option value="Widowed">Widowed</option>
-												<option value="Divorced">Divorced</option>
-												<option value="Awaiting divorce">Awaiting divorce</option>
-											</select>
-											<i></i>
-										</label>	
-									</div>
-									<div class="col col-1">
-										<button type="submit" class="btn-u btn-u-orange">Search</button>
-									</div>
-									<div class="col col-2"></div>
-								</div>
-								
-							</section>
-						</fieldset>
-				</form>
-
-			</div>
-			</div>
-			<div class="container">
-				<!-- Recent Works -->
-				<div class="owl-carousel-v1 owl-work-v1 " style="margin-top:50px">
-					<div class="headline"><h2 class="pull-left">Success Stories</h2>
-						<div class="owl-navigation">
-							<div class="customNavigation">
-								<a class="owl-btn prev-v2"><i class="fa fa-angle-left"></i></a>
-								<a class="owl-btn next-v2"><i class="fa fa-angle-right"></i></a>
+	
+			<div class="Mimage" style=" background-image: url('images/002.jpg');">
+			
+			<section class="hero">
+            <section class="container">
+							<div class="row"><br></br><br></br>
+										<h1 style="color:white">Your Wedding, Your Way</h1>
+										<h4 style="color:white">Find the best wedding vendors with thousands of trusted reviews</h4>
 							</div>
-						</div><!--/navigation-->
-					</div>
-
-					<div class="owl-recent-works-v1">
-						
-						<div class="item">
-							<a href="#">
-								<em class="overflow-hidden">
-									<img class="img-responsive" src="img/success-stories/01.jpg" alt="img"/>
-								</em>
-								<span>
-									<strong>NAME OF THE COUPLE</strong>
-									<i>PLACE DETAILS</i>
-								</span>
-							</a>
+							<br></br><br></br>
+							
+						<div class="col-md-12">
+							<div class="col-md-1"></div>
+						<div class="col-md-4">					
+								<select size="1" name="heightInches" class="form-control rounded-right"  id="FEET" onchange="">
+																		<option value="0">Select vendor type</option>
+																		<option value="Wedding Venues" >Wedding Venues</option>
+																		<option value="Wedding Photographers" >Wedding Photographers</option>
+																		<option value="Bridal Makeup" >Bridal Makeup</option>
+																		<option value="Bridal Wear" >Bridal Wear</option>
+																		<option value="Groom Wear" >Groom Wear</option>
+																		<option value="Wedding Decorators">Wedding Decorators</option>
+																		<option value="Wedding Planner " >Wedding Planner </option>
+																		<option value="Wedding Cards">Wedding Cards</option>
+																		<option value="Wedding Videography" >Wedding Videography</option>
+																		<option value="Mehendi Artist">Mehendi Artist</option>
+																		<option value="Wedding Cakes">Wedding Cakes</option>
+																		<option value="Wedding Jewellery">Wedding Jewellery</option>
+																		<option value="Wedding Catering">Wedding Catering</option>
+																		<option value="Trousseau Packers">Trousseau Packers</option>
+																		<option value="DJ">DJ</option>
+																		<option value="Sangeet Choreographers">Sangeet Choreographers</option>
+																		<option value="Wedding Accessories">Wedding Accessories</option>
+																		<option value="Wedding Favors">Wedding Favors</option>
+																						
+								</select>
+																	<i></i>
+						<br></br>								
+					    </div>
+					   <div class="col-md-4">
+																
+					<select size="1" name="heightInches" class="form-control rounded-right"  id="FEET" onchange="">
+	<option value="0">Select City</option>
+<option>Ahmedabad</option> 
+<option>Bengaluru/Bangalore</option>
+<option>Chandigarh</option>
+<option>Chennai</option>
+<option>Delhi</option>
+<option>Gurgaon</option>
+<option>Hyderabad/Secunderabad</option>
+<option>Kolkatta</option>
+<option>Mumbai</option>
+<option>Noida</option>
+<option>Pune</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Andhra Pradesh-</i></font></option>
+<option>Anantapur</option>
+<option>Guntakal</option>
+<option>Guntur</option>
+<option>Hyderabad/Secunderabad</option>
+<option>kakinada</option>
+<option>kurnool</option>
+<option>Nellore</option>
+<option>Nizamabad</option>
+<option>Rajahmundry</option>
+<option>Tirupati</option>
+<option>Vijayawada</option>
+<option>Visakhapatnam</option>
+<option>Warangal</option>
+<option>Andra Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Arunachal Pradesh-</i></font></option>
+<option>Itanagar</option>
+<option>Arunachal Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Assam-</i></font></option>
+<option>Guwahati</option>
+<option>Silchar</option>
+<option>Assam-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Bihar-</i></font></option>
+<option>Bhagalpur</option>
+<option>Patna</option>
+<option>Bihar-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Chhattisgarh-</i></font></option>
+<option>Bhillai</option>
+<option>Bilaspur</option>
+<option>Raipur</option>
+<option>Chhattisgarh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Goa-</i></font></option>
+<option>Panjim/Panaji</option>
+<option>Vasco Da Gama</option>
+<option>Goa-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Gujarat-</i></font></option>
+<option>Ahmedabad</option>
+<option>Anand</option>
+<option>Ankleshwar</option>
+<option>Bharuch</option>
+<option>Bhavnagar</option>
+<option>Bhuj</option>
+<option>Gandhinagar</option>
+<option>Gir</option>
+<option>Jamnagar</option>
+<option>Kandla</option>
+<option>Porbandar</option>
+<option>Rajkot</option>
+<option>Surat</option>
+<option>Vadodara/Baroda</option>
+<option>Valsad</option>
+<option>Vapi</option>
+<option>Gujarat-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Haryana-</i></font></option>
+<option>Ambala</option>
+<option>Chandigarh</option>
+<option>Faridabad</option>
+<option>Gurgaon</option>
+<option>Hisar</option>
+<option>Karnal</option>
+<option>Kurukshetra</option>
+<option>Panipat</option>
+<option>Rohtak</option>
+<option>Haryana-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Himachal Pradesh-</i></font></option>
+<option>Dalhousie</option>
+<option>Dharmasala</option>
+<option>Kulu/Manali</option>
+<option>Shimla</option>
+<option>Himachal Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Jammu and Kashmir-</i></font></option>
+<option>Jammu</option>
+<option>Srinagar</option>
+<option>Jammu and Kashmir-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Jharkhand-</i></font></option>
+<option>Bokaro</option>
+<option>Dhanbad</option>
+<option>Jamshedpur</option>
+<option>Ranchi</option>
+<option>Jharkhand-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Karnataka-</i></font></option>
+<option>Bengaluru/Bangalore</option>
+<option>Belgaum</option>
+<option>Bellary</option>
+<option>Bidar</option>
+<option>Dharwad</option>
+<option>Gulbarga</option>
+<option>Hubli</option>
+<option>Kolar</option>
+<option>Mangalore</option>
+<option>Mysoru/Mysore</option>
+<option>Karnataka-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Kerala-</i></font></option>
+<option>Calicut</option>
+<option>Cochin</option>
+<option>Ernakulam</option>
+<option>Kannur</option>
+<option>Kochi</option>
+<option>Kollam</option>
+<option>Kottayam</option>
+<option>Kozhikode</option>
+<option>Palakkad</option>
+<option>Palghat</option>
+<option>Thrissur</option>
+<option>Trivandrum</option>
+<option>Kerela-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Madhya Pradesh-</i></font></option>
+<option>Bhopal</option>
+<option>Gwalior</option>
+<option>Indore</option>
+<option>Jabalpur</option>
+<option>Ujjain</option>
+<option>Madhya Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Maharashtra-</i></font></option>
+<option>Ahmednagar</option>
+<option>Aurangabad</option>
+<option>Jalgaon</option>
+<option>Kolhapur</option>
+<option>Mumbai</option>
+<option>Mumbai Suburbs</option>
+<option>Nagpur</option>
+<option>Nasik</option>
+<option>Navi Mumbai</option>
+<option>Pune</option>
+<option>Solapur</option>
+<option>Maharashtra-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Manipur-</i></font></option>
+<option>Imphal</option>
+<option>Manipur-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Meghalaya-</i></font></option>
+<option>Shillong</option>
+<option>Meghalaya-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Mizoram-</i></font></option>
+<option>Aizawal</option>
+<option>Mizoram-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Nagaland-</i></font></option>
+<option>Dimapur</option>
+<option>Nagaland-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Orissa-</i></font></option>
+<option>Bhubaneshwar</option>
+<option>Cuttak</option>
+<option>Paradeep</option>
+<option>Puri</option>
+<option>Rourkela</option>
+<option>Orissa-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Punjab-</i></font></option>
+<option>Amritsar</option>
+<option>Bathinda</option>
+<option>Chandigarh</option>
+<option>Jalandhar</option>
+<option>Ludhiana</option>
+<option>Mohali</option>
+<option>Pathankot</option>
+<option>Patiala</option>
+<option>Punjab-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Rajasthan-</i></font></option>
+<option>Ajmer</option>
+<option>Jaipur</option>
+<option>Jaisalmer</option>
+<option>Jodhpur</option>
+<option>Kota</option>
+<option>Udaipur</option>
+<option>Rajasthan-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Sikkim-</i></font></option>
+<option>Gangtok</option>
+<option>Sikkim-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Tamil Nadu-</i></font></option>
+<option>Chennai</option>
+<option>Coimbatore</option>
+<option>Cuddalore</option>
+<option>Erode</option>
+<option>Hosur</option>
+<option>Madurai</option>
+<option>Nagerkoil</option>
+<option>Ooty</option>
+<option>Salem</option>
+<option>Thanjavur</option>
+<option>Tirunalveli</option>
+<option>Trichy</option>
+<option>Tuticorin</option>
+<option>Vellore</option>
+<option>Tamil Nadu-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Tripura-</i></font></option>
+<option>Agartala</option>
+<option>Tripura-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Union Territories-</i></font></option>
+<option>Chandigarh</option>
+<option>Dadra  Nagar Haveli-Silvassa</option>
+<option>Daman  Diu</option>
+<option>Delhi</option>
+<option>Pondichery</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Uttar Pradesh-</i></font></option>
+<option>Agra</option>
+<option>Aligarh</option>
+<option>Allahabad</option>
+<option>Bareilly</option>
+<option>Faizabad</option>
+<option>Ghaziabad</option>
+<option>Gorakhpur</option>
+<option>Kanpur</option>
+<option>Lucknow</option>
+<option>Mathura</option>
+<option>Meerut</option>
+<option>Moradabad</option>
+<option>Noida</option>
+<option>Varanasi/Banaras</option>
+<option>Uttar Pradesh-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-Uttaranchal-</i></font></option>
+<option>Dehradun</option>
+<option>Roorkee</option>
+<option>Uttaranchal-Other</option>
+<option disabled="disabled" style="background-color:#3E3E3E"><font color="#FFFFFF"><i>-West Bengal-</i></font></option>
+<option>Asansol</option>
+<option>Durgapur</option>
+<option>Haldia</option>
+<option>Kharagpur</option>
+<option>Kolkatta</option>
+<option>Siliguri</option>
+<option>West Bengal - Other</option>												
+						</select>
+						 <br></br>
+					    </div>
+						<div class="col-md-2">
+							<button type="submit" class="btn-u btn-block rounded" style="background-color:black">Search</button>
 						</div>
-						<div class="item">
-							<a href="#">
-								<em class="overflow-hidden">	
-									<img class="img-responsive" src="img/success-stories/06.jpg" alt="img"/>
-								</em>
-								<span>
-									<strong>NAME OF THE COUPLE</strong>
-									<i>PLACE DETAILS</i>
-								</span>
-							</a>
 						</div>
-						<div class="item">
-							<a href="#">
-								<em class="overflow-hidden">
-									<img class="img-responsive" src="img/success-stories/03.jpg" alt=""/>
-								</em>
-								<span>
-									<strong>NAME OF THE COUPLE</strong>
-									<i>PLACE DETAILS</i>
-								</span>
-							</a>
-						</div>
-						<div class="item">
-							<a href="#">
-								<em class="overflow-hidden">
-									<img class="img-responsive" src="img/success-stories/04.jpg" alt=""/>
-								</em>
-								<span>
-									<strong>NAME OF THE COUPLE</strong>
-									<i>PLACE DETAILS</i>
-								</span>
-							</a>
-						</div>
-						<div class="item">
-							<a href="#">
-								<em class="overflow-hidden">
-									<img class="img-responsive" src="img/success-stories/07.jpg" alt=""/>
-								</em>
-								<span>
-									<strong>NAME OF THE COUPLE</strong>
-									<i>PLACE DETAILS</i>
-								</span>
-							</a>
-						</div>
-						<div class="item">
-							<a href="#">
-								<em class="overflow-hidden">
-									<img class="img-responsive" src="img/success-stories/02.jpg" alt=""/>
-								</em>
-								<span>
-									<strong>NAME OF THE COUPLE</strong>
-									<i>PLACE DETAILS</i>
-								</span>
-							</a>
-						</div>
-						
-					</div>
-				</div>
+			</section>
+			</section>	
 			</div>
-			<!-- End Recent Works -->
-			
+	<!--=== Service Blcoks ===-->
+	<div class="container content-md">
+		<div class="text-center margin-bottom-50">
+			<h1 class="title-v2 title-center">find the perfect look</h1>
+			<h6 style="font-size:14px" >Get lost in thousands of photos of decor, outfits, jewellery and more to inspire you for your big day.</h6>
 			
 		</div>
-		<!--=== End Content ===-->
 
-		<!-- Image Mouse -->
+		<!-- Service Blcoks -->
+		<div class="row service-box-v1">
+			<div class="col-md-4 col-sm-6 md-margin-bottom-40">
+		    <div class="Mimage1" style=" background-image: url('images/jewellery.jpg');">			
+	        <div class="hovereffect">     
+            <div class="overlay">
+            <a class="info" href="#">Jewellery</a>
+			</div>
+			</div>
+			</div>
+			</div>	
+			
+			
+			<div class="col-md-4 col-sm-6 md-margin-bottom-40">
+			<div class="Mimage1" style=" background-image: url('images/decor.jpg');">			
+			 <div class="hovereffect">     
+            <div class="overlay">
+            <a class="info" href="#">Decor</a>
+			</div>
+			</div>
+			</div>				
+			</div>
+			
+			<div class="col-md-4 col-sm-12">
+			<div class="Mimage1" style=" background-image: url('images/MakeUp.jpg');">			
+			 <div class="hovereffect">     
+            <div class="overlay">
+            <a class="info" href="#">MakeUp</a>
+			</div>
+			</div>
+			</div>
+		</div>
+		</div>
+		<br></br>
+		<div class="row service-box-v1">
+			<div class="col-md-4 col-sm-6 md-margin-bottom-40">
+		    <div class="Mimage1" style=" background-image: url('images/photography1.jpg');">			
+			 <div class="hovereffect">     
+            <div class="overlay">
+            <a class="info" href="#">Photography</a>
+			</div>
+			</div>
+			</div>			
+			</div>
+			
+			<div class="col-md-4 col-sm-6 md-margin-bottom-40">
+			<div class="Mimage1" style=" background-image: url('images/cards.jpg');">			
+			 <div class="hovereffect">     
+            <div class="overlay">
+            <a class="info" href="#">Cards</a>
+			</div>
+			</div>
+			</div>				
+			</div>	
+			
+			<div class="col-md-4 col-sm-12">
+			<div class="Mimage1" style=" background-image: url('images/cakes.jpg');">			
+			 <div class="hovereffect">     
+            <div class="overlay">
+            <a class="info" href="#">Cakes</a>
+			</div>
+			</div>
+			</div>
+			</div>
+		</div>
 		
-		<!-- End Image Mouse -->
+		<br></br><br></br>
+		<div class="row">
+			<div class="col-sm-offset-5 col-sm-2 text-center">
+				<div class="btn-group" data-toggle="buttons">
+				   <button type="button" class="btn btn-default1">View All Category</button>
+				</div>
+			</div>
+         </div>
+		
+		<!-- End Service Blcoks -->
+	</div>
+	<!--=== End Service Blcoks ===-->
 
-		<!--=== Footer Version 1 ===-->
-		<div class="footer-v1">
-			<div class="footer">
-				<div class="container">
-					<div class="row">
-						<!-- About -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo2.jpg" alt=""/></a>
-							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
-							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
-						</div><!--/col-md-3-->
-						<!-- End About -->
+	<!--=== Carallax Counter v1 ===-->
+             <div class="Mimage3" style=" background-image: url('images/venus.jpg');">
+			
+			<section class="hero">
+            <section class="container">
+				<div class="row"><br></br><br></br><br></br>
+							<h1 style="color:white">Find Your Wedding Venue</h1>
+							<h4 style="color:white">Check availability  pricing at the click of a button.24 Hours Response, Guaranteed(for Delhi Venues)</h4>
+							<br></br><br></br>	
+							<div class="col-sm-offset-5 col-sm-2 text-center">
+				            <div class="btn-group" data-toggle="buttons">
+				            <button type="button" class="btn btn-default1">Browse Venus</button>
+				            </div>
+			                 </div>
+				</div>
+													
+			</section>
+			</section>	
+			</div>
+	<!--=== End Carallax Counter v1 ===-->
+<br></br>
+	<!--=== Team v4 ===-->
+	<div class="col-xs-12"> 
+	  
+					 
+					 <div class="col-xs-3">
+					 <div class="Mimage1" style=" background-image: url('images/BRW1.jpg');">			
+					 
+					</div>
+					</div>
+					
+										<div class="col-xs-6 "> 
+									   
+												<div class="row">
+												<div class="col-xs-6">
+												<div class="Mimage4" style=" background-image: url('images/BRW2.jpg');">			
+												
+												</div>
+												</div>
+												
+												<div class="col-xs-6">
+												<div class="Mimage4" style=" background-image: url('images/BRW3.jpg');">			
+												
+												</div>
+												</div>
+												</div>
+												<br></br>
+										
+												<div class="row">
+												<div class="col-xs-6">
+												<div class="Mimage4" style=" background-image: url('images/BRW4.jpg');">			
+												
+												</div>
+												</div>
+												
+												<div class="col-xs-6">
+												<div class="Mimage4" style=" background-image: url('images/BRW5.jpg');">			
+												
+												</div>
+												</div>
+												</div>
+										
+													  
+										</div>
+					
+					<div class="col-xs-3">
+					<div class="Mimage1" style=" background-image: url('images/BRW6.jpg');">			
+					
+					</div>
+					</div>
+			<div class="centerDiv"></div>
+			
+				  </div>
 
-						<!-- Latest -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<div class="posts">
-								<div class="headline"><h2>Latest Blogs</h2></div>
-								<ul class="list-unstyled latest-list">
+		<!--=== End Team v4 ===-->
+
+		<!--=== Testimonials v6 ===-->
+										<div class="bg-color-light">
+											<div class="container content-sm">
+												<div class="headline-center margin-bottom-60"><br></br>
+													<h1>Read Advice  Ideas</h1>
+													<p style="color: black;">Practical, on trend advice you cannot afford to miss out. Think of it like your wedding planning BFF.</p>
+													</div>
+										   <div class="row service-box-v1">
+											<div class="col-md-3 col-sm-6 md-margin-bottom-40">
+											<div class="Mimage1" style=" background-image: url('images/s1.jpg');">			
+											 <div class="bottom">
+											Best Tips For Bride MakeUp
+											 </div>
+											</div>
+											</div>	
+											
+											
+											<div class="col-md-3 col-sm-6 md-margin-bottom-40">
+											<div class="Mimage1" style=" background-image: url('images/s2.jpg');">			
+											   <div class="bottom">
+											10 Tips For Photpgraphy
+											 </div>
+											</div>				
+											</div>
+											
+											<div class="col-md-3 col-sm-6 md-margin-bottom-40">
+											<div class="Mimage1" style=" background-image: url('images/s3.jpg');">			
+												<div class="bottom">
+											Best Wedding Venus
+											 </div>
+											</div>		
+											</div>
+											
+											<div class="col-md-3 col-sm-6 md-margin-bottom-40">
+											<div class="Mimage1" style=" background-image: url('images/s4.jpg');">			
+											   <div class="bottom">
+											New Sarees Trainds
+											 </div>
+											</div>		
+											</div>
+											
+											
+											</div>
+											<br></br><br></br>
+											<div class="col-sm-offset-5 col-sm-2 text-center">
+												<div class="btn-group" data-toggle="buttons">
+												<button type="button" class="btn btn-default1">Read The Blog</button>
+												</div>
+												</div>
+											</div><!--/end container-->		
+											</div>
+											
+			
+			 
+										<div class="" style=" background-image: url('images/venus.jpg');">
+											<div class="container content-sm">
+												<div class="headline-center margin-bottom-60"><br></br>
+													<h1>Why you should sign up?</h1>											
+												</div>
+												 <div class="row service-box-v1">
+											<div class="col-md-3 col-sm-6 md-margin-bottom-40">
+											<img class="img-responsive center-block" src="images/inbox.jpg" width="50" height="50"></img>
+											<div class="text-center">
+											<h4>Inbox</h4>
+											<h6>Send queries  to vendors and keep track of conversation history </h6>
+											</div>	
+											</div>	
+											
+											
+											<div class="col-md-3 col-sm-6 md-margin-bottom-40">
+											<img class="img-responsive center-block" src="images/collbration.jpg" width="50" height="50"></img>
+											<div class="text-center">
+											<h4>Collaborate</h4>
+											<h6>Bring your loved ones together to take group decisions</h6>
+											</div>					
+											</div>
+											<div class="col-md-3 col-sm-6 md-margin-bottom-40">
+											<img class="img-responsive center-block" src="images/check.jpg" width="50" height="50"></img>
+											<div class="text-center">
+											<h4>Checklist</h4>
+											<h6>Stay on top of wedding planning with an organized checklist</h6>
+											</div>			
+											</div>
+											<div class="col-md-3 col-sm-6 md-margin-bottom-40">
+											<img class="img-responsive center-block" src="images/right.png" width="50" height="50"></img>
+											<div class="text-center">
+											<h4>Shortlist and Finalize Vendors</h4>
+											<h6>Keep track of vendors that have caught your </h6>
+											</div>			
+											</div>
+											
+											
+											
+											
+											</div>
+											<br></br><br></br>
+											<div class="col-sm-offset-5 col-sm-2 text-center">
+												<div class="btn-group" data-toggle="buttons">
+												<button type="button" class="btn btn-default1">Read The Blog</button>
+												</div>
+												</div>
+											</div><!--/end container-->	
+											</div>
+
+							 
+				<br></br>			 
+			
+			<!--=== End Owl Clients v1 ===-->
+
+			<!--=== Footer v6 ===-->
+			<div id="footer-v6" class="footer-v6">
+		
+				<div class="footer">
+					<div class="container">
+					
+				
+						<div class="row">
+							<!-- About Us -->
+							<div class="col-md-6 sm-margin-bottom-40">
+								<div class="heading-footer"><h2>WedMeGood - Your Personal Wedding Planner</h2></div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit ut metus a commodo. Pellentesque congue tellus sed enim sollicitudin, id blandit mauris eleifend.</p>
+								<div class="col-sm-3 ">
+												<div class="btn-group" data-toggle="buttons">
+												<button type="button" class="btn btn-default1">Read The Blog</button><br></br><br></br>
+												</div>
+								</div>
+								<div class="col-sm-3 ">
+												<div class="btn-group" data-toggle="buttons">
+												<button type="button" class="btn btn-default1">Read The Blog</button>
+												</div>
+								</div>
+							</div>
+							
+
+							<!-- Contacts -->
+							<div class="col-md-6">
+								<div class="heading-footer"><h2>Contacts</h2></div>
+								<ul class="list-unstyled contacts">
 									<li>
-										<a href="#">Name of the Blog</a>
-										<small>January 8, 2017</small>
+										<i class="radius-3x fa fa-map-marker"></i>
+										795 Folsom Ave, Suite 600,
+										San Francisco, CA 94107
 									</li>
 									<li>
-										<a href="#">Name of the Blog</a>
-										<small>December 23, 2016</small>
+										<i class="radius-3x fa fa-phone"></i>
+										(+123) 456 7890<br></br>
+										(+123) 456 7891
 									</li>
 									<li>
-										<a href="#">Name of the Blog</a>
-										<small>November 15, 2016</small>
+										<i class="radius-3x fa fa-globe"></i>
+										<a href="#">toronto@gmail.com</a><br></br>
+										<a href="#">www.toronto.com</a>
 									</li>
 								</ul>
 							</div>
-						</div><!--/col-md-3-->
-						<!-- End Latest -->
+							<!-- End Contacts -->
+						</div>	
+<hr></hr>
+						<div class="row">
+							<!-- About Us -->
+							<div class="col-md-3 sm-margin-bottom-40">
+								<div class="heading-footer"><h2>About Unify</h2></div>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit ut metus a commodo. Pellentesque congue tellus sed enim sollicitudin, id blandit mauris eleifend.</p>
+							</div>
+							<!-- End About Us -->
 
-						<!-- Link List -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<div class="headline"><h2>Help And Support</h2></div>
-							<ul class="list-unstyled link-list">
-								<li><a href="#">24x7 Live help</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Success Stories</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
-							</ul>
-						</div><!--/col-md-3-->
-						<!-- End Link List -->
+							<!-- Recent News -->
+							<div class="col-md-3 sm-margin-bottom-40">
+								<div class="heading-footer"><h2>Recent News</h2></div>
+								<ul class="list-unstyled link-news">
+									<li>
+										<a href="#">Apple Conference</a>
+										<small>12 July, 2014</small>
+									</li>
+									<li>
+										<a href="#">Bootstrap Update</a>
+										<small>12 July, 2014</small>
+									</li>
+									<li>
+										<a href="#">Themeforest Templates</a>
+										<small>12 July, 2014</small>
+									</li>
+								</ul>
+							</div>
+							<!-- End Recent News -->
 
-						<!-- Address -->
-						<div class="col-md-3 map-img md-margin-bottom-40">
-							<div class="headline"><h2>Matrimony on Mobile</h2></div>
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Anroid">
-								<img src="img/a.png" style="width:40px; margin-right:10px"/>
-							</a>
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mac">
-								<img src="img/ap.png" style="width:40px; margin-right:10px"/>
-							</a>
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Windows">
-								<img src="img/w.png" style="width:40px;"/>
-							</a>
-							<div class="headline"><h2>Follow Us On</h2></div>
-							<ul class="footer-socials list-inline" >
-								
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-										<i class="fa fa-facebook" style="font-size:22px"></i>
-									</a>
-								</li>
-								
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-										<i class="fa fa-google-plus" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-										<i class="fa fa-linkedin" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-										<i class="fa fa-pinterest" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-										<i class="fa fa-twitter" style="font-size:22px"></i>
-									</a>
-								</li>
-							</ul>
-						</div><!--/col-md-3-->
-						<!-- End Address -->
+							<!-- Useful Links -->
+							<div class="col-md-3 sm-margin-bottom-40">
+								<div class="heading-footer"><h2>Useful Links</h2></div>
+								<ul class="list-unstyled footer-link-list">
+									<li><a href="#">About Us</a></li>
+									<li><a href="#">Portfolio</a></li>
+									<li><a href="#">Latest jobs</a></li>
+									<li><a href="#">Community</a></li>
+									<li><a href="#">Contact Us</a></li>
+								</ul>
+							</div>
+							<!-- End Useful Links -->
+
+							<!-- Contacts -->
+							<div class="col-md-3">
+								<div class="heading-footer"><h2>Contacts</h2></div>
+								<ul class="list-unstyled contacts">
+									<li>
+										<i class="radius-3x fa fa-map-marker"></i>
+										795 Folsom Ave, Suite 600,
+										San Francisco, CA 94107
+									</li>
+									<li>
+										<i class="radius-3x fa fa-phone"></i>
+										(+123) 456 7890<br></br>
+										(+123) 456 7891
+									</li>
+									<li>
+										<i class="radius-3x fa fa-globe"></i>
+										<a href="#">toronto@gmail.com</a><br></br>
+										<a href="#">www.toronto.com</a>
+									</li>
+								</ul>
+							</div>
+							<!-- End Contacts -->
+						</div>
+					</div><!--/container -->
+				</div>
+
+				<div class="copyright">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 sm-margon-bottom-10">
+								<ul class="list-inline terms-menu">
+									<li class="silver">Copyright © 2014 - All Rights Reserved</li>
+									<li><a href="#">Terms of Use</a></li>
+									<li><a href="#">Privacy and Policy</a></li>
+									<li><a href="#">License</a></li>
+									<li><a href="#">Support</a></li>
+								</ul>
+							</div>
+							<div class="col-md-4">
+								<ul class="list-inline dark-social pull-right space-bottom-0">
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Facebook" href="#">
+											<i class="fa fa-facebook"></i>
+										</a>
+									</li>
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Twitter" href="#">
+											<i class="fa fa-twitter"></i>
+										</a>
+									</li>
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Vine" href="#">
+											<i class="fa fa-vine"></i>
+										</a>
+									</li>
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Google plus" href="#">
+											<i class="fa fa-google-plus"></i>
+										</a>
+									</li>
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Pinterest" href="#">
+											<i class="fa fa-pinterest"></i>
+										</a>
+									</li>
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Instagram" href="#">
+											<i class="fa fa-instagram"></i>
+										</a>
+									</li>
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Tumblr" href="#">
+											<i class="fa fa-tumblr"></i>
+										</a>
+									</li>
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Youtube" href="#">
+											<i class="fa fa-youtube"></i>
+										</a>
+									</li>
+									<li>
+										<a data-placement="top" data-toggle="tooltip" class="tooltips" data-original-title="Soundcloud" href="#">
+											<i class="fa fa-soundcloud"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div><!--/footer-->
+			</div>
+			<!--=== End Footer v6 ===-->
+		</div><!--/wrapper-->
 
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<p>
-								2017 &copy; All Rights Reserved.
-								<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-							</p>
-						</div>
 
-						<!-- Social Links -->
-						<div class="col-md-6">
-						
-							<!--<ul class="footer-socials list-inline">
-								<li style="color:#fff">FOLLOW US ON:</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-										<i class="fa fa-facebook"></i>
-									</a>
-								</li>
-								
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-										<i class="fa fa-google-plus"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-										<i class="fa fa-linkedin"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-										<i class="fa fa-pinterest"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-										<i class="fa fa-twitter"></i>
-									</a>
-								</li>
-							</ul>-->
-						</div>
-						<!-- End Social Links -->
-					</div>
-				</div>
-			</div><!--/copyright-->
-		</div>
-		<!--=== End Footer Version 1 ===-->
-	</div><!--/wrapper-->
 
-	<!-- JS Global Compulsory -->
-	<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<!-- JS Implementing Plugins -->
-	<script type="text/javascript" src="plugins/back-to-top.js"></script>
-	<script type="text/javascript" src="plugins/smoothScroll.js"></script>
-	<!-- JS Customization -->
-	<script type="text/javascript" src="js/custom.js"></script>
-	<!-- JS Page Level -->
-	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
-	<!--Form Scripts-->
-	<script src="js/jquery.validate.min.js"></script>
-	<script src="js/jquery.maskedinput.min.js"></script>
-	<script src="js/jquery.form.min.js"></script>
-	<script type="text/javascript" src="js/plugins/datepicker.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	
-	<!--Caseroul Scripts-->
-	<script type="text/javascript" src="plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
-	<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
-	<script type="text/javascript" src="js/plugins/owl-recent-works.js"></script>
-	
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			App.init();
-			Datepicker.initDatepicker();
-			OwlCarousel.initOwlCarousel();
-			OwlRecentWorks.initOwlRecentWorksV2();
-			StyleSwitcher.initStyleSwitcher();
-		});
-	</script>
+		<!-- JS Global Compulsory -->
+		<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+		<script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+		<!-- JS Implementing Plugins -->
+		<script type="text/javascript" src="plugins/back-to-top.js"></script>
+		<script type="text/javascript" src="plugins/smoothScroll.js"></script>
+		<script type="text/javascript" src="plugins/jquery.parallax.js"></script>
+		<script src="plugins/master-slider/masterslider/masterslider.min.js"></script>
+		<script src="plugins/master-slider/masterslider/jquery.easing.min.js"></script>
+		<script type="text/javascript" src="plugins/counter/waypoints.min.js"></script>
+		<script type="text/javascript" src="plugins/counter/jquery.counterup.min.js"></script>
+		<script type="text/javascript" src="plugins/fancybox/source/jquery.fancybox.pack.js"></script>
+		<script type="text/javascript" src="plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+		<!-- JS Customization -->
+		<script type="text/javascript" src="js/custom.js"></script>
+		<!-- JS Page Level -->
+		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="js/plugins/fancy-box.js"></script>
+		<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
+		<script type="text/javascript" src="js/plugins/master-slider-fw.js"></script>
+		<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				App.init();
+				App.initCounter();
+				App.initParallaxBg();
+				FancyBox.initFancybox();
+				MSfullWidth.initMSfullWidth();
+				OwlCarousel.initOwlCarousel();
+				StyleSwitcher.initStyleSwitcher();
+			});
+		</script>
+
 <!--[if lt IE 9]>
-  <script src="assets/plugins/respond.js"></script>
-  <script src="assets/plugins/html5shiv.js"></script>
-  <script src="assets/plugins/placeholder-IE-fixes.js"></script>
-  <![endif]-->
+	<script src="plugins/respond.js"></script>
+	<script src="plugins/html5shiv.js"></script>
+	<script src="plugins/placeholder-IE-fixes.js"></script>
+	<![endif]-->
 
 </body>
 </html>

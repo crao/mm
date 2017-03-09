@@ -1,528 +1,196 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-  <title>Profile View</title>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-   <link rel="stylesheet" href="css/bootstrap.min.css"/>    
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+	<title>Profile - Maratha Matrimony Match</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+
+
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/style.css"></link>
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="css/header-v6.css"></link>
+	<link rel="stylesheet" href="css/footer-v1.css"></link>
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="plugins/animate.css"></link>
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css"></link>
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" href="css/sky-forms.css"></link>
+	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
+	
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="css/profile.css"></link>
+	<link rel="stylesheet" href="plugins/scrollbar/css/jquery.mCustomScrollbar.css"></link>
+	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
+	<link rel="stylesheet" href="css/dark.css"></link>
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="css/custom.css"></link>
+	
+	<!--Caseroul-->
+	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
+	<style>.sky-form{border: 1px solid #eee;}</style>
+	<script type="text/javascript" src="js/my.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://iamrohit.in/lab/js/location.js"></script>
 	
-  <link rel="stylesheet" href="css/index.css" />
-  
-  
-  	<style>
-	
-html,
-body,
-.view {
-    height: 100%;
-
-}
-
-.view {
-    background: "" no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-	
-	body {
-	
-	font-size:16px;
-	}
-	</style>
-	
-	
-	<style th:inline="text">
-    body{
-      <!--  background: url{[[@{image/indian-matrimony-business.jpg}]]}
-                    no-repeat center center fixed; -->
-    }
-.style2 {color: #000000}
-
-/*  Change .navbar to orange clor */
-
-.navbar {
-    color: #000000;
-    background-color: orange;
-}
-
-
-.nav {
-    color: #000000;
-    background-color: orange;
-}
-
-#ntext{
- color: #FFFFFF;
-  }
-
-/*  .nva to orange clor */
-
-
-.navbar-nav {
-width: 100%;
-text-align: center;
-}
-.navbar-nav > li {
-float: none;
-display: inline-block;
-}
-
-.navbar-right {
-width: 100%;
-text-align: right;
-padding-right:70px;
-}
-.navbar-nav > li {
-float: none;
-display: inline-block;
-}
-
-.glyphicon {
-    font-size: 30px;
-}
-
-.panel-default {
-	 width: 690px;
-	}
-
-	#footer {
-	 height: 100px;
-	 background-color: #CCCCCC;
-	 color:#000000;
-	 margin-top: 30px;
-	}
-
-    </style>
-    
-    <style>
-#container1 {
-    background-color: #e2dada;
-}
-
-.centered-form {
-    margin-top: 90px;
-    margin-bottom: 0px;
-}
-
-.centered-form .panel {
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
-}
-</style>
-    
-  
+	<!-- Edit Option Functionality Scripts -->
+	<script type="text/javascript"  src="files/dc.js.download"></script>
+	<script type="text/javascript" src="files/jqueryupgrdversion.js.download"></script>
+	<script type="text/javascript"  src="files/commonmini2212161800.js.download"></script>	
+	<script type="text/javascript" >function slideShowHide(show,hide){ $("#"+show).slideUp(); $("#"+hide).slideDown();}</script>
+    <script  type="text/javascript" src="files/editprofile.js.download"></script>
 </head>
-<body>
 
-<!-- Navigation -->
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="navbar-header" style="margin-bottom:90px;">
-					<button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
-				</div>
-				<div class="navbar-collapse collapse" id="navbar">
-					<ul class="nav navbar-nav">
-						<li class="active"><img src="../static/images/logo.png" th:src="@{images/logo.png}"></img></li>
-						<li>
-							<a  id="ntext" href="#">Home</a>
-						</li>
-						<li class="dropdown">
-							<a class="dropdown-toggle"  id="ntext" data-toggle="dropdown" href="#">My Profile<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">Who Viewed my Profile</a>
-								</li>
-								<li>
-									<a href="#">Who Shortlisted Me</a>
-								</li>
-								<li>
-									<a href="#">Who Viewed my Mobile no</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a class="dropdown-toggle" id="ntext" data-toggle="dropdown" href="#">Search<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a th:href="@{/search}">Regular Search</a>
-								</li>
-								<li>
-									<a href="#">Advanced Search</a>
-								</li>
-								<li>
-									<a href="#">Search By Date</a>
-								</li>
-								<li>
-									<a href="#">Keyword Search</a>
-								</li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a class="dropdown-toggle" id="ntext" data-toggle="dropdown" href="#">Matches<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">New Matches</a>
-								</li>
-								<li>
-									<a href="#">Yet to be Viewed</a>
-								</li>
-								<li>
-									<a href="#">Shortlisted</a>
-								</li>
-								<li>
-									<a href="#">Mutual Matches</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a class="disabled" id="ntext" href="#">Upgrade</a>
-						</li>
+<body class="header-fixed header-fixed-space">
+	<div class="wrapper">
+		<!--=== Header v6 ===-->
+		<div class="header-v6 header-classic-white header-sticky">
+			<!-- Navbar -->
+			<div class="navbar mega-menu" role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="menu-container">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
 
-						<li>
-							<a href="home.html" id="ntext" class="disabled"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;&nbsp; Logout</a>
-						</li>
+						<!-- Navbar Brand -->
 						
-						<!--<ul class="nav navbar-nav navbar-right disabled">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>-->
-					</ul>
-
-
-
-				</div>
-				</div>
-</div>
-</nav> 
-    
-   
-<!--Mask-->
-<div class="view">
-
-
-    <!--Intro content-->
-    <div class="full-bg-img flex-center" >
-
-    
-        
-        <div class="row centered-form" style="margin-top:170px;">
-            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-
-                <div class="panel panel-default">
-                <div class="panel-heading" style="height:270px;">
-	
-				<div class="col-sm-4">
-				
-			<!-- 	<input type="file" id="fileUpload" accept=".png,.jpg,.jpeg,.gif,.tif"/>
-				<label for="fileUpload">
-				<img src="../static/Capture.PNG" th:src="@{images/Capture.PNG}"  class="img-responsive" width="220" height="180"></img>
-				</label>  -->
-					
-				<input type="file" id="imgupload"/>
-				<a href="#" onclick="$('#imgupload').trigger('click'); return false;">
-				<img src="../static/Capture.PNG" th:src="@{images/Capture.PNG}"  class="img-responsive" width="220" height="180"></img></a>
-				
-				<p><span th:text="${member.firstName}"></span> &nbsp; <span th:text="${member.lastName}"> &nbsp; </span> </p>
-				<p> R2229300 </p>
-
-				
-				</div>  
-	
-				<div class="col-sm-8">
-				<div class="_container">
-				<p><span th:text="${member.firstName}"></span> &nbsp; <span th:text="${member.lastName}"> &nbsp; </span> </p>
-				<p><span th:text="${member.age}"> &nbsp; </span> Years, &nbsp;&nbsp; Height &nbsp; <span th:text="${personalDetails.height}"> &nbsp; </span> </p>
-				<p><span th:text="${personalDetails.residingcity}"> &nbsp; </span>, &nbsp; <span th:text="${personalDetails.residingstate}"> &nbsp;  </span>, &nbsp; <span th:text="${personalDetails.country}"> &nbsp; </span></p>
-				<p><span th:text="${personalDetails.education}"> &nbsp;  </span> </p>
-				<p><span th:text="${personalDetails.occupation}"> &nbsp; </span> </p>
-				<p><span th:text="${personalDetails.incomecurrency}"> &nbsp; </span>&nbsp;<span th:text="${personalDetails.income}"> &nbsp; </span> </p>
-				</div>
-				
-				
-				 </div><p/>&nbsp;<p/>
-
-                        
-                    </div>
-                    <div class="panel-body">
-					<div class="_container">
-					<h3 class="panel-title text-center" style="font-size:28px;">Personal Information</h3>
-					
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;In My Own Words</label><p/>&nbsp;<p/>
-						 
-						<!--  <p th:text="${register.personalinfo}"  />  *** -->  
-						
-                    </div>
+						<!-- ENd Navbar Brand -->
+						<!-- End Header Inner Right -->
 					</div>
-					<p/>&nbsp;<p/>
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;Basic Details</label><p/>&nbsp;<p/>
-						<div class="col-sm-3"><label for="sel1">Name  :</label></div>
-						<div class="col-sm-3"><span th:text="${member.firstName}"></span> &nbsp; <span th:text="${member.lastName}"> &nbsp; </span></div>  
-						<div class="col-sm-3"><label for="sel1">Body Type  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.bodyType}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Age  :</label></div>
-						<div class="col-sm-3"><span th:text="${member.age}"> &nbsp; </span></div>
-						<div class="col-sm-3"><label for="sel1">Complexion  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.complexion}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-						<div class="col-sm-3"><label for="sel1">Height  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.height}"> &nbsp; </span></div>
-						<div class="col-sm-3"><label for="sel1">Physical Status  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.physicalStatus}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Weight  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.weight}"> &nbsp; </span></div>
-						<div class="col-sm-3"><label for="sel1">Eating Habits  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.eatingHabits}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Smoking Habit  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.smokingHabits}"> &nbsp; </span></div>
-						<div class="col-sm-3"><label for="sel1">Drinking Habit  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.drinkingHabits}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-						<!--  <div class="col-sm-3"><label for="sel1">Mother Tongue  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.mtongue}"> &nbsp; </span></div>  -->
-						<div class="col-sm-3"><label for="sel1">Marital Status  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.maritalStatus}"> &nbsp; </span></div> <p/>&nbsp;<p/><p/>&nbsp;<p/>
-						 
-						
-                    </div>
-					
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-flag"></span>&nbsp;&nbsp;&nbsp;Religion Information</label><p/>&nbsp;<p/>
-					<!-- 	<div class="col-sm-3"><label for="sel1">Religion  :</label></div>
-						<div class="col-sm-3"><span th:text="${member.religion}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">Caste  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.cast}"> &nbsp; </span></div> <p/>&nbsp;<p/>  -->
-						
-						<div class="col-sm-3"><label for="sel1">Gothram  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.gothra}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">Star / Raasi  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.starSign}"> </span>  &nbsp; / &nbsp;<span th:text="${personalDetails.raasi}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-						<div class="col-sm-3"><label for="sel1">Dosh  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.dosh}"> &nbsp; </span></div> <p/>&nbsp;<p/>	<p/>&nbsp;<p/>	
-												 						
-                    </div>
-					
-					
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;&nbsp;Groom's Location</label><p/>&nbsp;<p/>
-						<div class="col-sm-3"><label for="sel1">Country  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.country}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">Citizenship  :</label></div>
-					 	<div class="col-sm-3"><span th:text="${personalDetails.country}"> &nbsp; </span></div> <p/>&nbsp;<p/>  
-						
-						<div class="col-sm-3"><label for="sel1">State  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.residingstate}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">City  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.residingcity}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-												 						
-                    </div>
-					
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;Professional Information</label><p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Education  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.education}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">Employed in  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.occupationcategory}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Occupation  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.occupation}"> &nbsp; </span></div> 
-						<div class="col-sm-3"><label for="sel1">Occupation in Detail  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.occupationcategory}"> &nbsp; </span></div>  <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Income Currency  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.incomecurrency}"> &nbsp; </span></div> 
-						<div class="col-sm-3"><label for="sel1">Monthly Income  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.income}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-												 						
-                    </div>
-					
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;&nbsp;Family Details</label><p/>&nbsp;<p/>
-						<div class="col-sm-3"><label for="sel1">Family Values  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.familyValues}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">Family Type :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.familyType}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-				<!--  	<div class="col-sm-3"><label for="sel1">No of Brother(s):</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.brothers}"> &nbsp; </span></div> 
-						<div class="col-sm-3"><label for="sel1">Family Status  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.familyStatus}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-						<div class="col-sm-3"><label for="sel1">No of Sister(s):</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.sisters}"> &nbsp; </span></div>
-						<div class="col-sm-3"><label for="sel1">Father's Status  :</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.fatherStatus}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-						<div class="col-sm-3"><label for="sel1">Mother's Status:</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.motherStatus}"> &nbsp; </span></div>
-						<div class="col-sm-3"><label for="sel1">Family Location:</label></div>
-						<div class="col-sm-3"><span th:text="${personalDetails.familyLocation}"> &nbsp; </span></div> <p/>&nbsp;<p/>	*** -->
 
-						
-												 						
-                    </div>
-					
-                </div>
-            </div>
-        </div>
-		
-		<!-- Partner Preferences -->
-    
-	  <div class="row centered-form" style="margin-top:170px;">
-            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-                <div class="panel panel-default">
-				
-                    <div class="panel-heading">
-                        <h3 class="panel-title text-center" style="font-size:28px;">Partner Preferences</h3>
-                    </div>
-                    <div class="panel-body">
-					
-										<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;&nbsp;&nbsp;Basic Preferences</label><p/>&nbsp;<p/>
-						<div class="col-sm-3"><label for="sel1">Bride's Age :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.minAge}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">Height  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.fromHeight}">&nbsp;</span>
-											 <span th:text="${preferences.toHeight}"></span></div> <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Marital Status  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.maritalStatus}"> &nbsp;  </span></div> <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Physical Status  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.physicalStatus}"> &nbsp; </span></div>
-						<div class="col-sm-3"><label for="sel1">Eating Habits :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.eatingHabits}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Smoking Habit:</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.smokingHabits}"> &nbsp; </span></div>
-						<div class="col-sm-3"><label for="sel1">Drinking Habit:</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.drinkingHabits}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-						
-                    </div>
-					
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-flag"></span>&nbsp;&nbsp;&nbsp;Religious Preferences</label><p/>&nbsp;<p/>
-						
-						
-						<div class="col-sm-3"><label for="sel1">Gothram  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.gothra}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">Star / Raasi  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.star}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-						<div class="col-sm-3"><label for="sel1">Manglik  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.manglik}"> &nbsp; </span></div> <p/>&nbsp;<p/>	<p/>&nbsp;<p/>	
-												 						
-                    </div>
-					
-					
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;&nbsp;Location Preferences</label><p/>&nbsp;<p/>
-						<div class="col-sm-3"><label for="sel1">Country  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.country}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">Citizenship  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.citizenship}"> &nbsp; </span></div> <p/>&nbsp;<p/>
-						
-						<div class="col-sm-3"><label for="sel1">Residing State  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.state}"> &nbsp;  </span></div>
-						<div class="col-sm-3"><label for="sel1">City  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.residingCity}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-												 						
-                    </div>
-					
-					<div class="form-group">
-					                        
-						<label for="sel1"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;&nbsp;Professional Preferences</label><p/>&nbsp;<p/>
-						<div class="col-sm-3"><label for="sel1">Education  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.education}"> &nbsp;   </span></div>
-						<div class="col-sm-3"><label for="sel1">Occupation  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.occupation}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-						<div class="col-sm-3"><label for="sel1">Annual Income  :</label></div>
-						<div class="col-sm-3"><span th:text="${preferences.income}"> &nbsp; </span></div> <p/>&nbsp;<p/>	
-						
-												 						
-                    </div>
-					
-					
-                </div>
-            </div>
-        </div>
-	
-    
-    
-    
-     <!-- This works. We need to set this as background -->
-     
-          
-       
-	
-    </div>
-    <!--/Intro content-->
-</div>
-<!--/.Mask-->
-
-	<script lang="javascript" src="js/jquery-1.12.4.min.js"></script>
-	  <script src="js/counter.js"></script>
-		<script>
-
-			$(document).ready(function (){
-				'use strict';
+					<!-- Collect the nav links, forms, and other content for toggling -->
 			
-				// works on one field
-		  $('textarea, ._textfield').countChar();
-			});
-		</script><script type="text/javascript">
+				</div>
+			</div>
+			<!-- End Navbar -->
+		</div>
+		<!--=== End Header v6 ===-->
+		<!--=== Breadcrumbs ===-->
+		
+		<!--=== End Breadcrumbs ===-->
+		<!--=== Content ===-->
+		<div class="content-md">
+			<div class="container content profile">
+				
+				<div class="row">
+					<div class="col-md-3">
+						
+						
 
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-36251023-1']);
-	  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-	  _gaq.push(['_trackPageview']);
+						
 
-	  (function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
+						<div class="margin-bottom-50"></div>
 
-	</script>
+					</div>
+					<div class="col-md-9 sky-form" id="sky-form">
+								
+									<div class="">
+										<div class="profile-bio">
+											<div class="row">
+												<!-- <div class="col-md-4">
+													<img class="img-responsive md-margin-bottom-10" src="img/user1.jpg" alt=" img"></img>
+													<a class="btn-u btn-u-sm" href="#">Change Picture</a>
+												</div> -->
+												<div class="col-md-12">
+													<div class="row">
+														<div class="col-md-12">
+															<h2>
+																<label class="label fleft" th:text="${member.brandName}"></label>
+																<label class="label fleft" th:text="${member.city}"></label>
+															</h2>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col col-md-12">
+														<label class="label fleft">Profile Created for </label>
+															<label class="label fleft" th:text="${member.category}"></label>
+														</div>
+													</div>
+													
+													<hr/>
+													
+												
+												
+													
+													<hr/>
+												</div>
+											</div>
+										</div>
+									</div>
+
+							
+								<!-- End Checkout-Form -->
+								
+							
+						
+					</div>
+				</div>
+					
+			</div>
+		</div>
+		<!--=== End Content ===-->
+
+		<!--=== Footer Version 1 ===-->
+
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
 	
-	<div id="footer" class="footer navbar-bottom" >
-      <div class="container">
-		<p style="padding-top:20px">&nbsp;</p>  
-        <p align="center" > COPYRIGHT 2017  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.3dpower.in/" target="_blank">3D POWER VISULIZATION PVT. LTD.</a></p>
-      </div>
-    </div>
+	<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="plugins/smoothScroll.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/countries.js"></script>
+	<script type="text/javascript" src="js/countries1.js"></script>
+	<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
+	<!--Form Scripts-->
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="js/plugins/datepicker.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	
+	<!--Caseroul Scripts-->
+	<script type="text/javascript" src="plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			Datepicker.initDatepicker();
+			OwlCarousel.initOwlCarousel();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+  <script src="assets/plugins/html5shiv.js"></script>
+  <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+  <![endif]-->
 
-</div>
-</div>
 </body>
 </html>
-
-
-

@@ -13,16 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.my.binding.HomeSearch;
+
 import com.my.binding.Login;
-import com.my.binding.PersonalDetailsModel;
+
 import com.my.binding.Register;
 import com.my.model.Member;
-import com.my.model.PersonalDetails;
-import com.my.model.Preferences;
+
 import com.my.service.MemberService;
-import com.my.service.PersonalDetailsService;
-import com.my.service.PreferencesService;
+
 
 @Controller
 @EnableAutoConfiguration
@@ -31,19 +29,15 @@ public class LoginController {
 	@Autowired
 	private MemberService memberService;
 	
-	@Autowired
-	private PersonalDetailsService personalDetailsService;
-	
-	@Autowired
-	private PreferencesService preferencesService;
 	
 		
 	@RequestMapping(value="/", method=RequestMethod.GET)
+	
 	public String home(Model model) {
 		model.addAttribute("login", new Login());
 		model.addAttribute("register", new Register());
-		model.addAttribute("personalDetails", new PersonalDetailsModel());
-		model.addAttribute("homeSearch", new HomeSearch());
+		model.addAttribute("vendor", new Register());
+	
 		return "home";
 	}
  
@@ -55,19 +49,17 @@ public class LoginController {
 		if (bindingResult.hasErrors()) {
 			return "home";
 		}
-		model.addAttribute("username", login.getUsername());
-		model.addAttribute("password", login.getPassword());		
-		String userEmail = login.getUsername();
+	
+		String userEmail = login.getEmail();
 		String password = login.getPassword();
 		if(userEmail!=null){
 			Member member = memberService.getMemberByEmail(userEmail);
-			PersonalDetails personalDetails = personalDetailsService.getPersonalDetailsByMember(member);
-			Preferences preferences = preferencesService.getPreferencesByMember(member);
+	
 			if(password.equals(member.getPassword())){
-				httpSession.setAttribute("member", member);
+				
 				model.addAttribute("member", member);
-				model.addAttribute("personalDetails", personalDetails);
-				model.addAttribute("preferences", preferences);
+				
+			
 				return "profile";
 			}				
 		}		
