@@ -25,6 +25,8 @@
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="css/custom.css"></link>
 	<script type="text/javascript" src="js/my.js"></script>
+	<script type="text/javascript" th:src="@{js/main.js}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	
 
 </head>
@@ -176,9 +178,15 @@
 												</div>
 												<div class="col-md-3"></div>
 												<div class="col-md-6">
-													<a class="btn-u btn-u-sm" th:href="@{/profile?status=success(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
+													<a class="btn-u btn-u-sm" th:href="@{/profile(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
 												</div>
 											</div>
+											<div class="row">
+											<div class="col-md-3"></div>
+												<div class="col-md-9">
+													<a class="btn-u btn-u-sm" th:href="@{/shortList(userId=${session.userId}, slId=${member.memberId})}">Short List</a>
+												</div>
+											</div>	
 										
 										</div>	
 									</div>
@@ -189,7 +197,7 @@
 												</section>
 												<section class="col1 col-4">
 													<label class="select">
-														<select name="minAge" th:feild="*{minAge}"  id="fromage" >
+														<select name="fromAge" th:feild="*{fromAge}"  id="fromage" >
 															<option value="0" >From</option>
 															<option value="18" selected="selected">18</option>
 															<option value="19">19</option>
@@ -234,7 +242,7 @@
 												</section>
 												<section class="col1 col-4">
 													<label class="select">
-														<select name="maxAge" th:feild="*{maxAge}"  id="toage">
+														<select name="toAge" th:feild="*{toAge}"  id="toage">
 															<option value="0" >To</option>
 															<option value="18">18</option>
 															<option value="19">19</option>

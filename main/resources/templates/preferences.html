@@ -78,11 +78,11 @@
 									<fieldset>
 										<div class="row">
 											<section class="col1">
-												<label class="label">Prefered Age:</label>
+												<label class="label">Preferred Age:</label>
 											</section>
 											<section class="col1 col-4">
 												<label class="select">
-													<select name="minAge" th:feild="*{minAge}"  id="fromage" >
+													<select name="fromAge" th:feild="*{fromAge}"  id="fromage" >
 														<option value="18" selected="selected">18</option>
 														<option value="19">19</option>
 														<option value="20">20</option>
@@ -126,7 +126,7 @@
 											</section>
 											<section class="col1 col-4">
 												<label class="select">
-													<select name="maxAge" th:feild="*{maxAge}"  id="toage">
+													<select name="toAge" th:feild="*{toAge}"  id="toage">
 														<option value="0" disabled="disabled">To</option>
 														<option value="18">18</option>
 														<option value="19">19</option>
@@ -169,7 +169,7 @@
 										</div>
 										<div class="row">
 											<section class="col1">
-												<label class="label">Maritail Status :</label>
+												<label class="label">Marital Status :</label>
 											</section>
 											<section class="inline-group">
 												<label class="checkbox"><input  name="maritalStatus"  th:feild="*{maritalStatus}"   id="MARITAL_STATUS1" value="Any" type="checkbox" checked="checked"/><i></i>Any</label>

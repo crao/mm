@@ -74,8 +74,8 @@ public class PreferencesController {
 				
 		preferences = new Preferences();		
 		preferences.setMember(member);
-		preferences.setMinAge(preferencesBinding.getMinAge());
-		preferences.setMaxAge(preferencesBinding.getMaxAge());
+		preferences.setFromAge(preferencesBinding.getFromAge());
+		preferences.setToAge(preferencesBinding.getToAge());
 		preferences.setFromHeight(preferencesBinding.getFromHeight());
 		preferences.setToHeight(preferencesBinding.getToHeight());
 		preferences.setHaveChildren(preferencesBinding.getHaveChildren());
