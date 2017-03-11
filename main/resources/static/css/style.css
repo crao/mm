@@ -166,3 +166,5 @@ label.one{display:inherit}
 .noborder{border:none}
 
 .margin-bottom-20{margin-bottom:20px !important}
+
+.a1{bottom:inherit !important; left:inherit !important;}

@@ -104,16 +104,14 @@
 		</div>
 		<div class="col-md-8">
 			<div class="row">
-				<div class="col-md-5">
+				<div class="col-md-12">
 					<h2><label class="label no-padding" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label></h2>
 
 				</div>
-				<div class="col-md-7">
+				<div class="col-md-12">
 					<label class="label fleft no-padding">Profile Created For: </label><label class="label fleft no-padding" th:text="${member.profileFor}"></label>
 				</div>
-				<div class="col-md-7">
-
-				</div>
+				
 			</div>
 			
 			<div class="row">
@@ -173,20 +171,16 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-3">
-					
+				<div class="col-md-8"></div>
+				<div class="col-md-2">
+					<a class="btn-u btn-u-sm a1" th:href="@{/shortList(userId=${session.userId}, slId=${member.memberId})}">Short List</a>
 				</div>
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-					<a class="btn-u btn-u-sm" th:href="@{/profile(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
+				<div class="col-md-2">
+					<a class="btn-u btn-u-sm a1" th:href="@{/profile(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
 				</div>
 			</div>
-			<div class="row">
-			<div class="col-md-3"></div>
-				<div class="col-md-9">
-					<a class="btn-u btn-u-sm" th:href="@{/shortList(userId=${session.userId}, slId=${member.memberId})}">Short List</a>
-				</div>
-			</div>	
+			
+				
 		
 		</div>	
 	</div>
