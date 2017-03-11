@@ -148,8 +148,21 @@ select::-ms-expand {
     display: inline-block;
 }
 
+.sky-form{border: 1px solid #eee;}
+
 .box{display:none}
 
 .padding-all{padding:20px 50px 0px;}
 
 label.one{display:inherit}
+
+.row-1-style{border:1px solid #ddd; padding:8px; margin-bottom:20px}
+.row-1-style1{border:1px solid #ddd; padding:8px;}
+
+.send-interest{position:inherit !important; color:#e67e22 !important; margin:0 !important}
+
+.edit-2-button{cursor: pointer; color: #ffffff; text-decoration: none; background: #e67e22; padding: 0px 5px; display: inline-block;}
+
+.noborder{border:none}
+
+.margin-bottom-20{margin-bottom:20px !important}

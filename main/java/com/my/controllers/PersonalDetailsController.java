@@ -92,11 +92,11 @@ public class PersonalDetailsController {
 		personaldetailsBean.setResidingcityP(personaldetailsModel.getResidingcityP());
 		personaldetailsBean.setCitizenship(personaldetailsModel.getCitizenship());
 		
-		httpSession.setAttribute("member", member);
 		model.addAttribute("preferences", new PreferencesBinding());
-		Long personalDetails = personalDetailsService.savePersonalDetails(personaldetailsBean);
-		
-		if(personalDetails>=1)
+		PersonalDetails personalDetails = personalDetailsService.savePersonalDetails(personaldetailsBean);
+		member.setPersonalDetails(personalDetails);
+		httpSession.setAttribute("member", member);
+		if(personalDetails!=null)
 			status="success";
 		return "redirect:/personaldetails?status="+status+"?userId="+userId;
 	}

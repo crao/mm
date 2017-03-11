@@ -25,6 +25,8 @@
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="css/custom.css"></link>
 	<script type="text/javascript" src="js/my.js"></script>
+	<script type="text/javascript" th:src="@{js/main.js}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	
 
 </head>
@@ -44,6 +46,7 @@
 						</button>
 
 						<!-- Navbar Brand -->
+
 						<div class="navbar-brand no-padding">
 							<a href="index.html">
 								<img class="shrink-logo" src="img/logo1.png" alt="Logo"/>
@@ -58,7 +61,9 @@
 						<div class="menu-container">
 							<ul class="nav navbar-nav">
 								<!-- Home -->
+								<li class=""><a href="#">Register</a></li>
 								<li class=""><a href="#">Home</a></li>
+
 								<li class="dropdown">
 									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Search</a>
 									<ul class="dropdown-menu">
@@ -74,7 +79,13 @@
 											<li><a target="_blank" href="#">Matrimony directory</a></li>
 										</ul>
 								</li>
-								<li><a href="#">Upgrade</a></li> 
+								<li  class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Upgrade</a>
+										<ul class="dropdown-menu">
+											<li><a href="payment-option.html">Payment Option</a></li>
+										</ul>
+								</li>
+								
 							</ul>
 						</div>
 					</div><!--/navbar-collapse-->
@@ -84,463 +95,685 @@
 	
 	</div>
 		<!--=== End Header v6 ===-->
+	<div th:fragment="searchResults" class="row row-new-1" th:each="member : ${members}">
+		<div class="col-md-4">																
+			<img th:src="@{img/user.jpg}"   class="img-responsive md-margin-bottom-10" 
+				th:if="${member.gender=='M'}"></img>											
+			<img th:src="@{img/place_holder.png}"   class="img-responsive md-margin-bottom-10" 
+				th:if="${member.gender=='F'}"></img>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-5">
+					<h2><label class="label no-padding" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label></h2>
+
+				</div>
+				<div class="col-md-7">
+					<label class="label fleft no-padding">Profile Created For: </label><label class="label fleft no-padding" th:text="${member.profileFor}"></label>
+				</div>
+				<div class="col-md-7">
+
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-1">
+					<label class="label no-padding" ><strong>Age:</strong></label>
+				</div>
+				<div class="col-md-2">
+					<label class="label no-padding" th:text="${member.age} + ' years'"></label>
+				</div>
+				<div class="col-md-2">
+					<label class="label no-padding"><strong>Height: </strong></label>
+				</div>
+				<div class="col-md-2">
+					<label class="label no-padding" th:text="${member.personalDetails.height} + ' cm'"></label>
+				</div>
+				<div class="col-md-7">
+				</div>	
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<label class="label no-padding"><strong>Father's Name:</strong></label>
+				</div>
+				<div class="col-md-9">
+					<label class="label no-padding" th:text="${member.personalDetails.fatherName}"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<label class="label no-padding"><strong>Mother's Name:</strong></label>
+				</div>
+				<div class="col-md-9">
+					<label class="label no-padding" th:text="${member.personalDetails.motherName}"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<label class="label no-padding"><strong>Location:</strong></label>
+				</div>
+				<div class="col-md-9">
+					<label class="label no-padding" th:text="${member.personalDetails.residingcity}"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<label class="label no-padding"><strong>Education:</strong></label>
+				</div>
+				<div class="col-md-9">
+					<label class="label no-padding" th:text="${member.personalDetails.education}"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<label class="label no-padding"><strong>Profession:</strong></label>
+				</div>
+				<div class="col-md-9">
+					<label class="label no-padding" th:text="${member.personalDetails.occupation}"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3">
+					
+				</div>
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<a class="btn-u btn-u-sm" th:href="@{/profile(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-md-3"></div>
+				<div class="col-md-9">
+					<a class="btn-u btn-u-sm" th:href="@{/shortList(userId=${session.userId}, slId=${member.memberId})}">Short List</a>
+				</div>
+			</div>	
 		
+		</div>	
+	</div>
+				
+	<div th:fragment="MinMaxAge" class="row">
+		<section class="col1">
+			<label class="label">Prefered Age:</label>
+		</section>
+		<section class="col1 col-4">
+			<label class="select">
+				<select name="fromAge" th:feild="*{fromAge}"  id="fromage" >
+					<option value="0" >From</option>
+					<option value="18" selected="selected">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+					<option value="32">32</option>
+					<option value="33">33</option>
+					<option value="34">34</option>
+					<option value="35">35</option>
+					<option value="36">36</option>
+					<option value="37">37</option>
+					<option value="38">38</option>
+					<option value="39">39</option>
+					<option value="40">40</option>
+					<option value="41">41</option>
+					<option value="42">42</option>
+					<option value="43">43</option>
+					<option value="44">44</option>  
+					<option value="45">45</option>
+					<option value="46">46</option>
+					<option value="47">47</option>
+					<option value="48">48</option>
+					<option value="49">49</option>
+					<option value="50">50</option>
+					<option value="51">51</option>
+				</select>
+				<i></i>
+			</label>
+		</section>
+		<section class="col">
+			<label class="label">To</label>
+		</section>
+		<section class="col1 col-4">
+			<label class="select">
+				<select name="toAge" th:feild="*{toAge}"  id="toage">
+					<option value="0" >To</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+					<option value="31">31</option>
+					<option value="32">32</option>
+					<option value="33">33</option>
+					<option value="34">34</option>
+					<option value="35">35</option>
+					<option value="36">36</option>
+					<option value="37">37</option>
+					<option value="38">38</option>
+					<option value="39">39</option>
+					<option value="40" selected="selected">40</option>
+					<option value="41">41</option>
+					<option value="42">42</option>
+					<option value="43">43</option>
+					<option value="44">44</option>
+					<option value="45">45</option>
+					<option value="46">46</option>
+					<option value="47">47</option>
+					<option value="48">48</option>
+					<option value="49">49</option>
+					<option value="50">50</option>
+					<option value="51">51</option>
+				</select>
+				<i></i>
+			</label>
+		</section>
+	</div>
+	
+	<section th:fragment="Kg" class="col col-2">
+		<label class="select">
+			<select name="weight" th:feild="*{weight}" size="1" class="form-control" id="KGS">
+				<option value="0" selected="selected">- Kgs -</option>
+				<option value="41">41 kg</option>
+				<option value="42">42 kg</option>
+				<option value="43">43 kg</option>
+				<option value="44">44 kg</option>
+				<option value="45">45 kg</option>
+				<option value="46">46 kg</option>
+				<option value="47">47 kg</option>
+				<option value="48">48 kg</option>
+				<option value="49">49 kg</option>
+				<option value="50">50 kg</option>
+				<option value="51">51 kg</option>
+				<option value="52">52 kg</option>
+				<option value="53">53 kg</option>
+				<option value="54">54 kg</option>
+				<option value="55">55 kg</option>
+				<option value="56">56 kg</option>
+				<option value="57">57 kg</option>
+				<option value="58">58 kg</option>
+				<option value="59">59 kg</option>
+				<option value="60">60 kg</option>
+				<option value="61">61 kg</option>
+				<option value="62">62 kg</option>
+				<option value="63">63 kg</option>
+				<option value="64">64 kg</option>
+				<option value="65">65 kg</option>
+				<option value="66">66 kg</option>
+				<option value="67">67 kg</option>
+				<option value="68">68 kg</option>
+				<option value="69">69 kg</option>
+				<option value="70">70 kg</option>
+				<option value="71">71 kg</option>
+				<option value="72">72 kg</option>
+				<option value="73">73 kg</option>
+				<option value="74">74 kg</option>
+				<option value="75">75 kg</option>
+				<option value="76">76 kg</option>
+				<option value="77">77 kg</option>
+				<option value="78">78 kg</option>
+				<option value="79">79 kg</option>
+				<option value="80">80 kg</option>
+				<option value="81">81 kg</option>
+				<option value="82">82 kg</option>
+				<option value="83">83 kg</option>
+				<option value="84">84 kg</option>
+				<option value="85">85 kg</option>
+				<option value="86">86 kg</option>
+				<option value="87">87 kg</option>
+				<option value="88">88 kg</option>
+				<option value="89">89 kg</option>
+				<option value="90">90 kg</option>
+				<option value="91">91 kg</option>
+				<option value="92">92 kg</option>
+				<option value="93">93 kg</option>
+				<option value="94">94 kg</option>
+				<option value="95">95 kg</option>
+				<option value="96">96 kg</option>
+				<option value="97">97 kg</option>
+				<option value="98">98 kg</option>
+				<option value="99">99 kg</option>
+				<option value="100">100 kg</option>
+				<option value="101">101 kg</option>
+				<option value="102">102 kg</option>
+				<option value="103">103 kg</option>
+				<option value="104">104 kg</option>
+				<option value="105">105 kg</option>
+				<option value="106">106 kg</option>
+				<option value="107">107 kg</option>
+				<option value="108">108 kg</option>
+				<option value="109">109 kg</option>
+				<option value="110">110 kg</option>
+				<option value="111">111 kg</option>
+				<option value="112">112 kg</option>
+				<option value="113">113 kg</option>
+				<option value="114">114 kg</option>
+				<option value="115">115 kg</option>
+				<option value="116">116 kg</option>
+				<option value="117">117 kg</option>
+				<option value="118">118 kg</option>
+				<option value="119">119 kg</option>
+				<option value="120">120 kg</option>
+				<option value="121">121 kg</option>
+				<option value="122">122 kg</option>
+				<option value="123">123 kg</option>
+				<option value="124">124 kg</option>
+				<option value="125">125 kg</option>
+				<option value="126">126 kg</option>
+				<option value="127">127 kg</option>
+				<option value="128">128 kg</option>
+				<option value="129">129 kg</option>
+				<option value="130">130 kg</option>
+				<option value="131">131 kg</option>
+				<option value="132">132 kg</option>
+				<option value="133">133 kg</option>
+				<option value="134">134 kg</option>
+				<option value="135">135 kg</option>
+				<option value="136">136 kg</option>
+				<option value="137">137 kg</option>
+				<option value="138">138 kg</option>
+				<option value="139">139 kg</option>
+				<option value="140">140 kg</option>
+			</select>
+			<i></i>
+		</label>
+	</section>									
+											
+	<div th:fragment="FeetToCm" class="row">
+		<section class="col1">
+			<label class="label"> Height:</label>
+		</section>
+		<section class="col">
+			<label class="select">
+				<select size="1" name="fromfeet"  class="form-control"  id="FEETFROM" onchange="feetToCms(this.value, 'CMSFROM')">
+					<option value="0">Feet</option>
+					<option value="4-6" >4ft 6in</option>
+					<option value="4-7" >4ft 7in</option>
+					<option value="4-8" >4ft 8in</option>
+					<option value="4-9" >4ft 9in</option>
+					<option value="4-10" >4ft 10in</option>
+					<option value="4-11" >4ft 11in</option>
+					<option value="5-0" >5ft</option>
+					<option value="5-1" >5ft 1in</option>
+					<option value="5-2" >5ft 2in</option>
+					<option value="5-3" >5ft 3in</option>
+					<option value="5-4" >5ft 4in</option>
+					<option value="5-5" >5ft 5in</option>
+					<option value="5-6" >5ft 6in</option>
+					<option value="5-7" >5ft 7in</option>
+					<option value="5-8" >5ft 8in</option>
+					<option value="5-9" >5ft 9in</option>
+					<option value="5-10" >5ft 10in</option>
+					<option value="5-11" >5ft 11in</option>
+					<option value="6-0" >6ft</option>
+					<option value="6-1" >6ft 1in</option>
+					<option value="6-2" >6ft 2in</option>
+					<option value="6-3" >6ft 3in</option>
+					<option value="6-4" >6ft 4in</option>
+					<option value="6-5" >6ft 5in</option>
+					<option value="6-6" >6ft 6in</option>
+					<option value="6-7" >6ft 7in</option>
+					<option value="6-8" >6ft 8in</option>
+					<option value="6-9" >6ft 9in</option>
+					<option value="6-10" >6ft 10in</option>
+					<option value="6-11" >6ft 11in</option>
+					<option value="7-0" >7ft</option>												
+				</select>
+				<i></i>
+			</label>
+		</section>
+		<section class="col no-padding">
+			<label class="label">(or)
+			</label>
+		</section>
+		<section class="col">
+			<label class="select">
+				<select name="fromHeight" th:feild="*{fromHeight}" size="1" class="form-control" id="CMSFROM" onchange="cmsToFeet(this.value, 'FEETFROM')">
+					<option value="0"> Cms </option>
+					<option value="137">137cm</option>
+					<option value="138">138cm</option>
+					<option value="139">139cm</option>
+					<option value="140">140cm</option>
+					<option value="141">141cm</option>
+					<option value="142">142cm</option>
+					<option value="143">143cm</option>
+					<option value="144">144cm</option>
+					<option value="145">145cm</option>
+					<option value="146">146cm</option>
+					<option value="147">147cm</option>
+					<option value="148">148cm</option>
+					<option value="149">149cm</option>
+					<option value="150">150cm</option>
+					<option value="151">151cm</option>
+					<option value="152">152cm</option>
+					<option value="153">153cm</option>
+					<option value="154">154cm</option>
+					<option value="155">155cm</option>
+					<option value="156">156cm</option>
+					<option value="157">157cm</option>
+					<option value="158">158cm</option>
+					<option value="159">159cm</option>
+					<option value="160">160cm</option>
+					<option value="161">161cm</option>
+					<option value="162">162cm</option>
+					<option value="163">163cm</option>
+					<option value="164">164cm</option>
+					<option value="165">165cm</option>
+					<option value="166">166cm</option>
+					<option value="167">167cm</option>
+					<option value="168">168cm</option>
+					<option value="169">169cm</option>
+					<option value="170">170cm</option>
+					<option value="171">171cm</option>
+					<option value="172">172cm</option>
+					<option value="173">173cm</option>
+					<option value="174">174cm</option>
+					<option value="175">175cm</option>
+					<option value="176">176cm</option>
+					<option value="177">177cm</option>
+					<option value="178">178cm</option>
+					<option value="179">179cm</option>
+					<option value="180">180cm</option>
+					<option value="181">181cm</option>
+					<option value="182">182cm</option>
+					<option value="183">183cm</option>
+					<option value="184">184cm</option>
+					<option value="185">185cm</option>
+					<option value="186">186cm</option>
+					<option value="187">187cm</option>
+					<option value="188">188cm</option>
+					<option value="189">189cm</option>
+					<option value="190">190cm</option>
+					<option value="191">191cm</option>
+					<option value="192">192cm</option>
+					<option value="193">193cm</option>
+					<option value="194">194cm</option>
+					<option value="195">195cm</option>
+					<option value="196">196cm</option>
+					<option value="197">197cm</option>
+					<option value="198">198cm</option>
+					<option value="199">199cm</option>
+					<option value="200">200cm</option>
+					<option value="201">201cm</option>
+					<option value="202">202cm</option>
+					<option value="203">203cm</option>
+					<option value="204">204cm</option>
+					<option value="205">205cm</option>
+					<option value="206">206cm</option>
+					<option value="207">207cm</option>
+					<option value="208">208cm</option>
+					<option value="209">209cm</option>
+					<option value="210">210cm</option>
+					<option value="211">211cm</option>
+					<option value="212">212cm</option>
+					<option value="213">213cm</option>
+				</select>
+				<i></i>
+			</label>
+		</section>
 		
-		
-				<div th:fragment="searchResults" class="row row-new-1" th:each="member : ${members}">
-										<div class="col-md-4">																
-										<img th:src="@{img/user.jpg}"   class="img-responsive md-margin-bottom-10" 
-											th:if="${member.gender=='M'}"></img>											
-										<img th:src="@{img/place_holder.png}"   class="img-responsive md-margin-bottom-10" 
-											th:if="${member.gender=='F'}"></img>
-										
-											
-											<!--<a class="btn-u btn-u-sm" href="#">Change Picture</a>-->
-										</div>
-										<div class="col-md-8">
-											<div class="row">
-												<div class="col-md-5">
-													<h2><label class="label no-padding" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label></h2>
-													<label class="label fleft no-padding">Profile Created For: </label><label class="label fleft no-padding" th:text="${member.profileFor}"></label>
-												</div>
-												<div class="col-md-7">
-													
-												</div>
-											</div>
-											
-											<div class="row">
-												<div class="col-md-1">
-													<label class="label no-padding" ><strong>Age:</strong></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding" th:text="${member.age} + ' years'"></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding"><strong>Height: </strong></label>
-												</div>
-												<div class="col-md-2">
-													<label class="label no-padding" th:text="${member.personalDetails.height} + ' cm'"></label>
-												</div>
-												<div class="col-md-7">
-												</div>	
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Father's Name:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding" th:text="${member.personalDetails.fatherName}"></label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Mother's Name:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding" th:text="${member.personalDetails.motherName}">Surekha Ancahliya</label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Location:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding" th:text="${member.personalDetails.residingcity}"></label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Education:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding" th:text="${member.personalDetails.education}"></label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													<label class="label no-padding"><strong>Profession:</strong></label>
-												</div>
-												<div class="col-md-9">
-													<label class="label no-padding" th:text="${member.personalDetails.occupation}"></label>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-3">
-													
-												</div>
-												<div class="col-md-3"></div>
-												<div class="col-md-6">
-													<a class="btn-u btn-u-sm" th:href="@{/profile?status=success(userId=${member.memberId})}">View Full Profile</a>
-												</div>
-											</div>
-										
-										</div>	
-									</div>
-									
-									
-									
-									
-									<div th:fragment="MinMaxAge" class="row">
-												<section class="col1">
-													<label class="label">Prefered Age:</label>
-												</section>
-												<section class="col1 col-4">
-													<label class="select">
-														<select name="minAge" th:feild="*{minAge}"  id="fromage" >
-															<option value="0" >From</option>
-															<option value="18" selected="selected">18</option>
-															<option value="19">19</option>
-															<option value="20">20</option>
-															<option value="21">21</option>
-															<option value="22">22</option>
-															<option value="23">23</option>
-															<option value="24">24</option>
-															<option value="25">25</option>
-															<option value="26">26</option>
-															<option value="27">27</option>
-															<option value="28">28</option>
-															<option value="29">29</option>
-															<option value="30">30</option>
-															<option value="31">31</option>
-															<option value="32">32</option>
-															<option value="33">33</option>
-															<option value="34">34</option>
-															<option value="35">35</option>
-															<option value="36">36</option>
-															<option value="37">37</option>
-															<option value="38">38</option>
-															<option value="39">39</option>
-															<option value="40">40</option>
-															<option value="41">41</option>
-															<option value="42">42</option>
-															<option value="43">43</option>
-															<option value="44">44</option>  
-															<option value="45">45</option>
-															<option value="46">46</option>
-															<option value="47">47</option>
-															<option value="48">48</option>
-															<option value="49">49</option>
-															<option value="50">50</option>
-															<option value="51">51</option>
-														</select>
-														<i></i>
-													</label>
-												</section>
-												<section class="col">
-													<label class="label">To</label>
-												</section>
-												<section class="col1 col-4">
-													<label class="select">
-														<select name="maxAge" th:feild="*{maxAge}"  id="toage">
-															<option value="0" >To</option>
-															<option value="18">18</option>
-															<option value="19">19</option>
-															<option value="20">20</option>
-															<option value="21">21</option>
-															<option value="22">22</option>
-															<option value="23">23</option>
-															<option value="24">24</option>
-															<option value="25">25</option>
-															<option value="26">26</option>
-															<option value="27">27</option>
-															<option value="28">28</option>
-															<option value="29">29</option>
-															<option value="30">30</option>
-															<option value="31">31</option>
-															<option value="32">32</option>
-															<option value="33">33</option>
-															<option value="34">34</option>
-															<option value="35">35</option>
-															<option value="36">36</option>
-															<option value="37">37</option>
-															<option value="38">38</option>
-															<option value="39">39</option>
-															<option value="40" selected="selected">40</option>
-															<option value="41">41</option>
-															<option value="42">42</option>
-															<option value="43">43</option>
-															<option value="44">44</option>
-															<option value="45">45</option>
-															<option value="46">46</option>
-															<option value="47">47</option>
-															<option value="48">48</option>
-															<option value="49">49</option>
-															<option value="50">50</option>
-															<option value="51">51</option>
-														</select>
-														<i></i>
-													</label>
-												</section>
-											</div>
-											
-											
-											<div th:fragment="FeetToCm" class="row">
-												<section class="col1">
-													<label class="label"> Height:</label>
-												</section>
-												<section class="col">
-													<label class="select">
-														<select size="1" name="fromfeet"  class="form-control"  id="FEETFROM" onchange="feetToCms(this.value, 'CMSFROM')">
-															<option value="0">Feet</option>
-															<option value="4-6" >4ft 6in</option>
-															<option value="4-7" >4ft 7in</option>
-															<option value="4-8" >4ft 8in</option>
-															<option value="4-9" >4ft 9in</option>
-															<option value="4-10" >4ft 10in</option>
-															<option value="4-11" >4ft 11in</option>
-															<option value="5-0" >5ft</option>
-															<option value="5-1" >5ft 1in</option>
-															<option value="5-2" >5ft 2in</option>
-															<option value="5-3" >5ft 3in</option>
-															<option value="5-4" >5ft 4in</option>
-															<option value="5-5" >5ft 5in</option>
-															<option value="5-6" >5ft 6in</option>
-															<option value="5-7" >5ft 7in</option>
-															<option value="5-8" >5ft 8in</option>
-															<option value="5-9" >5ft 9in</option>
-															<option value="5-10" >5ft 10in</option>
-															<option value="5-11" >5ft 11in</option>
-															<option value="6-0" >6ft</option>
-															<option value="6-1" >6ft 1in</option>
-															<option value="6-2" >6ft 2in</option>
-															<option value="6-3" >6ft 3in</option>
-															<option value="6-4" >6ft 4in</option>
-															<option value="6-5" >6ft 5in</option>
-															<option value="6-6" >6ft 6in</option>
-															<option value="6-7" >6ft 7in</option>
-															<option value="6-8" >6ft 8in</option>
-															<option value="6-9" >6ft 9in</option>
-															<option value="6-10" >6ft 10in</option>
-															<option value="6-11" >6ft 11in</option>
-															<option value="7-0" >7ft</option>												
-														</select>
-														<i></i>
-													</label>
-												</section>
-												<section class="col no-padding">
-													<label class="label">(or)
-													</label>
-												</section>
-												<section class="col">
-													<label class="select">
-														<select name="fromHeight" th:feild="*{fromHeight}" size="1" class="form-control" id="CMSFROM" onchange="cmsToFeet(this.value, 'FEETFROM')">
-															<option value="0"> Cms </option>
-															<option value="137">137cm</option>
-															<option value="138">138cm</option>
-															<option value="139">139cm</option>
-															<option value="140">140cm</option>
-															<option value="141">141cm</option>
-															<option value="142">142cm</option>
-															<option value="143">143cm</option>
-															<option value="144">144cm</option>
-															<option value="145">145cm</option>
-															<option value="146">146cm</option>
-															<option value="147">147cm</option>
-															<option value="148">148cm</option>
-															<option value="149">149cm</option>
-															<option value="150">150cm</option>
-															<option value="151">151cm</option>
-															<option value="152">152cm</option>
-															<option value="153">153cm</option>
-															<option value="154">154cm</option>
-															<option value="155">155cm</option>
-															<option value="156">156cm</option>
-															<option value="157">157cm</option>
-															<option value="158">158cm</option>
-															<option value="159">159cm</option>
-															<option value="160">160cm</option>
-															<option value="161">161cm</option>
-															<option value="162">162cm</option>
-															<option value="163">163cm</option>
-															<option value="164">164cm</option>
-															<option value="165">165cm</option>
-															<option value="166">166cm</option>
-															<option value="167">167cm</option>
-															<option value="168">168cm</option>
-															<option value="169">169cm</option>
-															<option value="170">170cm</option>
-															<option value="171">171cm</option>
-															<option value="172">172cm</option>
-															<option value="173">173cm</option>
-															<option value="174">174cm</option>
-															<option value="175">175cm</option>
-															<option value="176">176cm</option>
-															<option value="177">177cm</option>
-															<option value="178">178cm</option>
-															<option value="179">179cm</option>
-															<option value="180">180cm</option>
-															<option value="181">181cm</option>
-															<option value="182">182cm</option>
-															<option value="183">183cm</option>
-															<option value="184">184cm</option>
-															<option value="185">185cm</option>
-															<option value="186">186cm</option>
-															<option value="187">187cm</option>
-															<option value="188">188cm</option>
-															<option value="189">189cm</option>
-															<option value="190">190cm</option>
-															<option value="191">191cm</option>
-															<option value="192">192cm</option>
-															<option value="193">193cm</option>
-															<option value="194">194cm</option>
-															<option value="195">195cm</option>
-															<option value="196">196cm</option>
-															<option value="197">197cm</option>
-															<option value="198">198cm</option>
-															<option value="199">199cm</option>
-															<option value="200">200cm</option>
-															<option value="201">201cm</option>
-															<option value="202">202cm</option>
-															<option value="203">203cm</option>
-															<option value="204">204cm</option>
-															<option value="205">205cm</option>
-															<option value="206">206cm</option>
-															<option value="207">207cm</option>
-															<option value="208">208cm</option>
-															<option value="209">209cm</option>
-															<option value="210">210cm</option>
-															<option value="211">211cm</option>
-															<option value="212">212cm</option>
-															<option value="213">213cm</option>
-														</select>
-														<i></i>
-													</label>
-												</section>
-												
-												<section class="col1 col-1">
-													<label class="label">To
-													</label>
-												</section>
-												<section class="col">
-													<label class="select">
-														<select size="1" name="fromfeet"  class="form-control"  id="FEETTO" onchange="feetToCms(this.value, 'CMSTO')">
-															<option value="0">Feet</option>
-															<option value="4-6" >4ft 6in</option>
-															<option value="4-7" >4ft 7in</option>
-															<option value="4-8" >4ft 8in</option>
-															<option value="4-9" >4ft 9in</option>
-															<option value="4-10" >4ft 10in</option>
-															<option value="4-11" >4ft 11in</option>
-															<option value="5-0" >5ft</option>
-															<option value="5-1" >5ft 1in</option>
-															<option value="5-2" >5ft 2in</option>
-															<option value="5-3" >5ft 3in</option>
-															<option value="5-4" >5ft 4in</option>
-															<option value="5-5" >5ft 5in</option>
-															<option value="5-6" >5ft 6in</option>
-															<option value="5-7" >5ft 7in</option>
-															<option value="5-8" >5ft 8in</option>
-															<option value="5-9" >5ft 9in</option>
-															<option value="5-10" >5ft 10in</option>
-															<option value="5-11" >5ft 11in</option>
-															<option value="6-0" >6ft</option>
-															<option value="6-1" >6ft 1in</option>
-															<option value="6-2" >6ft 2in</option>
-															<option value="6-3" >6ft 3in</option>
-															<option value="6-4" >6ft 4in</option>
-															<option value="6-5" >6ft 5in</option>
-															<option value="6-6" >6ft 6in</option>
-															<option value="6-7" >6ft 7in</option>
-															<option value="6-8" >6ft 8in</option>
-															<option value="6-9" >6ft 9in</option>
-															<option value="6-10" >6ft 10in</option>
-															<option value="6-11" >6ft 11in</option>
-															<option value="7-0" >7ft</option>												
-														</select>
-														<i></i>
-													</label>
-												</section>
-												<section class="col no-padding">
-													<label class="label">(or)
-													</label>
-												</section>
-												<section class="col">
-													<label class="select">
-														<select name="toHeight" th:feild="*{toHeight}" size="1" class="form-control" id="CMSTO" onchange="cmsToFeet(this.value, 'FEETTO')">
-															<option value="0"> Cms </option>
-															<option value="137">137cm</option>
-															<option value="138">138cm</option>
-															<option value="139">139cm</option>
-															<option value="140">140cm</option>
-															<option value="141">141cm</option>
-															<option value="142">142cm</option>
-															<option value="143">143cm</option>
-															<option value="144">144cm</option>
-															<option value="145">145cm</option>
-															<option value="146">146cm</option>
-															<option value="147">147cm</option>
-															<option value="148">148cm</option>
-															<option value="149">149cm</option>
-															<option value="150">150cm</option>
-															<option value="151">151cm</option>
-															<option value="152">152cm</option>
-															<option value="153">153cm</option>
-															<option value="154">154cm</option>
-															<option value="155">155cm</option>
-															<option value="156">156cm</option>
-															<option value="157">157cm</option>
-															<option value="158">158cm</option>
-															<option value="159">159cm</option>
-															<option value="160">160cm</option>
-															<option value="161">161cm</option>
-															<option value="162">162cm</option>
-															<option value="163">163cm</option>
-															<option value="164">164cm</option>
-															<option value="165">165cm</option>
-															<option value="166">166cm</option>
-															<option value="167">167cm</option>
-															<option value="168">168cm</option>
-															<option value="169">169cm</option>
-															<option value="170">170cm</option>
-															<option value="171">171cm</option>
-															<option value="172">172cm</option>
-															<option value="173">173cm</option>
-															<option value="174">174cm</option>
-															<option value="175">175cm</option>
-															<option value="176">176cm</option>
-															<option value="177">177cm</option>
-															<option value="178">178cm</option>
-															<option value="179">179cm</option>
-															<option value="180">180cm</option>
-															<option value="181">181cm</option>
-															<option value="182">182cm</option>
-															<option value="183">183cm</option>
-															<option value="184">184cm</option>
-															<option value="185">185cm</option>
-															<option value="186">186cm</option>
-															<option value="187">187cm</option>
-															<option value="188">188cm</option>
-															<option value="189">189cm</option>
-															<option value="190">190cm</option>
-															<option value="191">191cm</option>
-															<option value="192">192cm</option>
-															<option value="193">193cm</option>
-															<option value="194">194cm</option>
-															<option value="195">195cm</option>
-															<option value="196">196cm</option>
-															<option value="197">197cm</option>
-															<option value="198">198cm</option>
-															<option value="199">199cm</option>
-															<option value="200">200cm</option>
-															<option value="201">201cm</option>
-															<option value="202">202cm</option>
-															<option value="203">203cm</option>
-															<option value="204">204cm</option>
-															<option value="205">205cm</option>
-															<option value="206">206cm</option>
-															<option value="207">207cm</option>
-															<option value="208">208cm</option>
-															<option value="209">209cm</option>
-															<option value="210">210cm</option>
-															<option value="211">211cm</option>
-															<option value="212">212cm</option>
-															<option value="213">213cm</option>
-														</select>
-														<i></i>
-													</label>
-												</section>
-												
-											</div>
+		<section class="col1 col-1">
+			<label class="label">To
+			</label>
+		</section>
+		<section class="col">
+			<label class="select">
+				<select size="1" name="fromfeet"  class="form-control"  id="FEETTO" onchange="feetToCms(this.value, 'CMSTO')">
+					<option value="0">Feet</option>
+					<option value="4-6" >4ft 6in</option>
+					<option value="4-7" >4ft 7in</option>
+					<option value="4-8" >4ft 8in</option>
+					<option value="4-9" >4ft 9in</option>
+					<option value="4-10" >4ft 10in</option>
+					<option value="4-11" >4ft 11in</option>
+					<option value="5-0" >5ft</option>
+					<option value="5-1" >5ft 1in</option>
+					<option value="5-2" >5ft 2in</option>
+					<option value="5-3" >5ft 3in</option>
+					<option value="5-4" >5ft 4in</option>
+					<option value="5-5" >5ft 5in</option>
+					<option value="5-6" >5ft 6in</option>
+					<option value="5-7" >5ft 7in</option>
+					<option value="5-8" >5ft 8in</option>
+					<option value="5-9" >5ft 9in</option>
+					<option value="5-10" >5ft 10in</option>
+					<option value="5-11" >5ft 11in</option>
+					<option value="6-0" >6ft</option>
+					<option value="6-1" >6ft 1in</option>
+					<option value="6-2" >6ft 2in</option>
+					<option value="6-3" >6ft 3in</option>
+					<option value="6-4" >6ft 4in</option>
+					<option value="6-5" >6ft 5in</option>
+					<option value="6-6" >6ft 6in</option>
+					<option value="6-7" >6ft 7in</option>
+					<option value="6-8" >6ft 8in</option>
+					<option value="6-9" >6ft 9in</option>
+					<option value="6-10" >6ft 10in</option>
+					<option value="6-11" >6ft 11in</option>
+					<option value="7-0" >7ft</option>												
+				</select>
+				<i></i>
+			</label>
+		</section>
+		<section class="col no-padding">
+			<label class="label">(or)
+			</label>
+		</section>
+		<section class="col">
+			<label class="select">
+				<select name="toHeight" th:feild="*{toHeight}" size="1" class="form-control" id="CMSTO" onchange="cmsToFeet(this.value, 'FEETTO')">
+					<option value="0"> Cms </option>
+					<option value="137">137cm</option>
+					<option value="138">138cm</option>
+					<option value="139">139cm</option>
+					<option value="140">140cm</option>
+					<option value="141">141cm</option>
+					<option value="142">142cm</option>
+					<option value="143">143cm</option>
+					<option value="144">144cm</option>
+					<option value="145">145cm</option>
+					<option value="146">146cm</option>
+					<option value="147">147cm</option>
+					<option value="148">148cm</option>
+					<option value="149">149cm</option>
+					<option value="150">150cm</option>
+					<option value="151">151cm</option>
+					<option value="152">152cm</option>
+					<option value="153">153cm</option>
+					<option value="154">154cm</option>
+					<option value="155">155cm</option>
+					<option value="156">156cm</option>
+					<option value="157">157cm</option>
+					<option value="158">158cm</option>
+					<option value="159">159cm</option>
+					<option value="160">160cm</option>
+					<option value="161">161cm</option>
+					<option value="162">162cm</option>
+					<option value="163">163cm</option>
+					<option value="164">164cm</option>
+					<option value="165">165cm</option>
+					<option value="166">166cm</option>
+					<option value="167">167cm</option>
+					<option value="168">168cm</option>
+					<option value="169">169cm</option>
+					<option value="170">170cm</option>
+					<option value="171">171cm</option>
+					<option value="172">172cm</option>
+					<option value="173">173cm</option>
+					<option value="174">174cm</option>
+					<option value="175">175cm</option>
+					<option value="176">176cm</option>
+					<option value="177">177cm</option>
+					<option value="178">178cm</option>
+					<option value="179">179cm</option>
+					<option value="180">180cm</option>
+					<option value="181">181cm</option>
+					<option value="182">182cm</option>
+					<option value="183">183cm</option>
+					<option value="184">184cm</option>
+					<option value="185">185cm</option>
+					<option value="186">186cm</option>
+					<option value="187">187cm</option>
+					<option value="188">188cm</option>
+					<option value="189">189cm</option>
+					<option value="190">190cm</option>
+					<option value="191">191cm</option>
+					<option value="192">192cm</option>
+					<option value="193">193cm</option>
+					<option value="194">194cm</option>
+					<option value="195">195cm</option>
+					<option value="196">196cm</option>
+					<option value="197">197cm</option>
+					<option value="198">198cm</option>
+					<option value="199">199cm</option>
+					<option value="200">200cm</option>
+					<option value="201">201cm</option>
+					<option value="202">202cm</option>
+					<option value="203">203cm</option>
+					<option value="204">204cm</option>
+					<option value="205">205cm</option>
+					<option value="206">206cm</option>
+					<option value="207">207cm</option>
+					<option value="208">208cm</option>
+					<option value="209">209cm</option>
+					<option value="210">210cm</option>
+					<option value="211">211cm</option>
+					<option value="212">212cm</option>
+					<option value="213">213cm</option>
+				</select>
+				<i></i>
+			</label>
+		</section>
+	</div>
+	
+	<div th:fragment="footer" class="footer-v1">
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<!-- About -->
+					<div class="col-md-3 md-margin-bottom-40">
+						<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo1.png" alt="company logo" /></a>
+						<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
+						<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
+					</div><!--/col-md-3-->
+					<!-- End About -->
+
+					<!-- Latest -->
+					<div class="col-md-3 md-margin-bottom-40">
+						<div class="posts">
+							<div class="headline"><h2>Latest Blogs</h2></div>
+							<ul class="list-unstyled latest-list">
+								<li>
+									<a href="#">Name of the Blog</a>
+									<small>January 8, 2017</small>
+								</li>
+								<li>
+									<a href="#">Name of the Blog</a>
+									<small>December 23, 2016</small>
+								</li>
+								<li>
+									<a href="#">Name of the Blog</a>
+									<small>November 15, 2016</small>
+								</li>
+							</ul>
+						</div>
+					</div><!--/col-md-3-->
+					<!-- End Latest -->
+
+					<!-- Link List -->
+					<div class="col-md-3 md-margin-bottom-40">
+						<div class="headline"><h2>Help &amp; Support</h2></div>
+						<ul class="list-unstyled link-list">
+							<li><a href="#">24x7 Live help</a><i class="fa fa-angle-right"></i></li>
+							<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
+							<li><a href="#">Success Stories</a><i class="fa fa-angle-right"></i></li>
+							<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
+							<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
+						</ul>
+					</div><!--/col-md-3-->
+					<!-- End Link List -->
+
+					<!-- Address -->
+					<div class="col-md-3 map-img md-margin-bottom-40">
+						<div class="headline"><h2>Matrimony on Mobile</h2></div>
+						<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Anroid">
+							<img src="img/a.png" style="width:40px;" />
+						</a>&nbsp;&nbsp;  
+						<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Mac">
+							<img src="img/ap.png" style="width:40px;" />&nbsp;&nbsp; 
+						</a>
+						<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Windows">
+							<img src="img/w.png" style="width:40px;" />
+						</a>
+						<div class="headline"><h2>Follow Us On</h2></div>
+						<ul class="footer-socials list-inline" >
+							
+							<li>
+								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Facebook">
+									<i class="fa fa-facebook" style="font-size:22px"></i>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Google Plus">
+									<i class="fa fa-google-plus" style="font-size:22px"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Linkedin">
+									<i class="fa fa-linkedin" style="font-size:22px"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Pinterest">
+									<i class="fa fa-pinterest" style="font-size:22px"></i>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Twitter">
+									<i class="fa fa-twitter" style="font-size:22px"></i>
+								</a>
+							</li>
+						</ul>
+					</div><!--/col-md-3-->
+					<!-- End Address -->
+				</div>
+			</div>
+		</div><!--/footer-->
+
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<p>
+							2017 &copy; All Rights Reserved.
+							<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+						</p>
+					</div>
+
+					<!-- Social Links -->
+					<div class="col-md-6">
+							
+					</div>
+				</div>
+			</div><!--/copyright-->
+		</div>
+	</div>
+	
 </html>
 
 

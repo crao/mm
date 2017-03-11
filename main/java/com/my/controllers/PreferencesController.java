@@ -74,8 +74,8 @@ public class PreferencesController {
 				
 		preferences = new Preferences();		
 		preferences.setMember(member);
-		preferences.setMinAge(preferencesBinding.getMinAge());
-		preferences.setMaxAge(preferencesBinding.getMaxAge());
+		preferences.setFromAge(preferencesBinding.getFromAge());
+		preferences.setToAge(preferencesBinding.getToAge());
 		preferences.setFromHeight(preferencesBinding.getFromHeight());
 		preferences.setToHeight(preferencesBinding.getToHeight());
 		preferences.setHaveChildren(preferencesBinding.getHaveChildren());
@@ -101,11 +101,11 @@ public class PreferencesController {
 		preferences.setCitizenship(preferencesBinding.getCitizenship());
 		preferences.setGothra(preferencesBinding.getGothra());
 		
-		long preferencesSave = preferencesService.savePreferences(preferences);
-		if(preferencesSave>=1)
+		Preferences preferencesSave = preferencesService.savePreferences(preferences);
+		if(preferencesSave!=null)
 			status="success";
+		member.setPreferences(preferencesSave);
 		
-		long memberId = member.getMemberId();
 		List<Object[]> results = matchDao.matches(member,preferences);
 		
 		for(Object[] result:results){

@@ -94,6 +94,8 @@ public class RegistrationController {
 		member.setPassword(register.getPassword());
 		member.setCountryCode(Integer.parseInt(register.getCountryCode().substring(1)));
 		member.setMobile(register.getMobile());
+		member.setCreatedOn(now);
+		member.setUpdatedOn(now);
 		long userId=-1;
 		String status=null;
 		try{

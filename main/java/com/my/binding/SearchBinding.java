@@ -7,6 +7,7 @@ public class SearchBinding {
 	private int fromHeight;
 	private int toHeight;
 	private String maritalStatus;
+
 	public int getFromAge() {
 		return fromAge;
 	}
