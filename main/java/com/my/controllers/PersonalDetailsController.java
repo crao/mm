@@ -28,7 +28,7 @@ public class PersonalDetailsController {
 	
 	
 	@RequestMapping(value="/personaldetails",method=RequestMethod.GET)
-	public String initialize(Model model,@RequestParam(value="status",required=false)String status){
+	public String initialize(Model model,@RequestParam(value="status",required=false)String status, @RequestParam(value="userId",required=false)String userId){
 		model.addAttribute("personaldetails", new PersonalDetailsModel());
 		if(status==null)
 			return "personaldetails";
@@ -41,19 +41,32 @@ public class PersonalDetailsController {
 			BindingResult bindingResult,
 			Model model,
 			HttpSession httpSession){
+		
+		Long userId = (Long)httpSession.getAttribute("userId");
+		
+		
 		String status=null;
 		Object memberObj = httpSession.getAttribute("member");
-		Member member=null;
-		if(memberObj!=null)
+		Member member= memberService.getMemberById(userId);
+		if(memberObj!=null&& member==null)
 			member = (Member) memberObj;
-		PersonalDetails personaldetailsBean = new PersonalDetails();		 
+		
+		PersonalDetails personaldetailsBean = personalDetailsService.getPersonalDetailsByMember(member);
+		
+		if(personaldetailsBean!=null){
+			return "redirect:/personaldetails?status="+status+"?userId="+userId;
+		} 
+		personaldetailsBean = new PersonalDetails();		 
 	    personaldetailsBean.setMember(member);
 	    personaldetailsBean.setMaritalStatus(personaldetailsModel.getMaritalStatus());
+	    personaldetailsBean.setBirthTime(personaldetailsModel.getBirthTime());
+	    personaldetailsBean.setBirthPlace(personaldetailsModel.getBirthPlace());
 		personaldetailsBean.setHeight(personaldetailsModel.getHeight());
 		personaldetailsBean.setWeight(personaldetailsModel.getWeight());
 		personaldetailsBean.setGothra(personaldetailsModel.getGothra());
 		personaldetailsBean.setBodyType(personaldetailsModel.getBodyType());
 		personaldetailsBean.setComplexion(personaldetailsModel.getComplexion());
+		personaldetailsBean.setPhysicalStatus(personaldetailsModel.getPhysicalStatus());
 		personaldetailsBean.setManglik(personaldetailsModel.getManglik());
 		personaldetailsBean.setDosh(personaldetailsModel.getDosh());
 		personaldetailsBean.setStarSign(personaldetailsModel.getStar());
@@ -63,7 +76,7 @@ public class PersonalDetailsController {
 		personaldetailsBean.setSmokingHabits(personaldetailsModel.getSmokinghabits());
 		personaldetailsBean.setFamilyStatus(personaldetailsModel.getFamilystatus());
 		personaldetailsBean.setFamilyType(personaldetailsModel.getFamilytype());
-		personaldetailsBean.setFamilyValues(personaldetailsModel.getFamilyvalue());
+		personaldetailsBean.setFamilyValues(personaldetailsModel.getFamilyValues());
 		personaldetailsBean.setEducation(personaldetailsModel.getEducation());
 		personaldetailsBean.setOccupationcategory(personaldetailsModel.getOccupationcategory());
 		personaldetailsBean.setOccupation(personaldetailsModel.getOccupation());
@@ -77,14 +90,15 @@ public class PersonalDetailsController {
 		personaldetailsBean.setCountryP(personaldetailsModel.getCountryP());
 		personaldetailsBean.setResidingstateP(personaldetailsModel.getResidingstateP());
 		personaldetailsBean.setResidingcityP(personaldetailsModel.getResidingcityP());
+		personaldetailsBean.setCitizenship(personaldetailsModel.getCitizenship());
 		
-		httpSession.setAttribute("member", member);
 		model.addAttribute("preferences", new PreferencesBinding());
-		Long personalDetails = personalDetailsService.savePersonalDetails(personaldetailsBean);
-		
-		if(personalDetails>=1)
+		PersonalDetails personalDetails = personalDetailsService.savePersonalDetails(personaldetailsBean);
+		member.setPersonalDetails(personalDetails);
+		httpSession.setAttribute("member", member);
+		if(personalDetails!=null)
 			status="success";
-		return "redirect:/personaldetails?status="+status;
+		return "redirect:/personaldetails?status="+status+"?userId="+userId;
 	}
 
 }

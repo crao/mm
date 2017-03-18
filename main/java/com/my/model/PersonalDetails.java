@@ -1,5 +1,6 @@
 package com.my.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,16 +17,21 @@ public class PersonalDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private long userId;
+	private String birthTime;
+	
+	private String birthPlace;
 	private String maritalStatus;
 	private int height;
 	private int weight;
+	
 	private String bodyType;
 	private String complexion;
 	private String physicalStatus;
 	private String education;
 	private String occupation;
 	private String occupationcategory;
-	private String income; 
+	private int income; 
+	
 	private String incomecurrency;
 	
 	private String eatingHabits;
@@ -33,6 +39,7 @@ public class PersonalDetails {
 	private String smokingHabits;
 	
 	private String gothra;
+	
 	private String manglik;
 	private String starSign;
 	private String raasi; 
@@ -46,18 +53,61 @@ public class PersonalDetails {
 	private String country;
 	private String citizenship;
 	private String fatherName;
+
 	private String motherName;
+	
 	private String countryP;
 
 	private String residingstateP;
 	private String residingcityP;
 	
-	public String getFatherName() {
-		return fatherName;
+
+	public int getHeight() {
+		return height;
 	}
 
-	public void setFatherName(String fatherName) {
-		this.fatherName = fatherName;
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public String getBirthTime() {
+		return birthTime;
+	}
+
+	public void setBirthTime(String birthTime) {
+		this.birthTime = birthTime;
+	}
+
+	public String getPhysicalStatus() {
+		return physicalStatus;
+	}
+
+	public void setPhysicalStatus(String physicalStatus) {
+		this.physicalStatus = physicalStatus;
+	}
+
+	public int getIncome() {
+		return income;
+	}
+
+	public void setIncome(int income) {
+		this.income = income;
+	}
+	
+	public String getGothra() {
+		return gothra;
+	}
+
+	public void setGothra(String gothra) {
+		this.gothra = gothra;
 	}
 
 	public String getMotherName() {
@@ -67,6 +117,22 @@ public class PersonalDetails {
 	public void setMotherName(String motherName) {
 		this.motherName = motherName;
 	}
+
+	public String getFatherName() {
+		return fatherName;
+	}
+
+	public void setFatherName(String fatherName) {
+		this.fatherName = fatherName;
+	}
+
+	public String getBirthPlace() {
+		return birthPlace;
+	}
+
+	public void setBirthPlace(String birthPlace) {
+		this.birthPlace = birthPlace;
+	}	
 
 	public String getCountryP() {
 		return countryP;
@@ -117,18 +183,7 @@ public class PersonalDetails {
 	public void setMaritalStatus(String maritalStatus) {
 		this.maritalStatus = maritalStatus;
 	}
-	public int getHeight() {
-		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
-	}
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
+	
 	public String getBodyType() {
 		return bodyType;
 	}
@@ -141,14 +196,7 @@ public class PersonalDetails {
 	public void setComplexion(String complexion) {
 		this.complexion = complexion;
 	}
-	public String getPhysicalStatus() {
-		return physicalStatus;
-	}
-
-	public void setPhysicalStatus(String physicalStatus) {
-		this.physicalStatus = physicalStatus;
-	}
-
+	
 	public String getEducation() {
 		return education;
 	}
@@ -169,12 +217,6 @@ public class PersonalDetails {
 		this.occupationcategory = occupationcategory;
 	}
 
-	public String getIncome() {
-		return income;
-	}
-	public void setIncome(String income) {
-		this.income = income;
-	}
 	public String getIncomePeriod() {
 		return incomecurrency;
 	}
@@ -199,13 +241,6 @@ public class PersonalDetails {
 	}
 	public void setSmokingHabits(String smokingHabits) {
 		this.smokingHabits = smokingHabits;
-	}
-	public String getGothra() {
-		return gothra;
-	}
-
-	public void setGothra(String gothra) {
-		this.gothra = gothra;
 	}
 
 	public String getManglik() {
@@ -300,4 +335,5 @@ public class PersonalDetails {
 	public void setCitizenship(String citizenship) {
 		this.citizenship = citizenship;
 	}
+
 }

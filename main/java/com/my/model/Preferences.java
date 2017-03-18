@@ -22,8 +22,8 @@ public class Preferences {
 	
 	//Basic preferences
 	
-	private int minAge;
-	private int maxAge;
+	private int fromAge;
+	private int toAge;
 	private String maritalStatus;
 	private String haveChildren;
 	private String physicalStatus;
@@ -106,17 +106,17 @@ public class Preferences {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	public int getMinAge() {
-		return minAge;
+	public int getFromAge() {
+		return fromAge;
 	}
-	public void setMinAge(int minAge) {
-		this.minAge = minAge;
+	public void setFromAge(int minAge) {
+		this.fromAge = minAge;
 	}
-	public int getMaxAge() {
-		return maxAge;
+	public int getToAge() {
+		return toAge;
 	}
-	public void setMaxAge(int maxAge) {
-		this.maxAge = maxAge;
+	public void setToAge(int maxAge) {
+		this.toAge = maxAge;
 	}
 	public String getMaritalStatus() {
 		return maritalStatus;

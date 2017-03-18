@@ -3,13 +3,20 @@ package com.my.binding;
 public class PersonalDetailsModel {
 	
 	private long userId;
+	private String birthTime;
+	
+	private String birthPlace;
+	
 	private int height;
-	private String heightInches;
+	
+
 	private String maritalStatus;
 	private int weight;
+	
 	private String bodyType;
 	private String complexion;
-	private String physicalstatus;
+	private String physicalStatus;
+	
 	private String education;
 	private String occupation;
 	private String occupationcategory;
@@ -28,7 +35,7 @@ public class PersonalDetailsModel {
 	
 	private String familystatus;
 	private String familytype;
-	private String familyvalues;
+	private String familyValues;
 	
 	private String residingstate;
 	private String residingcity;
@@ -41,6 +48,55 @@ public class PersonalDetailsModel {
 
 	private String residingstateP;
 	private String residingcityP;
+	private String citizenship;
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	
+	public String getCitizenship() {
+		return citizenship;
+	}
+
+	public void setCitizenship(String citizenship) {
+		this.citizenship = citizenship;
+	}
+
+	public String getBirthTime() {
+		return birthTime;
+	}
+
+	public void setBirthTime(String birthTime) {
+		this.birthTime = birthTime;
+	}
+	
+	public String getPhysicalStatus() {
+		return physicalStatus;
+	}
+
+	public void setPhysicalStatus(String physicalStatus) {
+		this.physicalStatus = physicalStatus;
+	}
+
+	public String getBirthPlace() {
+		return birthPlace;
+	}
+
+	public void setBirthPlace(String birthPlace) {
+		this.birthPlace = birthPlace;
+	}
 	
 	public String getCountryP() {
 		return countryP;
@@ -90,22 +146,7 @@ public class PersonalDetailsModel {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
 	
-	public String getHeightInches() {
-		return heightInches;
-	}
-
-	public void setHeightInches(String heightInches) {
-		this.heightInches = heightInches;
-	}
 
 	public String getMaritalStatus() {
 		return maritalStatus;
@@ -114,12 +155,6 @@ public class PersonalDetailsModel {
 		this.maritalStatus = maritalStatus;
 	}
 	
-	public int getWeight() {
-		return weight;
-	}
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
 	public String getBodyType() {
 		return bodyType;
 	}
@@ -132,14 +167,7 @@ public class PersonalDetailsModel {
 	public void setComplexion(String complexion) {
 		this.complexion = complexion;
 	}
-	public String getPhysicalstatus() {
-		return physicalstatus;
-	}
-
-	public void setPhysicalstatus(String physicalstatus) {
-		this.physicalstatus = physicalstatus;
-	}
-
+	
 	public String getEducation() {
 		return education;
 	}
@@ -255,12 +283,14 @@ public class PersonalDetailsModel {
 		this.familytype = familytype;
 	}
 
-	public String getFamilyvalue() {
-		return familyvalues;
+	
+	
+	public String getFamilyValues() {
+		return familyValues;
 	}
 
-	public void setFamilyvalue(String familyvalue) {
-		this.familyvalues = familyvalue;
+	public void setFamilyValues(String familyValues) {
+		this.familyValues = familyValues;
 	}
 
 	public String getResidingstate() {
