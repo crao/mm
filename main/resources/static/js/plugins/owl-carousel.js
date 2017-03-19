@@ -16,12 +16,13 @@ var OwlCarousel = function () {
             })
             jQuery(".prev-v1").click(function(){
                 owl.trigger('owl.prev');
-            })
+            });
 
 
 	        //Owl Slider v2
 			var owl1 = jQuery(".owl-slider-v2").owlCarousel({
-                itemsDesktop : [1000,5],
+				items : 4,
+                itemsDesktop : [1000,4],
                 itemsDesktopSmall : [900,4],
                 itemsTablet: [600,3],
                 itemsMobile : [479,2],
@@ -32,9 +33,59 @@ var OwlCarousel = function () {
             })
             jQuery(".prev-v2").click(function(){
                 owl1.trigger('owl.prev');
+            });
+			
+			
+			//Owl Slider v2
+			var owl11 = jQuery(".owl-slider-v12").owlCarousel({
+				items : 4,
+                itemsDesktop : [1000,4],
+                itemsDesktopSmall : [900,4],
+                itemsTablet: [600,3],
+                itemsMobile : [479,2],
+                slideSpeed: 1000
+            });
+            jQuery(".next-v12").click(function(){
+                owl11.trigger('owl.next');
             })
+            jQuery(".prev-v12").click(function(){
+                owl11.trigger('owl.prev');
+            });
+			
+			
+			//Owl Slider v2
+			var owl12 = jQuery(".owl-slider-v22").owlCarousel({
+				items : 4,
+                itemsDesktop : [1000,4],
+                itemsDesktopSmall : [900,4],
+                itemsTablet: [600,3],
+                itemsMobile : [479,2],
+                slideSpeed: 1000
+            });
+            jQuery(".next-v22").click(function(){
+                owl12.trigger('owl.next');
+            })
+            jQuery(".prev-v22").click(function(){
+                owl12.trigger('owl.prev');
+            });
 
-
+			//Owl Slider v2
+			var owl13 = jQuery(".owl-slider-v32").owlCarousel({
+				items : 4,
+                itemsDesktop : [1000,4],
+                itemsDesktopSmall : [900,4],
+                itemsTablet: [600,3],
+                itemsMobile : [479,2],
+                slideSpeed: 1000
+            });
+            jQuery(".next-v32").click(function(){
+                owl13.trigger('owl.next');
+            })
+            jQuery(".prev-v32").click(function(){
+                owl13.trigger('owl.prev');
+            });
+			
+			
 	        //Owl Slider v3
 			jQuery(".owl-slider-v3").owlCarousel({
             	items : 7,
