@@ -200,3 +200,5 @@ label.one{display:inherit}
 .border-right{border-right: 1px solid #eee;}
 
 .btn-u12{z-index:1000; top: 50%; left: 27%; }
+
+.label-1{font-size: 16px !important; font-weight: bold !important;}
