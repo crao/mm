@@ -36,8 +36,7 @@ public class MatchMaker {
 		matchMap.put(MatchConstants.OCCUPATION, isOccupationMatch(person1.getOccupation(), person2.getOccupation(), pre1.getOccupation(), pre2.getOccupation()));  
 		matchMap.put(MatchConstants.COUNTRY, isCountryMatch(person1.getCountry(), person2.getCountry(), pre1.getCountry(), pre2.getCountry()));
 		matchMap.put(MatchConstants.STATE, isStateMatch(person1.getResidingstate(), person2.getResidingstate(), pre1.getResidingCity(), pre2.getResidingCity()));
-		matchMap.put(MatchConstants.CITY, isCityMatch(person1.getCitizenship(), person2.getCitizenship(), pre1.getCitizenship(), pre2.getCitizenship()));
-		
+		matchMap.put(MatchConstants.CITY, isCityMatch(person1.getCitizenship(), person2.getCitizenship(), pre1.getCitizenship(), pre2.getCitizenship()));		
 		matchMap.put(MatchConstants.GOTHRA, isGothraMatch(person1.getGothra(), person2.getGothra(), pre1.getGothra(), pre2.getGothra()));
 		matchMap.put(MatchConstants.STAR, isStarMatch(person1.getStarSign(), person2.getStarSign(), pre1.getStar(), pre2.getStar()));
 		matchMap.put(MatchConstants.MANGLIK, isManglikMatch(person1.getManglik(), person2.getManglik(), pre1.getManglik(), pre2.getManglik()));
@@ -318,105 +317,7 @@ public class MatchMaker {
 			return match;
 			
 		}	
-		//Ending of Method for MANGLIK  Matches
+		//Ending of Method for MANGLIK  Matches	
 		
-		
-		
-	public static void main(String args[])
-	{
-		
-		MatchMaker matchMaker = new MatchMaker();
-		
-		//for testing purpose called isEducationMatch Method		
-	    Boolean Edu  = matchMaker. isEducationMatch("B.Sc", "M.Com", "Any", "Any");//Ans true
-	    Boolean Edu1  = matchMaker.isEducationMatch("B.Sc", "M.Com", "B.Sc,B.com,M.Com", "M.Com,B.Sc");//Ans true
-	    Boolean Edu2  = matchMaker.isEducationMatch("B.Sc", "M.Com", "Any,B.Sc,B.com,M.Com", "Any,M.Com,B.Sc");//Ans true
-	    Boolean Edu3  = matchMaker.isEducationMatch("B.Sc", "B.Sc", "B.Sc", "B.Sc");  //Ans true
-		Boolean Edu4  = matchMaker.isEducationMatch("B.Sc", "B.Sc", "M.Sc", "M.Sc");//Ans false		 
-	    System.out.println(Edu);
-	    System.out.println(Edu1);
-	    System.out.println(Edu2);
-	    System.out.println(Edu3);
-	    System.out.println(Edu4);
-	    
-		//for testing purpose called isOccupationMatch  Method		
-	    Boolean Occ  = matchMaker.isOccupationMatch("Engineer", "Pilot", "Any", "Any");//Ans true
-	    Boolean Occ1  = matchMaker.isOccupationMatch("Engineer", "Pilot", "Engineer,Pilot", "Engineer,Pilot");//Ans true
-	    Boolean Occ2  = matchMaker.isOccupationMatch("Engineer", "Pilot","Any,Architect,Charted Accountant", "Any,Company Secretary");//Ans true
-	    Boolean Occ3  = matchMaker.isOccupationMatch("Engineer", "Engineer", "Engineer", "Engineer");  //Ans true
-		Boolean Occ4  = matchMaker.isOccupationMatch("Engineer", "Engineer", "Polit", "Polit");//Ans false
-	    System.out.println(Occ);
-	    System.out.println(Occ1);
-	    System.out.println(Occ2);
-	    System.out.println(Occ3);
-	    System.out.println(Occ4);
-	    
-	     //for testing purpose called isCountryMatch  Method		
-	     Boolean coun  = matchMaker.isCountryMatch("Indian", "Nepal", "Any", "Any");//Ans true
-	     Boolean coun1  = matchMaker.isCountryMatch("Indian", "Nepal", "Indian,Nepal,Bhutan","Indian,Nepal");//Ans true
-	     Boolean coun2  = matchMaker.isCountryMatch("Indian", "Nepal","Any,Indian,Nepal,Bhutan", "Any,Indian,Nepal");//Ans true
-	     Boolean coun3  = matchMaker.isCountryMatch("Indian", "Indian", "Indian", "Indian");  //Ans true
-		 Boolean coun4  = matchMaker.isCountryMatch("Indian", "Indian", "Nepal", "Nepal");//Ans false		 
-	     System.out.println(coun);
-	     System.out.println(coun1);
-	     System.out.println(coun2);
-	     System.out.println(coun3);
-	     System.out.println(coun4);
-	     
-	   //for testing purpose called isStateMatch  Method		
-	     Boolean Sta  = matchMaker.isStateMatch("Maharashtra", "Panjab", "Any", "Any");//Ans true
-	     Boolean Sta1  = matchMaker.isStateMatch("Maharashtra", "Panjab", "Maharashtra,Assam,Bihar","Telangana,Panjab,Nepal");//Ans false
-	     Boolean Sta2  = matchMaker.isStateMatch("Maharashtra", "Panjab","Any,Maharashtra,Assam,Bihar", "Any,Telangana,Panjab,Nepal");//Ans true
-	     Boolean Sta3  = matchMaker.isStateMatch("Maharashtra", "Maharashtra", "Maharashtra", "Maharashtra");  //Ans true
-		 Boolean Sta4  = matchMaker.isStateMatch("Maharashtra", "Maharashtra", "Panjab", "Panjab");//Ans false		 
-	     System.out.println(Sta);
-	     System.out.println(Sta1);
-	     System.out.println(Sta2);
-	     System.out.println(Sta3);
-	     System.out.println(Sta4);
-		
-	   //for testing purpose called isCityMatch  Method		
-	     Boolean city  = matchMaker.isCityMatch("Aurangabad", "Pune", "Any", "Any");//Ans true
-	     Boolean city1  = matchMaker.isCityMatch("Aurangabad", "Pune", "Aurangabad,Pune,Jalna","Pune,Aurangabad,Mumbai");//Ans true
-	     Boolean city2  = matchMaker.isCityMatch("Aurangabad", "Pune","Any,Aurangabad,Pune,Jalna", "Any,Pune,Aurangabad,Mumbai");//Ans true
-	     Boolean city3  = matchMaker.isCityMatch("Aurangabad", "Aurangabad", "Aurangabad", "Aurangabad");  //Ans true
-		 Boolean city4  = matchMaker.isCityMatch("Aurangabad", "Pune", "Aurangabad", "Pune");//Ans false		 
-	     System.out.println(city);
-	     System.out.println(city1);
-	     System.out.println(city2);
-	     System.out.println(city3);
-	     System.out.println(city4);
-	     
-	 	//for testing purpose called isGothraMatch  Method		
-	     Boolean gothra  = matchMaker.isGothraMatch("Aamat", "Aashta", "Any", "Any");//Ans true
-	     Boolean gothra1  = matchMaker.isGothraMatch("Adishya", "Aashta", "Adishya,Aashta,Agastya","Aashta,Adishya,Ainakula");//Ans true	 
-	     Boolean gothra2  = matchMaker.isGothraMatch("Adishya", "Adishya", "Adishya", "Adishya");  //Ans true
-		 Boolean gothra3  = matchMaker.isGothraMatch("Adishya", "Aashta", "Adishya", "Aashta");//Ans false		 
-	     System.out.println(gothra);
-	     System.out.println(gothra1);
-	     System.out.println(gothra2);
-	     System.out.println(gothra3);
-	     
-	     
-	   //for testing purpose called isStarMatch  Method		
-	     Boolean Star  = matchMaker.isStarMatch("Aswini", "Bharani", "Any", "Any");//Ans true
-	     Boolean Star1  = matchMaker.isStarMatch("Aswini", "Bharani", "Aswini,Bharani,Agastya","Bharani,Aswini,Ainakula");//Ans true	 
-	     Boolean Star2  = matchMaker.isStarMatch("Adishya", "Adishya", "Adishya", "Adishya");  //Ans true
-		 Boolean Star3  = matchMaker.isStarMatch("Adishya", "Aashta", "Adishya", "Aashta");//Ans false		 
-	     System.out.println(Star);
-	     System.out.println(Star1);
-	     System.out.println(Star2);
-	     System.out.println(Star3);
-	     
-	   //for testing purpose called isManglikMatch  Method		
-	     Boolean manglik  = matchMaker.isManglikMatch("Yes", "Don't know", "Don't know", "Don't know");//Ans true
-	     Boolean manglik1  = matchMaker.isManglikMatch("Yes", "Don't know", "Don't know,Yes,No","Don't know,Yes,No");//Ans true	 
-	     Boolean manglik2  = matchMaker.isManglikMatch("No", "No", "No", "No");  //Ans true
-		 Boolean manglik3  = matchMaker.isManglikMatch("Adishya", "Aashta", "Adishya", "Aashta");//Ans false		 
-	     System.out.println(manglik);
-	     System.out.println(manglik1);
-	     System.out.println(manglik2);
-	     System.out.println(manglik3);
-		
-	}
+	
 }
