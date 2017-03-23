@@ -45,7 +45,7 @@ public class MatchMaker {
 	}	 
 
 		
-	private boolean isMaritalStatusMatch(String maritalStatus1, String maritalStatus2,String preMartialStatus1,String preMartialStatus2) {
+	public boolean isMaritalStatusMatch(String maritalStatus1, String maritalStatus2,String preMartialStatus1,String preMartialStatus2) {
 		boolean match = false;
 		
 		Set<String> mSet1 = new HashSet<String>(Arrays.asList(preMartialStatus1.split(",")));
@@ -64,7 +64,7 @@ public class MatchMaker {
 		
 	}
 	
-	private boolean isEatingHabitsMatch(String eat1, String eat2,String preEat1,String preEat2) {
+	public boolean isEatingHabitsMatch(String eat1, String eat2,String preEat1,String preEat2) {
 		boolean match = false;
 		
 		Set<String> mSet1 = new HashSet<String>(Arrays.asList(preEat1.split(",")));
@@ -83,7 +83,7 @@ public class MatchMaker {
 		
 	}
 	
-	private boolean isDrinkingHabitsMatch(String drink1, String drink2,String preDrink1,String preDrink2) {
+	public boolean isDrinkingHabitsMatch(String drink1, String drink2,String preDrink1,String preDrink2) {
 		boolean match = false;
 		
 		Set<String> mSet1 = new HashSet<String>(Arrays.asList(preDrink1.split(",")));
@@ -102,7 +102,7 @@ public class MatchMaker {
 		
 	}
 	
-	private boolean isSmokingHabitsMatch(String smoke1, String smoke2,String preSmoke1,String preSmoke2) {
+	public boolean isSmokingHabitsMatch(String smoke1, String smoke2,String preSmoke1,String preSmoke2) {
 		boolean match = false;
 		
 		Set<String> mSet1 = new HashSet<String>(Arrays.asList(preSmoke1.split(",")));
@@ -121,7 +121,7 @@ public class MatchMaker {
 		
 	}
 
-	private boolean isAgeMatch(int age1, int age2, Preferences pre1, Preferences pre2) {
+	public boolean isAgeMatch(int age1, int age2, Preferences pre1, Preferences pre2) {
 		boolean match = false;
 		if((age1>=pre2.getFromHeight() && age1<=pre2.getToHeight()) &&
 				(age2>=pre1.getFromHeight() && age2<=pre1.getToHeight())){
@@ -131,7 +131,7 @@ public class MatchMaker {
 	}
 	
 
-	private boolean isHeightMatch(PersonalDetails person1, PersonalDetails person2, Preferences pre1, Preferences pre2) {
+	public boolean isHeightMatch(PersonalDetails person1, PersonalDetails person2, Preferences pre1, Preferences pre2) {
 		boolean match = false;
 		int h1 = person1.getHeight();
 		int h2 = person2.getHeight();
@@ -144,7 +144,7 @@ public class MatchMaker {
 
 	 
 	   //Starting of Method for Education Matches
-		private boolean isEducationMatch(String perEducation1, String perEducation2,String preEducation1,String preEducation2) {
+		public boolean isEducationMatch(String perEducation1, String perEducation2,String preEducation1,String preEducation2) {
 			boolean match = false;
 			
 			Set<String> mSet1 = new HashSet<String>(Arrays.asList(preEducation1.split(",")));
@@ -167,7 +167,7 @@ public class MatchMaker {
 		//Ending of Method for Education Matches
 	
 		   //Starting of Method for OCCUPATION Matches
-		private boolean isOccupationMatch(String perOccupation1, String perOccupation2,String preOccupation1,String preOccupation2) {
+		public boolean isOccupationMatch(String perOccupation1, String perOccupation2,String preOccupation1,String preOccupation2) {
 			boolean match = false;
 			
 			Set<String> mSet1 = new HashSet<String>(Arrays.asList(preOccupation1.split(",")));
@@ -190,7 +190,7 @@ public class MatchMaker {
 		//Ending of Method for OCCUPATION Matches
 		
 		   //Starting of Method for COUNTRY Matches
-		private boolean isCountryMatch(String perCountry1, String perCountry2,String preCountry1,String preCountry2) {
+		public boolean isCountryMatch(String perCountry1, String perCountry2,String preCountry1,String preCountry2) {
 			boolean match = false;
 			
 			Set<String> mSet1 = new HashSet<String>(Arrays.asList(preCountry1.split(",")));
@@ -213,7 +213,7 @@ public class MatchMaker {
 		//Ending of Method for COUNTRY Matches
 		
 		 //Starting of Method for STATE  Matches
-		private boolean isStateMatch(String perState1, String perState2,String preState1,String preState2) {
+		public boolean isStateMatch(String perState1, String perState2,String preState1,String preState2) {
 			boolean match = false;
 			
 			Set<String> mSet1 = new HashSet<String>(Arrays.asList(preState1.split(",")));
@@ -236,7 +236,7 @@ public class MatchMaker {
 		//Ending of Method for STATE  Matches
 		
 		//Starting of Method for CITY  Matches
-		private boolean isCityMatch(String perCity1, String perCity2,String preCity1,String preCity2) {
+		public boolean isCityMatch(String perCity1, String perCity2,String preCity1,String preCity2) {
 			boolean match = false;
 			
 			Set<String> mSet1 = new HashSet<String>(Arrays.asList(preCity1.split(",")));
@@ -260,7 +260,7 @@ public class MatchMaker {
 		
 		
 		  //Starting of Method for GOTHRA  Matches
-		private boolean isGothraMatch(String perGothra1, String perGothra2,String preGothra1,String preGothra2) {
+		public boolean isGothraMatch(String perGothra1, String perGothra2,String preGothra1,String preGothra2) {
 			boolean match = false;
 			
 			Set<String> mSet1 = new HashSet<String>(Arrays.asList(preGothra1.split(",")));
@@ -280,7 +280,7 @@ public class MatchMaker {
 		//Ending of Method for GOTHRA  Matches
 		
 		//Starting of Method for STAR  Matches
-		private boolean isStarMatch(String perStarSign1, String perStarSign2,String preStarSign1,String preStarSign2) {
+		public boolean isStarMatch(String perStarSign1, String perStarSign2,String preStarSign1,String preStarSign2) {
 			boolean match = false;
 			
 			Set<String> mSet1 = new HashSet<String>(Arrays.asList(preStarSign1.split(",")));
@@ -300,7 +300,7 @@ public class MatchMaker {
 		//Ending of Method for STAR  Matches
 		
 		 //Starting of Method for MANGLIK  Matches
-		private boolean isManglikMatch(String perManglik1, String perManglik2,String preManglik1,String preManglik2) {
+		public boolean isManglikMatch(String perManglik1, String perManglik2,String preManglik1,String preManglik2) {
 			boolean match = false;
 			
 			Set<String> mSet1 = new HashSet<String>(Arrays.asList(preManglik1.split(",")));

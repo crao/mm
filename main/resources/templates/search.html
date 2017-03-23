@@ -114,6 +114,8 @@
 													<label class="select">
 														<select  th:feild="*{country}" class="form-control countries" name="country" id="countryId sel1">
 															<option value="">Select Country</option>
+															           <option value="Afghanistan">Afghanistan</option>
+                                                                         <option value="Albania">Albania</option>
 														</select> 
 														<i></i>
 													</label>
@@ -122,6 +124,8 @@
 													<label class="select">
 														<select th:feild="*{residingstate}" class="form-control states" name="residingstate" id="sel12 stateId">
 														   <option value="">Select State</option>
+														     <option value="Maharastra">Maharastra</option>
+                                                                         <option value="Albania">Albania</option>
 														</select>
 														<i></i>
 													</label>
@@ -130,6 +134,8 @@
 													<label class="select">
 														<select th:feild="*{residingcity}" class="form-control cities" id="sel13 cityId" name="residingcity">
 															<option value="">Select City</option>
+															  <option value="Aurangabad">Aurangabad</option>
+                                                                         <option value="Albania">Albania</option>
 														</select>
 														<i></i>
 													</label>
@@ -195,7 +201,7 @@
 								<!-- End Checkout-Form -->
 								</div>
 								<div class="tab-pane fade in " id="advanceSearch">
-									<form  class="sky-form" enctype="multipart/form-data" id="testform" method="post" >
+									<form  class="sky-form" enctype="multipart/form-data" id="testform" method="post" th:action="@{/search}" th:object="${search}">
 										<header>Regular Search</header>
 										<fieldset>
 											<div th:replace="common :: MinMaxAge"></div>
@@ -222,6 +228,8 @@
 													<label class="select">
 														<select  th:feild="*{country}" class="form-control countries" name="country" id="countryId sel1">
 															<option value="">Select Country</option>
+															<option value="Afghanistan">Afghanistan</option>
+                                                            <option value="Albania">Albania</option>
 														</select> 
 														<i></i>
 													</label>
@@ -230,6 +238,8 @@
 													<label class="select">
 														<select th:feild="*{residingstate}" class="form-control states" name="residingstate" id="sel12 stateId">
 														   <option value="">Select State</option>
+														     <option value="Maharastra">Maharastra</option>
+                                                             <option value="Albania">Albania</option>
 														</select>
 														<i></i>
 													</label>
@@ -238,6 +248,8 @@
 													<label class="select">
 														<select th:feild="*{residingcity}" class="form-control cities" id="sel13 cityId" name="residingcity">
 															<option value="">Select City</option>
+															 <option value="Aurangabad">Aurangabad</option>
+                                                             <option value="Albania">Albania</option>
 														</select>
 														<i></i>
 													</label>
