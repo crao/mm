@@ -46,7 +46,60 @@
 
 <body class="header-fixed header-fixed-space">
 	<div class="wrapper">
-		<div th:replace="common :: topNav"></div>
+		<!--=== Header v6 ===-->
+		<div class="header-v6 header-classic-white header-sticky">
+			<!-- Navbar -->
+			<div class="navbar mega-menu" role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="menu-container">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<!-- Navbar Brand -->
+						<div class="navbar-brand no-padding">
+							<a href="index.html">
+								<img class="shrink-logo" src="img/logo1.png" alt="Logo"/>
+							</a>
+						</div>
+						<!-- ENd Navbar Brand -->
+						<!-- End Header Inner Right -->
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<div class="menu-container">
+							<ul class="nav navbar-nav">
+								<!-- Home -->
+								<li class=""><a href="#">Register</a></li>
+								<li class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Search</a>
+									<ul class="dropdown-menu">
+										<li><a href="search.html">Regular Search</a></li>
+										<li><a href="#">Advance Search</a></li>
+										<li><a href="#">Keyword Search</a></li>
+									</ul>
+								</li>
+								<li  class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Services</a>
+										<ul class="dropdown-menu">
+											<li><a target="_blank" href="#">Asistance Service</a></li>
+											<li><a target="_blank" href="#">Matrimony directory</a></li>
+										</ul>
+								</li>
+								<li><a href="#">Upgrade</a></li> 
+							</ul>
+						</div>
+					</div><!--/navbar-collapse-->
+				</div>
+			</div>
+			<!-- End Navbar -->
+		</div>
+		<!--=== End Header v6 ===-->
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
@@ -63,15 +116,15 @@
 			<div class="container content profile">
 				
 				<div class="row">
-					<!-- <div class="col-md-3">
+					<!--<div class="col-md-3">
 						<div class="profile-body">
 							<div class="profile-bio">
 								<h2>Filter the List</h2>
 							</div>
 						</div>
-					</div> -->
+					</div>-->
 					<div class="col-md-12">
-								<form th:action="@{/personaldetails}" th:object="${personaldetails}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
+								<form action="preferences.html" th:action="@{/personaldetails}" th:object="${personaldetails}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
 									<header>More Personal Details : </header>
 									<fieldset>
 										<div class="row">
@@ -80,7 +133,7 @@
 											</section>
 											<section class="col1 col-4">
 												<label class="input">
-													<input type="time" name="birthTime" th:feild="*{birthTime}" id="BIRTHTIME"  placeholder="Enter Birth Time" />
+													<input type="time" name="income" th:feild="*{birthTime}" id="BIRTHTIME"  placeholder="Enter Birth Time" />
 												</label>
 											</section>
 											<section class="col1 col-5">
@@ -91,7 +144,7 @@
 										</div>
 										<div class="row">
 											<section class="col1">
-												<label class="label">Marital Status :</label>
+												<label class="label">Maritail Status :</label>
 											</section>
 											<section class="inline-group">
 												<label class="radio"><input th:feild="*{maritalStatus}" name="maritalStatus" id="mNV" value="Never Married" type="radio" checked="checked"/><i class="rounded-x"></i>Never Married</label>
@@ -113,7 +166,7 @@
 											<section class="col1 col-2">
 												<label class="select">
 													<select size="1" name="heightInches" class="form-control"  id="FEET" onchange="feetToCms(this.value, 'CMS')">
-														<option value="Not Mentioned">Feet/Inches</option>
+														<option value="0">Feet/Inches</option>
 														<option value="4-6" >4ft 6in</option>
 														<option value="4-7" >4ft 7in</option>
 														<option value="4-8" >4ft 8in</option>
@@ -156,7 +209,7 @@
 											<section class="col col-2">
 												<label class="select">
 													<select name="height" th:feild="*{height}" size="1" class="form-control" id="CMS" onchange="cmsToFeet(this.value, 'FEET')">
-														<option value="Not Mentioned"> Cms </option>
+														<option value="0"> Cms </option>
 														<option value="137">137cm</option>
 														<option value="138">138cm</option>
 														<option value="139">139cm</option>
@@ -242,7 +295,114 @@
 											<section class="col1 ">
 												<label class="label"> Weight:</label>
 											</section>
-											<section th:replace="common :: Kg"></section>
+											<section class="col col-2">
+												<label class="select">
+													<select name="weight" th:feild="*{weight}" size="1" class="form-control" id="KGS">
+														<option value="0" selected="selected">- Kgs -</option>
+														<option value="41">41 kg</option>
+														<option value="42">42 kg</option>
+														<option value="43">43 kg</option>
+														<option value="44">44 kg</option>
+														<option value="45">45 kg</option>
+														<option value="46">46 kg</option>
+														<option value="47">47 kg</option>
+														<option value="48">48 kg</option>
+														<option value="49">49 kg</option>
+														<option value="50">50 kg</option>
+														<option value="51">51 kg</option>
+														<option value="52">52 kg</option>
+														<option value="53">53 kg</option>
+														<option value="54">54 kg</option>
+														<option value="55">55 kg</option>
+														<option value="56">56 kg</option>
+														<option value="57">57 kg</option>
+														<option value="58">58 kg</option>
+														<option value="59">59 kg</option>
+														<option value="60">60 kg</option>
+														<option value="61">61 kg</option>
+														<option value="62">62 kg</option>
+														<option value="63">63 kg</option> 
+														<option value="64">64 kg</option>
+														<option value="65">65 kg</option>
+														<option value="66">66 kg</option>
+														<option value="67">67 kg</option>
+														<option value="68">68 kg</option>
+														<option value="69">69 kg</option>
+														<option value="70">70 kg</option>
+														<option value="71">71 kg</option>
+														<option value="72">72 kg</option>
+														<option value="73">73 kg</option>
+														<option value="74">74 kg</option>
+														<option value="75">75 kg</option>
+														<option value="76">76 kg</option>
+														<option value="77">77 kg</option>
+														<option value="78">78 kg</option>
+														<option value="79">79 kg</option>
+														<option value="80">80 kg</option>
+														<option value="81">81 kg</option>
+														<option value="82">82 kg</option>
+														<option value="83">83 kg</option>
+														<option value="84">84 kg</option>
+														<option value="85">85 kg</option>
+														<option value="86">86 kg</option>
+														<option value="87">87 kg</option>
+														<option value="88">88 kg</option>
+														<option value="89">89 kg</option>
+														<option value="90">90 kg</option>
+														<option value="91">91 kg</option>
+														<option value="92">92 kg</option>
+														<option value="93">93 kg</option>
+														<option value="94">94 kg</option>
+														<option value="95">95 kg</option>
+														<option value="96">96 kg</option>
+														<option value="97">97 kg</option>
+														<option value="98">98 kg</option>
+														<option value="99">99 kg</option>
+														<option value="100">100 kg</option>
+														<option value="101">101 kg</option>
+														<option value="102">102 kg</option>
+														<option value="103">103 kg</option>
+														<option value="104">104 kg</option>
+														<option value="105">105 kg</option>
+														<option value="106">106 kg</option>
+														<option value="107">107 kg</option>
+														<option value="108">108 kg</option>
+														<option value="109">109 kg</option>
+														<option value="110">110 kg</option>
+														<option value="111">111 kg</option>
+														<option value="112">112 kg</option>
+														<option value="113">113 kg</option>
+														<option value="114">114 kg</option>
+														<option value="115">115 kg</option>
+														<option value="116">116 kg</option>
+														<option value="117">117 kg</option>
+														<option value="118">118 kg</option>
+														<option value="119">119 kg</option>
+														<option value="120">120 kg</option>
+														<option value="121">121 kg</option>
+														<option value="122">122 kg</option>
+														<option value="123">123 kg</option>
+														<option value="124">124 kg</option>
+														<option value="125">125 kg</option>
+														<option value="126">126 kg</option>
+														<option value="127">127 kg</option>
+														<option value="128">128 kg</option>
+														<option value="129">129 kg</option>
+														<option value="130">130 kg</option>
+														<option value="131">131 kg</option>
+														<option value="132">132 kg</option>
+														<option value="133">133 kg</option>
+														<option value="134">134 kg</option>
+														<option value="135">135 kg</option>
+														<option value="136">136 kg</option>
+														<option value="137">137 kg</option>
+														<option value="138">138 kg</option>
+														<option value="139">139 kg</option>
+														<option value="140">140 kg</option>
+													</select>
+													<i></i>
+												</label>
+											</section>
 										</div>
 
 										<div class="row">
@@ -327,124 +487,124 @@
 											<section class="col1 col-9">
 												<label class="select">
 													<select name="education" th:feild="*{education}" id="EDUCATION" class="form-control" >
-														<option value="Not Mentioned">- Select -</option>								
+														<option value="0">- Select -</option>								
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Engineering / Computers --'>
-														<option value='Aeronautical Engineering'>Aeronautical Engineering</option>
-														<option value='B.Arch'>B.Arch</option>
-														<option value='BCA'>BCA</option>
-														<option value='BE'>BE</option>
-														<option value='B.Plan'>B.Plan</option>
-														<option value='B.Sc IT/ Computer Science'>B.Sc IT/ Computer Science</option>
-														<option value='B.Tech.'>B.Tech.</option>
-														<option value='Other Bachelor Degree in Engineering / Computers'>Other Bachelor Degree in Engineering / Computers</option>
+															<option value='Aeronautical Engineering'>Aeronautical Engineering</option>
+															<option value='B.Arch'>B.Arch</option>
+															<option value='BCA'>BCA</option>
+															<option value='BE'>BE</option>
+															<option value='B.Plan'>B.Plan</option>
+															<option value='B.Sc IT/ Computer Science'>B.Sc IT/ Computer Science</option>
+															<option value='B.Tech.'>B.Tech.</option>
+															<option value='Other Bachelor Degree in Engineering / Computers'>Other Bachelor Degree in Engineering / Computers</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Engineering / Computers --'>
-														<option value='M.Arch.'>M.Arch.</option>
-														<option value='MCA'>MCA</option>
-														<option value='ME'>ME</option>
-														<option value='M.Sc. IT / Computer Science'>M.Sc. IT / Computer Science</option>
-														<option value='M.S.(Engg.)'>M.S.(Engg.)</option>
-														<option value='M.Tech.'>M.Tech.</option>
-														<option value='PGDCA'>PGDCA</option>
-														<option value='Other Masters Degree in Engineering / Computers'>Other Masters Degree in Engineering / Computers</option>
+															<option value='M.Arch.'>M.Arch.</option>
+															<option value='MCA'>MCA</option>
+															<option value='ME'>ME</option>
+															<option value='M.Sc. IT / Computer Science'>M.Sc. IT / Computer Science</option>
+															<option value='M.S.(Engg.)'>M.S.(Engg.)</option>
+															<option value='M.Tech.'>M.Tech.</option>
+															<option value='PGDCA'>PGDCA</option>
+															<option value='Other Masters Degree in Engineering / Computers'>Other Masters Degree in Engineering / Computers</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Arts / Science / Commerce --'>
-														<option value='Aviation Degree'>Aviation Degree</option>
-														<option value='B.A.'>B.A.</option>
-														<option value='B.Com.'>B.Com.</option>
-														<option value='B.Ed.'>B.Ed.</option>
-														<option value='BFA'>BFA</option>
-														<option value='BFT'>BFT</option>
-														<option value='BLIS'>BLIS</option>
-														<option value='B.M.M.'>B.M.M.</option>
-														<option value='B.Sc.'>B.Sc.</option>
-														<option value='B.S.W'>B.S.W</option>
-														<option value='B.Phil.'>B.Phil.</option>
-														<option value='Other Bachelor Degree in Arts / Science / Commerce'>Other Bachelor Degree in Arts / Science / Commerce</option>
+															<option value='Aviation Degree'>Aviation Degree</option>
+															<option value='B.A.'>B.A.</option>
+															<option value='B.Com.'>B.Com.</option>
+															<option value='B.Ed.'>B.Ed.</option>
+															<option value='BFA'>BFA</option>
+															<option value='BFT'>BFT</option>
+															<option value='BLIS'>BLIS</option>
+															<option value='B.M.M.'>B.M.M.</option>
+															<option value='B.Sc.'>B.Sc.</option>
+															<option value='B.S.W'>B.S.W</option>
+															<option value='B.Phil.'>B.Phil.</option>
+															<option value='Other Bachelor Degree in Arts / Science / Commerce'>Other Bachelor Degree in Arts / Science / Commerce</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Arts / Science / Commerce --'>
-														<option value='M.A.'>M.A.</option>
-														<option value='M.Com.'>M.Com.</option>
-														<option value='M.Ed.'>M.Ed.</option>
-														<option value='MFA'>MFA</option>
-														<option value='MLIS'>MLIS</option>
-														<option value='M.Sc.'>M.Sc.</option>
-														<option value='MSW'>MSW</option>
-														<option value='M.Phil.'>M.Phil.</option>
-														<option value='Other Master Degree in Arts / Science / Commerce'>Other Master Degree in Arts / Science / Commerce</option>
+															<option value='M.A.'>M.A.</option>
+															<option value='M.Com.'>M.Com.</option>
+															<option value='M.Ed.'>M.Ed.</option>
+															<option value='MFA'>MFA</option>
+															<option value='MLIS'>MLIS</option>
+															<option value='M.Sc.'>M.Sc.</option>
+															<option value='MSW'>MSW</option>
+															<option value='M.Phil.'>M.Phil.</option>
+															<option value='Other Master Degree in Arts / Science / Commerce'>Other Master Degree in Arts / Science / Commerce</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Management --'>
-														<option value='BBA'>BBA</option>
-														<option value='BFM (Financial Management)'>BFM (Financial Management)</option>
-														<option value='BHM (Hotel Management)'>BHM (Hotel Management)</option>
-														<option value='Other Bachelor Degree in Management'>Other Bachelor Degree in Management</option>
+															<option value='BBA'>BBA</option>
+															<option value='BFM (Financial Management)'>BFM (Financial Management)</option>
+															<option value='BHM (Hotel Management)'>BHM (Hotel Management)</option>
+															<option value='Other Bachelor Degree in Management'>Other Bachelor Degree in Management</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Management --'>
-														<option value='MBA'>MBA</option>
-														<option value='MFM (Financial Management)'>MFM (Financial Management)</option>
-														<option value='MHM  (Hotel Management)'>MHM  (Hotel Management)</option>
-														<option value='MHRM (Human Resource Management)'>MHRM (Human Resource Management)</option>
-														<option value='PGDM'>PGDM</option>
-														<option value='Other Master Degree in Management'>Other Master Degree in Management</option>
+															<option value='MBA'>MBA</option>
+															<option value='MFM (Financial Management)'>MFM (Financial Management)</option>
+															<option value='MHM  (Hotel Management)'>MHM  (Hotel Management)</option>
+															<option value='MHRM (Human Resource Management)'>MHRM (Human Resource Management)</option>
+															<option value='PGDM'>PGDM</option>
+															<option value='Other Master Degree in Management'>Other Master Degree in Management</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Medicine in General / Dental / Surgeon --'>
-														<option value='B.A.M.S.'>B.A.M.S.</option>
-														<option value='BDS'>BDS</option>
-														<option value='BHMS'>BHMS</option>
-														<option value='BSMS'>BSMS</option>
-														<option value='B.Pharm'>B.Pharm</option>
-														<option value='BPT'>BPT</option>
-														<option value='BUMS'>BUMS</option>
-														<option value='BVSc'>BVSc</option>
-														<option value='MBBS'>MBBS</option>
-														<option value='B.Sc. Nursing'>B.Sc. Nursing</option>
-														<option value='Other Bachelor Degree in Medicine'>Other Bachelor Degree in Medicine</option>
+															<option value='B.A.M.S.'>B.A.M.S.</option>
+															<option value='BDS'>BDS</option>
+															<option value='BHMS'>BHMS</option>
+															<option value='BSMS'>BSMS</option>
+															<option value='B.Pharm'>B.Pharm</option>
+															<option value='BPT'>BPT</option>
+															<option value='BUMS'>BUMS</option>
+															<option value='BVSc'>BVSc</option>
+															<option value='MBBS'>MBBS</option>
+															<option value='B.Sc. Nursing'>B.Sc. Nursing</option>
+															<option value='Other Bachelor Degree in Medicine'>Other Bachelor Degree in Medicine</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Medicine - General / Dental / Surgeon --'>
-														<option value='MDS'>MDS</option>
-														<option value='MD / MS (Medical)'>MD / MS (Medical)</option>
-														<option value='M.Pharm'>M.Pharm</option>
-														<option value='MPT'>MPT</option>
-														<option value='MVSc'>MVSc</option>
-														<option value='Other Master Degree in Medicine'>Other Master Degree in Medicine</option>
+															<option value='MDS'>MDS</option>
+															<option value='MD / MS (Medical)'>MD / MS (Medical)</option>
+															<option value='M.Pharm'>M.Pharm</option>
+															<option value='MPT'>MPT</option>
+															<option value='MVSc'>MVSc</option>
+															<option value='Other Master Degree in Medicine'>Other Master Degree in Medicine</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Legal --'>
-														<option value='BGL'>BGL</option>
-														<option value='B.L.'>B.L.</option>
-														<option value='L.L.B.'>L.L.B.</option>
-														<option value='Other Bachelor Degree in Legal'>Other Bachelor Degree in Legal</option>
+															<option value='BGL'>BGL</option>
+															<option value='B.L.'>B.L.</option>
+															<option value='L.L.B.'>L.L.B.</option>
+															<option value='Other Bachelor Degree in Legal'>Other Bachelor Degree in Legal</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Legal --'>
-														<option value='L.L.M.'>L.L.M.</option>
-														<option value='M.L.'>M.L.</option>
-														<option value='Other Master Degree in  Legal'>Other Master Degree in  Legal</option>
+															<option value='L.L.M.'>L.L.M.</option>
+															<option value='M.L.'>M.L.</option>
+															<option value='Other Master Degree in  Legal'>Other Master Degree in  Legal</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Financial Qualification - ICWAI / CA / CS/ CFA --'>
-														<option value='CA'>CA</option>
-														<option value='CFA (Chartered Financial Analyst)'>CFA (Chartered Financial Analyst)</option>
-														<option value='CS'>CS</option>
-														<option value='ICWA'>ICWA</option>
-														<option value='Other Degree in Finance'>Other Degree in Finance</option>
+															<option value='CA'>CA</option>
+															<option value='CFA (Chartered Financial Analyst)'>CFA (Chartered Financial Analyst)</option>
+															<option value='CS'>CS</option>
+															<option value='ICWA'>ICWA</option>
+															<option value='Other Degree in Finance'>Other Degree in Finance</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Service - IAS / IPS / IRS / IES / IFS  --'>
-														<option value='IAS'>IAS</option>
-														<option value='IES'>IES</option>
-														<option value='IFS'>IFS</option>
-														<option value='IRS'>IRS</option>
-														<option value='IPS'>IPS</option>
-														<option value='Other Degree in Service'>Other Degree in Service</option>
+															<option value='IAS'>IAS</option>
+															<option value='IES'>IES</option>
+															<option value='IFS'>IFS</option>
+															<option value='IRS'>IRS</option>
+															<option value='IPS'>IPS</option>
+															<option value='Other Degree in Service'>Other Degree in Service</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Ph.D. --'>
-														<option value='Ph.D.'>Ph.D.</option>
+															<option value='Ph.D.'>Ph.D.</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Diploma --'>
-														<option value='Diploma'>Diploma</option>
-														<option value='Polytechnic'>Polytechnic</option>
-														<option value='Trade School'>Trade School</option>
-														<option value='Others in Diploma'>Others in Diploma</option>
+															<option value='Diploma'>Diploma</option>
+															<option value='Polytechnic'>Polytechnic</option>
+															<option value='Trade School'>Trade School</option>
+															<option value='Others in Diploma'>Others in Diploma</option>
 														</optgroup>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Higher Secondary / Secondary --'>
-														<option value='Higher Secondary School / High School'>Higher Secondary School / High School</option>
+															<option value='Higher Secondary School / High School'>Higher Secondary School / High School</option>
 														</optgroup>
 													</select>	
 													<i></i>
@@ -466,12 +626,12 @@
 										
 										<div class="row">
 											<section class="col1 ">
-												<label class="label"> Occupation:</label>
+												<label class="label"> Montly Income:</label>
 											</section>
 											<section class="col1 col-9">
 												<label class="select">
 													<select name="occupation" th:feild="*{occupation}" id="OCCUPATION" class="form-control">
-														<option value="Not Mentioned">Please choose one.</option>
+														<option value="">Please choose one.</option>
 														<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- ADMIN --'>
 														<option value="Manager">Manager</option>
 														<option value="Supervisor">Supervisor</option>
@@ -577,12 +737,12 @@
 										
 										<div class="row">
 											<section class="col1 ">
-												<label class="label"> Monthly Income:</label>
+												<label class="label"> Montly Income:</label>
 											</section>
 											<section class="col1 col-5">
 												<label class="select">
 													<select name="incomecurrency" th:feild="*{incomecurrency}" id="INCOME_CURRENCY" class="form-control" >
-														<option selected="selected" value="Not Mentioned">Select currency</option>
+														<option selected="selected" value="">Select currency</option>
 														<option value="USD">America (United States) Dollars – USD</option>
 														<option value="AFN">Afghanistan Afghanis – AFN</option>
 														<option value="ALL">Albania Leke – ALL</option>
@@ -642,9 +802,9 @@
 														<option value="IRR">Iran Rials – IRR</option>
 														 
 														<option value="IQD">Iraq Dinars – IQD</option>
-														<option value="IEP">Ireland Pounds – IEP*</option>
+														<option value="IEP*">Ireland Pounds – IEP*</option>
 														<option value="ILS">Israel New Shekels – ILS</option>
-														<option value="ITL">Italy Lire – ITL*</option>
+														<option value="ITL*">Italy Lire – ITL*</option>
 														<option value="JMD">Jamaica Dollars – JMD</option>
 														<option value="JPY">Japan Yen – JPY</option>
 														 
@@ -727,7 +887,7 @@
 											<section class="col1 col-3">
 												<label class="select">
 													<select  th:feild="*{country}" class="form-control countries" name="country" id="countryId sel1">
-    													<option value="Not Mentioned">Select Country</option>
+    													<option value="">Select Country</option>
 													</select> 
 													<i></i>
 												</label>
@@ -752,19 +912,19 @@
 										
 										<div class="row">
 											<section class="col1">
-												<label class="label">Permanent Location:</label>
+												<label class="label">Permanant Location:</label>
 											</section>
 											<section class="col1 col-3">
 												<label class="select">
-													<select  th:feild="*{countryP}" class="form-control countries" name="countryP" id="countryId sel1">
-    													<option value="Not Mentioned">Select Country</option>
+													<select  th:feild="*{countryP}" class="form-control countries" name="country" id="countryId sel1">
+    													<option value="">Select Country</option>
 													</select> 
 													<i></i>
 												</label>
 											</section>
 											<section class="col1 col-3">
 												<label class="select">
-													<select th:feild="*{residingstateP}" class="form-control states" name="residingstateP" id="sel12 stateId">
+													<select th:feild="*{residingstateP}" class="form-control states" name="residingstate" id="sel12 stateId">
 													   <option value="">Select State</option>
 													</select>
 													<i></i>
@@ -772,29 +932,9 @@
 											</section>
 											<section class="col1 col-3">
 												<label class="select">
-													<select th:feild="*{residingcityP}" class="form-control cities" id="sel13 cityId" name="residingcityP">
+													<select th:feild="*{residingcityP}" class="form-control cities" id="sel13 cityId" name="residingcity">
 														<option value="">Select City</option>
 													</select>
-													<i></i>
-												</label>
-											</section>
-											
-										</div>
-										<div class="row">
-											<section class="col1">
-												<label class="label">Citizenship:</label>
-											</section>
-											<section class="col1 col-3">
-												<label class="select">
-													<select  th:feild="*{citizenship}" class="form-control countries" name="citizenship" id="citizenship">
-    													<option value="Not Mentioned">Select Country</option>
-    													<option value="India">India</option>
-    													<option value="USA">USA</option>
-    													<option value="UAE">UAE</option>
-    													<option value="UK">UK</option>
-    													<option value="France">France</option>
-    													<option value="Germany">Germany</option>
-													</select> 
 													<i></i>
 												</label>
 											</section>
@@ -805,6 +945,141 @@
 									
 									<header>Family Background : </header>
 									<fieldset>
+										<div class="row">
+											<section class="col1">
+												<label class="label"> Father's Details:</label>
+											</section>
+											<section class="col1 col-9">
+												<div class="row">
+													<section class="col1">
+														<label class="label">Name:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherName" th:feild="*{fatherName}" id="FATHERNAME" placeholder="Enter Father's Name"/>
+														</label>
+													</section>
+												</div>	
+												<div class="row">
+													<section class="col1">
+														<label class="label">Occupation:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="select">
+															<select name="fatherOccupation" th:feild="*{fatherOccupation}" id="fatherOccupation" class="form-control" >
+																<option selected="selected" value="">Select Occupation</option>
+																<option value="Employed">Employed</option>
+																<option value="Business Man">Business Man</option>
+																<option value="Professional">Professional</option>
+																<option value="Retired">Retired</option>
+																<option value="Not Employed">Not Employed</option>
+																<option value="Passed Away">Passed Away</option>
+															</select>
+															<i></i>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Location:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherOccLocation" th:feild="*{fatherOccLocation}" id="FATHERNAME" placeholder="Enter Father's Occupation Location"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Contact No:</label>
+													</section>
+													<section class="col1 col-4">
+														<label class="input">
+															<input type="text" name="fathercontact1" th:feild="*{fathercontact1}" id="FATHERNAME" placeholder="Contact 1"/>
+														</label>
+													</section>
+													<section class="col col-5 no-padding">
+														<label class="input">
+															<input type="text" name="fathercontact2" th:feild="*{fathercontact2}" id="FATHERNAME" placeholder="Contact 2"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Email Address:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherEmail" th:feild="*{fatherEmail}" id="EmailAddress" placeholder="Enter Email Address"/>
+														</label>
+													</section>
+												</div>
+											</section>	
+										</div>
+										
+										<div class="row">
+											<section class="col1">
+												<label class="label"> Mother's Details:</label>
+											</section>
+											<section class="col1 col-9">
+												<div class="row">
+													<section class="col1">
+														<label class="label">Name:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherName" th:feild="*{fatherName}" id="FATHERNAME" placeholder="Enter Father's Name"/>
+														</label>
+													</section>
+												</div>	
+												<div class="row">
+													<section class="col1">
+														<label class="label">Occupation:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="select">
+															<select name="fatherOccupation" th:feild="*{fatherOccupation}" id="fatherOccupation" class="form-control" >
+																<option selected="selected" value="">Select Occupation</option>
+																<option value="House Wife">House Wife</option>
+																<option value="Employed">Employed</option>
+																<option value="Business Man">Business Man</option>
+																<option value="Professional">Professional</option>
+																<option value="Retired">Retired</option>
+																<option value="Passed Away">Passed Away</option>
+															</select>
+															<i></i>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Location:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherOccLocation" th:feild="*{fatherOccLocation}" id="FATHERNAME" placeholder="Enter Father's Occupation Location"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Contact No:</label>
+													</section>
+													<section class="col1 col-4">
+														<label class="input">
+															<input type="text" name="fathercontact1" th:feild="*{fathercontact1}" id="FATHERNAME" placeholder="Contact 1"/>
+														</label>
+													</section>
+													<section class="col col-5 no-padding">
+														<label class="input">
+															<input type="text" name="fathercontact2" th:feild="*{fathercontact2}" id="FATHERNAME" placeholder="Contact 2"/>
+														</label>
+													</section>
+												</div>
+											</section>	
+										</div>
+										
+										
 										<div class="row">
 											<section class="col1">
 												<label class="label"> Father's Name:</label>
@@ -905,7 +1180,7 @@
 											<section class="col col-4">
 												<label class="select">
 													<select name="star" th:feild="*{star}" id="STAR" class="form-control" >
-														<option value="Not Mentioned" selected="selected">- Please Select Star -</option>
+														<option value="0" selected="selected">- Please Select Star -</option>
 														<option value="Aswini">Aswini</option>
 														<option value="Bharani">Bharani</option>
 														<option value="Kruthika">Kruthika</option>
@@ -943,7 +1218,7 @@
 											<section class="col1 col-4">
 												<label class="select">
 													<select name="raasi" th:feild="*{raasi}" id="RAASI" class="form-control" >
-														<option selected="selected" value="Not Mentioned">Select Raasi</option>
+														<option selected="selected" value="">Select Raasi</option>
 														<option value="Mesha (Aries)">Mesha (Aries)</option>
 														<option value="Vrishabha (Taurus)">Vrishabha (Taurus)</option>
 														<option value="Mithun (Gemini)">Mithun (Gemini)</option>
@@ -993,7 +1268,119 @@
 		<!--=== End Content ===-->
 
 		<!--=== Footer Version 1 ===-->
-		<div th:replace="common :: footer"></div>
+		<div class="footer-v1">
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<!-- About -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo1.png" alt="company logo" /></a>
+							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
+							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
+						</div><!--/col-md-3-->
+						<!-- End About -->
+
+						<!-- Latest -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<div class="posts">
+								<div class="headline"><h2>Latest Blogs</h2></div>
+								<ul class="list-unstyled latest-list">
+									<li>
+										<a href="#">Name of the Blog</a>
+										<small>January 8, 2017</small>
+									</li>
+									<li>
+										<a href="#">Name of the Blog</a>
+										<small>December 23, 2016</small>
+									</li>
+									<li>
+										<a href="#">Name of the Blog</a>
+										<small>November 15, 2016</small>
+									</li>
+								</ul>
+							</div>
+						</div><!--/col-md-3-->
+						<!-- End Latest -->
+
+						<!-- Link List -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<div class="headline"><h2>Help &amp; Support</h2></div>
+							<ul class="list-unstyled link-list">
+								<li><a href="#">24x7 Live help</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Success Stories</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
+							</ul>
+						</div><!--/col-md-3-->
+						<!-- End Link List -->
+
+						<!-- Address -->
+						<div class="col-md-3 map-img md-margin-bottom-40">
+							<div class="headline"><h2>Matrimony on Mobile</h2></div>
+							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Anroid">
+								<img src="img/a.png" style="width:40px;" />
+							</a>&nbsp;&nbsp;  
+							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Mac">
+								<img src="img/ap.png" style="width:40px;" />&nbsp;&nbsp; 
+							</a>
+							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Windows">
+								<img src="img/w.png" style="width:40px;" />
+							</a>
+							<div class="headline"><h2>Follow Us On</h2></div>
+							<ul class="footer-socials list-inline" >
+								
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Facebook">
+										<i class="fa fa-facebook" style="font-size:22px"></i>
+									</a>
+								</li>
+								
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Google Plus">
+										<i class="fa fa-google-plus" style="font-size:22px"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Linkedin">
+										<i class="fa fa-linkedin" style="font-size:22px"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Pinterest">
+										<i class="fa fa-pinterest" style="font-size:22px"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Twitter">
+										<i class="fa fa-twitter" style="font-size:22px"></i>
+									</a>
+								</li>
+							</ul>
+						</div><!--/col-md-3-->
+						<!-- End Address -->
+					</div>
+				</div>
+			</div><!--/footer-->
+
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<p>
+								2017 &copy; All Rights Reserved.
+								<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+							</p>
+						</div>
+
+						<!-- Social Links -->
+						<div class="col-md-6">
+								
+						</div>
+					</div>
+				</div><!--/copyright-->
+			</div>
+		</div>
 		<!--=== End Footer Version 1 ===-->
 	</div><!--/wrapper-->
 
@@ -1031,7 +1418,11 @@
 			StyleSwitcher.initStyleSwitcher();
 		});
 	</script>
-
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+  <script src="assets/plugins/html5shiv.js"></script>
+  <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+  <![endif]-->
 
 </body>
 </html>
