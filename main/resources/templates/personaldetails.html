@@ -63,14 +63,14 @@
 			<div class="container content profile">
 				
 				<div class="row">
-					<div class="col-md-3">
+					<!-- <div class="col-md-3">
 						<div class="profile-body">
 							<div class="profile-bio">
 								<h2>Filter the List</h2>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-9">
+					</div> -->
+					<div class="col-md-12">
 								<form th:action="@{/personaldetails}" th:object="${personaldetails}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
 									<header>More Personal Details : </header>
 									<fieldset>
@@ -802,27 +802,139 @@
 										
 									</fieldset>
 									
-									
 									<header>Family Background : </header>
 									<fieldset>
 										<div class="row">
 											<section class="col1">
-												<label class="label"> Father's Name:</label>
+												<label class="label"> Father's Details:</label>
 											</section>
 											<section class="col1 col-9">
-												<label class="input">
-													<input type="text" name="fatherName" th:feild="*{fatherName}" id="FATHERNAME" placeholder="Enter Father's Name"/>
-												</label>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Name:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherName" th:feild="*{fatherName}" id="FATHERNAME" placeholder="Enter Father's Name"/>
+														</label>
+													</section>
+												</div>	
+												<div class="row">
+													<section class="col1">
+														<label class="label">Occupation:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="select">
+															<select name="fatherOccupation" th:feild="*{fatherOccupation}" id="fatherOccupation" class="form-control" >
+																<option selected="selected" value="">Select Occupation</option>
+																<option value="Employed">Employed</option>
+																<option value="Business Man">Business Man</option>
+																<option value="Professional">Professional</option>
+																<option value="Retired">Retired</option>
+																<option value="Not Employed">Not Employed</option>
+																<option value="Passed Away">Passed Away</option>
+															</select>
+															<i></i>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Location:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherOccLocation" th:feild="*{fatherOccLocation}" id="FATHERNAME" placeholder="Enter Father's Occupation Location"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Contact No:</label>
+													</section>
+													<section class="col1 col-4">
+														<label class="input">
+															<input type="text" name="fathercontact1" th:feild="*{fathercontact1}" id="FATHERNAME" placeholder="Contact 1"/>
+														</label>
+													</section>
+													<section class="col col-5 no-padding">
+														<label class="input">
+															<input type="text" name="fathercontact2" th:feild="*{fathercontact2}" id="FATHERNAME" placeholder="Contact 2"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Email Address:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherEmail" th:feild="*{fatherEmail}" id="EmailAddress" placeholder="Enter Email Address"/>
+														</label>
+													</section>
+												</div>
 											</section>	
 										</div>
+										
 										<div class="row">
 											<section class="col1">
-												<label class="label"> Mother's Name:</label>
+												<label class="label"> Mother's Details:</label>
 											</section>
 											<section class="col1 col-9">
-												<label class="input">
-													<input type="text" name="motherName" th:feild="*{motherName}" id="MOTHERNAME" placeholder="Enter Mother's Name"/>
-												</label>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Name:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherName" th:feild="*{fatherName}" id="FATHERNAME" placeholder="Enter Father's Name"/>
+														</label>
+													</section>
+												</div>	
+												<div class="row">
+													<section class="col1">
+														<label class="label">Occupation:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="select">
+															<select name="fatherOccupation" th:feild="*{fatherOccupation}" id="fatherOccupation" class="form-control" >
+																<option selected="selected" value="">Select Occupation</option>
+																<option value="House Wife">House Wife</option>
+																<option value="Employed">Employed</option>
+																<option value="Business Man">Business Man</option>
+																<option value="Professional">Professional</option>
+																<option value="Retired">Retired</option>
+																<option value="Passed Away">Passed Away</option>
+															</select>
+															<i></i>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Location:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherOccLocation" th:feild="*{fatherOccLocation}" id="FATHERNAME" placeholder="Enter Father's Occupation Location"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Contact No:</label>
+													</section>
+													<section class="col1 col-4">
+														<label class="input">
+															<input type="text" name="fathercontact1" th:feild="*{fathercontact1}" id="FATHERNAME" placeholder="Contact 1"/>
+														</label>
+													</section>
+													<section class="col col-5 no-padding">
+														<label class="input">
+															<input type="text" name="fathercontact2" th:feild="*{fathercontact2}" id="FATHERNAME" placeholder="Contact 2"/>
+														</label>
+													</section>
+												</div>
 											</section>	
 										</div>
 										
@@ -861,6 +973,9 @@
 										</div>
 										
 									</fieldset>
+									
+
+
 									<header>Astrological Information : </header>
 									<fieldset>
 										<label class="label">You may not believe in horoscope matching, yet we recommend that you fill in your of Astro details as a lot members would be interested in these details.</label>

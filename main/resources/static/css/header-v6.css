@@ -921,7 +921,7 @@
 		left: 0;
 		width: 100%;
 		height: auto;
-		z-index: 999;
+		z-index: 1999;
 		position: fixed;
 	}
 

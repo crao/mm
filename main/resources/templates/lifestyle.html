@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+	<title>Maratha Matrimony Match</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+
+	<!-- Favicon 
+	<link rel="shortcut icon" href="favicon.ico">-->
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/style.css"></link>
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="css/header-v6.css"></link>
+	<link rel="stylesheet" href="css/footer-v1.css"></link>
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="plugins/animate.css"></link>
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css"></link>
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" href="css/sky-forms.css"></link>
+	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
+	
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
+	<link rel="stylesheet" href="css/dark.css"></link>
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="css/custom.css"></link>
+	
+	<!--Caseroul-->
+	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
+	<style>.sky-form{border: 1px solid #eee;}</style>
+	<script type="text/javascript" src="js/my.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://iamrohit.in/lab/js/location.js"></script>
+</head>
+
+<body class="header-fixed header-fixed-space">
+	<div class="wrapper">
+		<!--=== Header v6 ===-->
+		<div th:replace="common :: topNav"></div>
+		<!--=== End Header v6 ===-->
+		<!--=== Breadcrumbs ===-->
+		<div class="breadcrumbs">
+			<div class="container">
+				<h1 class="pull-left">Personal Information</h1>
+				<ul class="pull-right breadcrumb">
+					<li><a href="index.html">Home</a></li>
+					<li class="active">Personal Information</li>
+				</ul>
+			</div><!--/container-->
+		</div><!--/breadcrumbs-->
+		<!--=== End Breadcrumbs ===-->
+		<!--=== Content ===-->
+		<div class="content-md">
+			<div class="container content profile">
+				
+				<div class="row">
+					<!--<div class="col-md-3">
+						<div class="profile-body">
+							<div class="profile-bio">
+								<h2>Filter the List</h2>
+							</div>
+						</div>
+					</div>-->
+					<div class="col-md-12">
+								<form action="preferences.html" th:action="" th:object="" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
+									<header>What are you Hobbies and Interest : </header>
+									<fieldset>
+										<div class="row">
+											<section class="inline-group">
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Cooking</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Nature</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Photography</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Dancing</label>
+												</div>
+											</section>
+										</div>
+										<div class="row">
+											<section class="inline-group">
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Painting</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Pets</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Playing Musical Instruments</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Puzzles</label>
+												</div>
+											</section>
+										</div>
+										<div class="row">
+											<section class="inline-group">
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Gardening / Lanscaping</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Art / Handicraft</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Listening to Music</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Movies</label>
+												</div>
+											</section>
+										</div>
+										<div class="row">
+											<section class="inline-group">
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Internet Surfing</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Travelling</label>
+												</div>
+											</section>
+										</div>
+										<div class="row">
+											<section class="col ">
+												<label class="label"> Other:</label>
+											</section>
+											<section class="col1 col-10">
+												<label class="input">
+													<input type="text" id="otherHobby" name="otherHobby"  placeholder="Enter your other Hobby Here.. Eg: Reading, Farming, etc." />
+												</label>
+											</section>
+										</div>
+									</fieldset>
+									
+									<header>Your Favourite music</header>
+
+									<fieldset>
+										<div class="row">
+											<section class="inline-group">
+												<div class="col col-4">
+													<label class="checkbox"><input type="checkbox" name="favMusic" /><i></i>Film Songs</label>
+												</div>
+												<div class="col col-4">
+													<label class="checkbox"><input type="checkbox" name="favMusic"  /><i></i>Indian Classical Music</label>
+												</div>
+												<div class="col col-4">
+													<label class="checkbox"><input type="checkbox" name="favMusic"/><i></i>Western Music</label>
+												</div>
+											</section>
+										</div>
+										
+										<div class="row">
+											<section class="col ">
+												<label class="label"> Other:</label>
+											</section>
+											<section class="col1 col-10">
+												<label class="input">
+													<input type="text" id="otherMusic" name="otherMusic"  placeholder="Enter your other Music Interest.. Eg: Fusion, Blues, etc." />
+												</label>
+											</section>
+										</div>
+									</fieldset>
+									<header>Sports Fitness You Like</header>
+									<fieldset>
+										<div class="row">
+											<section class="inline-group">
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Cricket</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="favSports"/><i></i>Carrom</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Chess</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="favSports"/><i></i>Jogging</label>
+												</div>
+											</section>
+										</div>
+										<div class="row">
+											<section class="inline-group">
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Badminton</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Swimming</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Tennis</label>
+												</div>
+												<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Football</label>
+												</div>
+											</section>
+										</div>
+										<div class="row">
+											<section class="col ">
+												<label class="label"> Other:</label>
+											</section>
+											<section class="col1 col-10">
+												<label class="input">
+													<input type="text" id="otherSports" name="otherSports"  placeholder="Enter your other Interested Sports.. Eg: Cycling, kabaddi, etc." />
+												</label>
+											</section>
+										</div>
+									</fieldset>
+									
+									
+									<footer>
+										<section class="col1 col-11">
+											<button type="submit" class="btn-u">Continue</button>
+										</section>
+									</footer>
+								</form>
+								<!-- End Checkout-Form -->
+								
+							
+						
+					</div>
+				</div>
+					
+			</div>
+		</div>
+		<!--=== End Content ===-->
+
+		<!--=== Footer Version 1 ===-->
+		<div th:replace="common :: footer"></div>
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
+	
+	<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="plugins/smoothScroll.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
+	<!--Form Scripts-->
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="js/plugins/datepicker.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	
+	<!--Caseroul Scripts-->
+	<script type="text/javascript" src="plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
+	<script type="text/javascript" src="js/plugins/owl-recent-works.js"></script>
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			Datepicker.initDatepicker();
+			OwlCarousel.initOwlCarousel();
+			OwlRecentWorks.initOwlRecentWorksV2();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+  <script src="assets/plugins/html5shiv.js"></script>
+  <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+  <![endif]-->
+
+</body>
+</html>
