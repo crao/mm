@@ -57,70 +57,14 @@
 <body class="header-fixed header-fixed-space">
 	<div class="wrapper">
 		<!--=== Header v6 ===-->
-		<div class="header-v6 header-classic-white header-sticky">
-			<!-- Navbar -->
-			<div class="navbar mega-menu" role="navigation">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="menu-container">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-
-						<!-- Navbar Brand -->
-						<div class="navbar-brand no-padding">
-							<a href="index.html">
-								<img class="shrink-logo" src="img/logo1.png" alt="Logo"/>
-							</a>
-						</div>
-						<!-- ENd Navbar Brand -->
-						<!-- End Header Inner Right -->
-					</div>
-
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse navbar-responsive-collapse">
-						<div class="menu-container">
-							<ul class="nav navbar-nav">
-								<!-- Home -->
-								<li class=""><a href="#">Home</a></li>
-								<li class="dropdown">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Search</a>
-									<ul class="dropdown-menu">
-										<li><a href="search.html">Regular Search</a></li>
-										<li><a href="#">Advance Search</a></li>
-										<li><a href="#">Keyword Search</a></li>
-									</ul>
-								</li>
-								<li  class="dropdown">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Services</a>
-										<ul class="dropdown-menu">
-											<li><a target="_blank" href="#">Asistance Service</a></li>
-											<li><a target="_blank" href="#">Matrimony directory</a></li>
-										</ul>
-								</li>
-								<li  class="dropdown">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Upgrade</a>
-										<ul class="dropdown-menu">
-											<li><a target="_blank" href="payment-option.html">Payment Option</a></li>
-										</ul>
-								</li>
-							</ul>
-						</div>
-					</div><!--/navbar-collapse-->
-				</div>
-			</div>
-			<!-- End Navbar -->
-		</div>
+		<div th:replace="common :: topNav"></div>
 		<!--=== End Header v6 ===-->
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
 				<h1 class="pull-left">Ketan's Profile</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="myhome.html">Home</a></li>
+					<li><a href="index.html">Home</a></li>
 					<li class="active">Profile Page</li>
 				</ul>
 			</div><!--/container-->
@@ -239,7 +183,7 @@
 															<button class="btn-u" type="button">YES</button>
 															<button data-dismiss="modal" class="btn-u btn-u-default" type="button">SKIP</button>
 															<br/><br/>
-															<p>Contact him directly through Mobile, Email & Chat. <a href="payment-option.html" class="send-interest">Upgrade Now!</a></p>
+															<p>Contact him directly through Mobile, Email &amp; Chat. <a href="payment-option.html" class="send-interest">Upgrade Now!</a></p>
 														</div>
 														<div class="col-md-1"></div>
 														
@@ -682,10 +626,8 @@
 													</div>
 													
 													<div class="row margin-bottom-10">
-																
 														<div class="boxbtmline" style="border:1px solid #dadada;">  
-															<header>Hobbies and Interest :</header>
-																								
+															<header>Hobbies and Interest :</header>	
 															 <div style="display: block;">
 																<div class=" hdtxt" style="line-height:25px;">
 																		<fieldset>
@@ -719,9 +661,6 @@
 															
 														</div> 
 													</div>
-													
-													
-													
 												</fieldset>
 											</div>
 											
@@ -1093,7 +1032,7 @@
 												<div class="col-md-1"></div>
 											</div>
 											<div class="news-v3-in-sm no-padding-bottom">
-												<h2 class="txt-center nomargin"><a href="#">Trupti & Bhavesh</a></h2>
+												<h2 class="txt-center nomargin"><a href="#">Trupti &amp; Bhavesh</a></h2>
 												<p class="txt-center"><a class="send-interest" href="#">Read Story</a> | <a class="send-interest" href="#">More Stries</a></p>
 												
 											</div>
@@ -1105,7 +1044,7 @@
 												<div class="col-md-1"></div>
 											</div>
 											<div class="news-v3-in-sm no-padding-bottom">
-												<h2 class="txt-center nomargin"><a href="#">Ashwini & Sanket</a></h2>
+												<h2 class="txt-center nomargin"><a href="#">Ashwini &amp; Sanket</a></h2>
 												<p class="txt-center"><a class="send-interest" href="#">Read Story</a> | <a class="send-interest" href="#">More Stries</a></p>
 												
 											</div>
@@ -1196,119 +1135,7 @@
 		<!--=== End Content ===-->
 
 		<!--=== Footer Version 1 ===-->
-		<div class="footer-v1">
-			<div class="footer">
-				<div class="container">
-					<div class="row">
-						<!-- About -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo1.png" alt="company logo" /></a>
-							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
-							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
-						</div><!--/col-md-3-->
-						<!-- End About -->
-
-						<!-- Latest -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<div class="posts">
-								<div class="headline"><h2>Latest Blogs</h2></div>
-								<ul class="list-unstyled latest-list">
-									<li>
-										<a href="#">Name of the Blog</a>
-										<small>January 8, 2017</small>
-									</li>
-									<li>
-										<a href="#">Name of the Blog</a>
-										<small>December 23, 2016</small>
-									</li>
-									<li>
-										<a href="#">Name of the Blog</a>
-										<small>November 15, 2016</small>
-									</li>
-								</ul>
-							</div>
-						</div><!--/col-md-3-->
-						<!-- End Latest -->
-
-						<!-- Link List -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<div class="headline"><h2>Help &amp; Support</h2></div>
-							<ul class="list-unstyled link-list">
-								<li><a href="#">24x7 Live help</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Success Stories</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
-							</ul>
-						</div><!--/col-md-3-->
-						<!-- End Link List -->
-
-						<!-- Address -->
-						<div class="col-md-3 map-img md-margin-bottom-40">
-							<div class="headline"><h2>Matrimony on Mobile</h2></div>
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Anroid">
-								<img src="img/a.png" style="width:40px;" />
-							</a>&nbsp;&nbsp;  
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Mac">
-								<img src="img/ap.png" style="width:40px;" />&nbsp;&nbsp; 
-							</a>
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Windows">
-								<img src="img/w.png" style="width:40px;" />
-							</a>
-							<div class="headline"><h2>Follow Us On</h2></div>
-							<ul class="footer-socials list-inline" >
-								
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Facebook">
-										<i class="fa fa-facebook" style="font-size:22px"></i>
-									</a>
-								</li>
-								
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Google Plus">
-										<i class="fa fa-google-plus" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Linkedin">
-										<i class="fa fa-linkedin" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Pinterest">
-										<i class="fa fa-pinterest" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Twitter">
-										<i class="fa fa-twitter" style="font-size:22px"></i>
-									</a>
-								</li>
-							</ul>
-						</div><!--/col-md-3-->
-						<!-- End Address -->
-					</div>
-				</div>
-			</div><!--/footer-->
-
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<p>
-								2017 &copy; All Rights Reserved.
-								<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-							</p>
-						</div>
-
-						<!-- Social Links -->
-						<div class="col-md-6">
-								
-						</div>
-					</div>
-				</div><!--/copyright-->
-			</div>
-		</div>
+		<div th:replace="common :: footer"></div>
 		<!--=== End Footer Version 1 ===-->
 	</div><!--/wrapper-->
 
@@ -1338,7 +1165,8 @@
 	<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
 	
 	
-    <script src="sliderengine/amazingslider.js"></script>	
+    <script src="sliderengine/amazingslider.js"></script>
+    
     <script src="sliderengine/initslider-1.js"></script>
 	
 	<script type="text/javascript">
