@@ -52,6 +52,7 @@ public class Member {
 	private Date createdOn;
 	private Date updatedOn;
 	private Date lastOnline;
+	private String type; // Convert to ENUMS if appropriate
 
 	//@OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
 	//@PrimaryKeyJoinColumn
@@ -267,6 +268,14 @@ public class Member {
 
 	public void setLastOnline(Date lastOnline) {
 		this.lastOnline = lastOnline;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	
