@@ -76,12 +76,12 @@
 								<li  class="dropdown">
 									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Services</a>
 										<ul class="dropdown-menu">
-											<li><a target="_blank" href="#">Asistance Service</a></li>
+											<li><a target="_blank" href="#">Assistance Service</a></li>
 											<li><a target="_blank" href="#">Matrimony directory</a></li>
 										</ul>
 								</li>
 								<li  class="dropdown">
-									<a href="message.html">Messages</a>
+									<a th:href="@{/messages(userId=${session.userId})}">Messages</a>
 								</li>
 								<li  class="dropdown">
 									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Upgrade</a>
