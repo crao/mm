@@ -70,8 +70,8 @@
 						<div class="row no-margin row-1-style1	">
 							<div class="col-md-6 no-padding">
 								<a href="photo-upload.html"><img class="img-responsive profile-img margin-bottom-10" src="img/user1.jpg" alt="" /></a>
-								<a href="photo-upload.html">Add Photo</a><br>
-								<a href="profile.html"><span>Edit Profile</span></a><br>
+								<a href="photo-upload.html">Add Photo</a><br/>
+								<a href="profile.html"><span>Edit Profile</span></a><br/>
 								<a href="profile.html"><span>Edit Preferences</span></a>
 							</div>
 							<div class="col-md-6">
@@ -85,14 +85,14 @@
 							</div>
 						</div>	
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-							<li class="list-group-item">
+							<li class="list-group-item active">
 								<a href="#"><i class="fa fa-bar-chart-o"></i>Overall</a>
 							</li>
-							<li class="list-group-item active">
-								<a href="profile.html"><i class="fa fa-user"></i>My Profile</a>
+							<li class="list-group-item ">
+								<a th:href="@{'profile?userId='+  ${session.userId}}"><i class="fa fa-user"></i>My Profile</a>
 							</li>
 							<li class="list-group-item">
-								<a href="#"><i class="fa fa-cubes"></i>Who Viewed My Profile</a>
+								<a th:href="@{'myProfileView?userId='+  ${session.userId}}"><i class="fa fa-cubes"></i>Who Viewed My Profile</a>
 							</li>
 							<li class="list-group-item">
 								<a href="#"><i class="fa fa-group"></i>Who Shortlisted Me</a>
@@ -117,7 +117,7 @@
 									<div class="overflow-h">
 										<h3 class="heading-xs"><a href="#">Pending (10)</a></h3>
 									</div>
-									<hr class="no-margin">
+									<hr class="no-margin"/>
 									<div class="overflow-h">
 										<h3 class="heading-xs"><a href="#">Accepted (2)</a></h3>
 									</div>
@@ -126,7 +126,7 @@
 									<div class="overflow-h">
 										<h3 class="heading-xs"><a href="#">All (1)</a></h3>
 									</div>
-									<hr class="no-margin">
+									<hr class="no-margin"/>
 									<div class="overflow-h">
 										<h3 class="heading-xs"><a href="#">Awaiting (2)</a></h3>
 									</div>
@@ -148,7 +148,7 @@
 											<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
 												<div class="alert-blocks  alert-dismissable">
 													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-													<img class="rounded-x" src="img/user.jpg" alt="">
+													<img class="rounded-x" src="img/user.jpg" alt="" />
 													<div class="overflow-h">
 														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
 														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
@@ -156,7 +156,7 @@
 												</div>
 												<div class="alert-blocks  alert-dismissable">
 													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-													<img class="rounded-x" src="img/user.jpg" alt="">
+													<img class="rounded-x" src="img/user.jpg" alt="" />
 													<div class="overflow-h">
 														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Is interested in your profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
 														<p><a class="send-interest" href="#">Start Conversation</a> | <a class="send-interest" href="#">View Profile</a></p>
@@ -164,7 +164,7 @@
 												</div>
 												<div class="alert-blocks  alert-dismissable">
 													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-													<img class="rounded-x" src="img/user.jpg" alt="">
+													<img class="rounded-x" src="img/user.jpg" alt="" />
 													<div class="overflow-h">
 														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has just been added	<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
 														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
@@ -172,7 +172,7 @@
 												</div>
 												<div class="alert-blocks  alert-dismissable">
 													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-													<img class="rounded-x" src="img/user.jpg" alt="">
+													<img class="rounded-x" src="img/user.jpg" alt="" />
 													<div class="overflow-h">
 														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
 														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
@@ -180,7 +180,7 @@
 												</div>
 												<div class="alert-blocks alert-dismissable">
 													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-													<img class="rounded-x" src="img/user.jpg" alt="">
+													<img class="rounded-x" src="img/user.jpg" alt="" />
 													<div class="overflow-h">
 														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
 														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
@@ -188,7 +188,7 @@
 												</div>
 												<div class="alert-blocks  alert-dismissable">
 													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-													<img class="rounded-x" src="img/user.jpg" alt="">
+													<img class="rounded-x" src="img/user.jpg" alt="" />
 													<div class="overflow-h">
 														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
 														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
@@ -217,57 +217,57 @@
 										
 										<div class="owl-slider-v12">
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 										</div>
@@ -297,57 +297,57 @@
 										
 										<div class="owl-slider-v2">
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 										</div>
@@ -378,57 +378,57 @@
 										
 										<div class="owl-slider-v22">
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 										</div>
@@ -458,57 +458,57 @@
 										
 										<div class="owl-slider-v32">
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="">
-												<strong>M234987</strong><br>
-												<span>29 Yrs, 5Ft 9In</span><br>
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
 												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
 										</div>
@@ -548,25 +548,25 @@
 														<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
@@ -599,25 +599,25 @@
 														<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
@@ -650,25 +650,25 @@
 														<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
@@ -701,25 +701,25 @@
 														<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
 															<div class="alert-blocks  alert-dismissable">
 																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-																<img class="rounded-x" src="img/user.jpg" alt="">
+																<img class="rounded-x" src="img/user.jpg" alt="" />
 																<div class="overflow-h">
-																	<strong>M5178743</strong> <br>(34 Yrs, 5Ft 10In)<br>Aurangabad
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
 																	<p><a class="send-interest" href="#">Send Interest</a> </p>
 																</div>
 															</div>
