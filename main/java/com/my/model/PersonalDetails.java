@@ -61,6 +61,15 @@ public class PersonalDetails {
 	private String residingstateP;
 	private String residingcityP;
 	
+	
+
+	public String getFamilyStatus() {
+		return familyStatus;
+	}
+
+	public void setFamilyStatus(String familyStatus) {
+		this.familyStatus = familyStatus;
+	}
 
 	public int getHeight() {
 		return height;
@@ -269,12 +278,7 @@ public class PersonalDetails {
 	public void setDosh(String dosh) {
 		this.dosh = dosh;
 	}
-	public String getFamilyStatus() {
-		return familyStatus;
-	}
-	public void setFamilyStatus(String familyStatus) {
-		this.familyStatus = familyStatus;
-	}
+	
 	public String getFamilyType() {
 		return familyType;
 	}
