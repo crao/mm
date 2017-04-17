@@ -15,7 +15,7 @@ public class PhotoUploadController {
 	
 	@RequestMapping(value = "/photoUpload", method = RequestMethod.GET)
 	public String init(){
-		return "photoUpload";
+		return "uploadPhoto";
 	}
 	
 	
@@ -44,7 +44,7 @@ public class PhotoUploadController {
 
 				
 
-				return "photoalbum";
+				return "photoupload"; // BB
 			} catch (Exception e) {
 				return "You failed to upload " + name + " => " + e.getMessage();
 			}
