@@ -1,7 +1,5 @@
 package com.my.controllers;
 
-
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +70,8 @@ public class LoginController {
 					model.addAttribute("preferences", preferences);
 					
 					
-					return "myhome";
-					//return "redirect:/profile?status=success&userId="+member.getmemberId();
+					//return "myhome";
+					return "redirect:/profile?status=success&userId="+member.getmemberId();
 				}	
 			}
 		}		
