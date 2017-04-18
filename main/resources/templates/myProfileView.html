@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+	<title>Profile - Maratha Matrimony Match</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+
+
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/style.css"></link>
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="css/header-v6.css"></link>
+	<link rel="stylesheet" href="css/footer-v1.css"></link>
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="plugins/animate.css"></link>
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css"></link>
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" href="css/sky-forms.css"></link>
+	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
+	
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="css/profile.css"></link>
+	<link rel="stylesheet" href="plugins/scrollbar/css/jquery.mCustomScrollbar.css"></link>
+	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
+	<link rel="stylesheet" href="css/dark.css"></link>
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="css/custom.css"></link>
+	
+	<!--Caseroul-->
+	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
+
+	<script type="text/javascript" src="js/my.js"></script>
+	
+</head>
+
+<body class="header-fixed header-fixed-space">
+	<div class="wrapper">
+		<!--=== Header v6 ===-->
+		<div th:replace="common :: topNav"></div>
+		<!--=== End Header v6 ===-->
+		<!--=== Breadcrumbs ===-->
+		<div class="breadcrumbs">
+			<div class="container">
+				<h1 class="pull-left">Members Viewed My Profile</h1>
+				<ul class="pull-right breadcrumb">
+					<li><a href="myhome.html">Home</a></li>
+					<li class="active">Member Viewed</li>
+				</ul>
+			</div><!--/container-->
+		</div><!--/breadcrumbs-->
+		<!--=== End Breadcrumbs ===-->
+		<!--=== Content ===-->
+		<div class="content-md">
+			<div class="container content profile">
+				
+				<div class="row">
+					<div class="col-md-3">
+						<div class="headline"><h4>Activity</h4></div>
+						<div class="row">
+							<div class="col-md-9 ">
+								<p><a href="#" class="side-color">Profile Shortlisted by me</a></p>
+							</div>
+							<div class="col-md-3">
+								<button style="font-size:10px">1</button>
+							</div>
+						</div>	
+						<hr class="no-margin margin-bottom-10"/>
+						<div class="row">
+							<div class="col-md-9">
+								<p><a href="#" class="side-color">Profile I have Ignored </a></p>
+							</div>
+							<div class="col-md-3">
+								<button style="font-size:10px">0</button>
+							</div>
+						</div>
+						<hr class="no-margin margin-bottom-10"/>
+						<div class="row">
+							<div class="col-md-9">
+								<p><a href="#" class="side-color">Profile I have blocked </a> </p>
+							</div>
+							<div class="col-md-3">
+								<button style="font-size:10px">0</button>
+							</div>
+						</div>
+						<hr class="no-margin margin-bottom-10"/>
+						<div class="row">
+							<div class="col-md-9">
+								<p><a href="#" class="side-color"><b>Who viewed my profile  </b></a></p>
+							</div>
+							<div class="col-md-3">
+								<button style="font-size:10px">3</button>
+							</div>
+						</div>
+						
+						<div class="headline"><h4>Profile View</h4></div>
+						<div class="row">
+							<div class="col-md-9">
+								<p><a href="#" class="side-color">Members viewed my profile </a></p>
+							</div>
+							<div class="col-md-3">
+								<!--<button style="font-size:10px">1</button>-->
+							</div>
+						</div>	
+						<hr class="no-margin margin-bottom-10"/>
+						<div class="row">
+							<div class="col-md-9">
+								<p><a href="#" class="side-color">Members shortlisted my profile  </a></p>
+							</div>
+							<div class="col-md-3">
+								<!--<button style="font-size:10px">1</button>-->
+							</div>
+						</div>
+						
+						<div class="headline"><h4>SMS</h4></div>
+						<div class="row">
+							<div class="col-md-9">
+								<p><a href="#" class="side-color">SMS Received</a></p>
+							</div>
+							<div class="col-md-3">
+								<!--<button style="font-size:10px">1</button>-->
+							</div>
+						</div>	
+						<hr class="no-margin margin-bottom-10"/>
+						<div class="row">
+							<div class="col-md-9">
+								<p><a href="#" class="side-color">SMS Sent</a></p>
+							</div>
+							<div class="col-md-3">
+								<!--<button style="font-size:10px">1</button>-->
+							</div>
+						</div>
+					</div>
+					<div class="col-md-9 " id="sky-form">
+					
+							<!--<div class="bg-light">
+								<div class="row">
+									<div class="col-md-12">
+										<input type="checkbox" name="Hobbies"  /><button class="btn-u" style="  left:10px" type="button">Send Interest to All</button>
+									</div>
+									
+								</div>
+							</div>-->
+							
+					
+							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
+								<div class="row">
+									<div class="col-md-12">
+										<label class="label label-font">Ketan Khurana</label>
+									</div>
+									<div class="col-md-12 sky-form noborder">
+										<label class="label"> D370116 | Profile Created for Self | Viewed On : 12-Apr-2017</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 txt-center">
+										<img class="img-responsive top-margin-10 margin-bottom-10" src="img/user1.jpg" alt="" />
+										<span>Last Login : 1 Week ago</span><br/>
+										<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
+									</div>
+									<div class="col-md-3">
+										<div class="col-md-12">
+										<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
+										</div>
+										<div class="col-md-12 sky-form padding top-margin-10">
+										<span > <b>"My son is a Business person with a Master's degree currently living in ... <a href="profile-view.html">More</a>"</b></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Age:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 29 years &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Height:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 168 cm &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>B.Time/Place:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 8:14 AM / Satara &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Gothra:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Kashaup</span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Star:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Anuradha</span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Location:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Aurangabad, Maharashtra, India </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Education:</b>
+											</div>
+											<div class="col-md-9">
+												<span>MSc Computer Science &nbsp;  </span>
+											</div>
+										</div>
+										
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Profession:</b>
+											</div>
+											<div class="col-md-9">
+												<span>Business Owner / Entrepren..</span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Income:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 6.00 lakhs </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-12">
+												<a href="profile-view.html">View Full Profile</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr class="margin-15"/>
+								<div class="row">
+									<div class="col-md-12 sky-form noborder">
+										<label class="label floatright">He Has viewed your phone number. Are you interested in his profile?</label>
+									</div>
+									<div class="col-md-12">
+										<button class="btn-u" style="left:20px; top:3px" type="button">Send Mail</button>
+										<button class="btn-u floatright" style="right: 20px; top:3px" type="button">Shortlist</button>
+										<div class="btn-group" style="float:right; right: 30px; top:3px">
+											<button type="button" class="btn-u btn-u-orange dropdown-toggle" data-toggle="dropdown">
+												Action
+												<i class="fa fa-angle-down"></i>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Ignore</a></li>
+												<li><a href="#">Block</a></li>
+											</ul>
+										</div>
+										<button class="btn-u floatright" style="right: 40px; top:3px" type="button">Send Interest</button> 
+									</div>
+								</div>
+								<p></p>
+							</div>
+							
+							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
+								<div class="row">
+									<div class="col-md-12">
+										<label class="label label-font">Ketan Khurana</label>
+									</div>
+									<div class="col-md-12 sky-form noborder">
+										<label class="label"> D370116 | Profile Created for Self | Viewed On : 12-Apr-2017</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 txt-center">
+										<img class="img-responsive top-margin-10 margin-bottom-10" src="img/user1.jpg" alt="" />
+										<span><i class="fa fa-comments-o" style="font-size:25px"></i>Member Online<br/>
+										<a href="#" target="_blank">Chat Now</a></span>
+									</div>
+									<div class="col-md-3">
+										<div class="col-md-12">
+										<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
+										</div>
+										<div class="col-md-12 sky-form padding top-margin-10">
+										<span > <b>"My son is a Business person with a Master's degree currently living in ... <a href="profile-view.html">More</a>"</b></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Age:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 29 years &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Height:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 168 cm &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>B.Time/Place:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 8:14 AM / Satara &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Gothra:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Kashaup</span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Star:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Anuradha</span>
+											</div> 
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Location:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Aurangabad, Maharashtra, India </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Education:</b>
+											</div>
+											<div class="col-md-9">
+												<span>MSc Computer Science &nbsp;  </span>
+											</div>
+										</div>
+										
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Profession:</b>
+											</div>
+											<div class="col-md-9">
+												<span>Business Owner / Entrepren..</span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Income:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 6.00 lakhs </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-12">
+												<a href="profile-view.html">View Full Profile</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr class="margin-15"/>
+								<div class="row">
+									<div class="col-md-12">
+										<button class="btn-u floatright" style="right: 10px; top:3px" type="button">Send Interest</button><button class="btn-u floatright" style="right: 20px; top:3px" type="button">Shortlist</button> <button class="btn-u floatright" style="right: 30px; top:3px" type="button">Send Mail</button>&nbsp;
+									</div>
+								</div>
+								<p></p>
+							</div>
+							
+							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
+								<div class="row">
+									<div class="col-md-12">
+										<label class="label label-font">Ketan Khurana</label>
+									</div>
+									<div class="col-md-12 sky-form noborder">
+										<label class="label"> D370116 | Profile Created for Self | Viewed On : 12-Apr-2017</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 txt-center">
+										<img class="img-responsive top-margin-10 margin-bottom-10" src="img/user1.jpg" alt="" />
+										<span>Last Login : 1 Week ago</span><br/>
+										<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
+									</div>
+									<div class="col-md-3">
+										<div class="col-md-12">
+										<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
+										</div>
+										<div class="col-md-12 sky-form padding top-margin-10">
+										<span > <b>"My son is a Business person with a Master's degree currently living in ... <a href="profile-view.html">More</a>"</b></span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Age:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 29 years &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Height:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 168 cm &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>B.Time/Place:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 8:14 AM / Satara &nbsp; </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Gothra:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Kashaup</span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Star:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Anuradha</span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Location:</b>
+											</div>
+											<div class="col-md-9">
+												<span> Aurangabad, Maharashtra, India </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Education:</b>
+											</div>
+											<div class="col-md-9">
+												<span>MSc Computer Science &nbsp;  </span>
+											</div>
+										</div>
+										
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Profession:</b>
+											</div>
+											<div class="col-md-9">
+												<span>Business Owner / Entrepren..</span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-3">
+												<b>Income:</b>
+											</div>
+											<div class="col-md-9">
+												<span> 6.00 lakhs </span>
+											</div>
+										</div>
+										<div class="row margin-bottom-5">
+											<div class="col-md-12">
+												<a href="profile-view.html">View Full Profile</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr class="margin-15"/>
+								<div class="row">
+									<div class="col-md-12 sky-form noborder">
+										<label class="label floatright">He is interested in your profile. Would you like to communicate further?</label>
+									</div>
+									<div class="col-md-12">
+									<button class="btn-u" style="left:20px; top:3px" type="button">Send Mail</button>
+										<button class="btn-u floatright" style="right: 20px; top:3px" type="button">Shortlist</button>
+										<div class="btn-group" style="float:right; right: 30px; top:3px">
+											<button type="button" class="btn-u btn-u-orange dropdown-toggle" data-toggle="dropdown">
+												Not Interested
+												<i class="fa fa-angle-down"></i>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#">Not Now</a></li>
+												<li><a href="#">Ignore</a></li>
+												<li><a href="#">Block</a></li>
+											</ul>
+										</div>
+										<button class="btn-u floatright" style="right: 40px; top:3px" type="button">Yes</button> 
+									</div>
+								</div>
+								<p></p>
+							</div>
+										
+							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
+								<div class="row">
+									<div class="col-md-6">
+										<!--<input type="checkbox" name="Hobbies"  /><button class="btn-u" style="  left:10px" type="button">Send Interest to All</button>-->	
+									</div>
+									<div class="col-md-6">
+										<ul class="pagination no-margin floatright">
+											<li><a href="#">&laquo;</a></li>
+											<li><a href="#">1</a></li>
+											<li><a href="#">2</a></li>
+											<li class="active"><a href="#">3</a></li>
+											<li><a href="#">4</a></li>
+											<li><a href="#">5</a></li>
+											<li><a href="#">&raquo;</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+					
+			</div>
+		</div>
+		<!--=== End Content ===-->
+
+		<!--=== Footer Version 1 ===-->
+		<div th:replace="common :: footer"></div>
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
+	
+	<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="plugins/smoothScroll.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
+	<!--Form Scripts-->
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="js/plugins/datepicker.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	
+	<!--Caseroul Scripts-->
+	<script type="text/javascript" src="plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			Datepicker.initDatepicker();
+			OwlCarousel.initOwlCarousel();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+  <script src="assets/plugins/html5shiv.js"></script>
+  <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+  <![endif]-->
+
+</body>
+</html>

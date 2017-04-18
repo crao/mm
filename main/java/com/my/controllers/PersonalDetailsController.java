@@ -74,7 +74,7 @@ public class PersonalDetailsController {
 		personaldetailsBean.setEatingHabits(personaldetailsModel.getEatinghabits());
 		personaldetailsBean.setDrinkingHabits(personaldetailsModel.getDrinkinghabits());
 		personaldetailsBean.setSmokingHabits(personaldetailsModel.getSmokinghabits());
-		personaldetailsBean.setFamilyStatus(personaldetailsModel.getFamilystatus());
+		personaldetailsBean.setFamilyStatus(personaldetailsModel.getFamilyStatus());
 		personaldetailsBean.setFamilyType(personaldetailsModel.getFamilytype());
 		personaldetailsBean.setFamilyValues(personaldetailsModel.getFamilyValues());
 		personaldetailsBean.setEducation(personaldetailsModel.getEducation());

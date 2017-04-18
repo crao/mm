@@ -33,7 +33,9 @@ public class PersonalDetailsModel {
 	private String star;
 	private String raasi;
 	
-	private String familystatus;
+	private String familyStatus;
+	
+
 	private String familytype;
 	private String familyValues;
 	
@@ -49,6 +51,16 @@ public class PersonalDetailsModel {
 	private String residingstateP;
 	private String residingcityP;
 	private String citizenship;
+	
+	
+	
+	public String getFamilyStatus() {
+		return familyStatus;
+	}
+
+	public void setFamilyStatus(String familyStatus) {
+		this.familyStatus = familyStatus;
+	}
 
 	public int getHeight() {
 		return height;
@@ -267,13 +279,7 @@ public class PersonalDetailsModel {
 		this.raasi = raasi;
 	}
 
-	public String getFamilystatus() {
-		return familystatus;
-	}
-
-	public void setFamilystatus(String familystatus) {
-		this.familystatus = familystatus;
-	}
+	
 
 	public String getFamilytype() {
 		return familytype;

@@ -68,9 +68,9 @@
 								<li class="dropdown">
 									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Search</a>
 									<ul class="dropdown-menu">
-										<li><a target="_blank" th:href="@{/search}">Regular Search</a></li>
-										<li><a target="_blank" href="#">Advance Search</a></li>
-										<li><a target="_blank" href="#">Keyword Search</a></li>
+										<li><a th:href="@{/search}">Regular Search</a></li>
+										<li><a href="#">Advance Search</a></li>
+										<li><a href="#">Keyword Search</a></li>
 									</ul>
 								</li>
 								<li  class="dropdown">
@@ -86,7 +86,7 @@
 								<li  class="dropdown">
 									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Upgrade</a>
 										<ul class="dropdown-menu">
-											<li><a href="payment-option.html">Payment Option</a></li>
+											<li><a th:href="@{/payment-option(userId=${session.userId})}">Payment Option</a></li>
 										</ul>
 								</li>
 								

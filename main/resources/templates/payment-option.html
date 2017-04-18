@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
 	<link rel="stylesheet" href="css/sky-forms.css"></link>
 	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
-	<link rel="stylesheet" href="css/page_pricing.css">
+	<link rel="stylesheet" href="css/page_pricing.css"></link>
 	<!-- CSS Theme -->
 	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
 	<link rel="stylesheet" href="css/dark.css"></link>
@@ -83,58 +83,7 @@
 <body class="header-fixed header-fixed-space">
 	<div class="wrapper">
 		<!--=== Header v6 ===-->
-		<div class="header-v6 header-classic-white header-sticky">
-			<!-- Navbar -->
-			<div class="navbar mega-menu" role="navigation">
-				<div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="menu-container">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-
-						<!-- Navbar Brand -->
-						<div class="navbar-brand no-padding">
-							<a href="index.html">
-								<img class="shrink-logo" src="img/logo1.png" alt="Logo"/>
-							</a>
-						</div>
-						<!-- ENd Navbar Brand -->
-						<!-- End Header Inner Right -->
-					</div>
-
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse navbar-responsive-collapse">
-						<div class="menu-container">
-							<ul class="nav navbar-nav">
-								<!-- Home -->
-								<li class=""><a href="#">Home</a></li>
-								<li class="dropdown">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Search</a>
-									<ul class="dropdown-menu">
-										<li><a target="_blank" href="#">Regular Search</a></li>
-										<li><a target="_blank" href="#">Advance Search</a></li>
-										<li><a target="_blank" href="#">Keyword Search</a></li>
-									</ul>
-								</li>
-								<li  class="dropdown">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Services</a>
-										<ul class="dropdown-menu">
-											<li><a target="_blank" href="#">Asistance Service</a></li>
-											<li><a target="_blank" href="#">Matrimony directory</a></li>
-										</ul>
-								</li>
-								<li><a href="#">Upgrade</a></li> 
-							</ul>
-						</div>
-					</div><!--/navbar-collapse-->
-				</div>
-			</div>
-			<!-- End Navbar -->
-		</div>
+		<div th:replace="common :: topNav"></div>
 		<!--=== End Header v6 ===-->
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
@@ -170,7 +119,7 @@
 											<div class="pricing hover-effect">
 												<label class="one">
 													<div class="pricing-head">
-														<h3><span><input type="radio" value="basic" id="b1"	name="classic"></span>Basic<span>Plan</span></h3>
+														<h3><span><input type="radio" value="basic" id="b1"	name="classic" /></span>Basic<span>Plan</span></h3>
 														<div class="col-md-12 padding-all">
 															<label class="select">
 																<select  name="selectMonth" id="selectMonth" th:feild="*{}" onchange="monthSelect(this.value, 'price')" >
@@ -196,7 +145,7 @@
 													<div class="pricing-head">
 														
 														<h3>
-															<span><input type="radio" value="advance" name="classic"></span>
+															<span><input type="radio" value="advance" name="classic" /></span>
 															Advance
 															<span>Plan</span>
 														</h3>
@@ -223,7 +172,7 @@
 											<div class="pricing hover-effect">
 												<label class="one">
 													<div class="pricing-head">
-														<h3><span><input type="radio" value="premium" name="classic"></span>Premium <span>Plan </span></h3>
+														<h3><span><input type="radio" value="premium" name="classic" /></span>Premium <span>Plan </span></h3>
 														
 															<div class="col-md-12 padding-all">
 																<label class="select">
@@ -249,7 +198,7 @@
 											<div class="pricing hover-effect">
 												<label class="one">
 													<div class="pricing-head">
-														<h3><span><input type="radio" value="marry" name="classic"></span>Till You Marry<span>Plan</span></h3>
+														<h3><span><input type="radio" value="marry" name="classic" /></span>Till You Marry<span>Plan</span></h3>
 														<div class="col-md-12 padding-all">
 															<label class="select">
 																<select  name="selectAdvMonth" id="selectAdvMonth" th:feild="*{}" onchange="monthSelect(this.value, 'tillprice')">
@@ -348,8 +297,8 @@
 								<form action="#" id="sky-form" class="sky-form">
 									<header  style="padding-bottom:10px">Pay Using Credit / Debit Card
 										<div class="floatright">
-											<img src="img/visacard.gif" class="" style="margin-right:0">
-											<img src="img/mastercard.gif">&nbsp;<img src="img/maestro.gif">&nbsp;<img src="img/rupay.gif">
+											<img src="img/visacard.gif" class="" style="margin-right:0" />
+											<img src="img/mastercard.gif" />&nbsp;<img src="img/maestro.gif" />&nbsp;<img src="img/rupay.gif" />
 										</div>
 									</header>
 
@@ -358,26 +307,26 @@
 									<fieldset>
 										<section>
 											<div class="inline-group">
-												<label class="radio"><input type="radio" name="radio-inline" checked><i class="rounded-x"></i>Visa</label>
-												<label class="radio"><input type="radio" name="radio-inline"><i class="rounded-x"></i>MasterCard</label>
+												<label class="radio"><input type="radio" name="radio-inline" checked="checked" /><i class="rounded-x"></i>Visa</label>
+												<label class="radio"><input type="radio" name="radio-inline" /><i class="rounded-x"></i>MasterCard</label>
 											</div>
 										</section>
 
 										<section>
 											<label class="input">
-												<input type="text" name="name" placeholder="Name on card">
+												<input type="text" name="name" placeholder="Name on card" />
 											</label>
 										</section>
 
 										<div class="row">
 											<section class="col col-10">
 												<label class="input">
-													<input type="text" name="card" id="card" placeholder="Card number">
+													<input type="text" name="card" id="card" placeholder="Card number" />
 												</label>
 											</section>
 											<section class="col col-2">
 												<label class="input">
-													<input type="text" name="cvv" id="cvv" placeholder="CVV2">
+													<input type="text" name="cvv" id="cvv" placeholder="CVV2" />
 												</label>
 											</section>
 										</div>
@@ -387,7 +336,7 @@
 											<section class="col col-5">
 												<label class="select">
 													<select name="month">
-														<option value="0" selected disabled>Month</option>
+														<option value="0" selected="selected" disabled="disabled">Month</option>
 														<option value="1">January</option>
 														<option value="1">February</option>
 														<option value="3">March</option>
@@ -406,7 +355,7 @@
 											</section>
 											<section class="col col-3">
 												<label class="input">
-													<input type="text" name="year" id="year" placeholder="Year">
+													<input type="text" name="year" id="year" placeholder="Year" />
 												</label>
 											</section>
 										</div>
@@ -430,7 +379,7 @@
 											<section class="col col-5">
 												<label class="select">
 													<select name="month">
-														<option value="0" selected disabled>Select Bank</option>
+														<option value="0" selected="selected" disabled="disabled">Select Bank</option>
 														<option value="HDFC">HDFC Bank</option>
 														<option value="ICICI">ICICI Bank</option>
 														<option value="Canara">Canara Bank</option>
@@ -465,7 +414,7 @@
 											<label class="label col col-3">Name:</label>
 											<section class="col col-9">
 												<label class="input">
-													<input type="text" name="doorStepName" id="doorStepName" placeholder="Please Enter your Name">
+													<input type="text" name="doorStepName" id="doorStepName" placeholder="Please Enter your Name" />
 												</label>
 											</section>
 										</div>
@@ -473,7 +422,7 @@
 											<label class="label col col-3">Contact Number:</label>
 											<section class="col col-9">
 												<label class="input">
-													<input type="text" name="code" id="doorStepNumber" placeholder="Please Enter your Contact Number">
+													<input type="text" name="code" id="doorStepNumber" placeholder="Please Enter your Contact Number" />
 												</label>
 											</section>
 										</div>
@@ -508,7 +457,7 @@
 											<section class="col col-5">
 												<label class="select">
 													<select name="month">
-														<option value="0" selected disabled>Select City</option>
+														<option value="0" selected="selected" disabled="disabled">Select City</option>
 														<option value="Aurangabad">Aurangabad</option>
 														<option value="Pune">Pune</option>
 														<option value="Navi-Mumbai">Navi Mumbai</option>

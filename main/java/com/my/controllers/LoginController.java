@@ -68,7 +68,10 @@ public class LoginController {
 					model.addAttribute("member", member);
 					model.addAttribute("personalDetails", personalDetails);
 					model.addAttribute("preferences", preferences);
-					return "redirect:/profile?status=success&userId="+member.getmemberId();
+					
+					
+					return "myhome";
+					//return "redirect:/profile?status=success&userId="+member.getmemberId();
 				}	
 			}
 		}		
