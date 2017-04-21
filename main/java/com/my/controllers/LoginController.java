@@ -71,6 +71,7 @@ public class LoginController {
 					
 					
 
+
 					return "redirect:/myhome?status=success&userId="+member.getmemberId();
 					//return "redirect:/profile?status=success&userId="+member.getmemberId();
 
