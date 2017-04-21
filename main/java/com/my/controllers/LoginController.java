@@ -70,8 +70,8 @@ public class LoginController {
 					model.addAttribute("preferences", preferences);
 					
 					
-					//return "myhome";
-					return "redirect:/profile?status=success&userId="+member.getmemberId();
+					return "redirect:/myhome?status=success&userId="+member.getmemberId();
+					//return "redirect:/profile?status=success&userId="+member.getmemberId();
 				}	
 			}
 		}		

@@ -1,9 +1,19 @@
 package com.my.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,21 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.my.model.Photo;
 import com.my.model.UploadModel;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpSession;
+import com.my.service.PhotoService;
 
 @RestController
 public class RestPhotoUploadController {
@@ -37,6 +35,9 @@ public class RestPhotoUploadController {
 
     //Save the uploaded file to this folder
     private static String UPLOADED_FOLDER = "C://Website//photos//";
+    
+    @Autowired
+    private PhotoService photoService; 
 
     //Single file upload
     @PostMapping("/photo/upload")
@@ -132,6 +133,12 @@ public class RestPhotoUploadController {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(userDir +"//"+ file.getOriginalFilename());
             Files.write(path, bytes);
+            
+            Photo photo = new Photo();
+            photo.setFileName(file.getOriginalFilename());
+            photo.setUserId(userId);
+            long photoId = photoService.save(photo);
+            
 
         }
 
