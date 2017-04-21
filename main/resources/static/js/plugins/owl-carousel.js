@@ -21,7 +21,7 @@ var OwlCarousel = function () {
 
 	        //Owl Slider v2
 			var owl1 = jQuery(".owl-slider-v2").owlCarousel({
-				items : 4,
+				items : 5,
                 itemsDesktop : [1000,4],
                 itemsDesktopSmall : [900,4],
                 itemsTablet: [600,3],
