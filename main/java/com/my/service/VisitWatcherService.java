@@ -25,8 +25,9 @@ public class VisitWatcherService {
 		return save;
 	}
 	
-	public List<Visit> findVistors(long memId){
-		return visitDao.findByMemId(memId);
+
+	public List<Long> findVistors(long memId){
+		return visitDao.findVisitorByMemId(memId);
 	}
 	
 	public Visit findVistor(long vistorId){

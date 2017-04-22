@@ -41,6 +41,7 @@
 	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
 	<style>.sky-form{border: 1px solid #eee;}</style>
 	<script type="text/javascript" src="js/my.js"></script>
+
 	
 	<!-- Edit Option Functionality Scripts -->
 	<script type="text/javascript"  src="files/dc.js.download"></script>
@@ -84,6 +85,7 @@
 								<img th:src=""   class="img-responsive" width="220" height="180"
 								th:if="${not #lists.isEmpty(member.photos)}"></img>
 						</a>
+
 
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li class="list-group-item">
@@ -160,6 +162,7 @@
 						</ul>
 						<button type="button" class="btn-u btn-u-default btn-u-sm btn-block">Load More</button>
 						<!--End Notification-->
+
 
 						<div class="margin-bottom-50"></div>
 
@@ -1183,8 +1186,9 @@
 																			</div>
 																			<div class="row">
 																				<section class="col1">
+
 																					<label class="label">Permanant Location :</label>
-																				</section>
+							</section>
 																				<section class="col1 col-9">
 																					<label class="label fleft" th:text="${member.personalDetails.countryP}"></label>
 																					<label class="label fleft" th:text="${member.personalDetails.residingstateP}"></label>
@@ -1504,8 +1508,10 @@
 																					<label class="label"><b>Family Status :</b></label>
 																				</section>
 																				<section class="col1 col-9">
+
 																					<label class="label" th:text="${member.personalDetails.familyStatus}"></label>
 																				</section>
+
 																			</div>
 																			
 																			<div class="row">

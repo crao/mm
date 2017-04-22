@@ -119,13 +119,10 @@ public class RegistrationController {
 			
 			model.addAttribute("userId", userId);
 		
-		
-		
-	
-	
-	
+
 		return "redirect:/register?status="+status+"?userId="+userId;
 		}
+
 	}
 
 }

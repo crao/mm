@@ -51,7 +51,8 @@ public class SearchDao {
 				 );
 		 
 		 TypedQuery<Member> tq = em.createQuery(q);
-		  
+
+		 
 		 
 		List<Member> results = em.createQuery(q).getResultList();
 		return results;
