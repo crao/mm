@@ -47,7 +47,58 @@
 <body class="header-fixed header-fixed-space">
 	<div class="wrapper">
 		<!--=== Header v6 ===-->
-	<div th:replace="common :: topNav"></div>
+		<div class="header-v6 header-classic-white header-sticky">
+			<!-- Navbar -->
+			<div class="navbar mega-menu" role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="menu-container">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<!-- Navbar Brand -->
+						<div class="navbar-brand no-padding">
+							<a href="index.html">
+								<img class="shrink-logo" src="img/logo1.png" alt="Logo" />
+							</a>
+						</div>
+						<!-- ENd Navbar Brand -->
+						<!-- End Header Inner Right -->
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<div class="menu-container">
+							<ul class="nav navbar-nav">
+								<!-- Home -->
+								<li class=""><a href="#">Register</a></li>
+								<li class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Search</a>
+									<ul class="dropdown-menu">
+										<li><a target="_blank" href="#">Regular Search</a></li>
+										<li><a target="_blank" href="#">Advance Search</a></li>
+										<li><a target="_blank" href="#">Keyword Search</a></li>
+									</ul>
+								</li>
+								<li  class="dropdown">
+									<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Services</a>
+										<ul class="dropdown-menu">
+											<li><a target="_blank" href="#">Asistance Service</a></li>
+											<li><a target="_blank" href="#">Matrimony directory</a></li>
+										</ul>
+								</li>
+								<li><a href="#">Upgrade</a></li> 
+							</ul>
+						</div>
+					</div><!--/navbar-collapse-->
+				</div>
+			</div>
+			<!-- End Navbar -->
+		</div>
 		<!--=== End Header v6 ===-->
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
@@ -65,17 +116,22 @@
 			<div class="container content profile">
 				
 				<div class="row">
-					<div class="col-md-3">
+					<!--<div class="col-md-3">
 						<div class="profile-body">
 							<div class="profile-bio">
 								<h2>Filter the List</h2>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-9">
-								<form th:action="@{/preferences}" th:object="${preferences}" enctype="multipart/form-data"  method="post" id="sky-form" class="sky-form">
+					</div>-->
+					<div class="col-md-12">
+								<form action="lifestyle.html" th:action="@{/preferences}" th:object="${preferences}" enctype="multipart/form-data"  method="post" id="sky-form" class="sky-form">
 									<header>Basic Preferences Details : </header>
 									<fieldset>
+
+										<div th:replace="common :: MinMaxAge"></div>
+										
+									 	<div th:replace="common :: FeetToCm"></div>
+										
 										<div class="row">
 											<section class="col1">
 												<label class="label">Preferred Age:</label>
@@ -167,9 +223,11 @@
 												</label>
 											</section>
 										</div>
+
+
 										<div class="row">
 											<section class="col1">
-												<label class="label">Marital Status :</label>
+												<label class="label">Maritail Status :</label>
 											</section>
 											<section class="inline-group">
 												<label class="checkbox"><input  name="maritalStatus"  th:feild="*{maritalStatus}"   id="MARITAL_STATUS1" value="Any" type="checkbox" checked="checked"/><i></i>Any</label>
@@ -202,8 +260,8 @@
 												<label class="radio"><input name="physicalStatus" th:feild="*{physicalStatus}" id="PHYSICALSTATUS3" value="Doesn't matter" type="radio"/><i class="rounded-x"></i>Doesn't matter</label>
 											</section>
 										</div>
-										
-										<div class="row">
+								
+						<div class="row">
 											<section class="col1">
 												<label class="label"> Height:</label>
 											</section>
@@ -283,7 +341,7 @@
 														<option value="163">163cm</option>
 														<option value="164">164cm</option>
 														<option value="165">165cm</option>
-														<option value="166">166cm</option>
+														<option value="166">166cm</option>			
 														<option value="167">167cm</option>
 														<option value="168">168cm</option>
 														<option value="169">169cm</option>
@@ -470,6 +528,7 @@
 											</section>
 											
 										</div>
+
 									</fieldset>
 									<header>Habits</header>
 									<fieldset>
@@ -651,7 +710,7 @@
 											</section>
 											<section class="inline-group">
 												<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}"  id="OCCUPATIONCATEGORY1" value="Government" type="radio" checked="checked" /><i class="rounded-x"></i>Government</label>
-												<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY3" value="Private" type="radio" /><i class="rounded-x"></i>>Private</label>
+												<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY3" value="Private" type="radio" /><i class="rounded-x"></i>Private</label>
 												<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY4" value="Business" type="radio" /><i class="rounded-x"></i>Business</label>
 												<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY2" value="Defence" type="radio" /><i class="rounded-x"></i>Defence</label>
 											</section>
@@ -770,7 +829,7 @@
 										
 										<div class="row">
 											<section class="col1 ">
-												<label class="label"> Montly Income:</label>
+												<label class="label"> Monthly Income:</label>
 											</section>
 											<section class="col1 col-5">
 												<label class="select">
@@ -944,7 +1003,7 @@
 										
 										<div class="row">
 											<section class="col1">
-												<label class="label">Permanant Location:</label>
+												<label class="label">Permanent Location:</label>
 											</section>
 											<section class="col1 col-3">
 												<label class="select">
@@ -971,7 +1030,6 @@
 												</label>
 											</section>
 										</div>
-										
 										
 									</fieldset>
 									

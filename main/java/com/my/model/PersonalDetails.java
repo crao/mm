@@ -30,7 +30,7 @@ public class PersonalDetails {
 	private String education;
 	private String occupation;
 	private String occupationcategory;
-	private int income; 
+	private String income; 
 	
 	private String incomecurrency;
 	
@@ -61,6 +61,15 @@ public class PersonalDetails {
 	private String residingstateP;
 	private String residingcityP;
 	
+	
+
+	public String getFamilyStatus() {
+		return familyStatus;
+	}
+
+	public void setFamilyStatus(String familyStatus) {
+		this.familyStatus = familyStatus;
+	}
 
 	public int getHeight() {
 		return height;
@@ -94,11 +103,11 @@ public class PersonalDetails {
 		this.physicalStatus = physicalStatus;
 	}
 
-	public int getIncome() {
+	public String getIncome() {
 		return income;
 	}
 
-	public void setIncome(int income) {
+	public void setIncome(String income) {
 		this.income = income;
 	}
 	
@@ -269,12 +278,7 @@ public class PersonalDetails {
 	public void setDosh(String dosh) {
 		this.dosh = dosh;
 	}
-	public String getFamilyStatus() {
-		return familyStatus;
-	}
-	public void setFamilyStatus(String familyStatus) {
-		this.familyStatus = familyStatus;
-	}
+	
 	public String getFamilyType() {
 		return familyType;
 	}

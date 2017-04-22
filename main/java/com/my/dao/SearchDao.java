@@ -2,9 +2,7 @@ package com.my.dao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -36,7 +34,7 @@ public class SearchDao {
 	MemberDao memberDao;
 	
 	private static final String BASE_QUERY = "select m.memberId,m.firstName,m.lastName,m.email,m.dob,"
-			+ "pd.height,pd.weight,pd.maritalStatus.pd.country,pd.residingstate.pd.residingcity from Member m join m.personalDetails pd where m.gender =:gender";
+			+ "pd.height,pd.weight,pd.maritalStatus from Member m join m.personalDetails pd where m.gender =:gender";
 
 	public List<Member> findMatches(Member member, SearchBinding searchBinding) {
 		
@@ -47,39 +45,19 @@ public class SearchDao {
 		 ParameterExpression<String> gender = cb.parameter(String.class);
 		 ParameterExpression<Integer> age = cb.parameter(Integer.class);
 		 
-		 
-		   // Set<String> mSet1 = new HashSet<String>(Arrays.asList(searchBinding.getShowProfile().split(",")));
-			//Set<String> mSet2 = new HashSet<String>(Arrays.asList(searchBinding.getDontShow().split(",")));
-			//Set<String> mSet3 = new HashSet<String>(Arrays.asList(searchBinding.getBackground().split(",")));
-	
-		 
-		 
-			
-	         	 q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),
-				 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),
-				 cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
-				 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight()),
-				 
-				 cb.equal(pds.get("country"), searchBinding.getCountry()),
-				 cb.equal(pds.get("residingstate"), searchBinding.getResidingstate()),
-				 cb.equal(pds.get("residingcity"), searchBinding.getResidingcity())	
-					
-				 
+		 q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),
+				 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
+				 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight())
 				 );
 		 
 		 TypedQuery<Member> tq = em.createQuery(q);
-		 
+		  
 		 
 		List<Member> results = em.createQuery(q).getResultList();
 		return results;
 		
 	}
 	
-	private String getShowProfile() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	/**
 	 * TODO : OPTIMIZE
 	 * @param homeSearch

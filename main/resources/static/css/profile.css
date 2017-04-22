@@ -36,6 +36,13 @@
 	padding: 7px 15px;
 	border-bottom: solid 3px #f7f7f7;
 }
+.profile .panel-heading1 {
+	color: #585f69;
+	background: #fff;
+	padding: 7px 15px;
+	border-top: solid 3px #f7f7f7;
+	text-align:center;
+}
 
 .profile .panel-heading-v2.overflow-h i.pull-right,
 .profile .panel-heading.overflow-h i.pull-right {

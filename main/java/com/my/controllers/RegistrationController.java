@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.my.binding.FormValidation;
 import com.my.binding.PersonalDetailsModel;
 import com.my.binding.Register;
 import com.my.model.Member;
@@ -43,17 +44,23 @@ public class RegistrationController {
 		else
 			return "personaldetails";
 	}
+
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	//@ResponseBody
-	public String register(@ModelAttribute Register register,
-			BindingResult bindingResult,
-			Model model,
-			HttpSession httpSession) {
+	public String register(final Model model, @ModelAttribute("register")  @Valid final Register register,
+			final BindingResult bindingResult,			
+			HttpSession httpSession) throws SQLException {
+		  FormValidation formValidation = new FormValidation();  
+		  
+		  formValidation.validate(register, bindingResult);  
 		if (bindingResult.hasErrors()) {
+			
 			return "home";
 		}
-		String message="";
+		else
+		{
+					String message="";
 		Member memberCheck = memberService.getMemberByEmail(register.getEmail());
 		if(memberCheck!=null){
 			message = "User already register. Cannot register again!";
@@ -98,7 +105,7 @@ public class RegistrationController {
 		member.setUpdatedOn(now);
 		long userId=-1;
 		String status=null;
-		try{
+		
 			
 			member = memberService.save(member);
 			if(member!=null){
@@ -111,16 +118,14 @@ public class RegistrationController {
 			myCache.put(Long.toString(userId), member);
 			
 			model.addAttribute("userId", userId);
-		}catch (SQLException e) {
-			return "Incorrect data";
-		}
 		
 		
-		PersonalDetailsModel personalDetailsModel = new PersonalDetailsModel();
-		personalDetailsModel.setUserId(userId);
-		model.addAttribute("personaldetails", personalDetailsModel);
 		
+	
+	
+	
 		return "redirect:/register?status="+status+"?userId="+userId;
+		}
 	}
 
 }

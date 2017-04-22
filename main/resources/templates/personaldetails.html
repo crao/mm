@@ -63,14 +63,14 @@
 			<div class="container content profile">
 				
 				<div class="row">
-					<div class="col-md-3">
+					<!-- <div class="col-md-3">
 						<div class="profile-body">
 							<div class="profile-bio">
 								<h2>Filter the List</h2>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-9">
+					</div> -->
+					<div class="col-md-12">
 								<form th:action="@{/personaldetails}" th:object="${personaldetails}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
 									<header>More Personal Details : </header>
 									<fieldset>
@@ -242,114 +242,7 @@
 											<section class="col1 ">
 												<label class="label"> Weight:</label>
 											</section>
-											<section class="col col-2">
-												<label class="select">
-													<select name="weight" th:feild="*{weight}" size="1" class="form-control" id="KGS">
-														<option value="0" selected="selected">- Kgs -</option>
-														<option value="41">41 kg</option>
-														<option value="42">42 kg</option>
-														<option value="43">43 kg</option>
-														<option value="44">44 kg</option>
-														<option value="45">45 kg</option>
-														<option value="46">46 kg</option>
-														<option value="47">47 kg</option>
-														<option value="48">48 kg</option>
-														<option value="49">49 kg</option>
-														<option value="50">50 kg</option>
-														<option value="51">51 kg</option>
-														<option value="52">52 kg</option>
-														<option value="53">53 kg</option>
-														<option value="54">54 kg</option>
-														<option value="55">55 kg</option>
-														<option value="56">56 kg</option>
-														<option value="57">57 kg</option>
-														<option value="58">58 kg</option>
-														<option value="59">59 kg</option>
-														<option value="60">60 kg</option>
-														<option value="61">61 kg</option>
-														<option value="62">62 kg</option>
-														<option value="63">63 kg</option>
-														<option value="64">64 kg</option>
-														<option value="65">65 kg</option>
-														<option value="66">66 kg</option>
-														<option value="67">67 kg</option>
-														<option value="68">68 kg</option>
-														<option value="69">69 kg</option>
-														<option value="70">70 kg</option>
-														<option value="71">71 kg</option>
-														<option value="72">72 kg</option>
-														<option value="73">73 kg</option>
-														<option value="74">74 kg</option>
-														<option value="75">75 kg</option>
-														<option value="76">76 kg</option>
-														<option value="77">77 kg</option>
-														<option value="78">78 kg</option>
-														<option value="79">79 kg</option>
-														<option value="80">80 kg</option>
-														<option value="81">81 kg</option>
-														<option value="82">82 kg</option>
-														<option value="83">83 kg</option>
-														<option value="84">84 kg</option>
-														<option value="85">85 kg</option>
-														<option value="86">86 kg</option>
-														<option value="87">87 kg</option>
-														<option value="88">88 kg</option>
-														<option value="89">89 kg</option>
-														<option value="90">90 kg</option>
-														<option value="91">91 kg</option>
-														<option value="92">92 kg</option>
-														<option value="93">93 kg</option>
-														<option value="94">94 kg</option>
-														<option value="95">95 kg</option>
-														<option value="96">96 kg</option>
-														<option value="97">97 kg</option>
-														<option value="98">98 kg</option>
-														<option value="99">99 kg</option>
-														<option value="100">100 kg</option>
-														<option value="101">101 kg</option>
-														<option value="102">102 kg</option>
-														<option value="103">103 kg</option>
-														<option value="104">104 kg</option>
-														<option value="105">105 kg</option>
-														<option value="106">106 kg</option>
-														<option value="107">107 kg</option>
-														<option value="108">108 kg</option>
-														<option value="109">109 kg</option>
-														<option value="110">110 kg</option>
-														<option value="111">111 kg</option>
-														<option value="112">112 kg</option>
-														<option value="113">113 kg</option>
-														<option value="114">114 kg</option>
-														<option value="115">115 kg</option>
-														<option value="116">116 kg</option>
-														<option value="117">117 kg</option>
-														<option value="118">118 kg</option>
-														<option value="119">119 kg</option>
-														<option value="120">120 kg</option>
-														<option value="121">121 kg</option>
-														<option value="122">122 kg</option>
-														<option value="123">123 kg</option>
-														<option value="124">124 kg</option>
-														<option value="125">125 kg</option>
-														<option value="126">126 kg</option>
-														<option value="127">127 kg</option>
-														<option value="128">128 kg</option>
-														<option value="129">129 kg</option>
-														<option value="130">130 kg</option>
-														<option value="131">131 kg</option>
-														<option value="132">132 kg</option>
-														<option value="133">133 kg</option>
-														<option value="134">134 kg</option>
-														<option value="135">135 kg</option>
-														<option value="136">136 kg</option>
-														<option value="137">137 kg</option>
-														<option value="138">138 kg</option>
-														<option value="139">139 kg</option>
-														<option value="140">140 kg</option>
-													</select>
-													<i></i>
-												</label>
-											</section>
+											<section th:replace="common :: Kg"></section>
 										</div>
 
 										<div class="row">
@@ -909,27 +802,139 @@
 										
 									</fieldset>
 									
-									
 									<header>Family Background : </header>
 									<fieldset>
 										<div class="row">
 											<section class="col1">
-												<label class="label"> Father's Name:</label>
+												<label class="label"> Father's Details:</label>
 											</section>
 											<section class="col1 col-9">
-												<label class="input">
-													<input type="text" name="fatherName" th:feild="*{fatherName}" id="FATHERNAME" placeholder="Enter Father's Name"/>
-												</label>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Name:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherName" th:feild="*{fatherName}" id="FATHERNAME" placeholder="Enter Father's Name"/>
+														</label>
+													</section>
+												</div>	
+												<div class="row">
+													<section class="col1">
+														<label class="label">Occupation:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="select">
+															<select name="fatherOccupation" th:feild="*{fatherOccupation}" id="fatherOccupation" class="form-control" >
+																<option selected="selected" value="">Select Occupation</option>
+																<option value="Employed">Employed</option>
+																<option value="Business Man">Business Man</option>
+																<option value="Professional">Professional</option>
+																<option value="Retired">Retired</option>
+																<option value="Not Employed">Not Employed</option>
+																<option value="Passed Away">Passed Away</option>
+															</select>
+															<i></i>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Location:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherOccLocation" th:feild="*{fatherOccLocation}" id="FATHERNAME" placeholder="Enter Father's Occupation Location"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Contact No:</label>
+													</section>
+													<section class="col1 col-4">
+														<label class="input">
+															<input type="text" name="fathercontact1" th:feild="*{fathercontact1}" id="FATHERNAME" placeholder="Contact 1"/>
+														</label>
+													</section>
+													<section class="col col-5 no-padding">
+														<label class="input">
+															<input type="text" name="fathercontact2" th:feild="*{fathercontact2}" id="FATHERNAME" placeholder="Contact 2"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Email Address:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherEmail" th:feild="*{fatherEmail}" id="EmailAddress" placeholder="Enter Email Address"/>
+														</label>
+													</section>
+												</div>
 											</section>	
 										</div>
+										
 										<div class="row">
 											<section class="col1">
-												<label class="label"> Mother's Name:</label>
+												<label class="label"> Mother's Details:</label>
 											</section>
 											<section class="col1 col-9">
-												<label class="input">
-													<input type="text" name="motherName" th:feild="*{motherName}" id="MOTHERNAME" placeholder="Enter Mother's Name"/>
-												</label>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Name:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherName" th:feild="*{fatherName}" id="FATHERNAME" placeholder="Enter Father's Name"/>
+														</label>
+													</section>
+												</div>	
+												<div class="row">
+													<section class="col1">
+														<label class="label">Occupation:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="select">
+															<select name="fatherOccupation" th:feild="*{fatherOccupation}" id="fatherOccupation" class="form-control" >
+																<option selected="selected" value="">Select Occupation</option>
+																<option value="House Wife">House Wife</option>
+																<option value="Employed">Employed</option>
+																<option value="Business Man">Business Man</option>
+																<option value="Professional">Professional</option>
+																<option value="Retired">Retired</option>
+																<option value="Passed Away">Passed Away</option>
+															</select>
+															<i></i>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Location:</label>
+													</section>
+													<section class="col1 col-9">
+														<label class="input">
+															<input type="text" name="fatherOccLocation" th:feild="*{fatherOccLocation}" id="FATHERNAME" placeholder="Enter Father's Occupation Location"/>
+														</label>
+													</section>
+												</div>
+												<div class="row">
+													<section class="col1">
+														<label class="label">Contact No:</label>
+													</section>
+													<section class="col1 col-4">
+														<label class="input">
+															<input type="text" name="fathercontact1" th:feild="*{fathercontact1}" id="FATHERNAME" placeholder="Contact 1"/>
+														</label>
+													</section>
+													<section class="col col-5 no-padding">
+														<label class="input">
+															<input type="text" name="fathercontact2" th:feild="*{fathercontact2}" id="FATHERNAME" placeholder="Contact 2"/>
+														</label>
+													</section>
+												</div>
 											</section>	
 										</div>
 										
@@ -938,10 +943,10 @@
 												<label class="label">Family Status :</label>
 											</section>
 											<section class="inline-group">
-												<label class="radio"><input name="familystatus" th:feild="*{familystatus}" id="FAMILYSTATUS1" value="Middle class" type="radio" checked="checked"/><i class="rounded-x"></i>Middle Class</label>
-												<label class="radio"><input name="familystatus" th:feild="*{familystatus}" id="FAMILYSTATUS2" value="Upper middle class" type="radio"/><i class="rounded-x"></i>Upper Middle Class</label>
-												<label class="radio"><input name="familystatus" th:feild="*{familystatus}" id="FAMILYSTATUS3" value="Rich" type="radio"/><i class="rounded-x"></i>Rich</label>
-												<label class="radio"><input name="familystatus" th:feild="*{familystatus}" id="FAMILYSTATUS4" value="Affluent" type="radio"/><i class="rounded-x"></i>Affluent</label>
+												<label class="radio"><input name="familyStatus" th:feild="*{familyStatus}" id="FAMILYSTATUS1" value="Middle class" type="radio" checked="checked"/><i class="rounded-x"></i>Middle Class</label>
+												<label class="radio"><input name="familyStatus" th:feild="*{familyStatus}" id="FAMILYSTATUS2" value="Upper middle class" type="radio"/><i class="rounded-x"></i>Upper Middle Class</label>
+												<label class="radio"><input name="familyStatus" th:feild="*{familyStatus}" id="FAMILYSTATUS3" value="Rich" type="radio"/><i class="rounded-x"></i>Rich</label>
+												<label class="radio"><input name="familyStatus" th:feild="*{familyStatus}" id="FAMILYSTATUS4" value="Affluent" type="radio"/><i class="rounded-x"></i>Affluent</label>
 											</section>
 										</div>
 										
@@ -968,6 +973,9 @@
 										</div>
 										
 									</fieldset>
+									
+
+
 									<header>Astrological Information : </header>
 									<fieldset>
 										<label class="label">You may not believe in horoscope matching, yet we recommend that you fill in your of Astro details as a lot members would be interested in these details.</label>
@@ -1100,119 +1108,7 @@
 		<!--=== End Content ===-->
 
 		<!--=== Footer Version 1 ===-->
-		<div class="footer-v1">
-			<div class="footer">
-				<div class="container">
-					<div class="row">
-						<!-- About -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo1.png" alt="company logo" /></a>
-							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
-							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
-						</div><!--/col-md-3-->
-						<!-- End About -->
-
-						<!-- Latest -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<div class="posts">
-								<div class="headline"><h2>Latest Blogs</h2></div>
-								<ul class="list-unstyled latest-list">
-									<li>
-										<a href="#">Name of the Blog</a>
-										<small>January 8, 2017</small>
-									</li>
-									<li>
-										<a href="#">Name of the Blog</a>
-										<small>December 23, 2016</small>
-									</li>
-									<li>
-										<a href="#">Name of the Blog</a>
-										<small>November 15, 2016</small>
-									</li>
-								</ul>
-							</div>
-						</div><!--/col-md-3-->
-						<!-- End Latest -->
-
-						<!-- Link List -->
-						<div class="col-md-3 md-margin-bottom-40">
-							<div class="headline"><h2>Help &amp; Support</h2></div>
-							<ul class="list-unstyled link-list">
-								<li><a href="#">24x7 Live help</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Success Stories</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">FAQs</a><i class="fa fa-angle-right"></i></li>
-							</ul>
-						</div><!--/col-md-3-->
-						<!-- End Link List -->
-
-						<!-- Address -->
-						<div class="col-md-3 map-img md-margin-bottom-40">
-							<div class="headline"><h2>Matrimony on Mobile</h2></div>
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Anroid">
-								<img src="img/a.png" style="width:40px;" />
-							</a>&nbsp;&nbsp;  
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Mac">
-								<img src="img/ap.png" style="width:40px;" />&nbsp;&nbsp; 
-							</a>
-							<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Windows">
-								<img src="img/w.png" style="width:40px;" />
-							</a>
-							<div class="headline"><h2>Follow Us On</h2></div>
-							<ul class="footer-socials list-inline" >
-								
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Facebook">
-										<i class="fa fa-facebook" style="font-size:22px"></i>
-									</a>
-								</li>
-								
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Google Plus">
-										<i class="fa fa-google-plus" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Linkedin">
-										<i class="fa fa-linkedin" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Pinterest">
-										<i class="fa fa-pinterest" style="font-size:22px"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" data-original-title="Twitter">
-										<i class="fa fa-twitter" style="font-size:22px"></i>
-									</a>
-								</li>
-							</ul>
-						</div><!--/col-md-3-->
-						<!-- End Address -->
-					</div>
-				</div>
-			</div><!--/footer-->
-
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<p>
-								2017 &copy; All Rights Reserved.
-								<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
-							</p>
-						</div>
-
-						<!-- Social Links -->
-						<div class="col-md-6">
-								
-						</div>
-					</div>
-				</div><!--/copyright-->
-			</div>
-		</div>
+		<div th:replace="common :: footer"></div>
 		<!--=== End Footer Version 1 ===-->
 	</div><!--/wrapper-->
 

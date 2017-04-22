@@ -70,7 +70,10 @@ public class LoginController {
 					model.addAttribute("member", member);
 					model.addAttribute("personalDetails", personalDetails);
 					model.addAttribute("preferences", preferences);
-					return "redirect:/profile?status=success&userId="+member.getmemberId();
+					
+					
+					return "redirect:/myhome?status=success&userId="+member.getmemberId();
+					//return "redirect:/profile?status=success&userId="+member.getmemberId();
 				}	
 			}
 		}		

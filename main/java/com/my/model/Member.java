@@ -3,20 +3,22 @@ package com.my.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "members" , uniqueConstraints={@UniqueConstraint(columnNames={"firstname", "lastname","email"})})
@@ -26,18 +28,21 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long memberId;
 	@NotNull
+	@Size(min=2, max=30)
 	private String firstName;
 	@NotNull
 	private String lastName;
 	@NotNull
 	@Column(unique=true)
+	@Email
 	private String email;
 	@NotNull
 	private String password;
 	@NotNull
 	private String profileFor;
-	@NotNull
-	private Date dob;
+    @DateTimeFormat(pattern="MM/dd/yyyy")
+	@NotNull @Past
+	private Date dob;    
 	private int age;
 	@NotNull
 	private String gender;
@@ -52,6 +57,7 @@ public class Member {
 	private Date createdOn;
 	private Date updatedOn;
 	private Date lastOnline;
+	private String type; // Convert to ENUMS if appropriate
 
 	//@OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
 	//@PrimaryKeyJoinColumn
@@ -267,6 +273,14 @@ public class Member {
 
 	public void setLastOnline(Date lastOnline) {
 		this.lastOnline = lastOnline;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	

@@ -67,13 +67,13 @@
 					<div class="collapse navbar-collapse navbar-responsive-collapse">
 						<div class="menu-container">
 							                                                     
-                        <form id="sky-form2" class="sky-form" th:object="${login}" th:action="@{/}" method="post">
-							<div th:if="${param.error}">
+                        <form id="sky-form" action="myhome.html" class="sky-form noborder"   th:object="${login}" th:action="@{/}" method="post">
+							<!--<div th:if="${param.error}">
 								Invalid username and password.
 							</div>
 							<div th:if="${param.logout}">
 								You have been logged out.
-							</div>
+							</div>-->
 							<fieldset>
 									<section>
 										<div class="row">
@@ -81,13 +81,13 @@
 											<div class="col col-3">
 												<label class="input">
 													<i class="icon-append fa fa-user"></i>
-													<input type="email" placeholder="Email Address" name="username" th:field="*{username}"/>
+													<input type="email" placeholder="Email Address" name="email" th:field="*{username}"/>
 												</label>
 											</div>
 											<div class="col col-3">
 												<label class="input">
 													<i class="icon-append fa fa-lock"></i>
-													<input type="password" placeholder="Password" name="password" th:field="*{password}"/>
+													<input type="password" placeholder="Password" name="password1" id="password1" th:field="*{password}"/>
 												</label>
 												<div class="note"><a href="#sky-form2" class="modal-opener">Forgot password?</a></div>
 											</div>
@@ -113,11 +113,9 @@
 			<div class="col-md-5"></div>
 				<div class="col-md-5">
 					<!-- Reg-Form -->
-					<form action="#" id="sky-form4" class="sky-form" style="background-color:#eee" th:object="${register}" th:action="@{/register}"  method="post">
+					<form  id="sky-form4" action="personaldetails.html" class="sky-form" style="background-color:#eee" th:object="${register}" th:action="@{/register}"  method="post">
 						<header>1st Step to Search your Best Partner</header>
-
 						<fieldset>
-							
 								<section class="row" style="margin-bottom:10px">
 									<div class="col col-md-4">
 										<label class="label">Profile: </label>
@@ -127,7 +125,7 @@
 											<select name="profileFor" th:field="*{profileFor}">
 												<option value="0" selected="selected">Select Matrimony Profile For</option>
 												<option value="Myself">Myself</option>
-												<option value="Son">Son</option>
+												<option value="Son">Son</option>  
 												<option value="Daughter">Daughter</option>
 												<option value="Brother">Brother</option>
 												<option value="Sister">Sister</option>
@@ -143,10 +141,12 @@
 										<label class="label">Full Name: </label>
 									</div>
 									<div class="col col-md-4 col-pad">
-										<label class="input">
-											<input type="text" name="firstName" th:field="*{firstName}" placeholder="First Name"></input>
-										</label>
+								 <label class="input">
+							    <input id="firstName" name="firstName" type="text" th:field="*{firstName}" placeholder="Frist Name" required="required" autofocus="autofocus" />
+								<p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Error en el dato ingresado</p>
+									</label>	
 									</div>
+									
 									<div class="col col-md-4 ">
 										<label class="input">
 											<input type="text" name="lastName" th:field="*{lastName}" placeholder="Last Name"></input>
@@ -229,7 +229,7 @@
 											<i></i>
 										</label>
 									</div>
-									<div class="col col-pad col-pad3 noright-padding ">
+									<div class="col col-pad col-pad3 noright-padding">
 										<label class="select">
 											<select name="yearob" th:field="*{yearob}">
 												<option value="0" selected="selected">YYYY</option>
@@ -456,7 +456,7 @@
 											<i></i>
 										</label>
 									</div>
-									<div class="col col-3" style="">
+									<div class="col col-3">
 										<label class="label float-left">Marital Status </label>
 										<label class="select float-left">
 											<select name="maritalStatus" th:field="*{maritalStatus}" >
@@ -582,7 +582,7 @@
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="img/logo1.png" alt=""/></a>
+							<a href="index.html"><img id="logo-footer" class="footer-logo"  src="img/logo1.png" alt=""/></a>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 							<p>Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! Dummy Text Goes Here..!! </p>
 						</div><!--/col-md-3-->
@@ -683,36 +683,6 @@
 
 						<!-- Social Links -->
 						<div class="col-md-6">
-						
-							<!--<ul class="footer-socials list-inline">
-								<li style="color:#fff">FOLLOW US ON:</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
-										<i class="fa fa-facebook"></i>
-									</a>
-								</li>
-								
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
-										<i class="fa fa-google-plus"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
-										<i class="fa fa-linkedin"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
-										<i class="fa fa-pinterest"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
-										<i class="fa fa-twitter"></i>
-									</a>
-								</li>
-							</ul>-->
 						</div>
 						<!-- End Social Links -->
 					</div>
@@ -735,21 +705,19 @@
 	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
 	<!--Form Scripts-->
-	<script src="js/jquery.validate.min.js"></script>
-	<script src="js/jquery.maskedinput.min.js"></script>
 	<script src="js/jquery.form.min.js"></script>
-	<script type="text/javascript" src="js/plugins/datepicker.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	
+	<script src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/contact.js"></script>
 	<!--Caseroul Scripts-->
 	<script type="text/javascript" src="plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
 	<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
 	<script type="text/javascript" src="js/plugins/owl-recent-works.js"></script>
+
 	
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			App.init();
-			Datepicker.initDatepicker();
+			ContactForm.initContactForm();
 			OwlCarousel.initOwlCarousel();
 			OwlRecentWorks.initOwlRecentWorksV2();
 			StyleSwitcher.initStyleSwitcher();

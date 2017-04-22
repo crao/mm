@@ -1,5 +1,8 @@
 package com.my.binding;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class Register {
 
 	private String profileFor;
