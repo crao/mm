@@ -61,7 +61,7 @@ public class RestShortListController {
 		
 		  List<Long> shortList = shortListService.shortListsByMemId(Long.parseLong(userId));
 		  List<Member> shortListedMembers = memberService.getByMemberIds(shortList);
-		  model.addAttribute("shortListedMembers", shortListedMembers);
+		  model.addAttribute("	", shortListedMembers);
 		  
 		  return "viewShortList";
 		  
