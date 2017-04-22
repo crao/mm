@@ -160,7 +160,7 @@
 										<label class="label label-font" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label>
 									</div>
 									<div class="col-md-12 sky-form noborder">
-										<label class="label"> READ ID IN DB | Profile Created for READ FROM DB | Viewed On : READ FROM VISIT TABLE</label>
+										<label class="label"> <label th:text="${member.memberId}"></label> | Profile Created for <label th:text="${member.profileFor}"></label> | Viewed On : <label ></label></label>
 									</div>
 								</div>
 								<div class="row">
@@ -202,7 +202,7 @@
 												<b>B.Time/Place:</b>
 											</div>
 											<div class="col-md-9">
-												<span> </span>
+												<span th:text="${member.personalDetails.birthTime} + ' / ' + ${member.personalDetails.birthPlace}"> </span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -210,7 +210,7 @@
 												<b>Gothra:</b>
 											</div>
 											<div class="col-md-9">
-												<span> </span>
+												<span th:text="${member.personalDetails.gothra}"> </span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -218,7 +218,7 @@
 												<b>Star:</b>
 											</div>
 											<div class="col-md-9">
-												<span> </span>
+												<span th:text="${member.personalDetails.starSign}"> </span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -226,7 +226,7 @@
 												<b>Location:</b>
 											</div>
 											<div class="col-md-9">
-												<span> </span>
+												<span th:text=" ${member.personalDetails.residingcity} + ', ' + ${member.personalDetails.residingstate}  + ', ' + ${member.personalDetails.country} "> </span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -234,7 +234,7 @@
 												<b>Education:</b>
 											</div>
 											<div class="col-md-9">
-												<span></span>
+												<span th:text="${member.personalDetails.education}"></span>
 											</div>
 										</div>
 										
@@ -243,7 +243,7 @@
 												<b>Profession:</b>
 											</div>
 											<div class="col-md-9">
-												<span></span>
+												<span th:text="${member.personalDetails.occupation}"></span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -251,12 +251,12 @@
 												<b>Income:</b>
 											</div>
 											<div class="col-md-9">
-												<span></span>
+												<span th:text="${member.personalDetails.incomecurrency} + ' ' + ${member.personalDetails.income}"></span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
 											<div class="col-md-12">
-												<a href="profile-view.html">View Full Profile</a>
+												<a th:href="@{/profile(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
 											</div>
 										</div>
 									</div>
@@ -264,7 +264,12 @@
 								<hr class="margin-15"/>
 								<div class="row">
 									<div class="col-md-12 sky-form noborder">
-										<label class="label floatright">(HE/SHE BASED ON WHO IS VIEWING) Has viewed your phone number. Are you interested in (HIS/HERS BASED ON WHO IS VIEWING) profile?</label>
+										<label class="label floatright" >
+											<label th:if="${member.gender=='M'}">He</label>
+											<label th:if="${member.gender=='F'}">She</label>
+											 Has viewed your phone number. Are you interested in 
+											 <label th:if="${member.gender=='M'}">his</label>
+											<label th:if="${member.gender=='F'}">her</label> profile?</label>
 									</div>
 									<div class="col-md-12">
 										<button class="btn-u" style="left:20px; top:3px" type="button">Send Mail</button>
@@ -284,11 +289,7 @@
 								</div>
 								<p></p>
 							</div>
-							
-						
-							
-						
-										
+								
 							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
 								<div class="row">
 									<div class="col-md-6">
