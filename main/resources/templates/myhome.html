@@ -85,7 +85,7 @@
 								<a th:href="@{'profile?userId='+  ${session.userId}}"><span>Edit Preferences</span></a>
 							</div>
 							<div class="col-md-6">
-								<h4 class="no-margin-bottom"><span>Trupti P</span></h4>
+								<h4 class="no-margin-bottom"><span><label class="label no-padding" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label></span></h4>
 								<span>M000001</span>
 							</div>
 						</div>	

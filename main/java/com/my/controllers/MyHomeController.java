@@ -16,7 +16,7 @@ public class MyHomeController {
 			@RequestParam(value="userId",required=false)String userId,HttpSession session){
 				Member member = (Member)session.getAttribute("member");
 				model.addAttribute("member", member);
-		return "/myhome";
+		return "myhome";
 		
 	}
 	
@@ -24,7 +24,7 @@ public class MyHomeController {
 	public String show(Model model,@RequestParam(value="status",required=false)String status,
 			@RequestParam(value="userId",required=false)String userId,HttpSession session){
 				
-		return "/myhome";
+		return "myhome";
 		
 	}
 }

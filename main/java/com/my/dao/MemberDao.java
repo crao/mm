@@ -1,5 +1,7 @@
 package com.my.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -22,5 +24,11 @@ public interface MemberDao  extends CrudRepository<Member, Long> {
 	   * @return
 	   */
       public Member findByMemberId(long id);
+      
+
+      /**
+       * Return members by ids
+       */
+	  public List<Member> findByMemberIdIn(List<Long> ids);
 
 }

@@ -40,7 +40,7 @@ public class ProfileController {
 			model.addAttribute("member",member);
 			
 			if(visUser!=null){
-				List<Visit> v = visitWatcherService.findVistors(Long.parseLong(userId));			
+				List<Long> v = visitWatcherService.findVistors(Long.parseLong(userId));			
 				Visit visit = visitWatcherService.findVistor(Long.parseLong(visUser));
 				if(visit==null){
 					visit = new Visit();
