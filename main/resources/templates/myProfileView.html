@@ -152,20 +152,24 @@
 								</div>
 							</div>-->
 							
+							
 					
-							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
+							<div class="bg-light" th:each="member : ${vistors}"><!-- You can delete "bg-light" class. It is just to make background color -->
 								<div class="row">
 									<div class="col-md-12">
-										<label class="label label-font">Ketan Khurana</label>
+										<label class="label label-font" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label>
 									</div>
 									<div class="col-md-12 sky-form noborder">
-										<label class="label"> D370116 | Profile Created for Self | Viewed On : 12-Apr-2017</label>
+										<label class="label"> READ ID IN DB | Profile Created for READ FROM DB | Viewed On : READ FROM VISIT TABLE</label>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-3 txt-center">
-										<img class="img-responsive top-margin-10 margin-bottom-10" src="img/user1.jpg" alt="" />
-										<span>Last Login : 1 Week ago</span><br/>
+									<div class="col-md-3 txt-center">									
+										<img th:src="@{img/user.jpg}"   class="img-responsive md-margin-bottom-10" 
+											th:if="${member.gender=='M'}"></img>											
+										<img th:src="@{img/place_holder.png}"   class="img-responsive md-margin-bottom-10" 
+											th:if="${member.gender=='F'}"></img>
+										<span>Last Login : READ last login  FROM DB </span><br/>
 										<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
 									</div>
 									<div class="col-md-3">
@@ -173,7 +177,7 @@
 										<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
 										</div>
 										<div class="col-md-12 sky-form padding top-margin-10">
-										<span > <b>"My son is a Business person with a Master's degree currently living in ... <a href="profile-view.html">More</a>"</b></span>
+										<span > <b>"READ  FROM DB ... <a href="profile-view.html">More</a>"</b></span>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -182,7 +186,7 @@
 												<b>Age:</b>
 											</div>
 											<div class="col-md-9">
-												<span> 29 years &nbsp; </span>
+												<span th:text="${member.age} + ' years'"></span>	
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -190,7 +194,7 @@
 												<b>Height:</b>
 											</div>
 											<div class="col-md-9">
-												<span> 168 cm &nbsp; </span>
+												<span th:text="${member.personalDetails.height} + ' cm'"></span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -198,7 +202,7 @@
 												<b>B.Time/Place:</b>
 											</div>
 											<div class="col-md-9">
-												<span> 8:14 AM / Satara &nbsp; </span>
+												<span> </span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -206,7 +210,7 @@
 												<b>Gothra:</b>
 											</div>
 											<div class="col-md-9">
-												<span> Kashaup</span>
+												<span> </span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -214,7 +218,7 @@
 												<b>Star:</b>
 											</div>
 											<div class="col-md-9">
-												<span> Anuradha</span>
+												<span> </span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -222,7 +226,7 @@
 												<b>Location:</b>
 											</div>
 											<div class="col-md-9">
-												<span> Aurangabad, Maharashtra, India </span>
+												<span> </span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -230,7 +234,7 @@
 												<b>Education:</b>
 											</div>
 											<div class="col-md-9">
-												<span>MSc Computer Science &nbsp;  </span>
+												<span></span>
 											</div>
 										</div>
 										
@@ -239,7 +243,7 @@
 												<b>Profession:</b>
 											</div>
 											<div class="col-md-9">
-												<span>Business Owner / Entrepren..</span>
+												<span></span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -247,7 +251,7 @@
 												<b>Income:</b>
 											</div>
 											<div class="col-md-9">
-												<span> 6.00 lakhs </span>
+												<span></span>
 											</div>
 										</div>
 										<div class="row margin-bottom-5">
@@ -260,7 +264,7 @@
 								<hr class="margin-15"/>
 								<div class="row">
 									<div class="col-md-12 sky-form noborder">
-										<label class="label floatright">He Has viewed your phone number. Are you interested in his profile?</label>
+										<label class="label floatright">(HE/SHE BASED ON WHO IS VIEWING) Has viewed your phone number. Are you interested in (HIS/HERS BASED ON WHO IS VIEWING) profile?</label>
 									</div>
 									<div class="col-md-12">
 										<button class="btn-u" style="left:20px; top:3px" type="button">Send Mail</button>
@@ -281,247 +285,9 @@
 								<p></p>
 							</div>
 							
-							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
-								<div class="row">
-									<div class="col-md-12">
-										<label class="label label-font">Ketan Khurana</label>
-									</div>
-									<div class="col-md-12 sky-form noborder">
-										<label class="label"> D370116 | Profile Created for Self | Viewed On : 12-Apr-2017</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-3 txt-center">
-										<img class="img-responsive top-margin-10 margin-bottom-10" src="img/user1.jpg" alt="" />
-										<span><i class="fa fa-comments-o" style="font-size:25px"></i>Member Online<br/>
-										<a href="#" target="_blank">Chat Now</a></span>
-									</div>
-									<div class="col-md-3">
-										<div class="col-md-12">
-										<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
-										</div>
-										<div class="col-md-12 sky-form padding top-margin-10">
-										<span > <b>"My son is a Business person with a Master's degree currently living in ... <a href="profile-view.html">More</a>"</b></span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Age:</b>
-											</div>
-											<div class="col-md-9">
-												<span> 29 years &nbsp; </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Height:</b>
-											</div>
-											<div class="col-md-9">
-												<span> 168 cm &nbsp; </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>B.Time/Place:</b>
-											</div>
-											<div class="col-md-9">
-												<span> 8:14 AM / Satara &nbsp; </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Gothra:</b>
-											</div>
-											<div class="col-md-9">
-												<span> Kashaup</span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Star:</b>
-											</div>
-											<div class="col-md-9">
-												<span> Anuradha</span>
-											</div> 
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Location:</b>
-											</div>
-											<div class="col-md-9">
-												<span> Aurangabad, Maharashtra, India </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Education:</b>
-											</div>
-											<div class="col-md-9">
-												<span>MSc Computer Science &nbsp;  </span>
-											</div>
-										</div>
-										
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Profession:</b>
-											</div>
-											<div class="col-md-9">
-												<span>Business Owner / Entrepren..</span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Income:</b>
-											</div>
-											<div class="col-md-9">
-												<span> 6.00 lakhs </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-12">
-												<a href="profile-view.html">View Full Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<hr class="margin-15"/>
-								<div class="row">
-									<div class="col-md-12">
-										<button class="btn-u floatright" style="right: 10px; top:3px" type="button">Send Interest</button><button class="btn-u floatright" style="right: 20px; top:3px" type="button">Shortlist</button> <button class="btn-u floatright" style="right: 30px; top:3px" type="button">Send Mail</button>&nbsp;
-									</div>
-								</div>
-								<p></p>
-							</div>
+						
 							
-							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
-								<div class="row">
-									<div class="col-md-12">
-										<label class="label label-font">Ketan Khurana</label>
-									</div>
-									<div class="col-md-12 sky-form noborder">
-										<label class="label"> D370116 | Profile Created for Self | Viewed On : 12-Apr-2017</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-3 txt-center">
-										<img class="img-responsive top-margin-10 margin-bottom-10" src="img/user1.jpg" alt="" />
-										<span>Last Login : 1 Week ago</span><br/>
-										<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
-									</div>
-									<div class="col-md-3">
-										<div class="col-md-12">
-										<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
-										</div>
-										<div class="col-md-12 sky-form padding top-margin-10">
-										<span > <b>"My son is a Business person with a Master's degree currently living in ... <a href="profile-view.html">More</a>"</b></span>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Age:</b>
-											</div>
-											<div class="col-md-9">
-												<span> 29 years &nbsp; </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Height:</b>
-											</div>
-											<div class="col-md-9">
-												<span> 168 cm &nbsp; </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>B.Time/Place:</b>
-											</div>
-											<div class="col-md-9">
-												<span> 8:14 AM / Satara &nbsp; </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Gothra:</b>
-											</div>
-											<div class="col-md-9">
-												<span> Kashaup</span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Star:</b>
-											</div>
-											<div class="col-md-9">
-												<span> Anuradha</span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Location:</b>
-											</div>
-											<div class="col-md-9">
-												<span> Aurangabad, Maharashtra, India </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Education:</b>
-											</div>
-											<div class="col-md-9">
-												<span>MSc Computer Science &nbsp;  </span>
-											</div>
-										</div>
-										
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Profession:</b>
-											</div>
-											<div class="col-md-9">
-												<span>Business Owner / Entrepren..</span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-3">
-												<b>Income:</b>
-											</div>
-											<div class="col-md-9">
-												<span> 6.00 lakhs </span>
-											</div>
-										</div>
-										<div class="row margin-bottom-5">
-											<div class="col-md-12">
-												<a href="profile-view.html">View Full Profile</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<hr class="margin-15"/>
-								<div class="row">
-									<div class="col-md-12 sky-form noborder">
-										<label class="label floatright">He is interested in your profile. Would you like to communicate further?</label>
-									</div>
-									<div class="col-md-12">
-									<button class="btn-u" style="left:20px; top:3px" type="button">Send Mail</button>
-										<button class="btn-u floatright" style="right: 20px; top:3px" type="button">Shortlist</button>
-										<div class="btn-group" style="float:right; right: 30px; top:3px">
-											<button type="button" class="btn-u btn-u-orange dropdown-toggle" data-toggle="dropdown">
-												Not Interested
-												<i class="fa fa-angle-down"></i>
-											</button>
-											<ul class="dropdown-menu" role="menu">
-												<li><a href="#">Not Now</a></li>
-												<li><a href="#">Ignore</a></li>
-												<li><a href="#">Block</a></li>
-											</ul>
-										</div>
-										<button class="btn-u floatright" style="right: 40px; top:3px" type="button">Yes</button> 
-									</div>
-								</div>
-								<p></p>
-							</div>
+						
 										
 							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
 								<div class="row">
