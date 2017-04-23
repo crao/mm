@@ -84,11 +84,21 @@
 												<div class="col-md-4 border-right" >
 													<div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:243px;margin:0px auto 80px;">
 														<div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
-															<div class="hide-div">
+															<!--  <div class="hide-div">
 																<img src="img/hide-img.png" />
 																<p class="hide-div-p">To view Other photo, <br/>Upload yours</p>
 																<button class="btn-u btn-u12" type="button">Úpload Now</button>
-															</div>
+															</div> -->
+														   <a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
+																<img th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"
+																th:if="${#lists.isEmpty(member.photos) and member.gender=='M'}"></img>
+																
+																<img th:src="@{img/place_holder.png}"   class="img-responsive" width="220" height="180"
+																th:if="${#lists.isEmpty(member.photos) and member.gender=='F'}"></img>
+																
+																<img th:src=""   class="img-responsive" width="220" height="180"
+																th:if="${not #lists.isEmpty(member.photos)}"></img>
+														    </a>
 															<ul class="amazingslider-slides" style="display:none;">
 																<li><img src="images/1.jpg" alt="user"  title="user" />
 																</li>
@@ -122,13 +132,13 @@
 												<div class="col-md-8">
 													<div class="row">
 														<div class="col-md-12">
-															<h2  style="line-height:inherit"><span>Ketan Khurana <a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a><button class="btn-u floatright" style="right: 10px; top:3px" type="button">Shortlist</button></span></h2>
+															<h2  style="line-height:inherit"><span > <label th:text="${member.firstName}+ ' ' + ${member.lastName}"></label><a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a><button class="btn-u floatright" style="right: 10px; top:3px" type="button">Shortlist</button></span></h2>
 															
 														</div>
 													</div>
 													<div class="row">
 														<div class="col-md-12">
-															<span> Profile Created for <b>My	Self </b></span>
+															<span> Change </span>
 														</div>
 													</div>
 													
@@ -140,7 +150,7 @@
 															<b>Age/Height:</b>
 														</div>
 														<div class="col-md-10">
-															<span> 29 years / 168 cm &nbsp; </span>
+															<span> </span>
 														</div>
 														
 													</div>
@@ -149,7 +159,7 @@
 															<b>Education:</b>
 														</div>
 														<div class="col-md-10">
-															<span>MSc Computer Science &nbsp;  </span>
+															<span>  </span>
 														</div>
 													</div>
 													<div class="row">
