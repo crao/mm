@@ -62,7 +62,7 @@
 		<!--=== Breadcrumbs ===-->
 		<div class="breadcrumbs">
 			<div class="container">
-				<h1 class="pull-left">Ketan's Profile</h1>
+				<h1 class="pull-left"> <label th:text="${member.firstName}"></label>'s Profile</h1>
 				<ul class="pull-right breadcrumb">
 					<li><a href="index.html">Home</a></li>
 					<li class="active">Profile Page</li>
@@ -84,11 +84,21 @@
 												<div class="col-md-4 border-right" >
 													<div id="amazingslider-wrapper-1" style="display:block;position:relative;max-width:243px;margin:0px auto 80px;">
 														<div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
-															<div class="hide-div">
+															<!--  <div class="hide-div">
 																<img src="img/hide-img.png" />
 																<p class="hide-div-p">To view Other photo, <br/>Upload yours</p>
 																<button class="btn-u btn-u12" type="button">Úpload Now</button>
-															</div>
+															</div> -->
+														   <a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
+																<img th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"
+																th:if="${#lists.isEmpty(member.photos) and member.gender=='M'}"></img>
+																
+																<img th:src="@{img/place_holder.png}"   class="img-responsive" width="220" height="180"
+																th:if="${#lists.isEmpty(member.photos) and member.gender=='F'}"></img>
+																
+																<img th:src=""   class="img-responsive" width="220" height="180"
+																th:if="${not #lists.isEmpty(member.photos)}"></img>
+														    </a>
 															<ul class="amazingslider-slides" style="display:none;">
 																<li><img src="images/1.jpg" alt="user"  title="user" />
 																</li>
@@ -122,13 +132,13 @@
 												<div class="col-md-8">
 													<div class="row">
 														<div class="col-md-12">
-															<h2  style="line-height:inherit"><span>Ketan Khurana <a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a><button class="btn-u floatright" style="right: 10px; top:3px" type="button">Shortlist</button></span></h2>
+															<h2  style="line-height:inherit"><span > <label th:text="${member.firstName}+ ' ' + ${member.lastName}"></label><a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a><button class="btn-u floatright" style="right: 10px; top:3px" type="button">Shortlist</button></span></h2>
 															
 														</div>
 													</div>
 													<div class="row">
 														<div class="col-md-12">
-															<span> Profile Created for <b>My	Self </b></span>
+															<span> Change </span>
 														</div>
 													</div>
 													
@@ -140,7 +150,7 @@
 															<b>Age/Height:</b>
 														</div>
 														<div class="col-md-10">
-															<span> 29 years / 168 cm &nbsp; </span>
+															<span th:text="${member.personalDetails.height}"> </span>
 														</div>
 														
 													</div>
@@ -149,7 +159,7 @@
 															<b>Education:</b>
 														</div>
 														<div class="col-md-10">
-															<span>MSc Computer Science &nbsp;  </span>
+															<span th:text="${member.personalDetails.education}">  </span>
 														</div>
 													</div>
 													<div class="row">
@@ -157,15 +167,21 @@
 															<b>Occupation:</b>
 														</div>
 														<div class="col-md-10">
-															<span>Job &nbsp; </span>
+															<span th:text="${member.personalDetails.occupation}">Job &nbsp; </span>
 														</div>
 													</div>	
 													<div class="row">
 														<div class="col-md-2">
 															<b>Place:</b>
 														</div>
-														<div class="col-md-10">
-															<span> Aurangabad, Maharashtra, India</span>
+														<div class="col-md-2">
+															<span th:text="${member.personalDetails.residingcity}"></span>
+														</div>
+														<div class="col-md-2">
+															<span th:text="${member.personalDetails.residingstate}"></span>
+														</div>
+														<div class="col-md-6">
+															<span th:text="${member.personalDetails.country}"> </span>
 														</div>
 													</div>
 													<div class="row">
@@ -173,7 +189,7 @@
 															<b>Package:</b>
 														</div>
 														<div class="col-md-10">
-															<span> Rs. 6.00  Lakhs</span>
+															<span th:text="${member.personalDetails.income}">  </span>
 														</div>
 													</div>
 													<hr/>
@@ -214,13 +230,13 @@
 																				<label class="label"><b>Birth Time:</b></label>
 																			</section>
 																			<section class="col1 col-4">
-																				<label class="label" >08.14 AM</label>
+																				<label class="label" th:text="${member.personalDetails.birthTime}"  ></label>
 																			</section>
 																			<section class="col1">
 																				<label class="label"><b>Birth Place:</b></label>
 																			</section>
 																			<section class="col1 col-3">
-																				<label class="label">Satara</label>
+																			<label class="label" th:text="${member.personalDetails.birthPlace}"  ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -228,7 +244,7 @@
 																				<label class="label"><b>Maritail Status :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Never Married</label>
+																				<label class="label" th:text="${member.personalDetails.maritalStatus}" ></label>
 																			</section>
 																		</div>
 																	</fieldset>
@@ -250,7 +266,9 @@
 																				<label class="label"><b>Contact Number:</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label blurry-text fleft" >+91 9800009910 </label><label class="label icon-lock1 fleft" > | </label><span class="icon-lock icon-lock1 fleft"></span>
+																				<label class="label blurry-text fleft" >+91 9800009910 </label> 
+																				<label class="label icon-lock1 fleft" > | </label>
+																				<span class="icon-lock icon-lock1 fleft"></span>
 																			</section>
 																			<section class="col1">
 																				<label class="label"><b>Parent Contact:</b></label>
@@ -305,21 +323,22 @@
 																				<label class="label"><b>Height :</b></label>
 																			</section>
 																			<section class="col1 col-4">
-																				<label class="label">167 Cm</label>
+																			
+																				<label class="label"  th:text="${member.personalDetails.height}"></label>
 																			</section>
 																			<section class="col1">
 																				<label class="label"><b>Weight :</b></label>
 																			</section>
 																			<section class="col1 col-3">
-																				<label class="label">59 Kg</label>
+																				<label class="label" th:text="${member.personalDetails.weight}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
 																			<section class="col1">
-																				<label class="label"><b>Body Type :</b></label>
+																				<label class="label" ><b>Body Type :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Average</label>
+																				<label class="label" th:text="${member.personalDetails.bodyType}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -327,14 +346,14 @@
 																				<label class="label"><b>Complection :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Very Fair</label>
+																				<label class="label" th:text="${member.personalDetails.complexion}"></label>
 																			</section>
 																		</div><div class="row">
 																			<section class="col1">
 																				<label class="label"><b>Physical Status :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Normal</label>
+																				<label class="label" th:text="${member.personalDetails.physicalStatus}"></label>
 																			</section>
 																		</div>
 																		
@@ -357,7 +376,7 @@
 																				<label class="label">Food:</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Vegetarian</label>
+																					<label class="label" th:text="${member.personalDetails.eatingHabits}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -365,7 +384,7 @@
 																				<label class="label">Smoking :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">No</label>
+																					<label class="label" th:text="${member.personalDetails.drinkingHabits}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -373,7 +392,7 @@
 																				<label class="label">Drinking :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">No</label>
+																					<label class="label" th:text="${member.personalDetails.smokingHabits}"></label>
 																			</section>
 																		</div>
 																	</fieldset>
@@ -397,7 +416,7 @@
 																				<label class="label">Highest Education:</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">MSc Computer Science</label>
+																				<label class="label" th:text="${member.personalDetails.education}" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -405,7 +424,7 @@
 																				<label class="label">Employed In :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Not Specified | <a href="" data-toggle="modal" data-target="#myModal">Request</a></label>
+																				<label class="label" th:text="${member.personalDetails.occupationcategory}">| <a href="" data-toggle="modal" data-target="#myModal">Request</a></label>
 																					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																						<div class="modal-dialog margin-100" >
 																							<div class="modal-content">
@@ -431,7 +450,7 @@
 																				<label class="label">Occupation :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Job</label>
+																				<label class="label" th:text="${member.personalDetails.occupation}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -439,11 +458,11 @@
 																				<label class="label">Monthly Income :</label>
 																			</section>
 																			<section class="col1 col-1">
-																				<label class="label">INR</label>
-																			</section>
-																			<section class="col1 col-8">
-																				<label class="label">2500000</label>
-																			</section>
+																					<label class="label" th:text="${member.personalDetails.incomecurrency}"></label>
+																				</section>
+																				<section class="col1 col-8">
+																					<label class="label" th:text="${member.personalDetails.income}"></label>
+																				</section>
 																		</div>
 																	</fieldset>
 																</div>
@@ -467,7 +486,8 @@
 																				<label class="label">Current Location :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label ">Aurangabad, Maharashtra, India</label>
+																					<label class="label" th:text="${member.personalDetails.residingcity}+''+${member.personalDetails.residingcity}+''+${member.personalDetails.country}"></label>
+																					
 																			</section>
 																		</div>
 																		<div class="row">
@@ -475,7 +495,8 @@
 																				<label class="label">Permanant Location :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label ">Aurangabad, Maharashtra, India</label>
+																				<label class="label" th:text="${member.personalDetails.residingcityP}+''+ ${member.personalDetails.residingstateP}+''+${member.personalDetails.countryP}"></label>
+																					
 																			</section>
 																		</div>
 																	</fieldset>
@@ -498,7 +519,7 @@
 																				<label class="label">Father's Name :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Premchand Anchaliya</label>
+																			<label class="label" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -506,7 +527,7 @@
 																				<label class="label">Mother's Name :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Surekha Anchaliya</label>
+																			<label class="label" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -514,7 +535,7 @@
 																				<label class="label">Family Status :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Middle class</label>
+																				<label class="label" th:text="${member.personalDetails.familyStatus}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -522,12 +543,12 @@
 																				<label class="label">Family Type :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Moderate</label>
+																					<label class="label" th:text="${member.personalDetails.familyType}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
 																			<section class="col1">
-																				<label class="label">Family Values :</label>
+																					<label class="label" th:text="${member.personalDetails.familyValues}"></label>
 																			</section>
 																			<section class="col1 col-9">
 																				<label class="label"></label>
@@ -555,7 +576,7 @@
 																				<label class="label">Have Dosh :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Not Specified | <a href="" data-toggle="modal" data-target="#myModal2">Request</a></label>
+																				<label class="label" th:text="${member.personalDetails.dosh}">| <a href="" data-toggle="modal" data-target="#myModal2">Request</a></label>
 																					<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																						<div class="modal-dialog margin-100" >
 																							<div class="modal-content">
@@ -581,7 +602,7 @@
 																				<label class="label">Manglik :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">No</label>
+																				<label class="label" th:text="${member.personalDetails.manglik}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -589,7 +610,7 @@
 																				<label class="label">Gothra :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Not Specified | <a href="" data-toggle="modal" data-target="#myModal1">Request</a></label>
+																				<label class="label" th:text="${member.personalDetails.gothra}"> <a href="" data-toggle="modal" data-target="#myModal1">Request</a></label>
 																					<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																						<div class="modal-dialog margin-100" >
 																							<div class="modal-content">
@@ -615,7 +636,7 @@
 																				<label class="label">Star :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Libra</label>
+																				<label class="label" th:text="${member.personalDetails.starSign}"></label>
 																			</section>
 																		</div>
 																	</fieldset>
@@ -692,7 +713,7 @@
 															<span class="">Your profile matches with 19 / 21 of Chetan Patwa's preferences!</span>
 														</section>
 														<section class="col1 col-2">	
-															<label class="label txt-center1">Ketan</label>
+															<label class="label txt-center1" th:text="${member.firstName}">Ketan</label>
 															<img class="rounded-x round-img alignright img-bordered" src="img/user.jpg" alt="thumb" />
 														</section>
 													</div>
@@ -709,7 +730,7 @@
 																				<label class="label"><b>Eating Habits :</b></label>
 																			</section>
 																			<section class="col1 col-8 bs-glyphicons">
-																				<label class="label">Vegitarian</label> 
+																				<label class="label" th:text="${member.personalDetails.eatingHabits}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -720,7 +741,7 @@
 																				<label class="label"><b>Smoking Habits :</b></label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Never Smoke</label>
+																					<label class="label" th:text="${member.personalDetails.smokingHabits}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -731,7 +752,7 @@
 																				<label class="label"><b>Drinking Habits :</b></label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Never Drink</label>
+																				<label class="label" th:text="${member.personalDetails.drinkingHabits}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#999"></i>
@@ -757,7 +778,7 @@
 																				<label class="label">Education:</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label" >Any Bachelors in Engineering / Computers, Any Masters in Engineering / Computers, Any Bachelors in Engineering / Computers, Any Masters in Engineering / Computers</label>
+																			<label class="label" th:text="${member.personalDetails.education}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#999"></i>
@@ -768,7 +789,7 @@
 																				<label class="label">Employed In :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Private</label>
+																				<label class="label" th:text="${member.personalDetails.occupationcategory}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -779,7 +800,7 @@
 																				<label class="label">Occupation :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Any Occupation</label>
+																			<label class="label" th:text="${member.personalDetails.occupation}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -790,8 +811,10 @@
 																				<label class="label">Monthly Income :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label" >Any Annual Income</label>
-																			</section>
+																					<label class="label" th:text="${member.personalDetails.incomecurrency} + ' ' + ${member.personalDetails.income}"></label>
+																				
+																					
+																				</section>
 																			
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -821,7 +844,7 @@
 																				<label class="label">Residing Country :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">India</label>
+																				<label class="label" th:text="${member.personalDetails.country}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -832,7 +855,7 @@
 																				<label class="label">Residing State :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Maharashtra</label>
+																				<label class="label" th:text="${member.personalDetails.residingstate}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -843,7 +866,7 @@
 																				<label class="label">Residing City :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Any</label>
+																					<label class="label" th:text="${member.personalDetails.residingcity}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -854,7 +877,7 @@
 																				<label class="label">CitizenShip :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">India</label>
+																					<label class="label" th:text="${member.personalDetails.citizenship}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -885,7 +908,7 @@
 																				<label class="label">Manglik :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Doesn't matter</label>
+																				<label class="label" th:text="${member.personalDetails.manglik}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#999"></i>
@@ -896,7 +919,7 @@
 																				<label class="label">Gothra :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Any (Except Mine)</label>
+																				<label class="label" th:text="${member.personalDetails.gothra}"> </label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>
@@ -907,7 +930,7 @@
 																				<label class="label">Star :</label>
 																			</section>
 																			<section class="col1 col-8">
-																				<label class="label">Any</label>
+																			<label class="label" th:text="${member.personalDetails.starSign}"></label>
 																			</section>
 																			<section class="col1 col-1">
 																				<i class="fa fa-check-circle-o floatright" style="font-size:22px; color:#e67e22"></i>

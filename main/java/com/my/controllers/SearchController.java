@@ -41,12 +41,12 @@ public class SearchController {
 		Member member=null;
 		if(memberObj!=null)
 			member = (Member) memberObj;
-		
+			
 		List<Member> results = searchService.getMatches(member,searchBinding);
 		
 		model.addAttribute("members", results);
 		
-		return "results";
+		return "profileSearches";
 	}
 
 }

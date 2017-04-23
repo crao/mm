@@ -101,7 +101,7 @@
 								<a href="#"><i class="fa fa-group"></i>Who Shortlisted Me</a>
 							</li>
 							<li class="list-group-item">
-								<a href="#"><i class="fa fa-comments"></i>Profile I have Shortlisted</a>
+								<a th:href="@{'viewShortList?userId='+  ${session.userId}}"><i class="fa fa-comments"></i>Profile I have Shortlisted</a>
 							</li>
 							<li class="list-group-item">
 								<a href="#"><i class="fa fa-comments"></i>Profile I have Ignored</a>
