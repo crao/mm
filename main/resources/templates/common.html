@@ -185,6 +185,9 @@
 				<div class="col-md-2">
 					<a class="btn-u btn-u-sm a1" th:href="@{/profile(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
 				</div>
+				<div class="col-md-2">
+					<a class="btn-u btn-u-sm a1" th:href="@{/message(userId=${member.memberId}, visUser=${session.userId})}">Send Message</a>
+				</div>
 			</div>
 		</div>
 	</div>	

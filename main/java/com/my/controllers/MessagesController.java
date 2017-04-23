@@ -13,7 +13,8 @@ public class MessagesController {
 	
 	@RequestMapping(value="/messages",method=RequestMethod.GET)
 	public String start(Model model,@RequestParam(value="status",required=false)String status,
-			@RequestParam(value="userId",required=false)String userId,HttpSession session){
+			@RequestParam(value="userId",required=false)String userId,
+			@RequestParam(value="visId",required=false)String visId,HttpSession session){
 				
 		return "/messages";
 		
