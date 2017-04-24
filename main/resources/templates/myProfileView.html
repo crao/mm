@@ -65,82 +65,7 @@
 			<div class="container content profile">
 				
 				<div class="row">
-					<div class="col-md-3">
-						<div class="headline"><h4>Activity</h4></div>
-						<div class="row">
-							<div class="col-md-9 ">
-								<p><a href="#" class="side-color">Profile Shortlisted by me</a></p>
-							</div>
-							<div class="col-md-3">
-								<button style="font-size:10px">1</button>
-							</div>
-						</div>	
-						<hr class="no-margin margin-bottom-10"/>
-						<div class="row">
-							<div class="col-md-9">
-								<p><a href="#" class="side-color">Profile I have Ignored </a></p>
-							</div>
-							<div class="col-md-3">
-								<button style="font-size:10px">0</button>
-							</div>
-						</div>
-						<hr class="no-margin margin-bottom-10"/>
-						<div class="row">
-							<div class="col-md-9">
-								<p><a href="#" class="side-color">Profile I have blocked </a> </p>
-							</div>
-							<div class="col-md-3">
-								<button style="font-size:10px">0</button>
-							</div>
-						</div>
-						<hr class="no-margin margin-bottom-10"/>
-						<div class="row">
-							<div class="col-md-9">
-								<p><a th:href="@{'myProfileView?userId='+  ${session.userId}}" class="side-color"><b>Who viewed my profile  </b></a></p>
-							</div>
-							<div class="col-md-3">
-								<button style="font-size:10px">3</button>
-							</div>
-						</div>
-						
-						<div class="headline"><h4>Profile View</h4></div>
-						<div class="row">
-							<div class="col-md-9">
-								<p><a href="#" class="side-color">Members viewed my profile </a></p>
-							</div>
-							<div class="col-md-3">
-								<!--<button style="font-size:10px">1</button>-->
-							</div>
-						</div>	
-						<hr class="no-margin margin-bottom-10"/>
-						<div class="row">
-							<div class="col-md-9">
-								<p><a href="#" class="side-color">Members shortlisted my profile  </a></p>
-							</div>
-							<div class="col-md-3">
-								<!--<button style="font-size:10px">1</button>-->
-							</div>
-						</div>
-						
-						<div class="headline"><h4>SMS</h4></div>
-						<div class="row">
-							<div class="col-md-9">
-								<p><a href="#" class="side-color">SMS Received</a></p>
-							</div>
-							<div class="col-md-3">
-								<!--<button style="font-size:10px">1</button>-->
-							</div>
-						</div>	
-						<hr class="no-margin margin-bottom-10"/>
-						<div class="row">
-							<div class="col-md-9">
-								<p><a href="#" class="side-color">SMS Sent</a></p>
-							</div>
-							<div class="col-md-3">
-								<!--<button style="font-size:10px">1</button>-->
-							</div>
-						</div>
-					</div>
+					<div th:replace="common :: sideNav"></div>
 					<div class="col-md-9 " id="sky-form">
 					
 							<!--<div class="bg-light">
@@ -152,15 +77,13 @@
 								</div>
 							</div>-->
 							
-							
-					
-							<div class="bg-light" th:each="member : ${vistors}"><!-- You can delete "bg-light" class. It is just to make background color -->
+							<div class="bg-light" th:each="member : ${vistors}">
 								<div class="row">
 									<div class="col-md-12">
 										<label class="label label-font" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label>
 									</div>
 									<div class="col-md-12 sky-form noborder">
-										<label class="label"> <label th:text="${member.memberId}"></label> | Profile Created for <label th:text="${member.profileFor}"></label> | Viewed On : <label ></label></label>
+										<label class="label"> <label th:text="${member.memberId}"></label> | Profile Created for <label th:text="${member.profileFor}"></label> | Viewed On : <label></label></label>
 									</div>
 								</div>
 								<div class="row">
@@ -256,7 +179,7 @@
 										</div>
 										<div class="row margin-bottom-5">
 											<div class="col-md-12">
-												<a th:href="@{/profile(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
+												<a th:href="@{/profileView(userId=${member.memberId}, visUser=${session.userId})}">View Full Profile</a>
 											</div>
 										</div>
 									</div>
@@ -272,7 +195,7 @@
 											<label th:if="${member.gender=='F'}">her</label> profile?</label>
 									</div>
 									<div class="col-md-12">
-										<button class="btn-u" style="left:20px; top:3px" type="button">Send Mail</button>
+										<button class="btn-u" style="left:20px; top:3px" type="button">Send Message</button>
 										<button class="btn-u floatright" style="right: 20px; top:3px" type="button">Shortlist</button>
 										<div class="btn-group" style="float:right; right: 30px; top:3px">
 											<button type="button" class="btn-u btn-u-orange dropdown-toggle" data-toggle="dropdown">
@@ -290,7 +213,7 @@
 								<p></p>
 							</div>
 								
-							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
+							<div class="bg-light">
 								<div class="row">
 									<div class="col-md-6">
 										<!--<input type="checkbox" name="Hobbies"  /><button class="btn-u" style="  left:10px" type="button">Send Interest to All</button>-->	

@@ -30,4 +30,8 @@ public class ShortListService {
 		return shortListDao.findSlIdByMemId(memId);
 	}
 
+	public List<Long> shortListsByslId(long memId) {
+		// TODO Auto-generated method stub
+		return shortListDao.findSlIdByslId(memId);
+	}
 }
