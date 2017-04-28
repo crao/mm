@@ -68,6 +68,7 @@
 					<div th:replace="common :: sideNav"></div>
 					<div class="col-md-9 " id="sky-form">
 						<div class="bg-light" th:each="member : ${shortListedMembers}">
+						
 							<div class="row">
 								<div class="col-md-12">
 									<label class="label label-font" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label>

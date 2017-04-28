@@ -62,27 +62,28 @@
 			<div class="container content profile">
 				
 				<div class="row">
-					<div class="col-md-3">
-						<div class="profile-body">
-							<div class="profile-bio">
+					<!-- <div th:replace="common :: sideNav"></div> -->
+					<div class="col-md-12   no-padding" id="sky-form">
+					
+							<div class="bg-light" ><!-- You can delete "bg-light" class. It is just to make background color -->
+								<div class="row">
+									<div class="col-md-12">
+										<input type="checkbox" name="Hobbies"  /><button class="btn-u" style="  left:10px" type="button">Send Interest to All</button>
+									</div>
+									
+								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-md-9">
-						<div class="profile-body">
-							<div class="profile-bio">
-								<form class="sky-form" method="post">									
-									
-									<div th:replace="common :: searchResults"></div>
+					
+							 <div th:replace="common :: searchResults"></div> 
 							
-									
-								</form>
-								
-								
-							</div><!--/end row-->
-						</div>
-						<div class="text-center">
-										<ul class="pagination">
+										
+							<div class="bg-light"><!-- You can delete "bg-light" class. It is just to make background color -->
+								<div class="row">
+									<div class="col-md-6">
+										<input type="checkbox" name="Hobbies"  /><button class="btn-u" style="  left:10px" type="button">Send Interest to All</button>
+									</div>
+									<div class="col-md-6">
+										<ul class="pagination no-margin">
 											<li><a href="#">&laquo;</a></li>
 											<li><a href="#">1</a></li>
 											<li><a href="#">2</a></li>
@@ -92,8 +93,9 @@
 											<li><a href="#">&raquo;</a></li>
 										</ul>
 									</div>
+								</div>
+							</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>

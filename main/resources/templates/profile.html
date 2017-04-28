@@ -50,9 +50,35 @@
 	<script type="text/javascript"  src="files/commonmini2212161800.js.download"></script>	
 	<script type="text/javascript" >function slideShowHide(show,hide){ $("#"+show).slideUp(); $("#"+hide).slideDown();}</script>
     <script  type="text/javascript" src="files/editprofile.js.download"></script>
+    
+       <script th:inline="javascript">
+
+    function cmsToFeet(str) {
+			var cm = parseFloat(str)
+			var ft = cm*0.0328084
+			var a = Math.trunc(ft)	
+			var b = ft - Math.floor(ft)	
+			var inc = Math.round(b*11)
+			var res = ""+a+" Feet "+ inc + " inc "			
+			return res;
+			}
+    
+    function setCmtoFit() {		
+	
+    var message = [[${member.personalDetails.height}]];
+    
+    text = cmsToFeet(message);
+	
+	document.getElementById("heightcmtoft").innerHTML = text;
+	document.getElementById("heightcmtoft1").innerHTML = text;
+    
+    } 
+  
+
+	</script>
 </head>
 
-<body class="header-fixed header-fixed-space">
+<body class="header-fixed header-fixed-space" onload="setCmtoFit()">
 	<div class="wrapper">
 		<!--=== Header v6 ===-->
 	<div th:replace="common :: topNav"></div>
@@ -204,7 +230,9 @@
 															<b>Height:</b>
 														</div>
 														<div class="col-md-5">
-															<span th:text="${member.personalDetails.height}+' cm'">&nbsp; </span>
+															<p id="heightcmtoft"></p>
+															
+															<!-- <span th:text="${member.personalDetails.height}+' cm'">&nbsp; </span> -->
 														</div>
 													</div><br/>
 													<div class="row">

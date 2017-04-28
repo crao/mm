@@ -112,7 +112,7 @@
 							
 						</ul>
 						</div>
-					</div>
+				
 					
 					
 					<div class="col-md-9 " id="sky-form">
@@ -131,7 +131,7 @@
 												<p class="messages-p">This folder contains all communication that you haven't responded to.</p>
 											</div>
 										</div>
-										<div class="bg-light">
+										<div class="bg-light" th:each="member : ${messageMembers}">
 											<div class="row">
 												<div class="col-md-2 txt-center">
 													<input type="checkbox" name="Hobbies"  />
@@ -142,7 +142,7 @@
 												<div class="col-md-10 top-margin-10">
 													<div class="row">
 														<div class="col-md-12">
-															<label class="label-font">Ketan Khurana </label><span>&nbsp;(M00012345)&nbsp;&nbsp;&nbsp;</span> <a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile " title="View Mobile / Send SMS "></i></a> <button class="btn-u premium-member" type="button">Premium Member</button>
+															<label class="label-font" th:text="${member.firstName}+ ' ' + ${member.lastName} + ' '"></label><span th:text=" ' (' + ${member.memberId} + ') '"></span> &nbsp;&nbsp;<a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile " title="View Mobile / Send SMS "></i></a> <button class="btn-u premium-member" type="button">Premium Member</button>
 														</div>
 													</div>
 													<div class="row margin-bottom-5">
@@ -152,7 +152,7 @@
 													</div>
 													<div class="row margin-bottom-5">
 														<div class="col-md-12">
-															<span>35 Yrs, 5 Ft 5 In / 165 Cms, Jaipur, Rajasthan, India, B.A., CXO / President, Director, Chairman</span>
+															<span th:text="${member.age}+' yrs, ' + ${member.personalDetails.height} +' cm, ' + ${member.personalDetails.residingcity} + ', ' + ${member.personalDetails.residingstate} + ', ' + ${member.personalDetails.country} + ', ' + ${member.personalDetails.education} + ', ' + ${member.personalDetails.occupation}"></span>
 														
 														</div>
 													</div>
@@ -164,13 +164,15 @@
 													</div>
 													<div class="row margin-bottom-5">
 														<div class="col-md-12">
-															<span><b>He has sent you a message.</b></span>
+															<span><b>
+															<label th:if="${member.gender=='M'}">He</label>
+															<label th:if="${member.gender=='F'}">She</label> has sent you a message.</b></span>
 														
 														</div>
 													</div>
 													<div class="row margin-bottom-5">
 														<div class="col-md-12">
-															<span>"Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! ...<a href="">more</a>"</span>
+															<span></span>
 														
 														</div>
 													</div>
@@ -184,261 +186,6 @@
 												</div>
 											</div>
 										</div>
-										
-										<div class="bg-light">
-											<div class="row">
-												<div class="col-md-2 txt-center">
-													<input type="checkbox" name="Hobbies"  />
-													<img class="top-margin-10 margin-bottom-10" width="80px" height="80px" src="img/user1.jpg" alt="" />
-													<!--<span>Last Login : 1 Week ago</span><br/>
-													<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>-->
-												</div>
-												<div class="col-md-10 top-margin-10">
-													<div class="row">
-														<div class="col-md-12">
-															<label class="label-font">Rakesh Gupta</label><span>&nbsp;(M01460736)&nbsp;&nbsp;&nbsp;</span> <a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile " title="View Mobile / Send SMS "></i></a> <button class="btn-u premium-member" type="button">Premium Member</button>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span><i class="fa  fa-mobile" style="font-size:18px;"></i> Online on App  <a href="#" data-toggle="modal" data-target="#myModal">Chat</a></span>
-																<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																	<div class="modal-dialog margin-100" >
-																		
-																				<div class="modal-content">
-																					<div class="modal-header">
-																						<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-																						<h4 class="modal-title">Chat with Him, Upgrade your Membership</h4>
-																					</div>
-																					<div class="modal-body">
-																						<div class="row">
-																							<div class="col-md-6">
-																								<div class="col-md-6">
-																									<img class=" round-img img-bordered nomargin" src="img/user.jpg" alt=""></img>
-																								</div>
-																								<div class="col-md-6">
-																									<label>Rakesh Gupta</label>
-																									<label><em class="em-small">(M01460736)</em></label>
-																									<label>35 Yrs, 5 Ft 5 In</label>
-																									<label>Jaipur,Rajasthan</label>
-																									<label>BA	</label>
-																									<label>Chairman</label>
-																								</div>
-																								<button class="btn-u " style="left: 20px; " type="button">Upgrade Now</button>	
-																								<hr class="margin-15"></hr>
-
-																								<div class="margin-left-20">
-																								<h5 class="uppercase" style=""><b>Need Help In making payment</b></h5>
-																								<p><span class="call-1">Call 1800 000 000</span> for assistance in making payment or for free doorstep collection</p>
-																								</div>
-																								
-																							</div>
-																							<div class="col-md-6">
-																								<h5 class="uppercase"><b>Benifits of Paid Membership</b></h5>
-																								<div class="row">
-																									<div class="col-md-1" style="">
-																										<i class="color-orange fa fa-envelope " title="View Mobile / Send SMS "></i>
-																									</div>
-																									<div class="col-md-10">
-																										<p class="call-2">Send unlimited personalized message</p>
-																									</div>
-																								</div>
-																								<div class="row">
-																									<div class="col-md-1" style="">
-																										<i class=" font-size-2 color-orange fa fa-phone"></i>
-																									</div>
-																									<div class="col-md-10">
-																										<p class="call-2">Access 100% Verified mobile numbers / send SMS</p>
-																									</div>
-																								</div>
-																								<div class="row">
-																									<div class="col-md-1" style="">
-																										<i class="font-size-2 color-orange fa fa-comments-o"></i>
-																									</div>
-																									<div class="col-md-10">
-																										<p class="call-2">Chat with Prospect Directly</p>
-																									</div>
-																								</div>
-																								<div class="row">
-																									<div class="col-md-1" style="">
-																										<i class="font-size-2 color-orange fa  fa-search-plus"></i>
-																									</div>
-																									<div class="col-md-10">
-																										<p class="call-2">Priority over free members in search result</p>
-																									</div>
-																								</div>
-																								<div class="row">
-																									<div class="col-md-1" style="">
-																										<i class="font-size-2 color-orange fa fa-phone"></i>
-																									</div>
-																									<div class="col-md-10">
-																										<p class="call-2">Enhance Privacy settings</p>
-																									</div>
-																								</div>
-																								<div class="row">
-																									<div class="col-md-6" style="">
-																									</div>
-																									<div class="col-md-6">
-																										<p class="call-2"><a href="#">And More...</a></p>
-																									</div>
-																								</div>
-																							</div>
-																						</div>
-																						
-																					</div>
-																					<!--<div class="modal-footer">
-																						<button class="btn-u" type="button">YES</button>
-																						<button data-dismiss="modal" class="btn-u btn-u-default" type="button">NO</button>
-																					</div>-->
-																				</div>
-																	</div>
-																</div>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>35 Yrs, 5 Ft 5 In / 165 Cms, Jaipur, Rajasthan, India, B.A., CXO / President, Director, Chairman</span>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<button class="btn-u premium-member-1" type="button">Interest Received </button>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span><b>He is interested in your profile. Would you like to communicate further?</b></span>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>"Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! ...<a href="">more</a>"</span>
-														
-														</div>
-													</div>
-												</div>
-											</div>
-											<hr class="margin-15"/>
-											<div class="row">
-												<div class="col-md-2"></div>
-												<div class="col-md-10">
-													<button class="btn-u " style=" " type="button">Yes</button><button class="btn-u " style="left: 10px; " type="button">Not Interested</button>&nbsp;<button class="btn-u " style="left: 20px; " type="button">Send Mail</button>
-												</div>
-											</div>
-										</div>
-										
-										<div class="bg-light">
-											<div class="row">
-												<div class="col-md-2 txt-center">
-													<input type="checkbox" name="Hobbies"  />
-													<img class="top-margin-10 margin-bottom-10" width="80px" height="80px" src="img/user1.jpg" alt="" />
-													<!--<span>Last Login : 1 Week ago</span><br/>
-													<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>-->
-												</div>
-												<div class="col-md-10 top-margin-10">
-													<div class="row">
-														<div class="col-md-12">
-															<label class="label-font">Samkit Dhariwal</label><span>&nbsp;(M01290736)&nbsp;&nbsp;&nbsp;</span> <a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile " title="View Mobile / Send SMS "></i></a> <button class="btn-u premium-member" type="button">Premium Member</button>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>Last Login : 1 day ago | <a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>35 Yrs, 5 Ft 5 In / 165 Cms, Jaipur, Rajasthan, India, B.A., CXO / President, Director, Chairman</span>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<button class="btn-u premium-member-1" type="button">Interest Received </button>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span><b>He is interested in your profile. Would you like to communicate further?</b></span>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>"Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! ...<a href="">more</a>"</span>
-														
-														</div>
-													</div>
-												</div>
-											</div>
-											<hr class="margin-15"/>
-											<div class="row">
-												<div class="col-md-2"></div>
-												<div class="col-md-10">
-													<button class="btn-u " style=" " type="button">Yes</button><button class="btn-u " style="left: 10px; " type="button">Not Interested</button>&nbsp;<button class="btn-u " style="left: 20px; " type="button">Send Mail</button>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="bg-light">
-											<div class="row">
-												<div class="col-md-2 txt-center">
-													<input type="checkbox" name="Hobbies"  />
-													<img class="top-margin-10 margin-bottom-10" width="80px" height="80px" src="img/user1.jpg" alt="" />
-													<!--<span>Last Login : 1 Week ago</span><br/>
-													<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>-->
-												</div>
-												<div class="col-md-10 top-margin-10">
-													<div class="row">
-														<div class="col-md-12">
-															<label class="label-font">Sagar Patil</label><span>&nbsp;&nbsp;(M00876510)&nbsp;&nbsp;&nbsp;</span> <a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile " title="View Mobile / Send SMS "></i></a> <button class="btn-u premium-member" type="button">Premium Member</button>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>Last Login : 1 day ago | <a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>35 Yrs, 5 Ft 5 In / 165 Cms, Jaipur, Rajasthan, India, B.A., CXO / President, Director, Chairman</span>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<button class="btn-u premium-member-1" type="button">Interest Received </button>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span><b>He is interested in your profile. Would you like to communicate further?</b></span>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>"Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! Dummy text goes here..!! ...<a href="">more</a>"</span>
-														
-														</div>
-													</div>
-												</div>
-											</div>
-											<hr class="margin-15"/>
-											<div class="row">
-												<div class="col-md-2"></div>
-												<div class="col-md-10">
-													<button class="btn-u " style=" " type="button">Yes</button><button class="btn-u " style="left: 10px; " type="button">Not Interested</button>&nbsp;<button class="btn-u " style="left: 20px; " type="button">Send Mail</button>
-												</div>
-											</div>
-										</div>
-										
 										
 										
 									</div>	
@@ -459,54 +206,7 @@
 												</div>
 											</div>
 											
-											<div class="bg-light">
-											<div class="row">
-												<div class="col-md-2 txt-center">
-													<input type="checkbox" name="Hobbies"  />
-													<img class="top-margin-10 margin-bottom-10" width="80px" height="80px" src="img/user1.jpg" alt="" />
-													<!--<span>Last Login : 1 Week ago</span><br/>
-													<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>-->
-												</div>
-												<div class="col-md-10 top-margin-10">
-													<div class="row">
-														<div class="col-md-12">
-															<label class="label-font">Pankaj Patil </label><span>&nbsp;(M00012345)&nbsp;&nbsp;&nbsp;</span> <a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile " title="View Mobile / Send SMS "></i></a> <button class="btn-u premium-member" type="button">Premium Member</button>
-															<span class="floatright"><i class="fa  fa-location-arrow"></i> nbsp;10 April 2017 nbsp<i class=" fa  fa-trash-o"></i></span>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>Last Login : 1 Week ago | <a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>35 Yrs, 5 Ft 5 In / 165 Cms, Jaipur, Rajasthan, India, B.A., CXO / President, Director, Chairman</span>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<button class="btn-u premium-member-1" type="button"><i class="fa fa-check"></i> &nbsp;Message Accepted </button>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span><b>You have accepted his message.</b></span>
-														
-														</div>
-													</div>
-												</div>
-											</div>
-											<hr class="margin-15"/>
-											<div class="row">
-												<div class="col-md-2"></div>
-												<div class="col-md-10">
-													<button class="btn-u " style=" " type="button">Reply</button><button class="btn-u " style="left: 20px; " type="button">Call Now</button>&nbsp;
-												</div>
-											</div>
-										</div>
+											
 											
 										</div>
 									</div>
@@ -514,54 +214,7 @@
 										<div class="col-md-12">
 											<p class="messages-p">This folder contains all communication that have been declined.</p>
 										</div>
-										<div class="bg-light">
-											<div class="row">
-												<div class="col-md-2 txt-center">
-													<input type="checkbox" name="Hobbies"  />
-													<img class="top-margin-10 margin-bottom-10" width="80px" height="80px" src="img/user1.jpg" alt="" />
-													<!--<span>Last Login : 1 Week ago</span><br/>
-													<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>-->
-												</div>
-												<div class="col-md-10 top-margin-10">
-													<div class="row">
-														<div class="col-md-12">
-															<label class="label-font">Pankaj Patil </label><span>&nbsp;(M00012345)&nbsp;&nbsp;&nbsp;</span> <a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile " title="View Mobile / Send SMS "></i></a> <button class="btn-u premium-member" type="button">Premium Member</button>
-															<span class="floatright"><i class="fa  fa-location-arrow"></i> nbsp;10 April 2017 nbsp<i class="fa fa-trash-o"></i></span>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>Last Login : 1 Week ago | <a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span>35 Yrs, 5 Ft 5 In / 165 Cms, Jaipur, Rajasthan, India, B.A., CXO / President, Director, Chairman</span>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<button class="btn-u premium-member-1" type="button"><i class="fa fa-check"></i> &nbsp;Message Accepted </button>
-														
-														</div>
-													</div>
-													<div class="row margin-bottom-5">
-														<div class="col-md-12">
-															<span><b>You have accepted his message.</b></span>
-														
-														</div>
-													</div>
-												</div>
-											</div>
-											<hr class="margin-15"/>
-											<div class="row">
-												<div class="col-md-2"></div>
-												<div class="col-md-10">
-													<button class="btn-u " style=" " type="button">Reply</button><button class="btn-u " style="left: 20px; " type="button">Call Now</button>&nbsp;
-												</div>
-											</div>
-										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -577,6 +230,62 @@
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="home-2">
 										<h4>This folder contains all communication that have been sent.</h4>
+										
+										<div class="bg-light" th:each="member : ${messageMembersSend}">
+											<div class="row">
+												<div class="col-md-2 txt-center">
+													<input type="checkbox" name="Hobbies"  />
+													<img class="top-margin-10 margin-bottom-10" width="80px" height="80px" src="img/user1.jpg" alt="" />
+													<!--<span>Last Login : 1 Week ago</span><br/>
+													<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>-->
+												</div>
+												<div class="col-md-10 top-margin-10">
+													<div class="row">
+														<div class="col-md-12">
+															<label class="label-font" th:text="${member.firstName}+ ' ' + ${member.lastName} + ' '"></label><span th:text=" ' (' + ${member.memberId} + ') '"></span> &nbsp;&nbsp;<a href="payment-option.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile " title="View Mobile / Send SMS "></i></a> <button class="btn-u premium-member" type="button">Premium Member</button>
+														</div>
+													</div>
+													<div class="row margin-bottom-5">
+														<div class="col-md-12">
+															<span>Last Login : 1 Week ago | <a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
+														</div>
+													</div>
+													<div class="row margin-bottom-5">
+														<div class="col-md-12">
+															<span th:text="${member.age}+' yrs, ' + ${member.personalDetails.height} +' cm, ' + ${member.personalDetails.residingcity} + ', ' + ${member.personalDetails.residingstate} + ', ' + ${member.personalDetails.country} + ', ' + ${member.personalDetails.education} + ', ' + ${member.personalDetails.occupation}"></span>
+														
+														</div>
+													</div>
+													<div class="row margin-bottom-5">
+														<div class="col-md-12">
+															<button class="btn-u premium-member-1" type="button">Message Received </button>
+														
+														</div>
+													</div>
+													<div class="row margin-bottom-5">
+														<div class="col-md-12">
+															<span><b>
+															<label th:if="${member.gender=='M'}">He</label>
+															<label th:if="${member.gender=='F'}">She</label> has sent you a message.</b></span>
+														
+														</div>
+													</div>
+													<div class="row margin-bottom-5">
+														<div class="col-md-12">
+															<span></span>
+														
+														</div>
+													</div>
+												</div>
+											</div>
+											<hr class="margin-15"/>
+											<div class="row">
+												<div class="col-md-2"></div>
+												<div class="col-md-10">
+													<button class="btn-u " style=" " type="button">Yes</button><button class="btn-u " style="left: 20px; " type="button">Not Interested</button>&nbsp;
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="tab-pane fade in" id="profile-2">
 										<h4>This folder contains all communication you sent but are yet to be responded to.</h4>
@@ -606,7 +315,7 @@
 		<!--=== Footer Version 1 ===-->
 		<div th:replace="common :: footer"></div>
 		<!--=== End Footer Version 1 ===-->
-	<!-- </div>  --><!--/wrapper-->
+	 </div> <!--/wrapper-->
 
 	<!-- JS Global Compulsory -->
 	

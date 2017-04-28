@@ -100,7 +100,7 @@
 										<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
 										</div>
 										<div class="col-md-12 sky-form padding top-margin-10">
-										<span > <b>"READ  FROM DB ... <a href="profile-view.html">More</a>"</b></span>
+										<span > <b>"READ  FROM DB ... <a href="">More</a>"</b></span>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -195,10 +195,10 @@
 											<label th:if="${member.gender=='F'}">her</label> profile?</label>
 									</div>
 									<div class="col-md-12">
-										<button class="btn-u" style="left:20px; top:3px" type="button">Send Message</button>
-										<button class="btn-u floatright" style="right: 20px; top:3px" type="button">Shortlist</button>
+										<a class="btn-u btn-u-sm a1" style="left:20px; top:3px">Send Message</a>
+										<a class="btn-u btn-u-sm a1 floatright" style="right: 20px; top:3px" th:href="@{/shortList(userId=${session.userId}, slId=${member.memberId})}">Shortlist</a>
 										<div class="btn-group" style="float:right; right: 30px; top:3px">
-											<button type="button" class="btn-u btn-u-orange dropdown-toggle" data-toggle="dropdown">
+											<button type="button" class="btn-u btn-u-orange dropdown-toggle" style="padding:3px 13px" data-toggle="dropdown">
 												Action
 												<i class="fa fa-angle-down"></i>
 											</button>
@@ -207,7 +207,7 @@
 												<li><a href="#">Block</a></li>
 											</ul>
 										</div>
-										<button class="btn-u floatright" style="right: 40px; top:3px" type="button">Send Interest</button> 
+										<a class="btn-u btn-u-sm a1 floatright" style="right: 40px; top:3px">Send Interest</a> 
 									</div>
 								</div>
 								<p></p>
