@@ -19,3 +19,14 @@
 			document.getElementById(id).value = res;
 			}
 		
+
+		
+		function cmsToFt(str) {
+			var cm = parseFloat(str)
+			var ft = cm*0.0328084
+			var a = Math.trunc(ft)	
+			var b = ft - Math.floor(ft)	
+			var inc = Math.round(b*11)
+			var res = ""+a+" ft "+inc + " in"
+			return res;
+			}

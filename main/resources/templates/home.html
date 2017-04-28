@@ -82,6 +82,7 @@
 												<label class="input">
 													<i class="icon-append fa fa-user"></i>
 													<input type="email" placeholder="Email Address" name="email" th:field="*{username}"/>
+													
 												</label>
 											</div>
 											<div class="col col-3">
@@ -95,6 +96,9 @@
 												<button type="submit" class="btn-u btn-u-orange">Log in</button>
 											</div>
 										</div>
+										
+										<div> <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}">UserName Error</label></div>
+										<div> <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</label></div>
 									</section>
 								</fieldset>
                         </form>

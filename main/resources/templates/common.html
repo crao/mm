@@ -206,8 +206,13 @@
 						<div class="col-md-3">
 							<b>Height:</b>
 						</div>
-						<div class="col-md-9">
-							<span th:text="${member.personalDetails.height} + ' cm'"> </span>
+						<div class="col-md-9">								
+							<script th:inline="javascript">							
+							 /*<![CDATA[*/							 
+								 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+								  /*]]>*/ 
+							</script>
+								
 						</div>
 					</div>
 					<div class="row margin-bottom-5">
