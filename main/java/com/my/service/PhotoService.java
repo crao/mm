@@ -18,6 +18,18 @@ public class PhotoService {
 		return photoDao.findByUserId(userId);
 	}
 	
+	public List<String> getPhotoNamesByUserId(long userId){
+		return photoDao.findFileNameByUserId(userId);
+	}
+	
+	public Photo getProfilePhoto(long userId){
+		List<Photo> profilePhotos = photoDao.findByUserIdAndType(userId, "profile");
+		if(profilePhotos != null){
+			return profilePhotos.get(0);
+		}
+		return null; 
+	}
+	
 	public long save(Photo photo){
 		return photoDao.save(photo).getId();
 	}

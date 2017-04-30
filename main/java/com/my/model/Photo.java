@@ -16,6 +16,7 @@ public class Photo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id; 
 	private long userId; 
+	private long albumId;
 	private String fileName;
 	private String type;
 
@@ -38,6 +39,16 @@ public class Photo {
 	public long getUserId() {
 		return userId;
 	}
+	public long getAlbumId() {
+		return albumId;
+	}
+
+
+	public void setAlbumId(long albumId) {
+		this.albumId = albumId;
+	}
+
+
 	public String getFileName() {
 		return fileName;
 	}
@@ -47,7 +58,6 @@ public class Photo {
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
-
 
 	public Member getMember() {
 		return member;

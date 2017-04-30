@@ -66,8 +66,8 @@ public class LoginController {
 				if(password.equals(member.getPassword())){
 					httpSession.setAttribute("member", member);
 					model.addAttribute("member", member);
-					model.addAttribute("personalDetails", personalDetails);
-					model.addAttribute("preferences", preferences);
+					//model.addAttribute("personalDetails", personalDetails);
+					//model.addAttribute("preferences", preferences);
 					
 					return "redirect:/myhome?status=success&userId="+member.getmemberId();
 

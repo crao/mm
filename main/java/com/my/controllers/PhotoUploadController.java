@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.my.model.Member;
 import com.my.model.Photo;
+import com.my.service.MemberService;
 import com.my.service.PhotoService;
 
 @Controller
@@ -31,15 +34,21 @@ public class PhotoUploadController {
 	
 	//Save the uploaded file to this folder
     private static String UPLOADED_FOLDER = "C://Website//photos//";
+    
+    @Autowired
+    private PhotoService photoService; 
+    
+    @Autowired
+    private MemberService memberService;
 	
 	@RequestMapping(value = "/photoUpload", method = RequestMethod.GET)
-	public String init(){
+	public String init(@RequestParam(value="albumId",required=false) String albumId){
 		return "uploadPhoto";
 	}
 	
 	
 	@RequestMapping(value = "/photoUpload", method = RequestMethod.POST)
-	public String photoUploadHandler(@RequestParam("name") String name,
+	public String photoUploadHandler(@RequestParam("name") String name, @RequestParam("albumId") Long albumId,
 			@RequestParam("file") MultipartFile file){
 		
 		if (!file.isEmpty()) {
@@ -78,18 +87,18 @@ public class PhotoUploadController {
 	
 	
     
-    @Autowired
-    private PhotoService photoService; 
+
 
     //Single file upload
     @PostMapping("/photo/upload")
     // If not @RestController, uncomment this
     //@ResponseBody
     public ResponseEntity<?> uploadFile(
-            @RequestParam("file") MultipartFile uploadfile,
+            @RequestParam("file") MultipartFile uploadfile,@RequestParam("userId") String userId,@RequestParam("main") String main,
             HttpSession httpSession) {
 
-    	Long userId = (Long)httpSession.getAttribute("userId");
+    	//Long userid = Long.parseLong(userId);
+    	Long userid = (Long)httpSession.getAttribute("userId");
     
 
         if (uploadfile.isEmpty()) {
@@ -98,11 +107,18 @@ public class PhotoUploadController {
 
         try {
 
-            saveUploadedFiles(Arrays.asList(uploadfile),userId);
+            List<Photo> photos = saveUploadedFiles(Arrays.asList(uploadfile),userid,main);
+            Member member = (Member) httpSession.getAttribute("member");
+            member.setPhotos(photos);
+            memberService.save(member);
 
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 
         return new ResponseEntity("Successfully uploaded - " +
                 uploadfile.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
@@ -111,7 +127,10 @@ public class PhotoUploadController {
     
 
     //save file
-    private void saveUploadedFiles(List<MultipartFile> files,Long userId) throws IOException {
+    private List<Photo> saveUploadedFiles(List<MultipartFile> files,Long userId,String main) throws IOException {
+    	
+    	StringBuilder stringBuilder = new StringBuilder(UPLOADED_FOLDER);
+    	stringBuilder.append(userId).append("//");
 
         for (MultipartFile file : files) {
 
@@ -122,10 +141,14 @@ public class PhotoUploadController {
            /* Resource resource = new ClassPathResource("mm");
             URI uri = resource.getURI();
             File temp = new File(uri);*/
-          File userDir = new File(UPLOADED_FOLDER+userId+"//");
-          if(!userDir.exists()){
-        	  userDir.mkdirs();
-          }
+            File userDir = null;
+          /*  if(albumId!=null && !albumId.equals("")){
+            	//stringBuilder.append(albumId);
+        	}*/
+            userDir = new File(stringBuilder.toString());
+            if(!userDir.exists()){
+            	userDir.mkdirs();
+            }
             
             byte[] bytes = file.getBytes();
             Path path = Paths.get(userDir +"//"+ file.getOriginalFilename());
@@ -134,10 +157,15 @@ public class PhotoUploadController {
             Photo photo = new Photo();
             photo.setFileName(file.getOriginalFilename());
             photo.setUserId(userId);
+            if(Boolean.valueOf(main)){
+            	photo.setType("profile");
+            }
             long photoId = photoService.save(photo);
             
 
         }
+        
+        return photoService.getPhotosByUserId(userId);
 
     }
 

@@ -24,13 +24,26 @@ public class RestPhotoReaderController {
     @Autowired
     private PhotoService photoService;
     
-    @RequestMapping(value = "/photo/{id}")
-    public @ResponseBody byte[] showPhoto(@PathVariable Long id) {
+    @RequestMapping(value = "/photo/{userId}/{fileName:.+}")
+    public @ResponseBody byte[] showPhoto(@PathVariable Long userId,@PathVariable String fileName) {   	
+    	String photoLocation = UPLOADED_FOLDER+userId+"//" + fileName;    	
+    	return readPhoto(photoLocation);
+    }
+    
+    @RequestMapping(value="/photo/{id}/profilePhoto")
+    public @ResponseBody byte[] showProfilePhoto(@PathVariable Long userId) {   
+    	String fileName = photoService.getProfilePhoto(userId).getFileName();
+    	String photoLocation = UPLOADED_FOLDER+userId+"//" + fileName;    	
+    	return readPhoto(photoLocation);
+    }
+    
+    
+    
+    private byte[] readPhoto(String photoLocation){
+    	
+
     	byte[] b = null;
-    	
-    	String temp = UPLOADED_FOLDER+id+"//bike.jpg";
-    	
-    	File photoFile = new File(temp);
+    	File photoFile = new File(photoLocation);
     	InputStream in = null;
     	try {
 			in = new BufferedInputStream(new FileInputStream(photoFile));

@@ -23,6 +23,8 @@
 <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
  
  	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+ 	<input type="hidden" name="userId" th:value="${#httpServletRequest.getParameter('userId')}"/>
+ 	<input type="hidden" name="main" th:value="${#httpServletRequest.getParameter('main')}"/>
     <input type="file" name="file"/><br/><br/>
     
  
