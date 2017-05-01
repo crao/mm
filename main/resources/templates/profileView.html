@@ -89,18 +89,18 @@
 																<p class="hide-div-p">To view Other photo, <br/>Upload yours</p>
 																<button class="btn-u btn-u12" type="button">Úpload Now</button>
 															</div> -->
-														   <a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
-																<img th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"
-																th:if="${#lists.isEmpty(member.photos) and member.gender=='M'}"></img>
-																
-																<img th:src="@{img/place_holder.png}"   class="img-responsive" width="220" height="180"
-																th:if="${#lists.isEmpty(member.photos) and member.gender=='F'}"></img>
-																
-																<img th:src=""   class="img-responsive" width="220" height="180"
-																th:if="${not #lists.isEmpty(member.photos)}"></img>
-														    </a>
+														  <a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
+															<img th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"
+																th:if="${#strings.isEmpty(session.profilePhoto) and member.gender=='M'}"></img>
+										
+													     	<img th:src="@{img/place_holder.png}"   class="img-responsive" width="220" height="180"
+																th:if="${#strings.isEmpty(session.profilePhoto) and member.gender=='F'}"></img>
+										
+															<img th:src="@{'/photo/' + ${session.userId} +'/' +${session.profilePhoto}}"   class="img-responsive" width="220" height="180"
+																th:if="${not #strings.isEmpty(profilePhoto)}"></img>
+								</a>
 															<ul class="amazingslider-slides" style="display:none;">
-																<li><img src="images/1.jpg" alt="user"  title="user" />
+																<li><img th:src="@{'/photo/' + ${session.userId} +'/' +${session.profilePhoto}}" alt="user"  title="user" />
 																</li>
 																<li><img src="images/2.jpg" alt="user"  title="user" />
 																</li>
