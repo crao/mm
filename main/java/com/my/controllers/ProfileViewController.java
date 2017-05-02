@@ -19,14 +19,19 @@ import com.my.binding.SearchBinding;
 import com.my.model.Member;
 import com.my.model.Visit;
 import com.my.service.MemberService;
+import com.my.service.PhotoService;
 import com.my.service.VisitWatcherService;
 @Controller
 public class ProfileViewController {
 	@Autowired
-	MemberService memberService;
+	private MemberService memberService;
 	
 	@Autowired
-	VisitWatcherService visitWatcherService;
+	private VisitWatcherService visitWatcherService;
+	
+	@Autowired
+	private PhotoService photoService;
+	
 	
 	@RequestMapping(value="/profileView",method=RequestMethod.GET)
 	public String start(Model model,@RequestParam(value="status",required=false)String status,
@@ -35,7 +40,9 @@ public class ProfileViewController {
 		model.addAttribute("member",session.getAttribute("member"));
 		if(userId!=null || !userId.equals("")){
 			Member member = memberService.getMemberById(Long.parseLong(userId));
+			List<String> photos = photoService.getPhotoNamesByUserId(Long.parseLong(userId));
 			model.addAttribute("member",member);
+			model.addAttribute("photos",photos);
 			
 			if(visUser!=null){
 				List<Long> v = visitWatcherService.findVistors(Long.parseLong(userId));			

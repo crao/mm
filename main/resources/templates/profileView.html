@@ -101,26 +101,26 @@
 								</a>
 															<ul class="amazingslider-slides" style="display:none;">
 																<li><img th:src="@{'/photo/' + ${session.userId} +'/' +${session.profilePhoto}}" alt="user"  title="user" />
+																</li>	
+															</ul>
+															<ul class="amazingslider-slides" style="display:none;" th:each="photo : ${photos}">
+																<li><img th:src="@{'/photo/' + ${session.userId} +'/' +${photo}}" alt="user"  title="user" />
 																</li>
-																<li><img src="images/2.jpg" alt="user"  title="user" />
-																</li>
-																<li><img src="images/3.jpg" alt="user"  title="user" />
-																</li>
-																<li><img src="images/1.jpg" alt="user"  title="user" />
-																</li>
-																<li><img src="images/2.jpg" alt="user"  title="user" />
-																</li>
-																<li><img src="images/3.jpg" alt="user"  title="user" />
-																</li>
+<!-- 																<li><img src="images/3.jpg" alt="user"  title="user" /> -->
+<!-- 																</li> -->
+<!-- 																<li><img src="images/1.jpg" alt="user"  title="user" /> -->
+<!-- 																</li> -->
+<!-- 																<li><img src="images/2.jpg" alt="user"  title="user" /> -->
+<!-- 																</li> -->
+<!-- 																<li><img src="images/3.jpg" alt="user"  title="user" /> -->
+<!-- 																</li> -->
 															</ul>
 															
 															<ul class="amazingslider-thumbnails" style="display:none;">
-																<li><img src="images/1.jpg" alt="user" title="user" /></li>
-																<li><img src="images/2.jpg" alt="user" title="user" /></li>
-																<li><img src="images/3.jpg" alt="user" title="user" /></li>
-																<li><img src="images/1.jpg" alt="user" title="user" /></li>
-																<li><img src="images/2.jpg" alt="user" title="user" /></li>
-																<li><img src="images/3.jpg" alt="user" title="user" /></li>
+																<li><img th:src="@{'/photo/' + ${session.userId} +'/' +${session.profilePhoto}}" alt="user" title="user" /></li>
+															</ul>
+															<ul class="amazingslider-thumbnails" style="display:none;" th:each="photo : ${photos}">
+																<li><img th:src="@{'/photo/' + ${session.userId} +'/' +${photo}}" alt="user"  title="user" /></li>
 															</ul>
 													
 														</div>
