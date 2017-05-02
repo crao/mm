@@ -80,7 +80,7 @@
 										<img th:src="@{'/photo/' + ${session.userId} +'/' +${profilePhoto}}"   class="img-responsive" width="220" height="180"
 										th:if="${not #strings.isEmpty(profilePhoto)}"></img>
 								</a>
-								<a href="photo-upload.html">Add Photo</a><br/>
+								<a th:href="@{'myPhotos?userId='+  ${session.userId}}" >Add Photo</a><br/>
 								<a th:href="@{'profile?userId='+  ${session.userId}}"><span>Edit Profile</span></a><br/>
 								<a th:href="@{'profile?userId='+  ${session.userId}}"><span>Edit Preferences</span></a>
 							</div>
