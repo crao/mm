@@ -1,5 +1,11 @@
 package com.my.controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +25,12 @@ import com.my.model.Member;
 import com.my.model.PersonalDetails;
 import com.my.model.Photo;
 import com.my.model.Preferences;
+import com.my.model.Visit;
 import com.my.service.MemberService;
 import com.my.service.PersonalDetailsService;
 import com.my.service.PhotoService;
 import com.my.service.PreferencesService;
+import com.my.service.VisitWatcherService;
 
 @Controller
 @EnableAutoConfiguration
@@ -39,6 +47,10 @@ public class LoginController {
 	
 	@Autowired
 	private PhotoService photoService;
+	
+	@Autowired 	
+	VisitWatcherService visitWatcherService; 
+	
 	
 		
 	@RequestMapping(value="/", method=RequestMethod.GET)
@@ -71,6 +83,9 @@ public class LoginController {
 				if(password.equals(member.getPassword())){
 					httpSession.setAttribute("member", member);
 					model.addAttribute("member", member);
+					
+					
+					
 					Photo profilePhoto = photoService.getProfilePhoto(member.getmemberId());
 					if(profilePhoto!=null){
 						httpSession.setAttribute("profilePhoto", profilePhoto.getFileName());
@@ -80,15 +95,13 @@ public class LoginController {
 					
 					//model.addAttribute("personalDetails", personalDetails);
 					//model.addAttribute("preferences", preferences);
-					
 					return "redirect:/myhome?status=success&userId="+member.getmemberId();
-
 				}	
 			}
 		}		
-		return "home";		
+		return "home";
 	}
-	
+
 	
 	
 	

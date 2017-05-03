@@ -52,10 +52,10 @@
 		
 		<div class="breadcrumbs">
 			<div class="container">
-				<h1 class="pull-left">Profile I Have Shortlisted</h1>
+				<h1 class="pull-left">Who Shortlisted My Profile</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="myhome.html">Home</a></li>
-					<li class="active">Profile Shortlisted</li>
+					<li><a th:href="@{'myhome?userId='+ ${session.userId}}">My Home</a></li>
+					<li class="active">Member Shortlisted Me</li>
 				</ul>
 			</div>
 		</div>

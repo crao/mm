@@ -1,5 +1,11 @@
 package com.my.controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +17,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.my.model.Member;
 import com.my.model.Photo;
+import com.my.model.Visit;
+import com.my.service.MemberService;
 import com.my.service.PhotoService;
+import com.my.service.VisitWatcherService;
 @Controller
 public class MyHomeController {
+	
+	@Autowired 	
+	VisitWatcherService visitWatcherService; 
+	
+	@Autowired
+	MemberService memberService;
 	
 	@Autowired
 	private PhotoService photoService;
@@ -31,7 +46,21 @@ public class MyHomeController {
 				model.addAttribute("profilePhoto", null);
 			}
 			
-				
+			List<Long> visitorIds = new ArrayList<Long>();
+			
+			Map<Long,Date> visitMap = new HashMap<Long, Date>();
+			
+			List<Visit> visits = visitWatcherService.findVisits(Long.parseLong(userId));
+			
+			for(Visit v:visits){
+				visitMap.put(v.getMemId(), v.getLastVisit());
+				visitorIds.add(v.getVisitor());
+			}
+			
+			List<Member> visitors = memberService.getByMemberIds(visitorIds);
+			model.addAttribute("vistors", visitors);
+			model.addAttribute("visitMap",visitMap);
+			
 		return "myhome";
 		
 	}

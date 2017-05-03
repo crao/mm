@@ -190,7 +190,7 @@
 					<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
 					</div>
 					<div class="col-md-12 sky-form padding top-margin-10">
-					<span > <b>"My son is a Business person with a Master's degree currently living in ... <a href="profileView.html">More</a>"</b></span>
+					<span > <b>"My son is a Business person with a Master's degree currently living in ... <a th:href="@{/profileView(userId=${session.userId})}">More</a>"</b></span>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -206,8 +206,13 @@
 						<div class="col-md-3">
 							<b>Height:</b>
 						</div>
-						<div class="col-md-9">
-							<span th:text="${member.personalDetails.height} + ' cm'"> </span>
+						<div class="col-md-9">								
+							<script th:inline="javascript">							
+							 /*<![CDATA[*/							 
+								 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+								  /*]]>*/ 
+							</script>
+								
 						</div>
 					</div>
 					<div class="row margin-bottom-5">
@@ -279,13 +284,14 @@
 				<div class="col-md-12">
 					<a class="btn-u btn-u-sm a1 floatright" th:href="@{/sendinterest(fromMemId=${session.userId},toMemId=${member.memberId})}">Send Interest</a>
 					<a class="btn-u btn-u-sm a1 floatright" style="right:10px" th:href="@{/shortList(userId=${session.userId}, slId=${member.memberId})}">Short List</a>
-					<a class="btn-u btn-u-sm a1 floatright" style="right:20px" data-toggle="modal" data-target="#myModal" th:href="@{member=${session.member}}">Send Message</a>
+					
+					<button class="btn-u btn-u-sm a1 floatright" style="right:20px" data-toggle="modal" data-target="#myModal" 	>Send Message</button>
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 						<div class="modal-dialog margin-100" >
 							<div class="modal-content">
 								<div class="modal-header">
 									<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-									<h4 id="myModalLabel1" class="modal-title"><img class="rounded-x round-img1 img-bordered" src="img/user.jpg" alt=""/> &nbsp;<span th:text="${member.firstName}+ ' ' + ${member.lastName}"></span>  <em class="em-small"><span th:text=" ' (' + ${member.memberId} + ') '"></span></em></h4>	
+									<h4 id="myModalLabel1" class="modal-title"><img class="rounded-x round-img1 img-bordered" src="img/user.jpg" alt=""/> &nbsp;<span id="memberName" th:text="${member.firstName}+ ' ' + ${member.lastName}"></span>  <em class="em-small"><span id="memberId" th:text=" ' (' + ${member.memberId} + ') '"></span></em></h4>	
 								</div>
 								<div class="modal-body sky-form">
 									<fieldset>

@@ -48,7 +48,7 @@ public class PreferencesController {
 			model.addAttribute("member",session.getAttribute("member"));
 			model.addAttribute("personalDetails",session.getAttribute("personalDetails"));
 			model.addAttribute("preferences", session.getAttribute("preferences"));
-			return "profile";
+			return "lifestyle";
 		}
 	}
 	

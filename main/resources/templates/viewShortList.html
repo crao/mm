@@ -54,7 +54,7 @@
 			<div class="container">
 				<h1 class="pull-left">Profile I Have Shortlisted</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="myhome.html">Home</a></li>
+					<li><a th:href="@{'myhome?userId='+ ${session.userId}}">My Home</a></li>
 					<li class="active">Profile Shortlisted</li>
 				</ul>
 			</div>
@@ -84,14 +84,14 @@
 									<img th:src="@{img/place_holder.png}"   class="img-responsive md-margin-bottom-10" 
 										th:if="${member.gender=='F'}"></img>
 									<span>Last Login : READ last login  FROM DB </span><br/>
-									<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
+									<span><a th:href="@{/profileView(userId=${session.userId})}" target="_blank">Leave Offline Message</a></span>
 								</div>
 								<div class="col-md-3">
 									<div class="col-md-12">
-									<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
+									<a th:href="@{/profileView(userId=${session.userId})}" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
 									</div>
 									<div class="col-md-12 sky-form padding top-margin-10">
-									<span > <b>"READ  FROM DB ... <a href="profile-view.html">More</a>"</b></span>
+									<span > <b>"READ  FROM DB ... <a th:href="@{/profileView(userId=${session.userId})}">More</a>"</b></span>
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -186,10 +186,10 @@
 										<label th:if="${member.gender=='F'}">her</label> profile?</label>
 								</div>
 								<div class="col-md-12">
-									<button class="btn-u" style="left:20px; top:3px" type="button">Send Mail</button>
+									<button class="btn-u btn-u-sm" style="left:20px; top:3px" type="button">Send Mail</button>
 								
-									<div class="btn-group" style="float:right; right: 30px; top:3px">
-										<button type="button" class="btn-u btn-u-orange dropdown-toggle" data-toggle="dropdown">
+									<div class="btn-group"  style="float:right; right: 30px; top:3px">
+										<button type="button" class="btn-u btn-u-orange btn-u-sm dropdown-toggle" data-toggle="dropdown">
 											Action
 											<i class="fa fa-angle-down"></i>
 										</button>
@@ -198,7 +198,8 @@
 											<li><a href="#">Block</a></li>
 										</ul>
 									</div>
-									<button class="btn-u floatright" style="right: 40px; top:3px" type="button">Send Interest</button> 
+									<a class="btn-u btn-u-sm a1 floatright" style="right: 40px; top:3px" th:href="@{/sendinterest(fromMemId=${session.userId},toMemId=${member.memberId})}">Send Interest</a>
+	
 								</div>
 							</div>
 							<p></p>

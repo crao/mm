@@ -34,5 +34,8 @@ public class MemberService {
 	public List<Member> getByMemberIds(List<Long> ids){
 		return memberDao.findByMemberIdIn(ids);
 	}
-
+	public List<Long> findMember() {
+		// TODO Auto-generated method stub
+		return memberDao.findMemberByMemId();
+	}
 }
