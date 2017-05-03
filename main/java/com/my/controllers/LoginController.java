@@ -17,9 +17,11 @@ import com.my.binding.PersonalDetailsModel;
 import com.my.binding.Register;
 import com.my.model.Member;
 import com.my.model.PersonalDetails;
+import com.my.model.Photo;
 import com.my.model.Preferences;
 import com.my.service.MemberService;
 import com.my.service.PersonalDetailsService;
+import com.my.service.PhotoService;
 import com.my.service.PreferencesService;
 
 @Controller
@@ -34,6 +36,9 @@ public class LoginController {
 	
 	@Autowired
 	private PreferencesService preferencesService;
+	
+	@Autowired
+	private PhotoService photoService;
 	
 		
 	@RequestMapping(value="/", method=RequestMethod.GET)
@@ -66,8 +71,15 @@ public class LoginController {
 				if(password.equals(member.getPassword())){
 					httpSession.setAttribute("member", member);
 					model.addAttribute("member", member);
-					model.addAttribute("personalDetails", personalDetails);
-					model.addAttribute("preferences", preferences);
+					Photo profilePhoto = photoService.getProfilePhoto(member.getmemberId());
+					if(profilePhoto!=null){
+						httpSession.setAttribute("profilePhoto", profilePhoto.getFileName());
+					}else{
+						httpSession.setAttribute("profilePhoto", null);
+					}
+					
+					//model.addAttribute("personalDetails", personalDetails);
+					//model.addAttribute("preferences", preferences);
 					
 					return "redirect:/myhome?status=success&userId="+member.getmemberId();
 
