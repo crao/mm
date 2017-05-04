@@ -44,12 +44,7 @@ public class MessagesController {
 		  model.addAttribute("messageMembersSend", MessageMembersSend);
 		  
 		  
-		  return "messages";
-		
-		
-		
-		
-				
+		  return "messages";	
 		
 		
 	}

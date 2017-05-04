@@ -30,3 +30,13 @@
 			var res = ""+a+" ft "+inc + " in"
 			return res;
 			}
+		
+		function setValuesInModal(mname,mid,nameStr,midStr){
+			span = document.getElementById(mname);
+			name = document.createTextNode(nameStr);
+			span.innerText = name.textContent;
+			
+			span = document.getElementById(mid);
+			name = document.createTextNode(midStr);
+			span.innerText = name.textContent;
+		}
