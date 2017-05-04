@@ -24,7 +24,7 @@ public class PhotoService {
 	
 	public Photo getProfilePhoto(long userId){
 		List<Photo> profilePhotos = photoDao.findByUserIdAndType(userId, "profile");
-		if(profilePhotos != null){
+		if(profilePhotos != null && !profilePhotos.isEmpty()){
 			return profilePhotos.get(0);
 		}
 		return null; 
