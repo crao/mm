@@ -149,7 +149,11 @@
 															<b>Age/Height:</b>
 														</div>
 														<div class="col-md-10">
-															<span th:text="${member.personalDetails.height}"> </span>
+															<script th:inline="javascript">							
+															 /*<![CDATA[*/							 
+																 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+																  /*]]>*/ 
+															</script>
 														</div>
 														
 													</div>
@@ -323,7 +327,11 @@
 																			</section>
 																			<section class="col1 col-4">
 																			
-																				<label class="label"  th:text="${member.personalDetails.height}"></label>
+																				<script th:inline="javascript">							
+																				 /*<![CDATA[*/							 
+																					 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+																					  /*]]>*/ 
+																				</script>
 																			</section>
 																			<section class="col1">
 																				<label class="label"><b>Weight :</b></label>

@@ -49,31 +49,7 @@
 	<script type="text/javascript" >function slideShowHide(show,hide){ $("#"+show).slideUp(); $("#"+hide).slideDown();}</script>
     <script  type="text/javascript" src="files/editprofile.js.download"></script>
     
-       <script th:inline="javascript">
-
-    function cmsToFeet(str) {
-			var cm = parseFloat(str)
-			var ft = cm*0.0328084
-			var a = Math.trunc(ft)	
-			var b = ft - Math.floor(ft)	
-			var inc = Math.round(b*11)
-			var res = ""+a+" Feet "+ inc + " inc "			
-			return res;
-			}
-    
-    function setCmtoFit() {		
-	
-    var message = [[${member.personalDetails.height}]];
-    
-    text = cmsToFeet(message);
-	
-	document.getElementById("heightcmtoft").innerHTML = text;
-	document.getElementById("heightcmtoft1").innerHTML = text;
-    
-    } 
-  
-
-	</script>
+       
 </head>
 
 <body class="header-fixed header-fixed-space" onload="setCmtoFit()">
@@ -226,9 +202,11 @@
 															<b>Height:</b>
 														</div>
 														<div class="col-md-5">
-															<p id="heightcmtoft"></p>
-															
-															<!-- <span th:text="${member.personalDetails.height}+' cm'">&nbsp; </span> -->
+															<script th:inline="javascript">							
+															 /*<![CDATA[*/							 
+																 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+																  /*]]>*/ 
+															</script>
 														</div>
 													</div><br/>
 													<div class="row">
@@ -392,7 +370,11 @@
 																					<label class="label"><b>Height :</b></label>
 																				</section>
 																				<section class="col1 col-4">
-																					<label class="label" th:text="${member.personalDetails.height}+' cm'" ></label>
+																					<script th:inline="javascript">							
+																					 /*<![CDATA[*/							 
+																						 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+																						  /*]]>*/ 
+																					</script>
 																				</section>
 																				<section class="col1">
 																					<label class="label"><b>Weight :</b></label>
@@ -2086,7 +2068,12 @@
 																				<label class="label"><b>Height :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label" th:text="${member.preferences.fromHeight} + ' To ' + ${member.preferences.toHeight}" >178cm To 196cm</label>
+																			<script th:inline="javascript">							
+																			 /*<![CDATA[*/							 
+																				 document.write(cmsToFt(/*[[${member.preferences.fromHeight}]]*/) + " To " + cmsToFt(/*[[${member.preferences.toHeight}]]*/))
+																				  /*]]>*/ 
+																			</script>
+																				
 																			</section>
 																		</div>
 																	</fieldset>
