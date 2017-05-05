@@ -73,77 +73,223 @@
 						</div>
 					</div>-->
 					<div class="col-md-12">
-								<form action="preferences.html" th:action="" th:object="" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
+								<form  th:action="@{/lifestyle}" th:object="${lifestyle}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
 									<header>What are you Hobbies and Interest : </header>
 									<fieldset>
 										<div class="row">
 											<section class="inline-group">
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Cooking</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset"  th:feild="*{hobbiesAndIntereset}" value="Cooking" /><i></i>Cooking</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Nature</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset"  th:feild="*{hobbiesAndIntereset}" value="Nature" /><i></i>Nature</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Photography</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Photography"  /><i></i>Photography</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Dancing</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Dancing" /><i></i>Dancing</label>
 												</div>
 											</section>
 										</div>
 										<div class="row">
 											<section class="inline-group">
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Painting</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"  value="Painting" /><i></i>Painting</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Pets</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Pets" /><i></i>Pets</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Playing Musical Instruments</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Playing Musical Instruments" /><i></i>Playing Musical Instruments</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Puzzles</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Puzzles" /><i></i>Puzzles</label>
 												</div>
 											</section>
 										</div>
 										<div class="row">
 											<section class="inline-group">
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Gardening / Lanscaping</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"  value="Puzzles" /><i></i>Gardening / Lanscaping</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Art / Handicraft</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Art / Handicraft"  /><i></i>Art / Handicraft</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Listening to Music</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Listening to Music" /><i></i>Listening to Music</label>
 												</div>
-												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies" /><i></i>Movies</label>
+												<div class="col col-3"> 
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Movies" /><i></i>Movies</label>
 												</div>
 											</section>
 										</div>
+									
+										
 										<div class="row">
-											<section class="inline-group">
+												<section class="inline-group">
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value=""/><i></i>Affluent</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="" /><i></i>Teetotaller</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value=""   /><i></i>Handsome</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value=""   /><i></i>Attractive</label>
+													</div>
+												</section>
+											</div>
+											<div class="row">
+											
+												<section class="inline-group">
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="Spiritually inclined"   /><i></i>Spiritually inclined</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="Warm and Friendly"   /><i></i>Warm and Friendly</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="Well educated"    /><i></i>Well educated</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Cheerful"   /><i></i>Cheerful</label>
+													</div>
+												</section>
+											</div>
+											
+											<div class="row">
+												
+												<section class="inline-group">
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Internet Surfing</label>
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="Family oriented"   /><i></i>Family oriented</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Loving"   /><i></i>Loving</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Easy going"   /><i></i>Easy going</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Health conscious"   /><i></i>Health conscious</label>
+													</div>
+												</section>
+											</div>
+											<div class="row">
+												
+												<section class="inline-group">
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="Enjoys music"   /><i></i>Enjoys music</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Cares for pets"   /><i></i>Cares for pets</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Likes literature"   /><i></i>Likes literature</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Likes nature"   /><i></i>Likes nature</label>
+													</div>
+												</section>
+											</div>
+											<div class="row">
+												
+												<section class="inline-group">
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Likes reading"   /><i></i>Likes reading</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Enjoys food"   /><i></i>Enjoys food</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="Likes photography"   /><i></i>Likes photography</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Likes art"   /><i></i>Likes art</label>
+													</div>
+												</section>
+											</div>
+											<div class="row">
+												
+												<section class="inline-group">
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Top Tier Medical College"   /><i></i>Top Tier Medical College</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Top Tier B Tech Degree"   /><i></i>Top Tier B Tech Degree</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Top Tier Arts"   /><i></i>Top Tier Arts</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}" value="Top Tier MBA Degree"/><i></i>Top Tier MBA Degree</label>
+													</div>
+												</section>
+											</div>
+											<div class="row">
+												
+												<section class="inline-group">
+												<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="ISKCON"   /><i></i>ISKCON</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Shirdi Sai Baba Devotee"   /><i></i>Shirdi Sai Baba Devotee</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Satya Sai Baba Devotee"   /><i></i>Satya Sai Baba Devotee</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Art of Living Follower"   /><i></i>Art of Living Follower</label>
+													</div>
+												</section>
+											</div>
+											<div class="row">
+												
+												<section class="inline-group">
+												<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="RSSB Society"   /><i></i>RSSB Society</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="ISKCON"   /><i></i>ISKCON</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Top Tier Defense College"   /><i></i>Top Tier Defense College</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Top Tier School"   /><i></i>Top Tier School</label>
+													</div>
+												</section>
+											</div>
+											<div class="row">
+											
+												<section class="inline-group">
+													<div class="col col-3">
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Golfer"   /><i></i>Golfer</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="Hobbies"  /><i></i>Travelling</label>
+													<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"     value="Clean-Shaven Sikhs"   /><i></i>Clean-Shaven Sikhs</label>
 												</div>
-											</section>
-										</div>
-										<div class="row">
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{hobbiesAndIntereset}"      value="Scuba Diver"   /><i></i>Scuba Diver</label>
+													</div>
+													<div class="col col-3">
+														<label class="checkbox"><input type="checkbox" name="hobbiesAndIntereset" th:feild="*{background}"     value="Blood Donor"   /><i></i>Blood Donor</label>
+													</div>
+												</section>
+											</div>
+											<div class="row">
 											<section class="col ">
 												<label class="label"> Other:</label>
 											</section>
 											<section class="col1 col-10">
 												<label class="input">
-													<input type="text" id="otherHobby" name="otherHobby"  placeholder="Enter your other Hobby Here.. Eg: Reading, Farming, etc." />
+													<input type="text" id="otherHobby" name="otherHobby"  placeholder="Enter your other Hobby Here.. Eg: Reading, Farming, etc." th:feild="*{otherHobby"/>
 												</label>
 											</section>
 										</div>
+											
 									</fieldset>
 									
 									<header>Your Favourite music</header>
@@ -152,13 +298,13 @@
 										<div class="row">
 											<section class="inline-group">
 												<div class="col col-4">
-													<label class="checkbox"><input type="checkbox" name="favMusic" /><i></i>Film Songs</label>
+													<label class="checkbox"><input type="checkbox" name="favouriteMusic" th:feild="*{favouriteMusic}" value="Film Songs" /><i></i>Film Songs</label>
 												</div>
 												<div class="col col-4">
-													<label class="checkbox"><input type="checkbox" name="favMusic"  /><i></i>Indian Classical Music</label>
+													<label class="checkbox"><input type="checkbox" name="favouriteMusic" th:feild="*{favouriteMusic}"  value="Indian Classical Music" /><i></i>Indian Classical Music</label>
 												</div>
 												<div class="col col-4">
-													<label class="checkbox"><input type="checkbox" name="favMusic"/><i></i>Western Music</label>
+													<label class="checkbox"><input type="checkbox" name="favouriteMusic" th:feild="*{favouriteMusic}" value="Western Music" /><i></i>Western Music</label>
 												</div>
 											</section>
 										</div>
@@ -169,7 +315,7 @@
 											</section>
 											<section class="col1 col-10">
 												<label class="input">
-													<input type="text" id="otherMusic" name="otherMusic"  placeholder="Enter your other Music Interest.. Eg: Fusion, Blues, etc." />
+													<input type="text" id="otherMusic" name="otherMusic" th:feild="otherMusic"   placeholder="Enter your other Music Interest.. Eg: Fusion, Blues, etc." />
 												</label>
 											</section>
 										</div>
@@ -179,32 +325,32 @@
 										<div class="row">
 											<section class="inline-group">
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Cricket</label>
+													<label class="checkbox"><input type="checkbox" name="sportsFitness" th:feild="*{sportsFitness}"  value="Cricket" /><i></i>Cricket</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="favSports"/><i></i>Carrom</label>
+													<label class="checkbox"><input type="checkbox" name="favSports" th:feild="*{sportsFitness}" value="Carrom" /><i></i>Carrom</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Chess</label>
+													<label class="checkbox"><input type="checkbox" name="favSports" th:feild="*{sportsFitness}" value="Chess" /><i></i>Chess</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="favSports"/><i></i>Jogging</label>
+													<label class="checkbox"><input type="checkbox" name="favSports" th:feild="*{sportsFitness}" value="Jogging" /><i></i>Jogging</label>
 												</div>
 											</section>
 										</div>
 										<div class="row">
 											<section class="inline-group">
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Badminton</label>
+													<label class="checkbox"><input type="checkbox" name="favSports" th:feild="*{sportsFitness}" value="Badminton" /><i></i>Badminton</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Swimming</label>
+													<label class="checkbox"><input type="checkbox" name="favSports" th:feild="*{sportsFitness}" value="Swimming" /><i></i>Swimming</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Tennis</label>
+													<label class="checkbox"><input type="checkbox" name="favSports" th:feild="*{sportsFitness}"  value="Tennis" /><i></i>Tennis</label>
 												</div>
 												<div class="col col-3">
-													<label class="checkbox"><input type="checkbox" name="favSports" /><i></i>Football</label>
+													<label class="checkbox"><input type="checkbox" name="favSports" th:feild="*{sportsFitness}" value="Football"  /><i></i>Football</label>
 												</div>
 											</section>
 										</div>
@@ -214,7 +360,7 @@
 											</section>
 											<section class="col1 col-10">
 												<label class="input">
-													<input type="text" id="otherSports" name="otherSports"  placeholder="Enter your other Interested Sports.. Eg: Cycling, kabaddi, etc." />
+													<input type="text" id="otherSports" name="otherSports"  th:feild="*{otherSports}"  placeholder="Enter your other Interested Sports.. Eg: Cycling, kabaddi, etc." />
 												</label>
 											</section>
 										</div>

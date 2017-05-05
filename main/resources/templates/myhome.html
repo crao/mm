@@ -55,7 +55,6 @@
 			<div class="container">
 				<h1 class="pull-left">My Home</h1>
 				<ul class="pull-right breadcrumb">
-					<li class="active"><a href="index.html">My Home</a></li>
 					<li class="active">My Home</li>
 				</ul>
 			</div><!--/container-->
@@ -160,7 +159,7 @@
 													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 													<img class="rounded-x" src="img/user.jpg" alt="" />
 													<div class="overflow-h">
-														<a th:href="@{/profile-view(userId=${session.userId})}" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
+														<a th:href="@{/profileView(userId=${session.userId})}" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
 														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
 													</div>
 												</div>
@@ -384,65 +383,19 @@
 										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Who viewed your profile</h2>
 										<!--<span class="floatright">Last updated at 10:45 am</span>-->
 									</div>
-									<div class="owl-carousel-v2 owl-carousel-style-v2 margin-bottom-40 topmargin-40	">
+									<div class="owl-carousel-v2 owl-carousel-style-v2 margin-bottom-40 topmargin-40	" >
 										
-										<div class="owl-slider-v22">
-											<div class="item txt-center">
+										<div class="owl-slider-v22" >
+											<div class="item txt-center" th:each="member : ${vistors}">
 												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
+												<strong><label th:text="${member.memberId}"></label></strong>
+												<span th:text="${member.age} + ' years' +' ' + ${member.personalDetails.height} + ' cm'"  class="row">
+												</span>
+												&nbsp;&nbsp;&nbsp;<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
-											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
 											</div>
-											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
-											</div>
-											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
-											</div>
-											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
-											</div>
-											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
-											</div>
-											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
-											</div>
-											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
-											</div>
-											<div class="item txt-center">
-												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
-												<strong>M234987</strong><br/>
-												<span>29 Yrs, 5Ft 9In</span><br/>
-												<a class="edit-2-button"><span>Send Interest</span></a>
-											</div>
-										</div>
-
+										
+										
 										<div class="owl-navigation">
 											<div class="customNavigation">
 												<a class="owl-btn prev-v22"><i class="fa fa-angle-left"></i></a>

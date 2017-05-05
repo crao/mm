@@ -276,6 +276,16 @@ public class Member {
 	}
 
 	
+	@OneToOne(mappedBy="member")
+	private Lifestyle lifestyle;
+	
+	public Lifestyle getLifestyle() {
+		return lifestyle;
+	}
+
+	public void setLifestyle(Lifestyle lifestyle) {
+		this.lifestyle = lifestyle;
+	}
 
 	
 }

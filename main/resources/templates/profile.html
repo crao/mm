@@ -41,8 +41,6 @@
 	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
 	<style>.sky-form{border: 1px solid #eee;}</style>
 	<script type="text/javascript" src="js/my.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src="http://iamrohit.in/lab/js/location.js"></script>
 	
 	<!-- Edit Option Functionality Scripts -->
 	<script type="text/javascript"  src="files/dc.js.download"></script>
@@ -51,31 +49,7 @@
 	<script type="text/javascript" >function slideShowHide(show,hide){ $("#"+show).slideUp(); $("#"+hide).slideDown();}</script>
     <script  type="text/javascript" src="files/editprofile.js.download"></script>
     
-       <script th:inline="javascript">
-
-    function cmsToFeet(str) {
-			var cm = parseFloat(str)
-			var ft = cm*0.0328084
-			var a = Math.trunc(ft)	
-			var b = ft - Math.floor(ft)	
-			var inc = Math.round(b*11)
-			var res = ""+a+" Feet "+ inc + " inc "			
-			return res;
-			}
-    
-    function setCmtoFit() {		
-	
-    var message = [[${member.personalDetails.height}]];
-    
-    text = cmsToFeet(message);
-	
-	document.getElementById("heightcmtoft").innerHTML = text;
-	document.getElementById("heightcmtoft1").innerHTML = text;
-    
-    } 
-  
-
-	</script>
+       
 </head>
 
 <body class="header-fixed header-fixed-space" onload="setCmtoFit()">
@@ -88,7 +62,7 @@
 			<div class="container">
 				<h1 class="pull-left">My Profile</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a href="index.html">Home</a></li>
+					<li><a th:href="@{'myhome?userId='+ ${session.userId}}">My Home</a></li>
 					<li class="active">My Profile</li>
 				</ul>
 			</div><!--/container-->
@@ -100,22 +74,20 @@
 				
 				<div class="row">
 					<div class="col-md-3">
-						<!-- <img class="img-responsive profile-img margin-bottom-20" src="img/user1.jpg" alt=""></img>  -->
-						
 						<a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
 								<img th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"
-								th:if="${#lists.isEmpty(member.photos) and member.gender=='M'}"></img>
+								th:if="${#strings.isEmpty(profilePhoto) and member.gender=='M'}"></img>
 								
 								<img th:src="@{img/place_holder.png}"   class="img-responsive" width="220" height="180"
-								th:if="${#lists.isEmpty(member.photos) and member.gender=='F'}"></img>
+								th:if="${#strings.isEmpty(profilePhoto) and member.gender=='F'}"></img>
 								
-								<img th:src=""   class="img-responsive" width="220" height="180"
-								th:if="${not #lists.isEmpty(member.photos)}"></img>
+								<img th:src="@{'/photo/' + ${session.userId} +'/' +${profilePhoto}}"   class="img-responsive" width="220" height="180"
+								th:if="${not #strings.isEmpty(profilePhoto)}"></img>
 						</a>
 
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li class="list-group-item">
-								<a th:href="@{'myhome?userId='+  ${session.userId}}"><i class="fa fa-bar-chart-o"></i>Overall</a>
+								<a th:href="@{'myhome?userId='+ ${session.userId}}"><i class="fa fa-bar-chart-o"></i>Overall</a>
 							</li>
 							<li class="list-group-item active">
 								<a href="#"><i class="fa fa-user"></i>My Profile</a>
@@ -230,9 +202,11 @@
 															<b>Height:</b>
 														</div>
 														<div class="col-md-5">
-															<p id="heightcmtoft"></p>
-															
-															<!-- <span th:text="${member.personalDetails.height}+' cm'">&nbsp; </span> -->
+															<script th:inline="javascript">							
+															 /*<![CDATA[*/							 
+																 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+																  /*]]>*/ 
+															</script>
 														</div>
 													</div><br/>
 													<div class="row">
@@ -330,38 +304,42 @@
 																</div>
 																
 																<div id="basicform" style="display: none;">
-																<fieldset>
-																	<div class="row padd20">
-																		<section class="col1">
-																			<label class="label"><b>Birth Time &amp; Place:</b></label>
-																		</section>
-																		<section class="col1 col-4">
-																			<label class="input">
-																				<input type="time" name="income" th:feild="*{birthTime}" id="BIRTHTIME"  placeholder="Enter Birth Time" />
-																			</label>
-																		</section>
-																		<section class="col1 col-5">
-																			<label class="input">
-																				<input type="text" name="birthPlace" th:feild="*{birthPlace}" id="BIRTHPLACE" placeholder="Enter Birth Place" />
-																			</label>
-																		</section>
-																	</div>
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label"><b>Maritail Status :</b></label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input th:feild="*{maritalStatus}" name="maritalStatus" id="mNV" value="Never Married" type="radio" checked="checked"/><i class="rounded-x"></i>Never Married</label>
-																			<label class="radio"><input th:feild="*{maritalStatus}" name="maritalStatus" id="mW" value="Widowed" type="radio"/><i class="rounded-x"></i>Widowed</label>
-																			<label class="radio"><input th:feild="*{maritalStatus}" name="maritalStatus" id="mDiv" value="Divorced" type="radio"/><i class="rounded-x"></i>Divorced</label>
-																			<label class="radio"><input th:feild="*{maritalStatus}" name="maritalStatus" id="mAwDiv" value="Awaiting divorce" type="radio"/><i class="rounded-x"></i>Awaiting divorce</label>
-																		</section>
-																	</div>
-																	<div class="floatright margin-bottom-20" id="actionbtn-active">
-																		<input type="button" value="Save" class="input-save" onclick="" />
-																		<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo&#39;,&#39;basicform&#39;,&#39;basicmenu&#39;,&#39;basicmenulink&#39;);reseterror();cancelScroll(&#39;BasicInformation&#39;);" />&nbsp;&nbsp;
-																	</div>
-																</fieldset>	
+																	<form th:action="@{/personaldetailsedit}" th:object="${personaldetailsedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">		
+																		<fieldset>
+																			<div class="row padd20">
+																				<section class="col1">
+																					<label class="label"><b>Birth Time &amp; Place:</b></label>
+																				</section>
+																				<section class="col1 col-4">
+																					<label class="input">
+																					<input type="time" name="birthTime" th:value="${member.personalDetails.birthTime}" id="BIRTHTIME"  placeholder="Enter Birth Time" />
+																					
+																					</label>
+																				</section>
+																				<section class="col1 col-5">
+																					<label class="input">
+																						<input type="text" name="birthPlace" th:value="${member.personalDetails.birthPlace}" id="BIRTHPLACE" placeholder="Enter Birth Place" />
+																					</label>
+																				</section>
+																			</div>
+																			<div class="row">
+																				<section class="col1">
+																					<label class="label"><b>Maritail Status :</b></label>
+																				</section>
+																				<section class="inline-group">
+																					<label class="radio"><input th:checked="${member.personalDetails.maritalStatus=='Never Married'}" name="maritalStatus" id="mNV" value="Never Married" type="radio" checked="checked"/><i class="rounded-x"></i>Never Married</label>
+																					<label class="radio"><input th:checked="${member.personalDetails.maritalStatus=='Widowed'}" name="maritalStatus" id="mW" value="Widowed" type="radio"/><i class="rounded-x"></i>Widowed</label>
+																					<label class="radio"><input th:checked="${member.personalDetails.maritalStatus=='Divorced'}" name="maritalStatus" id="mDiv" value="Divorced" type="radio"/><i class="rounded-x"></i>Divorced</label>
+																					<label class="radio"><input th:checked="${member.personalDetails.maritalStatus=='Awaiting divorce'}" name="maritalStatus" id="mAwDiv" value="Awaiting divorce" type="radio"/><i class="rounded-x"></i>Awaiting divorce</label>
+																				</section>
+																			</div>
+																			<div class="floatright margin-bottom-20" id="actionbtn-active">
+																				<input type="submit" value="Save" class="input-save" onclick="" />
+																			
+																				<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo&#39;,&#39;basicform&#39;,&#39;basicmenu&#39;,&#39;basicmenulink&#39;);reseterror();cancelScroll(&#39;BasicInformation&#39;);" />&nbsp;&nbsp;
+																			</div>
+																		</fieldset>	
+																	</form>
 																</div>
 															</div> 
 														</div>
@@ -392,7 +370,11 @@
 																					<label class="label"><b>Height :</b></label>
 																				</section>
 																				<section class="col1 col-4">
-																					<label class="label" th:text="${member.personalDetails.height}+' cm'" ></label>
+																					<script th:inline="javascript">							
+																					 /*<![CDATA[*/							 
+																						 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+																						  /*]]>*/ 
+																					</script>
 																				</section>
 																				<section class="col1">
 																					<label class="label"><b>Weight :</b></label>
@@ -430,186 +412,188 @@
 																</div>
 																
 																<div id="basicform1" style="display: none;">
-																<fieldset>
-																	<div class="row padd20">
-																		<section class="col1 ">
-																			<label class="label"><b> Height:</b></label>
-																		</section>
-																		<section class="col1 col-2">
-																			<label class="select">
-																				<select size="1" name="heightInches" class="form-control"  id="FEET" onchange="feetToCms(this.value, 'CMS')">
-																					<option value="0">Feet/Inches</option>
-																					<option value="4-6" >4ft 6in</option>
-																					<option value="4-7" >4ft 7in</option>
-																					<option value="4-8" >4ft 8in</option>
-																					<option value="4-9" >4ft 9in</option>
-																					<option value="4-10" >4ft 10in</option>
-																					<option value="4-11" >4ft 11in</option>
-																					<option value="5-0" >5ft</option>
-																					<option value="5-1" >5ft 1in</option>
-																					<option value="5-2" >5ft 2in</option>
-																					<option value="5-3" >5ft 3in</option>
-																					<option value="5-4" >5ft 4in</option>
-																					<option value="5-5" >5ft 5in</option>
-																					<option value="5-6" >5ft 6in</option>
-																					<option value="5-7" >5ft 7in</option>
-																					<option value="5-8" >5ft 8in</option>
-																					<option value="5-9" >5ft 9in</option>
-																					<option value="5-10" >5ft 10in</option>
-																					<option value="5-11" >5ft 11in</option>
-																					<option value="6-0" >6ft</option>
-																					<option value="6-1" >6ft 1in</option>
-																					<option value="6-2" >6ft 2in</option>
-																					<option value="6-3" >6ft 3in</option>
-																					<option value="6-4" >6ft 4in</option>
-																					<option value="6-5" >6ft 5in</option>
-																					<option value="6-6" >6ft 6in</option>
-																					<option value="6-7" >6ft 7in</option>
-																					<option value="6-8" >6ft 8in</option>
-																					<option value="6-9" >6ft 9in</option>
-																					<option value="6-10" >6ft 10in</option>
-																					<option value="6-11" >6ft 11in</option>
-																					<option value="7-0" >7ft</option>												
-																				</select>
-																				<i></i>
-																			</label>
-																		</section>
-																		<section class="col1 col-1">
-																			<label class="label">(or)
-																			</label>
-																		</section>
-																		<section class="col col-2">
-																			<label class="select">
-																				<select name="height" th:feild="*{height}" size="1" class="form-control" id="CMS" onchange="cmsToFeet(this.value, 'FEET')">
-																					<option value="0"> Cms </option>
-																					<option value="137">137cm</option>
-																					<option value="138">138cm</option>
-																					<option value="139">139cm</option>
-																					<option value="140">140cm</option>
-																					<option value="141">141cm</option>
-																					<option value="142">142cm</option>
-																					<option value="143">143cm</option>
-																					<option value="144">144cm</option>
-																					<option value="145">145cm</option>
-																					<option value="146">146cm</option>
-																					<option value="147">147cm</option>
-																					<option value="148">148cm</option>
-																					<option value="149">149cm</option>
-																					<option value="150">150cm</option>
-																					<option value="151">151cm</option>
-																					<option value="152">152cm</option>
-																					<option value="153">153cm</option>
-																					<option value="154">154cm</option>
-																					<option value="155">155cm</option>
-																					<option value="156">156cm</option>
-																					<option value="157">157cm</option>
-																					<option value="158">158cm</option>
-																					<option value="159">159cm</option>
-																					<option value="160">160cm</option>
-																					<option value="161">161cm</option>
-																					<option value="162">162cm</option>
-																					<option value="163">163cm</option>
-																					<option value="164">164cm</option>
-																					<option value="165">165cm</option>
-																					<option value="166">166cm</option>
-																					<option value="167">167cm</option>
-																					<option value="168">168cm</option>
-																					<option value="169">169cm</option>
-																					<option value="170">170cm</option>
-																					<option value="171">171cm</option>
-																					<option value="172">172cm</option>
-																					<option value="173">173cm</option>
-																					<option value="174">174cm</option>
-																					<option value="175">175cm</option>
-																					<option value="176">176cm</option>
-																					<option value="177">177cm</option>
-																					<option value="178">178cm</option>
-																					<option value="179">179cm</option>
-																					<option value="180">180cm</option>
-																					<option value="181">181cm</option>
-																					<option value="182">182cm</option>
-																					<option value="183">183cm</option>
-																					<option value="184">184cm</option>
-																					<option value="185">185cm</option>
-																					<option value="186">186cm</option>
-																					<option value="187">187cm</option>
-																					<option value="188">188cm</option>
-																					<option value="189">189cm</option>
-																					<option value="190">190cm</option>
-																					<option value="191">191cm</option>
-																					<option value="192">192cm</option>
-																					<option value="193">193cm</option>
-																					<option value="194">194cm</option>
-																					<option value="195">195cm</option>
-																					<option value="196">196cm</option>
-																					<option value="197">197cm</option>
-																					<option value="198">198cm</option>
-																					<option value="199">199cm</option>
-																					<option value="200">200cm</option>
-																					<option value="201">201cm</option>
-																					<option value="202">202cm</option>
-																					<option value="203">203cm</option>
-																					<option value="204">204cm</option>
-																					<option value="205">205cm</option>
-																					<option value="206">206cm</option>
-																					<option value="207">207cm</option>
-																					<option value="208">208cm</option>
-																					<option value="209">209cm</option>
-																					<option value="210">210cm</option>
-																					<option value="211">211cm</option>
-																					<option value="212">212cm</option>
-																					<option value="213">213cm</option>
-																				</select>
-																				<i></i>
-																			</label>
-																		</section>
-																		
-																		<section class="col1 ">
-																			<label class="label"> Weight:</label>
-																		</section>
-																		<section th:replace="common :: Kg"></section>
-																	</div>
-			
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label">Body Type:</label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input name="bodyType" th:feild="*{bodyType}" id="BODY_TYPE3" value="Slim" type="radio" checked="checked" /><i class="rounded-x"></i>Slim</label>
-																			<label class="radio"><input name="bodyType" th:feild="*{bodyType}" id="BODY_TYPE1" value="Average" type="radio" /><i class="rounded-x"></i>Average</label>
-																			<label class="radio"><input name="bodyType" th:feild="*{bodyType}" id="BODY_TYPE2" value="Athletic" type="radio" /><i class="rounded-x"></i>Athletic</label>
-																			<label class="radio"><input name="bodyType" th:feild="*{bodyType}" id="BODY_TYPE4" value="heavy" type="radio" /><i class="rounded-x"></i>heavy</label>
-																		</section>
-																	</div>
-																	
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label">Complection:</label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input name="complexion" th:feild="*{complexion}" id="COMPLEXION1" value="Very Fair" type="radio" checked="checked" /><i class="rounded-x"></i>Very Fair</label>
-																			<label class="radio"><input name="complexion" th:feild="*{complexion}" id="COMPLEXION2" value="Fair" type="radio" /><i class="rounded-x"></i>Fair</label>
-																			<label class="radio"><input name="complexion" th:feild="*{complexion}" id="COMPLEXION3" value="Wheatish" type="radio" /><i class="rounded-x"></i>Wheatish</label>
-																			<label class="radio"><input name="complexion" th:feild="*{complexion}" id="COMPLEXION4" value="Wheatish brown" type="radio" /><i class="rounded-x"></i>Wheatish brown</label>
-																			<label class="radio"><input name="complexion" th:feild="*{complexion}" id="COMPLEXION5" value="Dark" type="radio" /><i class="rounded-x"></i>Dark</label>
-																		</section>
-																	</div>
-																	
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label">Physical Status:</label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input name="physicalStatus" th:feild="*{physicalStatus}" id="PHYSICAL_STATUS0" value="Normal" type="radio" checked="checked" /><i class="rounded-x"></i>Normal</label>
-																			<label class="radio"><input name="physicalStatus" th:feild="*{physicalStatus}" id="PHYSICAL_STATUS1" value="Physically challenged" type="radio" /><i class="rounded-x"></i>Physically challenged</label>
+																	<form th:action="@{/personaldetailsedit}" th:object="${personaldetailsedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">		
+																		<fieldset>
+																			<div class="row padd20">
+																				<section class="col1 ">
+																					<label class="label"><b> Height:</b></label>
+																				</section>
+																				<section class="col1 col-2">
+																					<label class="select">
+																						<select size="1" name="heightInches" class="form-control"  id="FEET" onchange="feetToCms(this.value, 'CMS')">
+																						<option th:value="${member.personalDetails.height}"><label class="label" th:text="${member.personalDetails.height}" ></label></option>
+																							<option value="4-6" >4ft 6in</option>
+																							<option value="4-7" >4ft 7in</option>
+																							<option value="4-8" >4ft 8in</option>
+																							<option value="4-9" >4ft 9in</option>
+																							<option value="4-10" >4ft 10in</option>
+																							<option value="4-11" >4ft 11in</option>
+																							<option value="5-0" >5ft</option>
+																							<option value="5-1" >5ft 1in</option>
+																							<option value="5-2" >5ft 2in</option>
+																							<option value="5-3" >5ft 3in</option>
+																							<option value="5-4" >5ft 4in</option>
+																							<option value="5-5" >5ft 5in</option>
+																							<option value="5-6" >5ft 6in</option>
+																							<option value="5-7" >5ft 7in</option>
+																							<option value="5-8" >5ft 8in</option>
+																							<option value="5-9" >5ft 9in</option>
+																							<option value="5-10" >5ft 10in</option>
+																							<option value="5-11" >5ft 11in</option>
+																							<option value="6-0" >6ft</option>
+																							<option value="6-1" >6ft 1in</option>
+																							<option value="6-2" >6ft 2in</option>
+																							<option value="6-3" >6ft 3in</option>
+																							<option value="6-4" >6ft 4in</option>
+																							<option value="6-5" >6ft 5in</option>
+																							<option value="6-6" >6ft 6in</option>
+																							<option value="6-7" >6ft 7in</option>
+																							<option value="6-8" >6ft 8in</option>
+																							<option value="6-9" >6ft 9in</option>
+																							<option value="6-10" >6ft 10in</option>
+																							<option value="6-11" >6ft 11in</option>
+																							<option value="7-0" >7ft</option>												
+																						</select>
+																						<i></i>
+																					</label>
+																				</section>
+																				<section class="col1 col-1">
+																					<label class="label">(or)
+																					</label>
+																				</section>
+																				<section class="col col-2">
+																					<label class="select">
+																						<select name="height" th:feild="*{height}" size="1" class="form-control" id="CMS" onchange="cmsToFeet(this.value, 'FEET')">
+																							<option value="0"> Cms </option>
+																							<option value="137">137cm</option>
+																							<option value="138">138cm</option>
+																							<option value="139">139cm</option>
+																							<option value="140">140cm</option>
+																							<option value="141">141cm</option>
+																							<option value="142">142cm</option>
+																							<option value="143">143cm</option>
+																							<option value="144">144cm</option>
+																							<option value="145">145cm</option>
+																							<option value="146">146cm</option>
+																							<option value="147">147cm</option>
+																							<option value="148">148cm</option>
+																							<option value="149">149cm</option>
+																							<option value="150">150cm</option>
+																							<option value="151">151cm</option>
+																							<option value="152">152cm</option>
+																							<option value="153">153cm</option>
+																							<option value="154">154cm</option>
+																							<option value="155">155cm</option>
+																							<option value="156">156cm</option>
+																							<option value="157">157cm</option>
+																							<option value="158">158cm</option>
+																							<option value="159">159cm</option>
+																							<option value="160">160cm</option>
+																							<option value="161">161cm</option>
+																							<option value="162">162cm</option>
+																							<option value="163">163cm</option>
+																							<option value="164">164cm</option>
+																							<option value="165">165cm</option>
+																							<option value="166">166cm</option>
+																							<option value="167">167cm</option>
+																							<option value="168">168cm</option>
+																							<option value="169">169cm</option>
+																							<option value="170">170cm</option>
+																							<option value="171">171cm</option>
+																							<option value="172">172cm</option>
+																							<option value="173">173cm</option>
+																							<option value="174">174cm</option>
+																							<option value="175">175cm</option>
+																							<option value="176">176cm</option>
+																							<option value="177">177cm</option>
+																							<option value="178">178cm</option>
+																							<option value="179">179cm</option>
+																							<option value="180">180cm</option>
+																							<option value="181">181cm</option>
+																							<option value="182">182cm</option>
+																							<option value="183">183cm</option>
+																							<option value="184">184cm</option>
+																							<option value="185">185cm</option>
+																							<option value="186">186cm</option>
+																							<option value="187">187cm</option>
+																							<option value="188">188cm</option>
+																							<option value="189">189cm</option>
+																							<option value="190">190cm</option>
+																							<option value="191">191cm</option>
+																							<option value="192">192cm</option>
+																							<option value="193">193cm</option>
+																							<option value="194">194cm</option>
+																							<option value="195">195cm</option>
+																							<option value="196">196cm</option>
+																							<option value="197">197cm</option>
+																							<option value="198">198cm</option>
+																							<option value="199">199cm</option>
+																							<option value="200">200cm</option>
+																							<option value="201">201cm</option>
+																							<option value="202">202cm</option>
+																							<option value="203">203cm</option>
+																							<option value="204">204cm</option>
+																							<option value="205">205cm</option>
+																							<option value="206">206cm</option>
+																							<option value="207">207cm</option>
+																							<option value="208">208cm</option>
+																							<option value="209">209cm</option>
+																							<option value="210">210cm</option>
+																							<option value="211">211cm</option>
+																							<option value="212">212cm</option>
+																							<option value="213">213cm</option>
+																						</select>
+																						<i></i>
+																					</label>
+																				</section>
+																				
+																				<section class="col1 ">
+																					<label class="label"> Weight:</label>
+																				</section>
+																				<section th:replace="common :: Kg"></section>
+																			</div>
+					
+																			<div class="row">
+																				<section class="col1">
+																					<label class="label">Body Type:</label>
+																				</section>
+																				<section class="inline-group">
+																					<label class="radio"><input name="bodyType" th:checked="${member.personalDetails.bodyType=='Slim'}"  id="BODY_TYPE3" value="Slim" type="radio"  /><i class="rounded-x"></i>Slim</label>
+																					<label class="radio"><input name="bodyType" th:checked="${member.personalDetails.bodyType=='Average'}" id="BODY_TYPE1" value="Average" type="radio" /><i class="rounded-x"></i>Average</label>
+																					<label class="radio"><input name="bodyType" th:checked="${member.personalDetails.bodyType=='Athletic'}" id="BODY_TYPE2" value="Athletic" type="radio" /><i class="rounded-x"></i>Athletic</label>
+																					<label class="radio"><input name="bodyType" th:checked="${member.personalDetails.bodyType=='heavy'}" id="BODY_TYPE4" value="heavy" type="radio" /><i class="rounded-x"></i>heavy</label>
+																				</section>
+																			</div>
 																			
-																		</section>
-																	</div>
-																	<div class="floatright margin-bottom-20" id="actionbtn-active">
-																		<input type="button" value="Save" class="input-save" onclick="" />
-																		<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo1&#39;,&#39;basicform1&#39;,&#39;basicmenu1&#39;,&#39;basicmenulink1&#39;);reseterror();cancelScroll(&#39;BasicInformation1&#39;);" />&nbsp;&nbsp;
-																	</div>
-																</fieldset>	
+																			<div class="row">
+																				<section class="col1">
+																					<label class="label">Complection:</label>
+																				</section>
+																				<section class="inline-group">
+																					<label class="radio"><input name="complexion"  th:checked="${member.personalDetails.complexion=='Very Fair'}"  id="COMPLEXION1" value="Very Fair" type="radio" checked="checked" /><i class="rounded-x"></i>Very Fair</label>
+																					<label class="radio"><input name="complexion" th:checked="${member.personalDetails.complexion=='Fair'}" id="COMPLEXION2" value="Fair" type="radio" /><i class="rounded-x"></i>Fair</label>
+																					<label class="radio"><input name="complexion" th:checked="${member.personalDetails.complexion=='Wheatish'}" id="COMPLEXION3" value="Wheatish" type="radio" /><i class="rounded-x"></i>Wheatish</label>
+																					<label class="radio"><input name="complexion" th:checked="${member.personalDetails.complexion=='Wheatish brown'}" id="COMPLEXION4" value="Wheatish brown" type="radio" /><i class="rounded-x"></i>Wheatish brown</label>
+																					<label class="radio"><input name="complexion" th:checked="${member.personalDetails.complexion=='Dark'}" id="COMPLEXION5" value="Dark" type="radio" /><i class="rounded-x"></i>Dark</label>
+																				</section>
+																			</div>
+																			
+																			<div class="row">
+																				<section class="col1">
+																					<label class="label">Physical Status:</label>
+																				</section>
+																				<section class="inline-group">
+																					<label class="radio"><input name="physicalStatus" th:checked="${member.personalDetails.physicalStatus=='Normal'}"  id="PHYSICAL_STATUS0" value="Normal" type="radio" /><i class="rounded-x"></i>Normal</label>
+																					<label class="radio"><input name="physicalStatus" th:checked="${member.personalDetails.physicalStatus=='Physically challenged'}" id="PHYSICAL_STATUS1" value="Physically challenged" type="radio" /><i class="rounded-x"></i>Physically challenged</label>
+																					
+																				</section>
+																			</div>
+																			<div class="floatright margin-bottom-20" id="actionbtn-active">
+																				<input type="submit" value="Save" class="input-save" onclick="" />
+																				<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo1&#39;,&#39;basicform1&#39;,&#39;basicmenu1&#39;,&#39;basicmenulink1&#39;);reseterror();cancelScroll(&#39;BasicInformation1&#39;);" />&nbsp;&nbsp;
+																			</div>
+																		</fieldset>	
+																	</form>
 																</div>
 															</div> 
 														</div>
@@ -665,45 +649,47 @@
 																</div>
 																
 																<div id="basicform2" style="display: none;">
-																<fieldset>
-																	<div class="row padd20">
-																		<section class="col1">
-																			<label class="label">Food:</label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input name="eatingHabits" th:feild="*{eatingHabits}" id="EATINGHABITS1" value="Veg" type="radio" checked="checked" /><i class="rounded-x"></i>Vegitarian</label>
-																			<label class="radio"><input name="eatingHabits" th:feild="*{eatingHabits}" id="EATINGHABITS2" value="Non Veg" type="radio" /><i class="rounded-x"></i>Non-Vegetarian</label>
-																			<label class="radio"><input name="eatingHabits" th:feild="*{eatingHabits}" id="EATINGHABITS3" value="Egg" type="radio" /><i class="rounded-x"></i>Eggitarian</label>
-																		</section>
-																	</div>
-																	
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label">Smoking:</label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input name="smokingHabits" th:feild="*{smokingHabits}" id="SMOKING_HABITS1" value="No" type="radio" checked="checked" /><i class="rounded-x"></i>No</label>
-																			<label class="radio"><input name="smokingHabits" th:feild="*{smokingHabits}" id="SMOKING_HABITS2" value="Occasionally" type="radio" /><i class="rounded-x"></i>Occasionally</label>
-																			<label class="radio"><input name="smokingHabits" th:feild="*{smokingHabits}" id="SMOKING_HABITS3" value="Yes" type="radio" /><i class="rounded-x"></i>Yes</label>
-																		</section>
-																	</div>
-																	
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label">Drinking:</label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input name="drinkingHabits" th:feild="*{drinkingHabits}" id="DRINKING_HABITS1" value="No" type="radio" checked="checked" /><i class="rounded-x"></i>No</label>
-																			<label class="radio"><input name="drinkingHabits" th:feild="*{drinkingHabits}" id="DRINKING_HABITS2" value="Socially" type="radio" /><i class="rounded-x"></i>Social Drink</label>
-																			<label class="radio"><input name="drinkingHabits" th:feild="*{drinkingHabits}" id="DRINKING_HABITS3" value="Yes" type="radio" /><i class="rounded-x"></i>Yes</label>
+																	<form th:action="@{/personaldetailsedit}" th:object="${personaldetailsedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
+																		<fieldset>
+																			<div class="row padd20">
+																				<section class="col1">
+																					<label class="label">Food:</label>
+																				</section>
+																				<section class="inline-group">
+																					<label class="radio"><input name="eatingHabits" th:checked="${member.personalDetails.eatingHabits =='Veg'}"    id="EATINGHABITS1" value="Veg" type="radio"  /><i class="rounded-x"></i>Vegitarian</label>
+																					<label class="radio"><input name="eatingHabits" th:checked="${member.personalDetails.eatingHabits=='Non Veg'}"  id="EATINGHABITS2" value="Non Veg" type="radio" /><i class="rounded-x"></i>Non-Vegetarian</label>
+																					<label class="radio"><input name="eatingHabits" th:checked="${member.personalDetails.eatingHabits=='Egg'}" id="EATINGHABITS3" value="Egg" type="radio" /><i class="rounded-x"></i>Eggitarian</label>
+																				</section>
+																			</div>
 																			
-																		</section>
-																	</div>
-																	<div class="floatright margin-bottom-20" id="actionbtn-active">	
-																		<input type="button" value="Save" class="input-save" onclick="" />
-																		<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo2&#39;,&#39;basicform2&#39;,&#39;basicmenu2&#39;,&#39;basicmenulink2&#39;);reseterror();cancelScroll(&#39;BasicInformation2&#39;);" />&nbsp;&nbsp;
-																	</div>
-																</fieldset>	
+																			<div class="row">
+																				<section class="col1">
+																					<label class="label">Smoking:</label>
+																				</section>
+																				<section class="inline-group">
+																					<label class="radio"><input name="smokingHabits" th:checked="${member.personalDetails.smokingHabits=='No'}"   id="SMOKING_HABITS1" value="No" type="radio" checked="checked" /><i class="rounded-x"></i>No</label>
+																					<label class="radio"><input name="smokingHabits" th:checked="${member.personalDetails.smokingHabits=='Occasionally'}" id="SMOKING_HABITS2" value="Occasionally" type="radio" /><i class="rounded-x"></i>Occasionally</label>
+																					<label class="radio"><input name="smokingHabits" th:checked="${member.personalDetails.smokingHabits=='Yes'}"  id="SMOKING_HABITS3" value="Yes" type="radio" /><i class="rounded-x"></i>Yes</label>
+																				</section>
+																			</div>
+																			
+																			<div class="row">
+																				<section class="col1">
+																					<label class="label">Drinking:</label>
+																				</section>
+																				<section class="inline-group">
+																					<label class="radio"><input name="drinkingHabits" th:checked="${member.personalDetails.drinkingHabits=='No'}"  id="DRINKING_HABITS1" value="No" type="radio" checked="checked" /><i class="rounded-x"></i>No</label>
+																					<label class="radio"><input name="drinkingHabits" th:checked="${member.personalDetails.drinkingHabits=='Socially'}" id="DRINKING_HABITS2" value="Socially" type="radio" /><i class="rounded-x"></i>Social Drink</label>
+																					<label class="radio"><input name="drinkingHabits" th:checked="${member.personalDetails.drinkingHabits=='Yes'}" id="DRINKING_HABITS3" value="Yes" type="radio" /><i class="rounded-x"></i>Yes</label>
+																					
+																				</section>
+																			</div>
+																			<div class="floatright margin-bottom-20" id="actionbtn-active">	
+																			<input type="submit" value="Save" class="input-save" onclick="" />
+																				<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo2&#39;,&#39;basicform2&#39;,&#39;basicmenu2&#39;,&#39;basicmenulink2&#39;);reseterror();cancelScroll(&#39;BasicInformation2&#39;);" />&nbsp;&nbsp;
+																			</div>
+																		</fieldset>	
+																	</form>
 																</div>
 															</div> 
 														</div>
@@ -771,408 +757,410 @@
 																</div>
 																
 																<div id="basicform3" style="display: none;">
-																<fieldset>
-																	<div class="row padd20">
-																		<section class="col1 ">
-																			<label class="label"> Highest Education:</label>
-																		</section>
-																		<section class="col1 col-9">
-																			<label class="select">
-																				<select name="education" th:feild="*{education}" id="EDUCATION" class="form-control" >
-																					<option value="0">- Select -</option>								
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Engineering / Computers --'>
-																					<option value='Aeronautical Engineering'>Aeronautical Engineering</option>
-																					<option value='B.Arch'>B.Arch</option>
-																					<option value='BCA'>BCA</option>
-																					<option value='BE'>BE</option>
-																					<option value='B.Plan'>B.Plan</option>
-																					<option value='B.Sc IT/ Computer Science'>B.Sc IT/ Computer Science</option>
-																					<option value='B.Tech.'>B.Tech.</option>
-																					<option value='Other Bachelor Degree in Engineering / Computers'>Other Bachelor Degree in Engineering / Computers</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Engineering / Computers --'>
-																					<option value='M.Arch.'>M.Arch.</option>
-																					<option value='MCA'>MCA</option>
-																					<option value='ME'>ME</option>
-																					<option value='M.Sc. IT / Computer Science'>M.Sc. IT / Computer Science</option>
-																					<option value='M.S.(Engg.)'>M.S.(Engg.)</option>
-																					<option value='M.Tech.'>M.Tech.</option>
-																					<option value='PGDCA'>PGDCA</option>
-																					<option value='Other Masters Degree in Engineering / Computers'>Other Masters Degree in Engineering / Computers</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Arts / Science / Commerce --'>
-																					<option value='Aviation Degree'>Aviation Degree</option>
-																					<option value='B.A.'>B.A.</option>
-																					<option value='B.Com.'>B.Com.</option>
-																					<option value='B.Ed.'>B.Ed.</option>
-																					<option value='BFA'>BFA</option>
-																					<option value='BFT'>BFT</option>
-																					<option value='BLIS'>BLIS</option>
-																					<option value='B.M.M.'>B.M.M.</option>
-																					<option value='B.Sc.'>B.Sc.</option>
-																					<option value='B.S.W'>B.S.W</option>
-																					<option value='B.Phil.'>B.Phil.</option>
-																					<option value='Other Bachelor Degree in Arts / Science / Commerce'>Other Bachelor Degree in Arts / Science / Commerce</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Arts / Science / Commerce --'>
-																					<option value='M.A.'>M.A.</option>
-																					<option value='M.Com.'>M.Com.</option>
-																					<option value='M.Ed.'>M.Ed.</option>
-																					<option value='MFA'>MFA</option>
-																					<option value='MLIS'>MLIS</option>
-																					<option value='M.Sc.'>M.Sc.</option>
-																					<option value='MSW'>MSW</option>
-																					<option value='M.Phil.'>M.Phil.</option>
-																					<option value='Other Master Degree in Arts / Science / Commerce'>Other Master Degree in Arts / Science / Commerce</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Management --'>
-																					<option value='BBA'>BBA</option>
-																					<option value='BFM (Financial Management)'>BFM (Financial Management)</option>
-																					<option value='BHM (Hotel Management)'>BHM (Hotel Management)</option>
-																					<option value='Other Bachelor Degree in Management'>Other Bachelor Degree in Management</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Management --'>
-																					<option value='MBA'>MBA</option>
-																					<option value='MFM (Financial Management)'>MFM (Financial Management)</option>
-																					<option value='MHM  (Hotel Management)'>MHM  (Hotel Management)</option>
-																					<option value='MHRM (Human Resource Management)'>MHRM (Human Resource Management)</option>
-																					<option value='PGDM'>PGDM</option>
-																					<option value='Other Master Degree in Management'>Other Master Degree in Management</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Medicine in General / Dental / Surgeon --'>
-																					<option value='B.A.M.S.'>B.A.M.S.</option>
-																					<option value='BDS'>BDS</option>
-																					<option value='BHMS'>BHMS</option>
-																					<option value='BSMS'>BSMS</option>
-																					<option value='B.Pharm'>B.Pharm</option>
-																					<option value='BPT'>BPT</option>
-																					<option value='BUMS'>BUMS</option>
-																					<option value='BVSc'>BVSc</option>
-																					<option value='MBBS'>MBBS</option>
-																					<option value='B.Sc. Nursing'>B.Sc. Nursing</option>
-																					<option value='Other Bachelor Degree in Medicine'>Other Bachelor Degree in Medicine</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Medicine - General / Dental / Surgeon --'>
-																					<option value='MDS'>MDS</option>
-																					<option value='MD / MS (Medical)'>MD / MS (Medical)</option>
-																					<option value='M.Pharm'>M.Pharm</option>
-																					<option value='MPT'>MPT</option>
-																					<option value='MVSc'>MVSc</option>
-																					<option value='Other Master Degree in Medicine'>Other Master Degree in Medicine</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Legal --'>
-																					<option value='BGL'>BGL</option>
-																					<option value='B.L.'>B.L.</option>
-																					<option value='L.L.B.'>L.L.B.</option>
-																					<option value='Other Bachelor Degree in Legal'>Other Bachelor Degree in Legal</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Legal --'>
-																					<option value='L.L.M.'>L.L.M.</option>
-																					<option value='M.L.'>M.L.</option>
-																					<option value='Other Master Degree in  Legal'>Other Master Degree in  Legal</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Financial Qualification - ICWAI / CA / CS/ CFA --'>
-																					<option value='CA'>CA</option>
-																					<option value='CFA (Chartered Financial Analyst)'>CFA (Chartered Financial Analyst)</option>
-																					<option value='CS'>CS</option>
-																					<option value='ICWA'>ICWA</option>
-																					<option value='Other Degree in Finance'>Other Degree in Finance</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Service - IAS / IPS / IRS / IES / IFS  --'>
-																					<option value='IAS'>IAS</option>
-																					<option value='IES'>IES</option>
-																					<option value='IFS'>IFS</option>
-																					<option value='IRS'>IRS</option>
-																					<option value='IPS'>IPS</option>
-																					<option value='Other Degree in Service'>Other Degree in Service</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Ph.D. --'>
-																					<option value='Ph.D.'>Ph.D.</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Diploma --'>
-																					<option value='Diploma'>Diploma</option>
-																					<option value='Polytechnic'>Polytechnic</option>
-																					<option value='Trade School'>Trade School</option>
-																					<option value='Others in Diploma'>Others in Diploma</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Higher Secondary / Secondary --'>
-																					<option value='Higher Secondary School / High School'>Higher Secondary School / High School</option>
-																					</optgroup>
-																				</select>	
-																				<i></i>
-																			</label>
-																		</section>
-																	</div>
-			
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label">Employed In :</label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}"  id="OCCUPATIONCATEGORY1" value="Government" type="radio" checked="checked"/><i class="rounded-x"></i>Government</label>
-																			<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY3" value="Private" type="radio"/><i class="rounded-x"></i>Private</label>
-																			<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY4" value="Business" type="radio"/><i class="rounded-x"></i>Business</label>
-																			<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY2" value="Defence" type="radio"/><i class="rounded-x"></i>Defence</label>
-																		</section>
-																	</div>
-																	
-																	<div class="row">
-																		<section class="col1 ">
-																			<label class="label"> Occupation :</label>
-																		</section>
-																		<section class="col1 col-9">
-																			<label class="select">
-																				<select name="occupation" th:feild="*{occupation}" id="OCCUPATION" class="form-control">
-																					<option value="">Please choose one.</option>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- ADMIN --'>
-																					<option value="Manager">Manager</option>
-																					<option value="Supervisor">Supervisor</option>
-																					<option value="Officer">Officer</option>
-																					<option value="Administrative Professional">Administrative Professional</option>
-																					<option value="Executive">Executive</option>
-																					<option value="Clerk">Clerk</option>
-																					<option value="Human Resources Professional">Human Resources Professional</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- AGRICULTURE --'>
-																					<option value="Agriculture and Farming Professional">Agriculture andFarming Professional</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- AIRLINE --'>
-																					<option value="Pilot">Pilot</option>
-																					<option value="Air Hostess">Air Hostess</option>
-																					<option value="Airline Professional">Airline Professional</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- ARCHITECT AND DESIGN --'>
-																					<option value="Architect">Architect</option>
-																					<option value="Interior Designer">Interior Designer</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- BANKING AND FINANCE --'>
-																					<option value="Charted Accountant">Charted Accountant</option>
-																					<option value="Company Secretary">Company Secretary</option>
-																					<option value="Accounts and Finance Professional">Accounts and Finance Professional</option>
-																					<option value="Banking Service Professional">Banking Service Professional</option>
-																					<option value="Auditor">Auditor</option>
-																					<option value="Financial Accountant">Financial Accountant</option>
-																					<option value="Financial Analyst and Planning">Financial Analyst and Planning</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- BEAUTY AND FASHION --'>
-																					<option value="Fashion Designer">Fashion Designer</option>
-																					<option value="Beautician">Beautician</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- CIVIL SERVICES --'>
-																					<option value="Civil Services (IAS/IPS/IRS/IES/IFS)">Civil Services (IAS/IPS/IRS/IES/IFS)</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- DEFENCE --'>
-																					<option value="Army">Army</option>
-																					<option value="Navy">Navy</option>
-																					<option value="Air Force">Air Force</option>
-																					<option value="Mariner / Merchant Navy">Mariner / Merchant Navy</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- EDUCATION --'>
-																					<option value="Professor / Lecturer">Professor / Lecturer</option>
-																					<option value="Teaching / Academician">Teaching / Academician</option>
-																					<option value="Education Professional">Education Professional</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- HOSPITALITY --'>
-																					<option value="Hotel / Hospitality Professional">Hotel / Hospitality Professional</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- IT AND ENGINEERING --'>
-																					<option value="Software Professional">Software Professional</option>
-																					<option value="Hardware Professional">Hardware Professional</option>
-																					<option value="Engineer - Non IT">Engineer - Non IT</option>
-																					<option value="Web Designer">Web Designer</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- LEGAL --'>
-																					<option value="Lawyer and Legal Professional">Lawyer and Legal Professional</option>
-																					<option value="Law Enforcement Officer">Law Enforcement Officer</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- MEDICAL --'>
-																					<option value="Docter">Docter</option>
-																					<option value="Health Care Professional">Health Care Professional</option>
-																					<option value="Paramedical Professional">Paramedical Professional</option>
-																					<option value="Nurse">Nurse</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- MARKETING AND SALES --'>
-																					<option value="Marketing Professional">Marketing Professional</option>
-																					<option value="Sales Professional">Sales Professional</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- MEDIA ENTERTAINMENT --'>
-																					<option value="Journalist">Journalist</option>
-																					<option value="Media Professional">Media Professional</option>
-																					<option value="Entertainment Professional">Entertainment Professional</option>
-																					<option value="Event Management Professional">Event Management Professional</option>
-																					<option value="Advertising / PR Professional">Advertising / PR Professional</option>
-																					<option value="Designer">Designer</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- SCIENTIST --'>
-																					<option value="Scientist / Researcher">Scientist / Researcher</option>
-																					</optgroup>
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- TOP MANAGMENT --'>
-																					<option value="Other">CXO / President, Director, Chairman</option>
-																					</optgroup>
-																					
-																					<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- OTHERS --'>
-																					<option value="Consultant">Consultant</option>
-																					<option value="Customer Care Professional">Customer Care Professional</option>
-																					<option value="Social Worker">Social Worker</option>
-																					<option value="Sportsman">Sportsman</option>
-																					<option value="Technician">Technician</option>
-																					<option value="Arts and Craftsman">Arts and Craftsman</option>
-																					<option value="Librarian">Librarian</option>
-																					<option value="Business Owner / Entrepreneur">Business Owner / Entrepreneur</option>
-																					<option value="Other">Other</option>
-																					</optgroup>							
-																				</select>
-																				<i></i>
-																			</label>
-																		</section>
-																	</div>
-																	
-																	<div class="row">
-																		<section class="col1 ">
-																			<label class="label"> Montly Income:</label>
-																		</section>
-																		<section class="col1 col-5">
-																			<label class="select">
-																				<select name="incomecurrency" th:feild="*{incomecurrency}" id="INCOME_CURRENCY" class="form-control" >
-																					<option selected="selected" value="">Select currency</option>
-																					<option value="America (United States) Dollars - USD">America (United States) Dollars – USD</option>
-																					<option value="Afghanistan Afghanis - AFN">Afghanistan Afghanis – AFN</option>
-																					<option value="Albania Leke - ALL">Albania Leke – ALL</option>
-																					<option value="Algeria Dinars - DZD">Algeria Dinars – DZD</option>
-																					<option value="Argentina Pesos - ARS">Argentina Pesos – ARS</option>
-																					<option value="Australia Dollars - AUD">Australia Dollars – AUD</option>
-																					<option value="Austria Schillings - ATS">Austria Schillings – ATS</option>
-																					 
-																					<option value="Bahamas Dollars - BSD">Bahamas Dollars – BSD</option>
-																					<option value="Bahrain Dinars - BHD">Bahrain Dinars – BHD</option>
-																					<option value="Bangladesh Taka - BDT">Bangladesh Taka – BDT</option>
-																					<option value="Barbados Dollars - BBD">Barbados Dollars – BBD</option>
-																					<option value="Belgium Francs - BEF">Belgium Francs – BEF</option>
-																					<option value="Bermuda Dollars - BMD">Bermuda Dollars – BMD</option>
-																					 
-																					<option value="Brazil Reais - BRL">Brazil Reais – BRL</option>
-																					<option value="Bulgaria Leva - BGN">Bulgaria Leva – BGN</option>
-																					<option value="Canada Dollars - CAD">Canada Dollars – CAD</option>
-																					<option value="CFA BCEAO Francs - XOF">CFA BCEAO Francs – XOF</option>
-																					<option value="CFA BEAC Francs - XAF">CFA BEAC Francs – XAF</option>
-																					<option value="Chile Pesos - CLP">Chile Pesos – CLP</option>
-																					 
-																					<option value="China Yuan Renminbi - CNY">China Yuan Renminbi – CNY</option>
-																					<option value="RMB (China Yuan Renminbi) - CNY">RMB (China Yuan Renminbi) – CNY</option>
-																					<option value="Colombia Pesos - COP">Colombia Pesos – COP</option>
-																					<option value="CFP Francs - XPF">CFP Francs – XPF</option>
-																					<option value="Costa Rica Colones - CRC">Costa Rica Colones – CRC</option>
-																					<option value="Croatia Kuna - HRK">Croatia Kuna – HRK</option>
-																					 
-																					<option value="Cyprus Pounds - CYP">Cyprus Pounds – CYP</option>
-																					<option value="Czech Republic Koruny - CZK">Czech Republic Koruny – CZK</option>
-																					<option value="Denmark Kroner - DKK">Denmark Kroner – DKK</option>
-																					<option value="Deutsche (Germany) Marks - DEM">Deutsche (Germany) Marks – DEM</option>
-																					<option value="Dominican Republic Pesos - DOP">Dominican Republic Pesos – DOP</option>
-																					<option value="Dutch (Netherlands) Guilders - NLG">Dutch (Netherlands) Guilders – NLG</option>
-																					 
-																					<option value="Eastern Caribbean Dollars - XCD">Eastern Caribbean Dollars – XCD</option>
-																					<option value="Egypt Pounds - EGP">Egypt Pounds – EGP</option>
-																					<option value="Estonia Krooni - EEK">Estonia Krooni – EEK</option>
-																					<option value="Euro - EUR">Euro – EUR</option>
-																					<option value="Fiji Dollars - FJD">Fiji Dollars – FJD</option>
-																					<option value="Finland Markkaa - FIM">Finland Markkaa – FIM</option>
-																					 
-																					<option value="France Francs - FRF*">France Francs – FRF*</option>
-																					<option value="Germany Deutsche Marks - DEM">Germany Deutsche Marks – DEM</option>
-																					<option value="Gold Ounces - XAU">Gold Ounces – XAU</option>
-																					<option value="Greece Drachmae - GRD">Greece Drachmae – GRD</option>
-																					<option value="Guatemalan Quetzal - GTQ">Guatemalan Quetzal – GTQ</option>
-																					<option value="Holland (Netherlands) Guilders - NLG">Holland (Netherlands) Guilders – NLG</option>
-																					<option value="Hong Kong Dollars - HKD">Hong Kong Dollars – HKD</option>
-																					 
-																					<option value="Hungary Forint - HUF">Hungary Forint – HUF</option>
-																					<option value="Iceland Kronur - ISK">Iceland Kronur – ISK</option>
-																					<option value="IMF Special Drawing Right - XDR">IMF Special Drawing Right – XDR</option>
-																					<option value="India Rupees - INR">India Rupees – INR</option>
-																					<option value="Indonesia Rupiahs - IDR">Indonesia Rupiahs – IDR</option>
-																					<option value="Iran Rials - IRR">Iran Rials – IRR</option>
-																					 
-																					<option value="Iraq Dinars - IQD">Iraq Dinars – IQD</option>
-																					<option value="Ireland Pounds - IEP*">Ireland Pounds – IEP*</option>
-																					<option value="Israel New Shekels - ILS">Israel New Shekels – ILS</option>
-																					<option value="Italy Lire - ITL*">Italy Lire – ITL*</option>
-																					<option value="Jamaica Dollars - JMD">Jamaica Dollars – JMD</option>
-																					<option value="Japan Yen - JPY">Japan Yen – JPY</option>
-																					 
-																					<option value="Jordan Dinars - JOD">Jordan Dinars – JOD</option>
-																					<option value="Kenya Shillings - KES">Kenya Shillings – KES</option>
-																					<option value="Korea (South) Won - KRW">Korea (South) Won – KRW</option>
-																					<option value="Kuwait Dinars - KWD">Kuwait Dinars – KWD</option>
-																					<option value="Lebanon Pounds - LBP">Lebanon Pounds – LBP</option>
-																					<option value="Luxembourg Francs - LUF">Luxembourg Francs – LUF</option>
-																					 
-																					<option value="Malaysia Ringgits - MYR">Malaysia Ringgits – MYR</option>
-																					<option value="Malta Liri - MTL">Malta Liri – MTL</option>
-																					<option value="Mauritius Rupees - MUR">Mauritius Rupees – MUR</option>
-																					<option value="Mexico Pesos - MXN">Mexico Pesos – MXN</option>
-																					<option value="Morocco Dirhams - MAD">Morocco Dirhams – MAD</option>
-																					<option value="Netherlands Guilders - NLG">Netherlands Guilders – NLG</option>
-																					 
-																					<option value="New Zealand Dollars - NZD">New Zealand Dollars – NZD</option>
-																					<option value="Norway Kroner - NOK">Norway Kroner – NOK</option>
-																					<option value="Oman Rials - OMR">Oman Rials – OMR</option>
-																					<option value="Pakistan Rupees - PKR">Pakistan Rupees – PKR</option>
-																					<option value="Palladium Ounces - XPD">Palladium Ounces – XPD</option>
-																					<option value="Peru Nuevos Soles - PEN">Peru Nuevos Soles – PEN</option>
-																					 
-																					<option value="Philippines Pesos - PHP">Philippines Pesos – PHP</option>
-																					<option value="Platinum Ounces - XPT">Platinum Ounces – XPT</option>
-																					<option value="Poland Zlotych - PLN">Poland Zlotych – PLN</option>
-																					<option value="Portugal Escudos - PTE">Portugal Escudos – PTE</option>
-																					<option value="Qatar Riyals - QAR">Qatar Riyals – QAR</option>
-																					<option value="Romania New Lei - RON">Romania New Lei – RON</option>
-																					 
-																					<option value="Romania Lei - ROL">Romania Lei – ROL</option>
-																					<option value="Russia Rubles - RUB">Russia Rubles – RUB</option>
-																					<option value="Saudi Arabia Riyals - SAR">Saudi Arabia Riyals – SAR</option>
-																					<option value="Silver Ounces - XAG">Silver Ounces – XAG</option>
-																					<option value="Singapore Dollars - SGD">Singapore Dollars – SGD</option>
-																					<option value="Slovakia Koruny - SKK">Slovakia Koruny – SKK</option>
-																					 
-																					<option value="Slovenia Tolars - SIT">Slovenia Tolars – SIT</option>
-																					<option value="South Africa Rand - ZAR">South Africa Rand – ZAR</option>
-																					<option value="South Korea Won - KRW">South Korea Won – KRW</option>
-																					<option value="Spain Pesetas - ESP">Spain Pesetas – ESP</option>
-																					<option value="Special Drawing Rights (IMF) - XDR">Special Drawing Rights (IMF) – XDR</option>
-																					<option value="Sri Lanka Rupees - LKR">Sri Lanka Rupees – LKR</option>
-																					 
-																					<option value="Sudan Dinars - SDD">Sudan Dinars – SDD</option>
-																					<option value="Sweden Kronor - SEK">Sweden Kronor – SEK</option>
-																					<option value="Switzerland Francs - CHF">Switzerland Francs – CHF</option>
-																					<option value="Taiwan New Dollars - TWD">Taiwan New Dollars – TWD</option>
-																					<option value="Thailand Baht - THB">Thailand Baht – THB</option>
-																					<option value="Trinidad and Tobago Dollars - TTD">Trinidad and Tobago Dollars – TTD</option>
-																					 
-																					<option value="Tunisia Dinars - TND">Tunisia Dinars – TND</option>
-																					<option value="Turkey New Lira - TRY">Turkey New Lira – TRY</option>
-																					<option value="United Arab Emirates Dirhams - AED">United Arab Emirates Dirhams – AED</option>
-																					<option value="United Kingdom Pounds - GBP">United Kingdom Pounds – GBP</option>
-																					<option value="United States Dollars - USD">United States Dollars – USD</option>
-																					<option value="Venezuela Bolivares - VEB">Venezuela Bolivares – VEB</option>
-																					 
-																					<option value="Vietnam Dong - VND">Vietnam Dong – VND</option>
-																					<option value="Zambia Kwacha - ZMK">Zambia Kwacha – ZMK</option>
-																				</select> 
-																				<i></i>
-																			</label>
-																		</section>
-																		<section class="col1 col-4">
-																			<label class="input">
-																				<input type="text" name="income" th:feild="*{income}" id="INCOME" placeholder="Enter Income" style="height:35px" />
-																			</label>
-																		</section>
-																	</div>
-																	<div class="floatright margin-bottom-20" id="actionbtn-active">	
-																		<input type="button" value="Save" class="input-save" onclick="" />
-																		<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo3&#39;,&#39;basicform3&#39;,&#39;basicmenu3&#39;,&#39;basicmenulink3&#39;);reseterror();cancelScroll(&#39;BasicInformation3&#39;);" />&nbsp;&nbsp;
-																	</div>
-																</fieldset>	
+																	<form th:action="@{/personaldetailsedit}" th:object="${personaldetailsedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
+																		<fieldset>
+																			<div class="row padd20">
+																				<section class="col1 ">
+																					<label class="label"> Highest Education:</label>
+																				</section>
+																				<section class="col1 col-9">
+																					<label class="select">
+																						<select name="education" th:feild="*{education}" id="EDUCATION" class="form-control" >
+																							<option th:value="${member.personalDetails.education}"><label class="label" th:text="${member.personalDetails.education}" ></label></option>								
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Engineering / Computers --'>
+																							<option value='Aeronautical Engineering'>Aeronautical Engineering</option>
+																							<option value='B.Arch'>B.Arch</option>
+																							<option value='BCA'>BCA</option>
+																							<option value='BE'>BE</option>
+																							<option value='B.Plan'>B.Plan</option>
+																							<option value='B.Sc IT/ Computer Science'>B.Sc IT/ Computer Science</option>
+																							<option value='B.Tech.'>B.Tech.</option>
+																							<option value='Other Bachelor Degree in Engineering / Computers'>Other Bachelor Degree in Engineering / Computers</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Engineering / Computers --'>
+																							<option value='M.Arch.'>M.Arch.</option>
+																							<option value='MCA'>MCA</option>
+																							<option value='ME'>ME</option>
+																							<option value='M.Sc. IT / Computer Science'>M.Sc. IT / Computer Science</option>
+																							<option value='M.S.(Engg.)'>M.S.(Engg.)</option>
+																							<option value='M.Tech.'>M.Tech.</option>
+																							<option value='PGDCA'>PGDCA</option>
+																							<option value='Other Masters Degree in Engineering / Computers'>Other Masters Degree in Engineering / Computers</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Arts / Science / Commerce --'>
+																							<option value='Aviation Degree'>Aviation Degree</option>
+																							<option value='B.A.'>B.A.</option>
+																							<option value='B.Com.'>B.Com.</option>
+																							<option value='B.Ed.'>B.Ed.</option>
+																							<option value='BFA'>BFA</option>
+																							<option value='BFT'>BFT</option>
+																							<option value='BLIS'>BLIS</option>
+																							<option value='B.M.M.'>B.M.M.</option>
+																							<option value='B.Sc.'>B.Sc.</option>
+																							<option value='B.S.W'>B.S.W</option>
+																							<option value='B.Phil.'>B.Phil.</option>
+																							<option value='Other Bachelor Degree in Arts / Science / Commerce'>Other Bachelor Degree in Arts / Science / Commerce</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Arts / Science / Commerce --'>
+																							<option value='M.A.'>M.A.</option>
+																							<option value='M.Com.'>M.Com.</option>
+																							<option value='M.Ed.'>M.Ed.</option>
+																							<option value='MFA'>MFA</option>
+																							<option value='MLIS'>MLIS</option>
+																							<option value='M.Sc.'>M.Sc.</option>
+																							<option value='MSW'>MSW</option>
+																							<option value='M.Phil.'>M.Phil.</option>
+																							<option value='Other Master Degree in Arts / Science / Commerce'>Other Master Degree in Arts / Science / Commerce</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Management --'>
+																							<option value='BBA'>BBA</option>
+																							<option value='BFM (Financial Management)'>BFM (Financial Management)</option>
+																							<option value='BHM (Hotel Management)'>BHM (Hotel Management)</option>
+																							<option value='Other Bachelor Degree in Management'>Other Bachelor Degree in Management</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Management --'>
+																							<option value='MBA'>MBA</option>
+																							<option value='MFM (Financial Management)'>MFM (Financial Management)</option>
+																							<option value='MHM  (Hotel Management)'>MHM  (Hotel Management)</option>
+																							<option value='MHRM (Human Resource Management)'>MHRM (Human Resource Management)</option>
+																							<option value='PGDM'>PGDM</option>
+																							<option value='Other Master Degree in Management'>Other Master Degree in Management</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Medicine in General / Dental / Surgeon --'>
+																							<option value='B.A.M.S.'>B.A.M.S.</option>
+																							<option value='BDS'>BDS</option>
+																							<option value='BHMS'>BHMS</option>
+																							<option value='BSMS'>BSMS</option>
+																							<option value='B.Pharm'>B.Pharm</option>
+																							<option value='BPT'>BPT</option>
+																							<option value='BUMS'>BUMS</option>
+																							<option value='BVSc'>BVSc</option>
+																							<option value='MBBS'>MBBS</option>
+																							<option value='B.Sc. Nursing'>B.Sc. Nursing</option>
+																							<option value='Other Bachelor Degree in Medicine'>Other Bachelor Degree in Medicine</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Medicine - General / Dental / Surgeon --'>
+																							<option value='MDS'>MDS</option>
+																							<option value='MD / MS (Medical)'>MD / MS (Medical)</option>
+																							<option value='M.Pharm'>M.Pharm</option>
+																							<option value='MPT'>MPT</option>
+																							<option value='MVSc'>MVSc</option>
+																							<option value='Other Master Degree in Medicine'>Other Master Degree in Medicine</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Legal --'>
+																							<option value='BGL'>BGL</option>
+																							<option value='B.L.'>B.L.</option>
+																							<option value='L.L.B.'>L.L.B.</option>
+																							<option value='Other Bachelor Degree in Legal'>Other Bachelor Degree in Legal</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Masters in Legal --'>
+																							<option value='L.L.M.'>L.L.M.</option>
+																							<option value='M.L.'>M.L.</option>
+																							<option value='Other Master Degree in  Legal'>Other Master Degree in  Legal</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Financial Qualification - ICWAI / CA / CS/ CFA --'>
+																							<option value='CA'>CA</option>
+																							<option value='CFA (Chartered Financial Analyst)'>CFA (Chartered Financial Analyst)</option>
+																							<option value='CS'>CS</option>
+																							<option value='ICWA'>ICWA</option>
+																							<option value='Other Degree in Finance'>Other Degree in Finance</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Service - IAS / IPS / IRS / IES / IFS  --'>
+																							<option value='IAS'>IAS</option>
+																							<option value='IES'>IES</option>
+																							<option value='IFS'>IFS</option>
+																							<option value='IRS'>IRS</option>
+																							<option value='IPS'>IPS</option>
+																							<option value='Other Degree in Service'>Other Degree in Service</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Ph.D. --'>
+																							<option value='Ph.D.'>Ph.D.</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Diploma --'>
+																							<option value='Diploma'>Diploma</option>
+																							<option value='Polytechnic'>Polytechnic</option>
+																							<option value='Trade School'>Trade School</option>
+																							<option value='Others in Diploma'>Others in Diploma</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Higher Secondary / Secondary --'>
+																							<option value='Higher Secondary School / High School'>Higher Secondary School / High School</option>
+																							</optgroup>
+																						</select>	
+																						<i></i>
+																					</label>
+																				</section>
+																			</div>
+					
+																			<div class="row">
+																				<section class="col1">
+																					<label class="label">Employed In :</label>
+																				</section>
+																				<section class="inline-group">
+																					<label class="radio"><input name="occupationcategory" th:checked="${member.personalDetails.occupationcategory=='Government'}"   id="OCCUPATIONCATEGORY1" value="Government" type="radio" checked="checked"/><i class="rounded-x"></i>Government</label>
+																					<label class="radio"><input name="occupationcategory" th:checked="${member.personalDetails.occupationcategory=='Private'}" id="OCCUPATIONCATEGORY3" value="Private" type="radio"/><i class="rounded-x"></i>Private</label>
+																					<label class="radio"><input name="occupationcategory" th:checked="${member.personalDetails.occupationcategory=='Business'}" id="OCCUPATIONCATEGORY4" value="Business" type="radio"/><i class="rounded-x"></i>Business</label>
+																					<label class="radio"><input name="occupationcategory" th:checked="${member.personalDetails.occupationcategory=='Defence'}" id="OCCUPATIONCATEGORY2" value="Defence" type="radio"/><i class="rounded-x"></i>Defence</label>
+																				</section>
+																			</div>
+																			
+																			<div class="row">
+																				<section class="col1 ">
+																					<label class="label"> Occupation :</label>
+																				</section>
+																				<section class="col1 col-9">
+																					<label class="select">
+																						<select name="occupation" th:feild="*{occupation}" id="OCCUPATION" class="form-control">
+																							<option th:value="${member.personalDetails.occupation}"><label class="label" th:text="${member.personalDetails.occupation}" ></label></option>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- ADMIN --'>
+																							<option value="Manager">Manager</option>
+																							<option value="Supervisor">Supervisor</option>
+																							<option value="Officer">Officer</option>
+																							<option value="Administrative Professional">Administrative Professional</option>
+																							<option value="Executive">Executive</option>
+																							<option value="Clerk">Clerk</option>
+																							<option value="Human Resources Professional">Human Resources Professional</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- AGRICULTURE --'>
+																							<option value="Agriculture and Farming Professional">Agriculture andFarming Professional</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- AIRLINE --'>
+																							<option value="Pilot">Pilot</option>
+																							<option value="Air Hostess">Air Hostess</option>
+																							<option value="Airline Professional">Airline Professional</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- ARCHITECT AND DESIGN --'>
+																							<option value="Architect">Architect</option>
+																							<option value="Interior Designer">Interior Designer</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- BANKING AND FINANCE --'>
+																							<option value="Charted Accountant">Charted Accountant</option>
+																							<option value="Company Secretary">Company Secretary</option>
+																							<option value="Accounts and Finance Professional">Accounts and Finance Professional</option>
+																							<option value="Banking Service Professional">Banking Service Professional</option>
+																							<option value="Auditor">Auditor</option>
+																							<option value="Financial Accountant">Financial Accountant</option>
+																							<option value="Financial Analyst and Planning">Financial Analyst and Planning</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- BEAUTY AND FASHION --'>
+																							<option value="Fashion Designer">Fashion Designer</option>
+																							<option value="Beautician">Beautician</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- CIVIL SERVICES --'>
+																							<option value="Civil Services (IAS/IPS/IRS/IES/IFS)">Civil Services (IAS/IPS/IRS/IES/IFS)</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- DEFENCE --'>
+																							<option value="Army">Army</option>
+																							<option value="Navy">Navy</option>
+																							<option value="Air Force">Air Force</option>
+																							<option value="Mariner / Merchant Navy">Mariner / Merchant Navy</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- EDUCATION --'>
+																							<option value="Professor / Lecturer">Professor / Lecturer</option>
+																							<option value="Teaching / Academician">Teaching / Academician</option>
+																							<option value="Education Professional">Education Professional</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- HOSPITALITY --'>
+																							<option value="Hotel / Hospitality Professional">Hotel / Hospitality Professional</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- IT AND ENGINEERING --'>
+																							<option value="Software Professional">Software Professional</option>
+																							<option value="Hardware Professional">Hardware Professional</option>
+																							<option value="Engineer - Non IT">Engineer - Non IT</option>
+																							<option value="Web Designer">Web Designer</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- LEGAL --'>
+																							<option value="Lawyer and Legal Professional">Lawyer and Legal Professional</option>
+																							<option value="Law Enforcement Officer">Law Enforcement Officer</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- MEDICAL --'>
+																							<option value="Docter">Docter</option>
+																							<option value="Health Care Professional">Health Care Professional</option>
+																							<option value="Paramedical Professional">Paramedical Professional</option>
+																							<option value="Nurse">Nurse</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- MARKETING AND SALES --'>
+																							<option value="Marketing Professional">Marketing Professional</option>
+																							<option value="Sales Professional">Sales Professional</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- MEDIA ENTERTAINMENT --'>
+																							<option value="Journalist">Journalist</option>
+																							<option value="Media Professional">Media Professional</option>
+																							<option value="Entertainment Professional">Entertainment Professional</option>
+																							<option value="Event Management Professional">Event Management Professional</option>
+																							<option value="Advertising / PR Professional">Advertising / PR Professional</option>
+																							<option value="Designer">Designer</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- SCIENTIST --'>
+																							<option value="Scientist / Researcher">Scientist / Researcher</option>
+																							</optgroup>
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- TOP MANAGMENT --'>
+																							<option value="Other">CXO / President, Director, Chairman</option>
+																							</optgroup>
+																							
+																							<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- OTHERS --'>
+																							<option value="Consultant">Consultant</option>
+																							<option value="Customer Care Professional">Customer Care Professional</option>
+																							<option value="Social Worker">Social Worker</option>
+																							<option value="Sportsman">Sportsman</option>
+																							<option value="Technician">Technician</option>
+																							<option value="Arts and Craftsman">Arts and Craftsman</option>
+																							<option value="Librarian">Librarian</option>
+																							<option value="Business Owner / Entrepreneur">Business Owner / Entrepreneur</option>
+																							<option value="Other">Other</option>
+																							</optgroup>							
+																						</select>
+																						<i></i>
+																					</label>
+																				</section>
+																			</div>
+																			
+																			<div class="row">
+																				<section class="col1 ">
+																					<label class="label"> Montly Income:</label>
+																				</section>
+																				<section class="col1 col-5">
+																					<label class="select">
+																						<select name="incomecurrency" th:feild="*{incomecurrency}" id="INCOME_CURRENCY" class="form-control" >
+																							<option  th:value="${member.personalDetails.incomecurrency}"><label class="label" th:text="${member.personalDetails.incomecurrency}" ></label></option>
+																							<option value="America (United States) Dollars - USD">America (United States) Dollars – USD</option>
+																							<option value="Afghanistan Afghanis - AFN">Afghanistan Afghanis – AFN</option>
+																							<option value="Albania Leke - ALL">Albania Leke – ALL</option>
+																							<option value="Algeria Dinars - DZD">Algeria Dinars – DZD</option>
+																							<option value="Argentina Pesos - ARS">Argentina Pesos – ARS</option>
+																							<option value="Australia Dollars - AUD">Australia Dollars – AUD</option>
+																							<option value="Austria Schillings - ATS">Austria Schillings – ATS</option>
+																							 
+																							<option value="Bahamas Dollars - BSD">Bahamas Dollars – BSD</option>
+																							<option value="Bahrain Dinars - BHD">Bahrain Dinars – BHD</option>
+																							<option value="Bangladesh Taka - BDT">Bangladesh Taka – BDT</option>
+																							<option value="Barbados Dollars - BBD">Barbados Dollars – BBD</option>
+																							<option value="Belgium Francs - BEF">Belgium Francs – BEF</option>
+																							<option value="Bermuda Dollars - BMD">Bermuda Dollars – BMD</option>
+																							 
+																							<option value="Brazil Reais - BRL">Brazil Reais – BRL</option>
+																							<option value="Bulgaria Leva - BGN">Bulgaria Leva – BGN</option>
+																							<option value="Canada Dollars - CAD">Canada Dollars – CAD</option>
+																							<option value="CFA BCEAO Francs - XOF">CFA BCEAO Francs – XOF</option>
+																							<option value="CFA BEAC Francs - XAF">CFA BEAC Francs – XAF</option>
+																							<option value="Chile Pesos - CLP">Chile Pesos – CLP</option>
+																							 
+																							<option value="China Yuan Renminbi - CNY">China Yuan Renminbi – CNY</option>
+																							<option value="RMB (China Yuan Renminbi) - CNY">RMB (China Yuan Renminbi) – CNY</option>
+																							<option value="Colombia Pesos - COP">Colombia Pesos – COP</option>
+																							<option value="CFP Francs - XPF">CFP Francs – XPF</option>
+																							<option value="Costa Rica Colones - CRC">Costa Rica Colones – CRC</option>
+																							<option value="Croatia Kuna - HRK">Croatia Kuna – HRK</option>
+																							 
+																							<option value="Cyprus Pounds - CYP">Cyprus Pounds – CYP</option>
+																							<option value="Czech Republic Koruny - CZK">Czech Republic Koruny – CZK</option>
+																							<option value="Denmark Kroner - DKK">Denmark Kroner – DKK</option>
+																							<option value="Deutsche (Germany) Marks - DEM">Deutsche (Germany) Marks – DEM</option>
+																							<option value="Dominican Republic Pesos - DOP">Dominican Republic Pesos – DOP</option>
+																							<option value="Dutch (Netherlands) Guilders - NLG">Dutch (Netherlands) Guilders – NLG</option>
+																							 
+																							<option value="Eastern Caribbean Dollars - XCD">Eastern Caribbean Dollars – XCD</option>
+																							<option value="Egypt Pounds - EGP">Egypt Pounds – EGP</option>
+																							<option value="Estonia Krooni - EEK">Estonia Krooni – EEK</option>
+																							<option value="Euro - EUR">Euro – EUR</option>
+																							<option value="Fiji Dollars - FJD">Fiji Dollars – FJD</option>
+																							<option value="Finland Markkaa - FIM">Finland Markkaa – FIM</option>
+																							 
+																							<option value="France Francs - FRF*">France Francs – FRF*</option>
+																							<option value="Germany Deutsche Marks - DEM">Germany Deutsche Marks – DEM</option>
+																							<option value="Gold Ounces - XAU">Gold Ounces – XAU</option>
+																							<option value="Greece Drachmae - GRD">Greece Drachmae – GRD</option>
+																							<option value="Guatemalan Quetzal - GTQ">Guatemalan Quetzal – GTQ</option>
+																							<option value="Holland (Netherlands) Guilders - NLG">Holland (Netherlands) Guilders – NLG</option>
+																							<option value="Hong Kong Dollars - HKD">Hong Kong Dollars – HKD</option>
+																							 
+																							<option value="Hungary Forint - HUF">Hungary Forint – HUF</option>
+																							<option value="Iceland Kronur - ISK">Iceland Kronur – ISK</option>
+																							<option value="IMF Special Drawing Right - XDR">IMF Special Drawing Right – XDR</option>
+																							<option value="India Rupees - INR">India Rupees – INR</option>
+																							<option value="Indonesia Rupiahs - IDR">Indonesia Rupiahs – IDR</option>
+																							<option value="Iran Rials - IRR">Iran Rials – IRR</option>
+																							 
+																							<option value="Iraq Dinars - IQD">Iraq Dinars – IQD</option>
+																							<option value="Ireland Pounds - IEP*">Ireland Pounds – IEP*</option>
+																							<option value="Israel New Shekels - ILS">Israel New Shekels – ILS</option>
+																							<option value="Italy Lire - ITL*">Italy Lire – ITL*</option>
+																							<option value="Jamaica Dollars - JMD">Jamaica Dollars – JMD</option>
+																							<option value="Japan Yen - JPY">Japan Yen – JPY</option>
+																							 
+																							<option value="Jordan Dinars - JOD">Jordan Dinars – JOD</option>
+																							<option value="Kenya Shillings - KES">Kenya Shillings – KES</option>
+																							<option value="Korea (South) Won - KRW">Korea (South) Won – KRW</option>
+																							<option value="Kuwait Dinars - KWD">Kuwait Dinars – KWD</option>
+																							<option value="Lebanon Pounds - LBP">Lebanon Pounds – LBP</option>
+																							<option value="Luxembourg Francs - LUF">Luxembourg Francs – LUF</option>
+																							 
+																							<option value="Malaysia Ringgits - MYR">Malaysia Ringgits – MYR</option>
+																							<option value="Malta Liri - MTL">Malta Liri – MTL</option>
+																							<option value="Mauritius Rupees - MUR">Mauritius Rupees – MUR</option>
+																							<option value="Mexico Pesos - MXN">Mexico Pesos – MXN</option>
+																							<option value="Morocco Dirhams - MAD">Morocco Dirhams – MAD</option>
+																							<option value="Netherlands Guilders - NLG">Netherlands Guilders – NLG</option>
+																							 
+																							<option value="New Zealand Dollars - NZD">New Zealand Dollars – NZD</option>
+																							<option value="Norway Kroner - NOK">Norway Kroner – NOK</option>
+																							<option value="Oman Rials - OMR">Oman Rials – OMR</option>
+																							<option value="Pakistan Rupees - PKR">Pakistan Rupees – PKR</option>
+																							<option value="Palladium Ounces - XPD">Palladium Ounces – XPD</option>
+																							<option value="Peru Nuevos Soles - PEN">Peru Nuevos Soles – PEN</option>
+																							 
+																							<option value="Philippines Pesos - PHP">Philippines Pesos – PHP</option>
+																							<option value="Platinum Ounces - XPT">Platinum Ounces – XPT</option>
+																							<option value="Poland Zlotych - PLN">Poland Zlotych – PLN</option>
+																							<option value="Portugal Escudos - PTE">Portugal Escudos – PTE</option>
+																							<option value="Qatar Riyals - QAR">Qatar Riyals – QAR</option>
+																							<option value="Romania New Lei - RON">Romania New Lei – RON</option>
+																							 
+																							<option value="Romania Lei - ROL">Romania Lei – ROL</option>
+																							<option value="Russia Rubles - RUB">Russia Rubles – RUB</option>
+																							<option value="Saudi Arabia Riyals - SAR">Saudi Arabia Riyals – SAR</option>
+																							<option value="Silver Ounces - XAG">Silver Ounces – XAG</option>
+																							<option value="Singapore Dollars - SGD">Singapore Dollars – SGD</option>
+																							<option value="Slovakia Koruny - SKK">Slovakia Koruny – SKK</option>
+																							 
+																							<option value="Slovenia Tolars - SIT">Slovenia Tolars – SIT</option>
+																							<option value="South Africa Rand - ZAR">South Africa Rand – ZAR</option>
+																							<option value="South Korea Won - KRW">South Korea Won – KRW</option>
+																							<option value="Spain Pesetas - ESP">Spain Pesetas – ESP</option>
+																							<option value="Special Drawing Rights (IMF) - XDR">Special Drawing Rights (IMF) – XDR</option>
+																							<option value="Sri Lanka Rupees - LKR">Sri Lanka Rupees – LKR</option>
+																							 
+																							<option value="Sudan Dinars - SDD">Sudan Dinars – SDD</option>
+																							<option value="Sweden Kronor - SEK">Sweden Kronor – SEK</option>
+																							<option value="Switzerland Francs - CHF">Switzerland Francs – CHF</option>
+																							<option value="Taiwan New Dollars - TWD">Taiwan New Dollars – TWD</option>
+																							<option value="Thailand Baht - THB">Thailand Baht – THB</option>
+																							<option value="Trinidad and Tobago Dollars - TTD">Trinidad and Tobago Dollars – TTD</option>
+																							 
+																							<option value="Tunisia Dinars - TND">Tunisia Dinars – TND</option>
+																							<option value="Turkey New Lira - TRY">Turkey New Lira – TRY</option>
+																							<option value="United Arab Emirates Dirhams - AED">United Arab Emirates Dirhams – AED</option>
+																							<option value="United Kingdom Pounds - GBP">United Kingdom Pounds – GBP</option>
+																							<option value="United States Dollars - USD">United States Dollars – USD</option>
+																							<option value="Venezuela Bolivares - VEB">Venezuela Bolivares – VEB</option>
+																							 
+																							<option value="Vietnam Dong - VND">Vietnam Dong – VND</option>
+																							<option value="Zambia Kwacha - ZMK">Zambia Kwacha – ZMK</option>
+																						</select> 
+																						<i></i>
+																					</label>
+																				</section>
+																				<section class="col1 col-4">
+																					<label class="input">
+																						<input type="text" name="income"  th:value="${member.personalDetails.income}"  id="INCOME" placeholder="Enter Income" style="height:35px" />
+																					</label>
+																				</section>
+																			</div>
+																			<div class="floatright margin-bottom-20" id="actionbtn-active">	
+																				<input type="submit" value="Save" class="input-save" onclick="" />
+																				<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo3&#39;,&#39;basicform3&#39;,&#39;basicmenu3&#39;,&#39;basicmenulink3&#39;);reseterror();cancelScroll(&#39;BasicInformation3&#39;);" />&nbsp;&nbsp;
+																			</div>
+																		</fieldset>	
+																	</form>
 																</div>
 															</div> 
 														</div>
@@ -1683,6 +1671,7 @@
 																</div>
 																
 																<div id="basicform6" style="display: none;">
+																<form th:action="@{/personaldetailsedit}" th:object="${personaldetailsedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
 																	<fieldset>
 																		<label class="label">You may not believe in horoscope matching, yet we recommend that you fill in your of Astro details as a lot members would be interested in these details.</label>
 													
@@ -1691,9 +1680,9 @@
 																				<label class="label">Have Dosh :</label>
 																			</section>
 																			<section class="inline-group">
-																				<label class="radio"><input name="dosh" th:feild="*{dosh}" id="DOSH1" value="No" type="radio" checked="checked"/><i class="rounded-x"></i>No</label>
-																				<label class="radio"><input name="dosh" th:feild="*{dosh}" id="DOSH2" value="Yes" type="radio"/><i class="rounded-x"></i>Widowed</label>
-																				<label class="radio"><input name="dosh" th:feild="*{dosh}" id="DOSH3" value="Don't know" type="radio"/><i class="rounded-x"></i>Don't Know</label>
+																				<label class="radio"><input name="dosh" th:checked="${member.personalDetails.dosh=='No'}"  id="DOSH1" value="No" type="radio"/><i class="rounded-x"></i>No</label>
+																				<label class="radio"><input name="dosh" th:checked="${member.personalDetails.dosh=='Yes'}" id="DOSH2" value="Yes" type="radio"/><i class="rounded-x"></i>Yes</label>
+																				<label class="radio"><input name="dosh" th:checked="${member.personalDetails.dosh=='Dont know'}" id="DOSH3" value="Don't know" type="radio"/><i class="rounded-x"></i>Don't Know</label>
 																			</section>
 																		</div>
 																		
@@ -1702,9 +1691,9 @@
 																				<label class="label">Manglik :</label>
 																			</section>
 																			<section class="inline-group">
-																				<label class="radio"><input name="manglik" th:feild="*{manglik}" id="MANGLIK2" value="No" type="radio" checked="checked"/><i class="rounded-x"></i>No</label>
-																				<label class="radio"><input name="manglik" th:feild="*{manglik}" id="MANGLIK1" value="Yes" type="radio"/><i class="rounded-x"></i>Yes</label>
-																				<label class="radio"><input name="manglik" th:feild="*{manglik}" id="MANGLIK3" value="Don't know" type="radio"/><i class="rounded-x"></i>Don't Know</label>
+																				<label class="radio"><input name="manglik" th:checked="${member.personalDetails.manglik=='No'}"  id="MANGLIK2" value="No" type="radio" /><i class="rounded-x"></i>No</label>
+																				<label class="radio"><input name="manglik" th:checked="${member.personalDetails.manglik=='Yes'}" id="MANGLIK1" value="Yes" type="radio"/><i class="rounded-x"></i>Yes</label>
+																				<label class="radio"><input name="manglik" th:checked="${member.personalDetails.manglik=='Dont know'}" id="MANGLIK3" value="Don't know" type="radio"/><i class="rounded-x"></i>Don't Know</label>
 																			</section>
 																		</div>
 																		
@@ -1714,7 +1703,7 @@
 																			</section>
 																			<section class="col1 col-9">
 																				<label class="input">
-																					<input type="text" id="GOTHRA" name="gothra" th:feild="*{gothra}" placeholder="Please Enter Gothra" />
+																					<input type="text" id="GOTHRA" name="gothra" th:value="${member.personalDetails.gothra}"  placeholder="Please Enter Gothra" />
 																				</label>
 																			</section>	
 																		</div>
@@ -1726,7 +1715,7 @@
 																			<section class="col col-4">
 																				<label class="select">
 																					<select name="star" th:feild="*{star}" id="STAR" class="form-control" >
-																						<option value="0" selected="selected">- Please Select Star -</option>
+																						<option th:value="${member.personalDetails.starSign}" selected="selected"><label class="label" th:text="${member.personalDetails.starSign}" ></label></option>
 																						<option value="Aswini">Aswini</option>
 																						<option value="Bharani">Bharani</option>
 																						<option value="Kruthika">Kruthika</option>
@@ -1784,10 +1773,11 @@
 																		</div>
 																		
 																		<div class="floatright margin-bottom-20" id="actionbtn-active">	
-																			<input type="button" value="Save" class="input-save" onclick="" />
+																			<input type="submit" value="Save" class="input-save" onclick="" />
 																			<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo6&#39;,&#39;basicform6&#39;,&#39;basicmenu6&#39;,&#39;basicmenulink6&#39;);reseterror();cancelScroll(&#39;BasicInformation6&#39;);" />&nbsp;&nbsp;
 																		</div>
 																	</fieldset>	
+																	</form>
 																</div>
 															</div> 
 														</div>
@@ -2050,13 +2040,13 @@
 																				<label class="label"><b>Prefered Age:</b></label>
 																			</section>
 																			<section class="col1 col-4">
-																				<label class="label"  >18 years To 40 Years</label>
+																				<label class="label" th:text="${member.preferences.fromAge} + ' To ' + ${member.preferences.toAge}"   >18 years To 40 Years</label>
 																			</section>
 																			<section class="col1">
 																				<label class="label"><b>Maritail Status :</b></label>
 																			</section>
 																			<section class="col1 col-3">
-																				<label class="label" >Never Married</label>
+																				<label class="label" th:text="${member.preferences.maritalStatus}" >Never Married</label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -2064,13 +2054,13 @@
 																				<label class="label"><b>Have Children :</b></label>
 																			</section>
 																			<section class="col1 col-4">
-																				<label class="label">No</label>
+																				<label class="label" th:text="${member.preferences.haveChildren}" >No</label>
 																			</section>
 																			<section class="col1">
 																				<label class="label"><b>Physical Status :</b></label>
 																			</section>
 																			<section class="col1 col-3">
-																				<label class="label">Normal</label>
+																				<label class="label" th:text="${member.preferences.physicalStatus}">Normal</label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -2078,7 +2068,12 @@
 																				<label class="label"><b>Height :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">178cm To 196cm</label>
+																			<script th:inline="javascript">							
+																			 /*<![CDATA[*/							 
+																				 document.write(cmsToFt(/*[[${member.preferences.fromHeight}]]*/) + " To " + cmsToFt(/*[[${member.preferences.toHeight}]]*/))
+																				  /*]]>*/ 
+																			</script>
+																				
 																			</section>
 																		</div>
 																	</fieldset>
@@ -2086,6 +2081,8 @@
 															</div> 
 															
 															<div id="basicform7" style="display: none;">
+															<form th:action="@{/preferencesedit}" th:object="${preferencesedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
+															
 															<fieldset>
 																<div class="row">
 																	<section class="col1">
@@ -2093,8 +2090,9 @@
 																	</section>
 																	<section class="col1 col-4">
 																		<label class="select">
-																			<select name="minAge" th:feild="*{minAge}"  id="fromage" >
-																				<option value="18" selected="selected">18</option>
+																		<select name="fromAge" th:feild="*{fromAge}"  id="fromage" >
+																		<option th:value="${member.preferences.fromAge}" selected="selected">	<label class="label" th:text="${member.preferences.fromAge}" ></label></option>
+																				<option value="18">18</option>
 																				<option value="19">19</option>
 																				<option value="20">20</option>
 																				<option value="21">21</option>
@@ -2137,8 +2135,8 @@
 																	</section>
 																	<section class="col1 col-4">
 																		<label class="select">
-																			<select name="maxAge" th:feild="*{maxAge}"  id="toage">
-																				<option value="0" disabled="disabled">To</option>
+																			<select name="toAge" th:feild="*{toAge}"  id="toage">																			
+																			<option th:value="${member.preferences.toAge}" selected="selected">	<label class="label" th:text="${member.preferences.toAge}" ></label></option>
 																				<option value="18">18</option>
 																				<option value="19">19</option>
 																				<option value="20">20</option>
@@ -2161,7 +2159,7 @@
 																				<option value="37">37</option>
 																				<option value="38">38</option>
 																				<option value="39">39</option>
-																				<option value="40" selected="selected">40</option>
+																				<option value="40" >40</option>
 																				<option value="41">41</option>
 																				<option value="42">42</option>
 																				<option value="43">43</option>
@@ -2182,12 +2180,12 @@
 																	<section class="col1">
 																		<label class="label">Maritail Status :</label>
 																	</section>
-																	<section class="inline-group">
-																		<label class="checkbox"><input  name="maritalStatus"  th:feild="*{maritalStatus}"   id="MARITAL_STATUS1" value="Any" type="checkbox" checked="checked"/><i></i>Any</label>
-																		<label class="checkbox"><input  name="maritalStatus" th:feild="*{maritalStatus}"  id="MARITAL_STATUS2" value="Never Married" type="checkbox"/><i></i>Never Married</label>
-																		<label class="checkbox"><input name="maritalStatus" th:feild="*{maritalStatus}"  id="MARITAL_STATUS3" value="Widowed" type="checkbox"/><i></i>Widowed</label>
-																		<label class="checkbox"><input name="maritalStatus" th:feild="*{maritalStatus}"  id="MARITAL_STATUS4" value="Divorced" type="checkbox"/><i></i>Divorced</label>
-																		<label class="checkbox"><input name="maritalStatus" th:feild="*{maritalStatus}"  id="MARITAL_STATUS5" value="Awaiting divorce" type="checkbox"/><i></i>Awaiting divorce</label>
+																	<section class="inline-group" >
+																		<label class="checkbox"><input  name="maritalStatus"  th:checked="${member.preferences.maritalStatus.contains('Any')}"   id="MARITAL_STATUS1" value="Any" type="checkbox" /><i></i>Any</label>
+																		<label class="checkbox"><input  name="maritalStatus"  th:checked="${member.preferences.maritalStatus.contains('Never Married')}"     id="MARITAL_STATUS2" value="Never Married" type="checkbox"/><i></i>Never Married</label>
+																		<label class="checkbox"><input name="maritalStatus"   th:checked="${member.preferences.maritalStatus.contains('Widowed')}"          id="MARITAL_STATUS3" value="Widowed" type="checkbox"/><i></i>Widowed</label>
+																		<label class="checkbox"><input name="maritalStatus"   th:checked="${member.preferences.maritalStatus.contains('Divorced')}"         id="MARITAL_STATUS4" value="Divorced" type="checkbox"/><i></i>Divorced</label>
+																		<label class="checkbox"><input name="maritalStatus"  th:checked="${member.preferences.maritalStatus.contains('Awaiting divorce')}"  id="MARITAL_STATUS5" value="Awaiting divorce" type="checkbox"/><i></i>Awaiting divorce</label>
 																	</section>
 																</div>
 																
@@ -2196,10 +2194,10 @@
 																		<label class="label">Have Children :</label>
 																	</section>
 																	<section class="inline-group">
-																		<label class="radio"><input name="haveChildren" th:feild="*{haveChildren}" id="HAVECHILDREN1" value="Doesn't matter" type="radio" checked="checked"/><i class="rounded-x"></i>Doesn't matter</label>
-																		<label class="radio"><input name="haveChildren" th:feild="*{haveChildren}" id="HAVECHILDREN2" value="Yes. living together" type="radio"/><i class="rounded-x"></i>Yes. living together</label>
-																		<label class="radio"><input name="haveChildren" th:feild="*{haveChildren}" id="HAVECHILDREN3" value="Yes. not living together" type="radio"/><i class="rounded-x"></i>Yes. not living together</label>
-																		<label class="radio"><input name="haveChildren" th:feild="*{haveChildren}" id="HAVECHILDREN4" value="No" type="radio"/><i class="rounded-x"></i>No</label>
+																		<label class="radio"><input name="haveChildren" th:checked="${member.preferences.haveChildren=='Doesnt matter'}"  id="HAVECHILDREN1" value="Doesnt matter" type="radio" checked="checked"/><i class="rounded-x"></i>Doesn't matter</label>
+																		<label class="radio"><input name="haveChildren" th:checked="${member.preferences.haveChildren=='Yes. living together'}"  id="HAVECHILDREN2" value="Yes. living together" type="radio"/><i class="rounded-x"></i>Yes. living together</label>
+																		<label class="radio"><input name="haveChildren" th:checked="${member.preferences.haveChildren=='Yes. not living together'}" id="HAVECHILDREN3" value="Yes. not living together" type="radio"/><i class="rounded-x"></i>Yes. not living together</label>
+																		<label class="radio"><input name="haveChildren" th:checked="${member.preferences.haveChildren=='No'}" id="HAVECHILDREN4" value="No" type="radio"/><i class="rounded-x"></i>No</label>
 																	</section>
 																</div>
 																
@@ -2208,9 +2206,9 @@
 																		<label class="label">Physical Status :</label>
 																	</section>
 																	<section class="inline-group">
-																		<label class="radio"><input name="physicalStatus" th:feild="*{physicalStatus}" id="PHYSICALSTATUS1" value="Normal" type="radio" checked="checked"/><i class="rounded-x"></i>Normal</label>
-																		<label class="radio"><input name="physicalStatus" th:feild="*{physicalStatus}" id="PHYSICALSTATUS2" value="Physically challenged" type="radio"/><i class="rounded-x"></i>Physically challenged</label>
-																		<label class="radio"><input name="physicalStatus" th:feild="*{physicalStatus}" id="PHYSICALSTATUS3" value="Doesn't matter" type="radio"/><i class="rounded-x"></i>Doesn't matter</label>
+																		<label class="radio"><input name="physicalStatus" th:checked="${member.preferences.physicalStatus=='Normal'}" id="PHYSICALSTATUS1" value="Normal" type="radio" checked="checked"/><i class="rounded-x"></i>Normal</label>
+																		<label class="radio"><input name="physicalStatus" th:checked="${member.preferences.physicalStatus=='Physically challenged'}" id="PHYSICALSTATUS2" value="Physically challenged" type="radio"/><i class="rounded-x"></i>Physically challenged</label>
+																		<label class="radio"><input name="physicalStatus" th:checked="${member.preferences.physicalStatus=='Doesnt matter'}" value="Doesnt matter" type="radio"/><i class="rounded-x"></i>Doesn't matter</label>
 																	</section>
 																</div>
 																
@@ -2221,7 +2219,7 @@
 																	<section class="col">
 																		<label class="select">
 																			<select size="1" name="fromfeet" class="form-control"  id="FEETFROM" onchange="feetToCms(this.value, 'CMSFROM')">
-																				<option value="0">Feet</option>
+																				<option th:value="${member.preferences.fromHeight}"><label class="label" th:text="${member.preferences.fromHeight}" ></label></option>
 																				<option value="4-6" >4ft 6in</option>
 																				<option value="4-7" >4ft 7in</option>
 																				<option value="4-8" >4ft 8in</option>
@@ -2354,7 +2352,7 @@
 																	<section class="col">
 																		<label class="select">
 																			<select size="1" name="fromfeet" class="form-control"  id="FEETTO" onchange="feetToCms(this.value, 'CMSTO')">
-																				<option value="0">Feet</option>
+																					<option th:value="${member.preferences.toHeight}"><label class="label" th:text="${member.preferences.toHeight}" ></label></option>
 																				<option value="4-6" >4ft 6in</option>
 																				<option value="4-7" >4ft 7in</option>
 																				<option value="4-8" >4ft 8in</option>
@@ -2482,10 +2480,11 @@
 																	
 																</div>
 																<div class="floatright margin-bottom-20" id="actionbtn-active">	
-																	<input type="button" value="Save" class="input-save" onclick="" />
+																	<input type="submit" value="Save" class="input-save" onclick="" />
 																	<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo7&#39;,&#39;basicform7&#39;,&#39;basicmenu7&#39;,&#39;basicmenulink7&#39;);reseterror();cancelScroll(&#39;BasicInformation7&#39;);" />&nbsp;&nbsp;
 																</div>
 															</fieldset>
+															</form>
 															</div>
 														</div> 
 													</div>
@@ -2516,7 +2515,7 @@
 																				<label class="label"><b>Eating Habits :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label"  >Vegitarian</label>
+																				<label class="label"  th:text="${member.preferences.eatingHabits}" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -2524,7 +2523,7 @@
 																				<label class="label"><b>Smoking Habits :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Never Smoke</label>
+																				<label class="label" th:text="${member.preferences.smokingHabits}"></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -2532,57 +2531,59 @@
 																				<label class="label"><b>Drinking Habits :</b></label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Never Drink</label>
+																				<label class="label" th:text="${member.preferences.drinkingHabits}"></label>
 																			</section>
 																		</div>
-																		
 																	</fieldset>
 																</div>
 															</div>
 															
 															<div id="basicform8" style="display: none;">
-															<fieldset>
-																<div class="row padd20">
-																	<section class="col1">
-																		<label class="label">Eating Habits:</label>
-																	</section>
-																	<section class="inline-group">
-																		<label class="checkbox"><input name="eatingHabits" th:feild="*{eatingHabits}" id="EATINGHABITS1" value="Veg" type="checkbox" checked="checked" /><i></i>Vegitarian</label>
-																		<label class="checkbox"><input name="eatingHabits" th:feild="*{eatingHabits}" id="EATINGHABITS2" value="Non Veg" type="checkbox" /><i></i>Non-Vegetarian</label>
-																		<label class="checkbox"><input name="eatingHabits" th:feild="*{eatingHabits}" id="EATINGHABITS3" value="Egg" type="checkbox" /><i></i>Eggitarian</label>
-																		<label class="checkbox"><input name="eatingHabits" th:feild="*{eatingHabits}" id="EATINGHABITS4" value="Doesn't Matter" type="checkbox" /><i></i>Doesn't Matter</label>
-																	</section>
-																</div>
-																
-																<div class="row">
-																	<section class="col1">
-																		<label class="label">Smoking Habits:</label>
-																	</section>
-																	<section class="inline-group">
-																		<label class="checkbox"><input name="smokingHabits" th:feild="*{smokingHabits}" id="SMOKING_HABITS1" value="No" type="checkbox" checked="checked" /><i></i>Never Smoke</label>
-																		<label class="checkbox"><input name="smokingHabits" th:feild="*{smokingHabits}" id="SMOKING_HABITS2" value="Occasionally" type="checkbox" /><i></i>Smoke Occasionally</label>
-																		<label class="checkbox"><input name="smokingHabits" th:feild="*{smokingHabits}" id="SMOKING_HABITS3" value="Yes" type="checkbox" /><i></i>Smoke Regularly</label>
-																		<label class="checkbox"><input name="smokingHabits" th:feild="*{smokingHabits}" id="SMOKING_HABITS4" value="Doesn't Matter" type="checkbox" /><i></i>Doesn't Matter</label>
-																	</section>
-																</div>
-																
-																<div class="row">
-																	<section class="col1">
-																		<label class="label">Drinking Habits:</label>
-																	</section>
-																	<section class="inline-group">
-																		<label class="checkbox"><input name="drinkingHabits" th:feild="*{drinkingHabits}" id="DRINKING_HABITS1" value="No" type="checkbox" checked="checked" /><i></i>Never Drink</label>
-																		<label class="checkbox"><input name="drinkingHabits" th:feild="*{drinkingHabits}" id="DRINKING_HABITS2" value="Socially" type="checkbox" /><i></i>Drink Socially</label>
-																		<label class="checkbox"><input name="drinkingHabits" th:feild="*{drinkingHabits}" id="DRINKING_HABITS3" value="Yes" type="checkbox" /><i></i>Drink Regularly</label>
-																		<label class="checkbox"><input name="drinkingHabits" th:feild="*{drinkingHabits}" id="DRINKING_HABITS4" value="Doesn't Matter" type="checkbox" /><i></i>Doesn't Matter</label>
+																<form th:action="@{/preferencesedit}" th:object="${preferencesedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
+																	<fieldset>
+																		<div class="row padd20">
+																			<section class="col1">
+																				<label class="label">Eating Habits:</label>
+																			</section>
+																			<section class="inline-group">
+																				<label class="checkbox"><input name="eatingHabits" th:checked="${member.preferences.eatingHabits.contains('Veg')}" id="EATINGHABITS1" value="Veg" type="checkbox" checked="checked" /><i></i>Vegitarian</label>
+																				<label class="checkbox"><input name="eatingHabits" th:checked="${member.preferences.eatingHabits.contains('Non Veg')}" id="EATINGHABITS2" value="Non Veg" type="checkbox" /><i></i>Non-Vegetarian</label>
+																				<label class="checkbox"><input name="eatingHabits" th:checked="${member.preferences.eatingHabits.contains('Egg')}" id="EATINGHABITS3" value="Egg" type="checkbox" /><i></i>Eggitarian</label>
+																				<label class="checkbox"><input name="eatingHabits" th:checked="${member.preferences.eatingHabits.contains('Doesnt Matter')}" id="EATINGHABITS4" value="Doesnt Matter" type="checkbox" /><i></i>Doesn't Matter</label>
+																			</section>
+																		</div>
 																		
-																	</section>
-																</div>
-																<div class="floatright margin-bottom-20" id="actionbtn-active">	
-																	<input type="button" value="Save" class="input-save" onclick="" />
-																	<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo8&#39;,&#39;basicform8&#39;,&#39;basicmenu8&#39;,&#39;basicmenulink8&#39;);reseterror();cancelScroll(&#39;BasicInformation8&#39;);" />&nbsp;&nbsp;
-																</div>
-															</fieldset>	
+																		<div class="row">
+																			<section class="col1">
+																				<label class="label">Smoking Habits:</label>
+																			</section>
+																			<section class="inline-group">
+																				<label class="checkbox"><input name="smokingHabits" th:checked="${member.preferences.smokingHabits.contains('No')}" id="SMOKING_HABITS1" value="No" type="checkbox" checked="checked" /><i></i>Never Smoke</label>
+																				<label class="checkbox"><input name="smokingHabits"  th:checked="${member.preferences.smokingHabits.contains('Occasionally')}" id="SMOKING_HABITS2" value="Occasionally" type="checkbox" /><i></i>Smoke Occasionally</label>
+																				<label class="checkbox"><input name="smokingHabits"  th:checked="${member.preferences.smokingHabits.contains('Yes')}" id="SMOKING_HABITS3" value="Yes" type="checkbox" /><i></i>Smoke Regularly</label>
+																				<label class="checkbox"><input name="smokingHabits"  th:checked="${member.preferences.smokingHabits.contains('Doesnt Matter')}" id="SMOKING_HABITS4" value="Doesnt Matter" type="checkbox" /><i></i>Doesn't Matter</label>
+																			</section>
+																		</div>
+																		
+																		<div class="row">
+																			<section class="col1">
+																				<label class="label">Drinking Habits:</label>
+																			</section>
+																			<section class="inline-group">
+																				<label class="checkbox"><input name="drinkingHabits" th:checked="${member.preferences.drinkingHabits.contains('No')}"  id="DRINKING_HABITS1" value="No" type="checkbox" checked="checked" /><i></i>Never Drink</label>
+																				<label class="checkbox"><input name="drinkingHabits" th:checked="${member.preferences.drinkingHabits.contains('Socially')}" id="DRINKING_HABITS2" value="Socially" type="checkbox" /><i></i>Drink Socially</label>
+																				<label class="checkbox"><input name="drinkingHabits" th:checked="${member.preferences.drinkingHabits.contains('Yes')}" id="DRINKING_HABITS3" value="Yes" type="checkbox" /><i></i>Drink Regularly</label>
+																				<label class="checkbox"><input name="drinkingHabits" th:checked="${member.preferences.drinkingHabits.contains('Doesnt Matter')}" id="DRINKING_HABITS4" value="Doesnt Matter" type="checkbox" /><i></i>Doesn't Matter</label>
+																				
+																			</section>
+																		</div>
+																		<div class="floatright margin-bottom-20" id="actionbtn-active">	
+																			<input type="submit" value="Save" class="input-save" onclick="" />
+																			<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo8&#39;,&#39;basicform8&#39;,&#39;basicmenu8&#39;,&#39;basicmenulink8&#39;);reseterror();cancelScroll(&#39;BasicInformation8&#39;);" />&nbsp;&nbsp;
+																		</div>
+																	</fieldset>	
+																</form>
+
 															</div>
 														</div> 
 													</div>
@@ -2609,12 +2610,12 @@
 															 <div id="basicinfo9" style="display: block;">
 																<div class=" hdtxt" style="line-height:25px;">
 																	<fieldset>
-																		<div class="row">
+																		<div class="row">	
 																			<section class="col1">
-																				<label class="label">Highest Education:</label>
+																				<label class="label" >Highest Education:</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label" >MSc Computer Science</label>
+																				<label class="label" th:text="${member.preferences.education}" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -2622,7 +2623,7 @@
 																				<label class="label">Employed In :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Private</label>
+																			<label class="label" th:text="${member.preferences.occupationcategory}" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -2630,7 +2631,7 @@
 																				<label class="label">Occupation :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Job</label>
+																					<label class="label" th:text="${member.preferences.occupation}" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -2638,10 +2639,7 @@
 																				<label class="label">Monthly Income :</label>
 																			</section>
 																			<section class="col1 col-1">
-																				<label class="label">INR</label>
-																			</section>
-																			<section class="col1 col-8">
-																				<label class="label">2500000</label>
+																					<label class="label" th:text="${member.preferences.incomecurrency}+' '+${member.preferences.income}" ></label>
 																			</section>
 																		</div>
 																	</fieldset>
@@ -2649,7 +2647,9 @@
 															</div>
 															
 															<div id="basicform9" style="display: none;">
+															
 															<fieldset>
+															<form th:action="@{/preferencesedit}" th:object="${preferencesedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
 																<div class="row padd20">
 																	<section class="col1 ">
 																		<label class="label"> Highest Education:</label>
@@ -2657,9 +2657,9 @@
 																	<section class="col1 col-9">
 																		<label class="select">
 																			<select name="education" th:feild="*{education}" id="EDUCATION" class="form-control" >
-																				<option value="0">- Select -</option>								
+																				<option th:value="${member.preferences.education}" ><label class="label" th:text="${member.preferences.education}" ></label></option>							
 																				<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- Any Bachelors in Engineering / Computers --'>
-																				<option value='Aeronautical Engineering'>Aeronautical Engineering</option>
+																				
 																				<option value='B.Arch'>B.Arch</option>
 																				<option value='BCA'>BCA</option>
 																				<option value='BE'>BE</option>
@@ -2787,10 +2787,10 @@
 																		<label class="label">Employed In :</label>
 																	</section>
 																	<section class="inline-group">
-																		<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}"  id="OCCUPATIONCATEGORY1" value="Government" type="radio" checked="checked"/><i class="rounded-x"></i>Government</label>
-																		<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY3" value="Private" type="radio"/><i class="rounded-x"></i>Private</label>
-																		<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY4" value="Business" type="radio"/><i class="rounded-x"></i>Business</label>
-																		<label class="radio"><input name="occupationcategory" th:feild="*{occupationcategory}" id="OCCUPATIONCATEGORY2" value="Defence" type="radio"/><i class="rounded-x"></i>Defence</label>
+																		<label class="radio"><input name="occupationcategory" th:checked="${member.preferences.occupationcategory.contains('Government')}"   id="OCCUPATIONCATEGORY1" value="Government" type="radio" checked="checked"/><i class="rounded-x"></i>Government</label>
+																		<label class="radio"><input name="occupationcategory" th:checked="${member.preferences.occupationcategory.contains('Private')}" id="OCCUPATIONCATEGORY3" value="Private" type="radio"/><i class="rounded-x"></i>Private</label>
+																		<label class="radio"><input name="occupationcategory" th:checked="${member.preferences.occupationcategory.contains('Business')}" id="OCCUPATIONCATEGORY4" value="Business" type="radio"/><i class="rounded-x"></i>Business</label>
+																		<label class="radio"><input name="occupationcategory" th:checked="${member.preferences.occupationcategory.contains('Defence')}" id="OCCUPATIONCATEGORY2" value="Defence" type="radio"/><i class="rounded-x"></i>Defence</label>
 																	</section>
 																</div>
 																
@@ -2801,9 +2801,9 @@
 																	<section class="col1 col-9">
 																		<label class="select">
 																			<select name="occupation" th:feild="*{occupation}" id="OCCUPATION" class="form-control">
-																				<option value="">Please choose one.</option>
+																				<option th:value="${member.preferences.occupation}" ><label class="label" th:text="${member.preferences.occupation}" ></label></option>
 																				<optgroup class='a' label='&nbsp;&nbsp;&nbsp;&nbsp;-- ADMIN --'>
-																				<option value="Manager">Manager</option>
+																					
 																				<option value="Supervisor">Supervisor</option>
 																				<option value="Officer">Officer</option>
 																				<option value="Administrative Professional">Administrative Professional</option>
@@ -2912,7 +2912,7 @@
 																	<section class="col1 col-5">
 																		<label class="select">
 																			<select name="incomecurrency" th:feild="*{incomecurrency}" id="INCOME_CURRENCY" class="form-control" >
-																				<option selected="selected" value="">Select currency</option>
+																				<option  th:value="${member.preferences.incomecurrency}" ><label class="label" th:text="${member.preferences.incomecurrency}" ></label></option>
 																				<option value="USD">America (United States) Dollars – USD</option>
 																				<option value="AFN">Afghanistan Afghanis – AFN</option>
 																				<option value="ALL">Albania Leke – ALL</option>
@@ -3040,14 +3040,15 @@
 																	</section>
 																	<section class="col1 col-4">
 																		<label class="input">
-																			<input type="text" name="income" th:feild="*{income}" id="INCOME" placeholder="Enter Income" style="height:35px" />
+																			<input type="text" name="income"  th:value="${member.preferences.income}" id="INCOME" placeholder="Enter Income" style="height:35px" />
 																		</label>
 																	</section>
 																</div>
 																<div class="floatright margin-bottom-20" id="actionbtn-active">	
-																	<input type="button" value="Save" class="input-save" onclick="" />
+																	<input type="submit" value="Save" class="input-save" onclick="" />
 																	<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo9&#39;,&#39;basicform9&#39;,&#39;basicmenu9&#39;,&#39;basicmenulink9&#39;);reseterror();cancelScroll(&#39;BasicInformation9&#39;);" />&nbsp;&nbsp;
 																</div>
+																</form>
 															</fieldset>	
 															</div>
 														</div> 
@@ -3199,7 +3200,7 @@
 																				<label class="label">Manglik :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">No</label>
+																					<label class="label" th:text="${member.preferences.manglik}" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -3207,7 +3208,7 @@
 																				<label class="label">Gothra :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">No</label>
+																				<label class="label" th:text="${member.preferences.gothra}" ></label>
 																			</section>
 																		</div>
 																		<div class="row">
@@ -3215,7 +3216,7 @@
 																				<label class="label">Star :</label>
 																			</section>
 																			<section class="col1 col-9">
-																				<label class="label">Libra</label>
+																					<label class="label" th:text="${member.preferences.star}" ></label>
 																			</section>
 																		</div>
 																	</fieldset>
@@ -3223,101 +3224,103 @@
 															</div>
 															
 															<div id="basicform11" style="display: none;">
-																<fieldset>
-																	<label class="label">You may not believe in horoscope matching, yet we recommend that you fill in your of Astro details as a lot members would be interested in these details.</label>
-												
-																	
-																	<div class="row padd20">
-																		<section class="col1">
-																			<label class="label">Manglik :</label>
-																		</section>
-																		<section class="inline-group">
-																			<label class="radio"><input name="manglik" th:feild="*{manglik}" id="MANGLIK2" value="No" type="radio" checked="checked"/><i class="rounded-x"></i>No</label>
-																			<label class="radio"><input name="manglik" th:feild="*{manglik}" id="MANGLIK1" value="Yes" type="radio"/><i class="rounded-x"></i>Yes</label>
-																			<label class="radio"><input name="manglik" th:feild="*{manglik}" id="MANGLIK3" value="Don't know" type="radio"/><i class="rounded-x"></i>Don't Know</label>
-																		</section>
-																	</div>
-																	
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label">Gothra :</label>
-																		</section>
-																		<section class="col1 col-9">
-																			<label class="input">
-																				<input type="text" id="GOTHRA" name="gothra" th:feild="*{gothra}" placeholder="Please Enter Gothra" />
-																			</label>
-																		</section>	
-																	</div>
-																	
-																	<div class="row">
-																		<section class="col1">
-																			<label class="label">Star :</label>
-																		</section>
-																		<section class="col col-4">
-																			<label class="select">
-																				<select name="star" th:feild="*{star}" id="STAR" class="form-control" >
-																					<option value="0" selected="selected">- Please Select Star -</option>
-																					<option value="Aswini">Aswini</option>
-																					<option value="Bharani">Bharani</option>
-																					<option value="Kruthika">Kruthika</option>
-																					<option value="Rohini">Rohini</option>
-																					<option value="Mrigasira">Mrigasira</option>
-																					<option value="Arudra">Arudra</option>
-																					<option value="Punarvasu">Punarvasu</option>
-																					<option value="Pushya">Pushya</option>
-																					<option value="Asilesha">Asilesha</option>
-																					<option value="Magha">Magha</option>
-																					<option value="Poorvaphalguni">Poorvaphalguni</option>
-																					<option value="Uthiraphalguni">Uthiraphalguni</option>
-																					<option value="Hastha">Hastha</option>
-																					<option value="Chitra">Chitra</option>
-																					<option value="Swati">Swati</option>
-																					<option value="Visaka">Visaka</option>
-																					<option value="Anuradha">Anuradha</option>
-																					<option value="Jyeshta">Jyeshta</option>
-																					<option value="Mula">Mula</option>
-																					<option value="Poorvashada">Poorvashada</option>
-																					<option value="Uthrashada">Uthrashada</option>
-																					<option value="Sravan">Sravan</option>
-																					<option value="Dhanishta">Dhanishta</option>
-																					<option value="Shatataraka">Shatataraka</option>
-																					<option value="Poorvabhadra">Poorvabhadra</option>
-																					<option value="Uthirabhadra">Uthirabhadra</option>
-																					<option value="Revathi">Revathi</option>			
-																				</select>
-																				<i></i>
-																			</label>
-																		</section>	
-																		<section class="col">
-																			<label class="label">Sign:</label>
-																		</section>
-																		<section class="col1 col-4">
-																			<label class="select">
-																				<select name="raasi" th:feild="*{raasi}" id="RAASI" class="form-control" >
-																					<option selected="selected" value="">Select Raasi</option>
-																					<option value="Mesha (Aries)">Mesha (Aries)</option>
-																					<option value="Vrishabha (Taurus)">Vrishabha (Taurus)</option>
-																					<option value="Mithun (Gemini)">Mithun (Gemini)</option>
-																					<option value="Karka (Cancer)">Karka (Cancer)</option>
-																					<option value="Simha / Sinh (Leo)">Simha / Sinh (Leo)</option>
-																					<option value="Kanya (Vigro)">Kanya (Vigro)</option>
-																					<option value="Tula (Libra)">Tula (Libra)</option>
-																					<option value="Vruschika (Scorpius)">Vruschika (Scorpius)</option>
-																					<option value="Dhanu (Sagittarius)">Dhanu (Sagittarius)</option>
-																					<option value="Makar (Capricorn)">Makar (Capricorn)</option>
-																					<option value="Kumbha (Aquarius)">Kumbha (Aquarius)</option>
-																					<option value="Meena (Pisces)">Meena (Pisces)</option>
-																				</select>	
-																				<i></i>
-																			</label>
-																		</section>
-																	</div>
-																	
-																	<div class="floatright margin-bottom-20" id="actionbtn-active">	
-																		<input type="button" value="Save" class="input-save" onclick="" />
-																		<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo11&#39;,&#39;basicform11&#39;,&#39;basicmenu11&#39;,&#39;basicmenulink11&#39;);reseterror();cancelScroll(&#39;BasicInformation11&#39;);" />&nbsp;&nbsp;
-																	</div>
-																</fieldset>	
+																<form th:action="@{/preferencesedit}" th:object="${preferencesedit}" enctype="multipart/form-data" id="sky-form" class="sky-form" method="post">
+																	<fieldset>
+																		<label class="label">You may not believe in horoscope matching, yet we recommend that you fill in your of Astro details as a lot members would be interested in these details.</label>
+													
+																		
+																		<div class="row padd20">
+																			<section class="col1">
+																				<label class="label">Manglik :</label>
+																			</section>
+																			<section class="inline-group">
+																				<label class="radio"><input name="manglik" th:checked="${member.preferences.manglik.contains('No')}"  id="MANGLIK2" value="No" type="radio" checked="checked"/><i class="rounded-x"></i>No</label>
+																				<label class="radio"><input name="manglik" th:checked="${member.preferences.manglik.contains('Yes')}" id="MANGLIK1" value="Yes" type="radio"/><i class="rounded-x"></i>Yes</label>
+																				<label class="radio"><input name="manglik" th:checked="${member.preferences.manglik.contains('Dont know')}" id="MANGLIK3" value="Dont know" type="radio"/><i class="rounded-x"></i>Don't Know</label>
+																			</section>
+																		</div>
+																		
+																		<div class="row">
+																			<section class="col1">
+																				<label class="label">Gothra :</label>
+																			</section>
+																			<section class="col1 col-9">
+																				<label class="input">
+																					<input type="text" id="GOTHRA" name="gothra" th:value="${member.preferences.gothra}"  placeholder="Please Enter Gothra" />
+																				</label>
+																			</section>	
+																		</div>
+																		
+																		<div class="row">
+																			<section class="col1">
+																				<label class="label">Star :</label>
+																			</section>
+																			<section class="col col-4">
+																				<label class="select">
+																					<select name="star" th:feild="*{star}" id="STAR" class="form-control" >
+																						<option th:value="${member.preferences.star}" selected="selected">	<label class="label" th:text="${member.preferences.star}" ></label></option>
+																						<option value="Aswini">Aswini</option>
+																						<option value="Bharani">Bharani</option>
+																						<option value="Kruthika">Kruthika</option>
+																						<option value="Rohini">Rohini</option>
+																						<option value="Mrigasira">Mrigasira</option>
+																						<option value="Arudra">Arudra</option>
+																						<option value="Punarvasu">Punarvasu</option>
+																						<option value="Pushya">Pushya</option>
+																						<option value="Asilesha">Asilesha</option>
+																						<option value="Magha">Magha</option>
+																						<option value="Poorvaphalguni">Poorvaphalguni</option>
+																						<option value="Uthiraphalguni">Uthiraphalguni</option>
+																						<option value="Hastha">Hastha</option>
+																						<option value="Chitra">Chitra</option>
+																						<option value="Swati">Swati</option>
+																						<option value="Visaka">Visaka</option>
+																						<option value="Anuradha">Anuradha</option>
+																						<option value="Jyeshta">Jyeshta</option>
+																						<option value="Mula">Mula</option>
+																						<option value="Poorvashada">Poorvashada</option>
+																						<option value="Uthrashada">Uthrashada</option>
+																						<option value="Sravan">Sravan</option>
+																						<option value="Dhanishta">Dhanishta</option>
+																						<option value="Shatataraka">Shatataraka</option>
+																						<option value="Poorvabhadra">Poorvabhadra</option>
+																						<option value="Uthirabhadra">Uthirabhadra</option>
+																						<option value="Revathi">Revathi</option>			
+																					</select>
+																					<i></i>
+																				</label>
+																			</section>	
+																			<section class="col">
+																				<label class="label">Sign:</label>
+																			</section>
+																			<section class="col1 col-4">
+																				<label class="select">
+																					<select name="raasi" th:feild="*{raasi}" id="RAASI" class="form-control" >
+																						<option selected="selected" value="">Select Raasi</option>
+																						<option value="Mesha (Aries)">Mesha (Aries)</option>
+																						<option value="Vrishabha (Taurus)">Vrishabha (Taurus)</option>
+																						<option value="Mithun (Gemini)">Mithun (Gemini)</option>
+																						<option value="Karka (Cancer)">Karka (Cancer)</option>
+																						<option value="Simha / Sinh (Leo)">Simha / Sinh (Leo)</option>
+																						<option value="Kanya (Vigro)">Kanya (Vigro)</option>
+																						<option value="Tula (Libra)">Tula (Libra)</option>
+																						<option value="Vruschika (Scorpius)">Vruschika (Scorpius)</option>
+																						<option value="Dhanu (Sagittarius)">Dhanu (Sagittarius)</option>
+																						<option value="Makar (Capricorn)">Makar (Capricorn)</option>
+																						<option value="Kumbha (Aquarius)">Kumbha (Aquarius)</option>
+																						<option value="Meena (Pisces)">Meena (Pisces)</option>
+																					</select>	
+																					<i></i>
+																				</label>
+																			</section>
+																		</div>
+																		
+																		<div class="floatright margin-bottom-20" id="actionbtn-active">	
+																			<input type="submit" value="Save" class="input-save" onclick="" />
+																			<input type="reset" class="input-1-style" value="Cancel" onclick="fnHideForm(&#39;basicinfo11&#39;,&#39;basicform11&#39;,&#39;basicmenu11&#39;,&#39;basicmenulink11&#39;);reseterror();cancelScroll(&#39;BasicInformation11&#39;);" />&nbsp;&nbsp;
+																		</div>
+																	</fieldset>	
+																</form>
 															</div>
 														</div> 
 													</div>
