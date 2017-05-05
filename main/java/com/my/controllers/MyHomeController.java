@@ -21,15 +21,22 @@ import com.my.model.Visit;
 import com.my.service.MemberService;
 import com.my.service.PhotoService;
 import com.my.service.VisitWatcherService;
+
+
+import com.my.service.PhotoService;
+
 @Controller
 public class MyHomeController {
-	
+
+
+
 	@Autowired 	
 	VisitWatcherService visitWatcherService; 
 	
 	@Autowired
 	MemberService memberService;
 	
+
 	@Autowired
 	private PhotoService photoService;
 	
@@ -40,6 +47,7 @@ public class MyHomeController {
 			model.addAttribute("member", member);
 			
 			Photo profilePhoto = photoService.getProfilePhoto(Long.parseLong(userId));
+
 			if(profilePhoto!=null){
 				model.addAttribute("profilePhoto", profilePhoto.getFileName());
 			}else{
@@ -60,7 +68,7 @@ public class MyHomeController {
 			List<Member> visitors = memberService.getByMemberIds(visitorIds);
 			model.addAttribute("vistors", visitors);
 			model.addAttribute("visitMap",visitMap);
-			
+
 		return "myhome";
 		
 	}

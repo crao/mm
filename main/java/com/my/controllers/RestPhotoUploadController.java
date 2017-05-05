@@ -40,7 +40,7 @@ public class RestPhotoUploadController {
     private PhotoService photoService; 
 
     //Single file upload
-    @PostMapping("/photo/upload")
+    @PostMapping("/photo1/upload")
     // If not @RestController, uncomment this
     //@ResponseBody
     public ResponseEntity<?> uploadFile(

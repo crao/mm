@@ -1,11 +1,5 @@
 package com.my.controllers;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +19,6 @@ import com.my.model.Member;
 import com.my.model.PersonalDetails;
 import com.my.model.Photo;
 import com.my.model.Preferences;
-import com.my.model.Visit;
 import com.my.service.MemberService;
 import com.my.service.PersonalDetailsService;
 import com.my.service.PhotoService;
@@ -48,10 +41,12 @@ public class LoginController {
 	@Autowired
 	private PhotoService photoService;
 	
+
 	@Autowired 	
 	VisitWatcherService visitWatcherService; 
 	
 	
+
 		
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String home(Model model) {
@@ -82,9 +77,7 @@ public class LoginController {
 				Preferences preferences = preferencesService.getPreferencesByMember(member);
 				if(password.equals(member.getPassword())){
 					httpSession.setAttribute("member", member);
-					model.addAttribute("member", member);
-					
-					
+					model.addAttribute("member", member);					
 					
 					Photo profilePhoto = photoService.getProfilePhoto(member.getmemberId());
 					if(profilePhoto!=null){

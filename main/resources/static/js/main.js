@@ -57,7 +57,7 @@ function fire_ajax_submit() {
     });
 }
     
-    $("slist").click(function() {
+ /*   $("slist").click(function() {
     	alert("In jquery 2");
 	})
     
@@ -138,5 +138,5 @@ $('a[title=sl]').click(function (event){
 
             }
         });
-    }
+    }*/
 

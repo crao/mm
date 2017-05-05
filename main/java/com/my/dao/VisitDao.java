@@ -24,5 +24,7 @@ public interface VisitDao extends CrudRepository<Visit, Long>{
 	
 	@Query(value="select v.visitor from Visit v where v.memId= :memId")
 	public List<Long> findVisitorByMemId(@Param("memId") long memId);
+	
+	public List<Visit> findByMemId(long memId);
 
 }

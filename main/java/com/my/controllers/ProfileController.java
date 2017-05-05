@@ -62,7 +62,7 @@ public class ProfileController {
 		
 		//model.addAttribute("personalDetails",session.getAttribute("personalDetails"));
 		//model.addAttribute("preferences", session.getAttribute("preferences"));
-		return "profile";
+		return "profileView";
 	}
 	
 	
