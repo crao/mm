@@ -39,7 +39,6 @@ public class PhotoManagerController {
 			return "photoAlbum";
 	}
 
-	
 
 	@RequestMapping(value = "/myPhotos", method = RequestMethod.POST)
 	public String show(@RequestParam(value = "userId", required = true) long userId,

@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.my.model.Member;
+import com.my.model.Photo;
 import com.my.model.ShortList;
 import com.my.service.MemberService;
+import com.my.service.PhotoService;
 import com.my.service.ShortListService;
 
 @Controller
@@ -30,6 +32,9 @@ public class RestShortListController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private PhotoService photoService;
 	
 	@GetMapping("/shortList")
 	public ResponseEntity<?> shortList(@RequestParam(value = "slId", required = false) String slId,
@@ -64,6 +69,8 @@ public class RestShortListController {
 		  List<Member> shortListedMembers = memberService.getByMemberIds(shortList);
 		  model.addAttribute("shortListedMembers", shortListedMembers);
 		  session.setAttribute("shortlistCount", shortListedMembers.size());
+		  
+		 
 		  return "viewShortList";
 	}
 

@@ -42,6 +42,7 @@
 	<link rel="stylesheet" type="text/css" href="sliderengine/amazingslider-1.css"></link>
     <script src="sliderengine/amazingslider.js"></script>
     <script src="sliderengine/initslider-1.js"></script>
+    <script type="text/javascript" th:src="@{js/main.js}"></script>
 </head>
 
 <body class="header-fixed header-fixed-space">
@@ -72,17 +73,23 @@
 						
 						<div class="call-action-v1 call-action-v1-boxed1 tag-box-v4 margin-bottom-40">
 							<div class="call-action-v1-box box-1">
-								<div class="call-action-v1-in">
-									<p><span class=" fa fa-camera-retro icon-lock1"></span> <em> &nbsp;Upload your Profile Photo </em></p>
-								</div>
-								<div class="call-action-v1-in inner-btn page-scroll">
-									<input for="file-upload" class="btn-u btn-u-block" type="submit" value="Upload" />
-									<input id="file-upload" type="file" style="display:none"/>
+								<form method="POST" enctype="multipart/form-data" id="fileUploadForm" class="sky-form noborder">
+									<fieldset>
+										<h4>Upload Photos</h4>	
+										<section class="col col-11">				
+											<label for="file" class="input input-file">
+												<div class="button"><input type="file"  name="file" multiple="multiple" onchange="this.parentNode.nextSibling.value = this.value" />Browse</div><input style="height:39px" type="text" placeholder="Include some file" readonly="readonly" />
+											</label>
+										</section>	
+										<section class="col col-1">
+											<input type="submit" class="btn-u" style="margin-top:3px" value="Submit" id="btnSubmit"/>
+										</section>
+									</fieldset>
 									<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
 								 	<input type="hidden" name="userId" th:value="${#httpServletRequest.getParameter('userId')}"/>
 								 	<input type="hidden" name="main" th:value="${#httpServletRequest.getParameter('main')}"/>
-									
-								</div>
+								</form>
+								<span style="margin-left:40px; color:#72c02c" id="result"></span>
 							</div>
 						</div>
 						
@@ -103,7 +110,6 @@
 									
 									<div class="fleft box-style" style="margin-left:25px;">
 										<div class="box-style1">
-											
 											<div class="txt-center"><img alt="" border="0" /></div>
 											<div class="txt-center paddt5 mediumtxt1"><a th:href="@{/photoUpload?main=false}">Add photo</a></div>
 											<div class="txt-center paddt5 mediumtxt1"><a th:href="@{/photoUpload?main=true}">Add profile photo</a></div>

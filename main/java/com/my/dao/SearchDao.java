@@ -22,7 +22,10 @@ import com.my.binding.SearchBinding;
 import com.my.constants.Constants;
 import com.my.model.Member;
 import com.my.model.PersonalDetails;
+import com.my.model.Photo;
 import com.my.model.Result;
+import com.my.model.ShortList;
+import com.my.model.Visit;
 
 @Repository
 public class SearchDao {
@@ -40,21 +43,35 @@ public class SearchDao {
 		
 		 CriteriaBuilder cb = em.getCriteriaBuilder();		 
 		 CriteriaQuery<Member> q = cb.createQuery(Member.class);
-		 Root<Member> m = q.from(Member.class);
-		 Join<Member, PersonalDetails> pds = m.join("personalDetails");
+		 Root<Member> m = q.from(Member.class);		
 		 ParameterExpression<String> gender = cb.parameter(String.class);
 		 ParameterExpression<Integer> age = cb.parameter(Integer.class);
 		 
-		 q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),
-				 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
-				 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight())
-				 );
-		 
-		 TypedQuery<Member> tq = em.createQuery(q);
-		 
-		 
-		List<Member> results = em.createQuery(q).getResultList();
-		return results;
+		 if(searchBinding.getShowProfileCondition1()==null || searchBinding.getShowProfileCondition2()==null)
+			{
+			 
+			 Join<Member, PersonalDetails> pds = m.join("personalDetails");		
+			 q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),
+					 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),
+					 cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
+					 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight())
+					 );
+		
+		    }
+		 else if(searchBinding.getShowProfileCondition1().contains("With  Photo"))
+		   {
+			   Join<Member, PersonalDetails> pds = m.join("personalDetails");
+			    Join<PersonalDetails, Photo> pho = m.join("photos");
+			    q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),
+					 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),
+					 cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
+					 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight()));
+			 
+		  }		 
+		
+		 TypedQuery<Member> tq = em.createQuery(q);		 
+		 List<Member> results = em.createQuery(q).getResultList();
+		 return results;
 		
 	}
 	
