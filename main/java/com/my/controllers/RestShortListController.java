@@ -3,7 +3,9 @@ package com.my.controllers;
 import static org.mockito.Matchers.longThat;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -48,6 +50,7 @@ public class RestShortListController {
 		
 		Long s = shortListService.findShortListBySlIdAndMemId(slid, userid);
 		
+		
 		if(s == null){
 		
 			ShortList shortList = new ShortList();
@@ -56,6 +59,7 @@ public class RestShortListController {
 			shortList.setShortListedOn(new Date()); 
 		
 			shortListService.save(shortList);
+			
 		}
 		
 		return new ResponseEntity("Successfully shortlisted" + slid + " by " + userid, new HttpHeaders(), HttpStatus.OK);
@@ -70,6 +74,14 @@ public class RestShortListController {
 		  model.addAttribute("shortListedMembers", shortListedMembers);
 		  session.setAttribute("shortlistCount", shortListedMembers.size());
 		  
+		  Map<String,String> photoMap = new HashMap<String,String>();
+		  for(Long memId:shortList){
+			  Photo memProfilePhoto = photoService.getProfilePhoto(memId);
+			  if(memProfilePhoto!=null){
+				  photoMap.put(memId.toString(), memProfilePhoto.getFileName());
+			  }
+		  }
+		  model.addAttribute("photoMap", photoMap);
 		 
 		  return "viewShortList";
 	}
