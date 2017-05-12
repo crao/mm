@@ -7,7 +7,23 @@ public class SearchBinding {
 	private int fromHeight;
 	private int toHeight;
 	private String maritalStatus;
-
+	private String showProfileCondition1;
+	private String showProfileCondition2;
+	
+	
+	
+	public String getShowProfileCondition2() {
+		return showProfileCondition2;
+	}
+	public void setShowProfileCondition2(String showProfileCondition2) {
+		this.showProfileCondition2 = showProfileCondition2;
+	}
+	public String getShowProfileCondition1() {
+		return showProfileCondition1;
+	}
+	public void setShowProfileCondition1(String showProfileCondition1) {
+		this.showProfileCondition1 = showProfileCondition1;
+	}
 	public int getFromAge() {
 		return fromAge;
 	}

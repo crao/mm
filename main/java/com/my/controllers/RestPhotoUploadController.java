@@ -43,7 +43,7 @@ public class RestPhotoUploadController {
     @PostMapping("/photo1/upload")
     // If not @RestController, uncomment this
     //@ResponseBody
-    public ResponseEntity<?> uploadFile(
+    public String uploadFile(
             @RequestParam("file") MultipartFile uploadfile,
             HttpSession httpSession) {
 
@@ -51,7 +51,7 @@ public class RestPhotoUploadController {
         logger.debug("Single file upload!");
 
         if (uploadfile.isEmpty()) {
-            return new ResponseEntity("please select a file!", HttpStatus.OK);
+            return "error";
         }
 
         try {
@@ -59,11 +59,10 @@ public class RestPhotoUploadController {
             saveUploadedFiles(Arrays.asList(uploadfile),userId);
 
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return "error";
         }
 
-        return new ResponseEntity("Successfully uploaded - " +
-                uploadfile.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
+        return "redirect:/myPhotos?userId=" + userId;
 
     }
 

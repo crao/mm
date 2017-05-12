@@ -35,6 +35,7 @@
 
 	<!-- CSS Customization -->
 
+
 	<!-- JS -->
 
 	<link rel="stylesheet" href="css/custom.css"></link>
@@ -140,10 +141,10 @@
 													<label class="label">Show Profile :</label>
 												</section>
 												<section class="inline-group">
-													<label class="checkbox"><input type="checkbox"  name="showProfile" th:feild="*{showProfile}" checked="checked"/><i></i>With Photo</label>
-													<label class="checkbox"><input type="checkbox"  name="showProfile" th:feild="*{showProfile}"/><i></i>With Horoscope</label>
-													<label class="checkbox"><input type="checkbox"  name="showProfile" th:feild="*{showProfile}"/><i></i>Online Right Now</label>
-													<label class="checkbox"><input type="checkbox"  name="showProfile" th:feild="*{showProfile}"/><i></i>Premium Members</label>
+													<label class="checkbox"><input type="checkbox"  name="showProfileCondition1" th:feild="*{showProfileCondition1}" value="With Photo"/><i></i>With Photo</label>
+													<label class="checkbox"><input type="checkbox"  name="showProfileCondition1" th:feild="*{howProfileCondition1}" value= "With Horoscope" /><i></i>With Horoscope</label>
+													<label class="checkbox"><input type="checkbox"  name="showProfileCondition1" th:feild="*{howProfileCondition1}"   value= "Online Right Now"  /><i></i>Online Right Now</label>
+													<label class="checkbox"><input type="checkbox"  name="showProfileCondition1" th:feild="*{howProfileCondition1}"    value= "Premium Members"  /><i></i>Premium Members</label>
 												</section>
 											</div>
 											
@@ -152,10 +153,10 @@
 													<label class="label">Don't Show :</label>
 												</section>
 												<section class="inline-group">
-													<label class="checkbox"><input type="checkbox" name="dontShow" th:feild="*{dontShow}" checked="checked"/><i></i>Ignored Profile</label>
-													<label class="checkbox"><input type="checkbox" name="dontShow" th:feild="*{dontShow}"/><i></i>Profile Already Contacted</label>
-													<label class="checkbox"><input type="checkbox" name="dontShow" th:feild="*{dontShow}"/><i></i>Viewed Profiles</label>
-													<label class="checkbox"><input type="checkbox" name="dontShow" th:feild="*{dontShow}"/><i></i>Shortlisted Profiles</label>
+													<label class="checkbox"><input type="checkbox" name="showProfileCondition2" th:feild="*{showProfileCondition2}" value= "Ignored Profile"  /><i></i>Ignored Profile</label>
+													<label class="checkbox"><input type="checkbox" name="showProfileCondition2" th:feild="*{showProfileCondition2}"  value= "Profile Already Contacted"  /><i></i>Profile Already Contacted</label>
+													<label class="checkbox"><input type="checkbox" name="showProfileCondition2" th:feild="*{showProfileCondition2}"  value= "Viewed Profiles"   /><i></i>Viewed Profiles</label>
+													<label class="checkbox"><input type="checkbox" name="showProfileCondition2" th:feild="*{showProfileCondition2}" value= "Shortlisted Profiles"   /><i></i>Shortlisted Profiles</label>
 												</section>
 											</div>
 											
@@ -193,11 +194,12 @@
 								<!-- End Checkout-Form -->
 								</div>
 								<div class="tab-pane fade in " id="advanceSearch">
-									<form  class="sky-form" enctype="multipart/form-data" id="testform" method="post" >
-										<header>Regular Search</header>
+									<form  th:action="@{/search}" th:object="${search}" class="sky-form" enctype="multipart/form-data" id="testform" method="post" >
+										<header>Advanced Search</header>
 										<fieldset>
 											<div th:replace="common :: MinMaxAge"></div>
-											<div class="row">
+												
+		<div class="row">
 												<section class="col1">
 													<label class="label"> Height:</label>
 												</section>
@@ -463,6 +465,7 @@
 													</label>
 												</section>
 											</div>
+	
 											
 											<div class="row">
 												<section class="col1">

@@ -45,7 +45,7 @@ public class PhotoUploadController {
 	public String init(@RequestParam(value="albumId",required=false) String albumId){
 		return "uploadPhoto";
 	}
-	
+
 	
 	@RequestMapping(value = "/photoUpload", method = RequestMethod.POST)
 	public String photoUploadHandler(@RequestParam("name") String name, @RequestParam("albumId") Long albumId,
@@ -79,21 +79,13 @@ public class PhotoUploadController {
 		} else {
 			return "You failed to upload " + name
 					+ " because the file was empty.";
-		}
-		
-	
+		}	
 	}
-	
-	
-	
-    
 
 
     //Single file upload
     @PostMapping("/photo/upload")
-    // If not @RestController, uncomment this
-    //@ResponseBody
-    public ResponseEntity<?> uploadFile(
+    public String uploadFile(
             @RequestParam("file") MultipartFile uploadfile,@RequestParam("userId") String userId,@RequestParam("main") String main,
             HttpSession httpSession) {
 
@@ -102,7 +94,7 @@ public class PhotoUploadController {
     
 
         if (uploadfile.isEmpty()) {
-            return new ResponseEntity("please select a file!", HttpStatus.OK);
+            return "error";
         }
 
         try {
@@ -113,15 +105,13 @@ public class PhotoUploadController {
             memberService.save(member);
 
         } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return "error";
         } catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return "error";
 		}
 
-        return new ResponseEntity("Successfully uploaded - " +
-                uploadfile.getOriginalFilename(), new HttpHeaders(), HttpStatus.OK);
+        return "redirect:/myPhotos?userId=" + userId;
 
     }
     

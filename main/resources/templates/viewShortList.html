@@ -79,10 +79,19 @@
 							</div>
 							<div class="row">
 								<div class="col-md-3 txt-center">									
-									<img th:src="@{img/user.jpg}"   class="img-responsive md-margin-bottom-10" 
+									<!-- <img th:src="@{img/user.jpg}"   class="img-responsive md-margin-bottom-10" 
 										th:if="${member.gender=='M'}"></img>											
 									<img th:src="@{img/place_holder.png}"   class="img-responsive md-margin-bottom-10" 
-										th:if="${member.gender=='F'}"></img>
+										th:if="${member.gender=='F'}"></img> -->				
+										<img th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"
+										th:if="${#strings.isEmpty(profilePhoto) and member.gender=='M'}"></img>
+										
+										<img th:src="@{img/place_holder.png}"   class="img-responsive" width="220" height="180"
+										th:if="${#strings.isEmpty(profilePhoto) and member.gender=='F'}"></img>
+										
+										<img th:src="@{'/photo/' + ${session.userId} +'/' +${profilePhoto}}"   class="img-responsive" width="220" height="180"
+										th:if="${not #strings.isEmpty(profilePhoto)}"></img>
+										
 									<span>Last Login : READ last login  FROM DB </span><br/>
 									<span><a th:href="@{/profileView(userId=${session.userId})}" target="_blank">Leave Offline Message</a></span>
 								</div>
