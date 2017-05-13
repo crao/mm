@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -102,6 +103,10 @@ public class PhotoUploadController {
             List<Photo> photos = saveUploadedFiles(Arrays.asList(uploadfile),userid,main);
             Member member = (Member) httpSession.getAttribute("member");
             member.setPhotos(photos);
+            if(Boolean.valueOf(main)){
+            	//member.setProfilePic(uploadfile.getOriginalFilename());
+            }
+            member.setUpdatedOn(new Date());
             memberService.save(member);
 
         } catch (IOException e) {

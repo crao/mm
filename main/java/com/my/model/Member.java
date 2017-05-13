@@ -45,7 +45,7 @@ public class Member {
 	private String country;
 	private String mobile;
 	private int countryCode;
-	private boolean profilePic;
+	private String profilePic;
 	private Date createdOn;
 	private Date updatedOn;
 	private Date lastOnline;
@@ -235,13 +235,6 @@ public class Member {
 		this.photos = photos;
 	}
 
-	public boolean isProfilePic() {
-		return profilePic;
-	}
-
-	public void setProfilePic(boolean profilePic) {
-		this.profilePic = profilePic;
-	}
 
 	public Date getCreatedOn() {
 		return createdOn;
@@ -286,6 +279,16 @@ public class Member {
 	public void setLifestyle(Lifestyle lifestyle) {
 		this.lifestyle = lifestyle;
 	}
+	
+	public String getProfilePic() {
+		return profilePic;
+	}
 
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
+
+	
 	
 }
