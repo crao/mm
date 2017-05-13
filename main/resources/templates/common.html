@@ -285,7 +285,8 @@
 				<div class="col-md-12">
 					<a class="btn-u btn-u-sm a1 floatright" th:href="@{/sendinterest(fromMemId=${session.userId},toMemId=${member.memberId})}">Send Interest</a>
 					<a class="btn-u btn-u-sm a1 floatright" style="right:10px" th:href="@{/shortList(userId=${session.userId}, slId=${member.memberId})}">Short List</a>
-					<button class="btn-u btn-u-sm a1 floatright" style="right:20px" data-toggle="modal" data-target="#myModal" th:onclick="'javascript:setValuesInModal(\'' + ${member.firstName}+ ' ' + ${member.lastName}+ ' ('+${member.memberId} + ')' + '\');'">Send Message</button>
+<!-- 					<button class="btn-u btn-u-sm a1 floatright" style="right:20px" data-toggle="modal" data-target="#myModal" th:onclick="'javascript:setValuesInModal(\'' + ${member.firstName}+ ' ' + ${member.lastName}+ ' ('+${member.memberId} + ')' + '\');'">Send Message</button> -->
+						<button class="btn-u btn-u-sm a1 floatright" style="right:20px" data-toggle="modal" data-target="#myModal" th:onclick="'javascript:setValuesInModal(\'' + ${member.firstName}+' ' + ${member.lastName}+'\',\''+${member.memberId} +'\');'">Send Message</button>				
 					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 						<div class="modal-dialog margin-100" >
 							<div class="modal-content">

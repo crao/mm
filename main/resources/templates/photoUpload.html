@@ -55,7 +55,7 @@
 			<div class="container">
 				<h1 class="pull-left">Photo Upload</h1>
 				<ul class="pull-right breadcrumb">
-					<li><a th:href="@{/myhome?userId=+${session.userId}}">Home </a></li>
+					<li><a th:href="@{/myhome(userId=${session.userId})}">Home </a></li>
 					<li><a th:href="@{/profile}">Profile </a></li>
 					<li class="active">Photo Upload</li>
 				</ul>

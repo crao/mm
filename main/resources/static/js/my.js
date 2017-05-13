@@ -31,8 +31,9 @@
 			return res;
 			}
 		
-		function setValuesInModal(str)
+		function setValuesInModal(str,memId)
 		{ 	
+			
 			document.getElementById("mname").innerText = str
 		
 
