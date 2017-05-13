@@ -2,6 +2,7 @@ package com.my.service;
 
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,12 @@ public class MemberService {
 	public Member getMemberById(long id){
 		return memberDao.findByMemberId(id);
 	}
-
+	
+	public List<Member> getByMemberIds(List<Long> ids){
+		return memberDao.findByMemberIdIn(ids);
+	}
+	public List<Long> findMember() {
+		// TODO Auto-generated method stub
+		return memberDao.findMemberByMemId();
+	}
 }

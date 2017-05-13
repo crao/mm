@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+	<title>Profile - Maratha Matrimony Match</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+
+
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/style.css"></link>
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="css/header-v6.css"></link>
+	<link rel="stylesheet" href="css/footer-v1.css"></link>
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="plugins/animate.css"></link>
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css"></link>
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" href="css/sky-forms.css"></link>
+	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
+	
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="css/profile.css"></link>
+	<link rel="stylesheet" href="plugins/scrollbar/css/jquery.mCustomScrollbar.css"></link>
+	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
+	<link rel="stylesheet" href="css/dark.css"></link>
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="css/custom.css"></link>
+	
+	<!--Caseroul-->
+	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
+
+	<script type="text/javascript" src="js/my.js"></script>
+	
+</head>
+
+<body class="header-fixed header-fixed-space">
+	<div class="wrapper">
+		<!--=== Header v6 ===-->
+		<div th:replace="common :: topNav"></div>
+		<!--=== End Header v6 ===-->
+		
+		<div class="breadcrumbs">
+			<div class="container">
+				<h1 class="pull-left">Who Shortlisted My Profile</h1>
+				<ul class="pull-right breadcrumb">
+					<li><a th:href="@{'myhome?userId='+ ${session.userId}}">My Home</a></li>
+					<li class="active">Member Shortlisted Me</li>
+				</ul>
+			</div>
+		</div>
+		
+		<!--=== Content ===-->
+		<div class="content-md">
+			<div class="container content profile">
+				
+				<div class="row">
+					<div th:replace="common :: sideNav"></div>
+					<div class="col-md-9 " id="sky-form">
+						<div class="bg-light" th:each="member : ${whoShortListedMembers}">
+							<div class="row">
+								<div class="col-md-12">
+									<label class="label label-font" th:text="${member.firstName}+ ' ' + ${member.lastName}"></label>
+								</div>
+								<div class="col-md-12 sky-form noborder">
+									<label class="label"> <label th:text="${member.memberId}"></label> | Profile Created for <label th:text="${member.profileFor}"></label> | Viewed On : <label th:if="${member.memberId=='F'}"></label></label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3 txt-center">									
+									<img th:src="@{img/user.jpg}"   class="img-responsive md-margin-bottom-10" 
+										th:if="${member.gender=='M'}"></img>											
+									<img th:src="@{img/place_holder.png}"   class="img-responsive md-margin-bottom-10" 
+										th:if="${member.gender=='F'}"></img>
+									<span>Last Login : READ last login  FROM DB </span><br/>
+									<span><a href="profile-view.html" target="_blank">Leave Offline Message</a></span>
+								</div>
+								<div class="col-md-3">
+									<div class="col-md-12">
+									<a href="profile-view.html" target="_blank" class="send-interest"><i class="icon-custom rounded-x icon-color-orange fa fa-mobile floatright" title="View Mobile / Send SMS "></i></a>
+									</div>
+									<div class="col-md-12 sky-form padding top-margin-10">
+									<span > <b>"READ  FROM DB ... <a href="profile-view.html">More</a>"</b></span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>Age:</b>
+										</div>
+										<div class="col-md-9">
+											<span th:text="${member.age} + ' years'"></span>	
+										</div>
+									</div>
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>Height:</b>
+										</div>
+										<div class="col-md-9">
+											<script th:inline="javascript">							
+											 /*<![CDATA[*/							 
+												 document.write(cmsToFt(/*[[${member.personalDetails.height} ]]*/))
+												  /*]]>*/ 
+											</script>
+										</div>
+									</div>
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>B.Time/Place:</b>
+										</div>
+										<div class="col-md-9">
+											<span th:text="${member.personalDetails.birthTime} + ' / ' + ${member.personalDetails.birthPlace}"> </span>
+										</div>
+									</div>
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>Gothra:</b>
+										</div>
+										<div class="col-md-9">
+											<span th:text="${member.personalDetails.gothra}"> </span>
+										</div>
+									</div>
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>Star:</b>
+										</div>
+										<div class="col-md-9">
+											<span th:text="${member.personalDetails.starSign}"> </span>
+										</div>
+									</div>
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>Location:</b>
+										</div>
+										<div class="col-md-9">
+											<span th:text=" ${member.personalDetails.residingcity} + ', ' + ${member.personalDetails.residingstate}  + ', ' + ${member.personalDetails.country} "> </span>
+										</div>
+									</div>
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>Education:</b>
+										</div>
+										<div class="col-md-9">
+											<span th:text="${member.personalDetails.education}"></span>
+										</div>
+									</div>
+									
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>Profession:</b>
+										</div>
+										<div class="col-md-9">
+											<span th:text="${member.personalDetails.occupation}"></span>
+										</div>
+									</div>
+									<div class="row margin-bottom-5">
+										<div class="col-md-3">
+											<b>Income:</b>
+										</div>
+										<div class="col-md-9">
+											<span th:text="${member.personalDetails.incomecurrency} + ' ' + ${member.personalDetails.income}"></span>
+										</div>
+									</div>
+									<div class="row margin-bottom-5">
+										<div class="col-md-12">
+											<a href="profile-view.html">View Full Profile</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="margin-15"/>
+							<div class="row">
+								<div class="col-md-12 sky-form noborder">
+									<label class="label floatright" >
+										<label th:if="${member.gender=='M'}">He</label>
+										<label th:if="${member.gender=='F'}">She</label>
+										 Has viewed your phone number. Are you interested in 
+										<label th:if="${member.gender=='M'}">his</label>
+										<label th:if="${member.gender=='F'}">her</label> profile?
+									</label>
+								</div>
+								<div class="col-md-12">
+									<button class="btn-u btn-u-sm a1" style="left:20px; top:3px" data-toggle="modal" data-target="#myModal" th:onclick="'javascript:setValuesInModal(\'' + ${member.firstName}+ ' ' + ${member.lastName}+ ' ('+${member.memberId} + ')' + '\');'">Send Message</button>
+										
+									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+										<div class="modal-dialog margin-100" >
+											<div class="modal-content">
+												<div class="modal-header">
+													<button aria-hidden="true" data-dismiss="modal" class="close" type="button">x</button>
+													<h4 id="myModalLabel1" class="modal-title"><img class="rounded-x round-img1 img-bordered" src="img/user.jpg" alt=""/> &nbsp;<span id="mname"></span></h4>	
+												</div>
+												<div class="modal-body sky-form">
+													<fieldset>
+														<label class="label">Write Your Message Here</label>
+														<label class="textarea">
+															<textarea class="form-control" ></textarea>
+														</label>
+														<label class="label">Limit: 450 charecters</label>
+														
+													</fieldset>
+												</div>
+												<div class="modal-footer">
+													<button class="btn-u" type="button">Send</button>
+													<button data-dismiss="modal" class="btn-u btn-u-default" type="button">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="btn-group" style="float:right; right: 30px; top:3px">
+										<button type="button" class="btn-u btn-u-orange btn-u-sm dropdown-toggle" data-toggle="dropdown">
+											Action
+											<i class="fa fa-angle-down"></i>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="#">Ignore</a></li>
+											<li><a href="#">Block</a></li>
+										</ul>
+									</div>
+									<a class="btn-u btn-u-sm floatright" style="right: 40px; top:3px" th:href="@{/sendinterest(fromMemId=${session.userId},toMemId=${member.memberId})}">Send Interest</a> 
+								</div>
+							</div>
+							<p></p>
+						</div>
+							
+						<div class="bg-light">
+							<div class="row">
+								<div class="col-md-6">
+									<!--<input type="checkbox" name="Hobbies"  /><button class="btn-u" style="  left:10px" type="button">Send Interest to All</button>-->	
+								</div>
+								<div class="col-md-6">
+									<ul class="pagination no-margin floatright">
+										<li><a href="#">&laquo;</a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li class="active"><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&raquo;</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					
+			</div>
+		</div>
+		<!--=== End Content ===-->
+
+		<!--=== Footer Version 1 ===-->
+		<div th:replace="common :: footer"></div>
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
+	
+	<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="plugins/smoothScroll.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
+	<!--Form Scripts-->
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="js/plugins/datepicker.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	
+	<!--Caseroul Scripts-->
+	<script type="text/javascript" src="plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			Datepicker.initDatepicker();
+			OwlCarousel.initOwlCarousel();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+  <script src="assets/plugins/html5shiv.js"></script>
+  <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+  <![endif]-->
+
+</body>
+</html>

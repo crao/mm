@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+	<title>My Home - Maratha Matrimony Match</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+
+
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/style.css"></link>
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="css/header-v6.css"></link>
+	<link rel="stylesheet" href="css/footer-v1.css"></link>
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="plugins/animate.css"></link>
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css"></link>
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" href="css/sky-forms.css"></link>
+	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
+	<link rel="stylesheet" href="css/profile.css"></link>
+	
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="plugins/scrollbar/css/jquery.mCustomScrollbar.css"></link>
+	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
+	<link rel="stylesheet" href="css/dark.css"></link>
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="css/custom.css"></link>
+	
+	<!--Caseroul-->
+	<link rel="stylesheet" href="plugins/owl-carousel/owl-carousel/owl.carousel.css"></link>
+	
+	<script type="text/javascript" src="js/my.js"></script>
+	
+	
+</head>
+
+<body class="header-fixed header-fixed-space">
+	<div class="wrapper">
+		<!--=== Header v6 ===-->
+		<div th:replace="common :: topNav"></div>
+		<!--=== End Header v6 ===-->
+		<!--=== Breadcrumbs ===-->
+		<div class="breadcrumbs">
+			<div class="container">
+				<h1 class="pull-left">My Home</h1>
+				<ul class="pull-right breadcrumb">
+					<li class="active">My Home</li>
+				</ul>
+			</div><!--/container-->
+		</div><!--/breadcrumbs-->
+		<!--=== End Breadcrumbs ===-->
+		<!--=== Content ===-->
+		<div class="content-md">
+			<div class="container content profile">
+				
+				<div class="row">
+					<div class="col-md-3">
+						<div class="row no-margin row-1-style1">
+							<div class="col-md-6 no-padding">
+								<!--  <a href="photo-upload.html"><img class="img-responsive profile-img margin-bottom-10" src="img/user1.jpg" alt="" /></a>-->
+							     <a th:href="@{'myPhotos?userId='+  ${session.userId}}" >				
+										<img th:src="@{img/user.jpg}"   class="img-responsive" width="220" height="180"
+										th:if="${#strings.isEmpty(profilePhoto) and member.gender=='M'}"></img>
+										
+										<img th:src="@{img/place_holder.png}"   class="img-responsive" width="220" height="180"
+										th:if="${#strings.isEmpty(profilePhoto) and member.gender=='F'}"></img>
+										
+										<img th:src="@{'/photo/' + ${session.userId} +'/' +${profilePhoto}}"   class="img-responsive" width="220" height="180"
+										th:if="${not #strings.isEmpty(profilePhoto)}"></img>
+								</a>
+								<a th:href="@{'myPhotos?userId='+  ${session.userId}}" >Add Photo</a><br/>
+								<a th:href="@{'profile?userId='+  ${session.userId}}"><span>Edit Profile</span></a><br/>
+								<a th:href="@{'profile?userId='+  ${session.userId}}"><span>Edit Preferences</span></a>
+							</div>
+							<div class="col-md-6">
+								<h4 class="no-margin-bottom"><span th:text="${member.firstName}+ ' ' + ${member.lastName}"></span></h4>
+								<span th:text="${member.memberId}">M000001</span>
+							</div>
+						</div>	
+						<div class="row no-margin row-1-style">
+							<div class="col-md-12 no-padding">
+								<a href="#"><i class="fa fa-graduation-cap"></i>&nbsp; Upgrade Membership</a>
+							</div>
+						</div>	
+						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+							<li class="list-group-item active">
+								<a><i class="fa fa-bar-chart-o"></i>Overall</a>
+							</li>
+							<li class="list-group-item ">
+								<a th:href="@{'profile?userId='+  ${session.userId}}"><i class="fa fa-user"></i>My Profile</a>
+							</li>
+							<li class="list-group-item">
+								<a th:href="@{'myProfileView?userId='+  ${session.userId}}"><i class="fa fa-cubes"></i>Who Viewed My Profile</a>
+							</li>
+							<li class="list-group-item">
+								<a th:href="@{'whoShortListMyprofile?userId='+  ${session.userId}}"><i class="fa fa-group"></i>Who Shortlisted Me</a>
+							</li>
+							<li class="list-group-item">
+								<a href="#"><i class="fa fa-comments"></i>Profile I have Ignored</a>
+							</li>
+							<li class="list-group-item">
+								<a th:href="@{'viewShortList?userId='+  ${session.userId}}"><i class="fa fa-comments"></i>Profile I have Shortlisted</a>
+							</li>
+							<li class="list-group-item">
+								<a href="#"><i class="fa fa-cog"></i>Settings</a>
+							</li>
+						</ul> 
+						<div class="tab-v2"> 
+							<ul class="nav nav-tabs"> 
+								<li class="active"><a href="#home-1" data-toggle="tab">Inbox</a></li>
+								<li><a href="#profile-1" data-toggle="tab">Sent</a></li>
+							</ul>
+							<div class="tab-content" style="padding: 10px 16px;">
+								<div class="tab-pane fade in active" id="home-1">
+									<div class="overflow-h">
+										<h3 class="heading-xs"><a th:href="@{/messages(userId=${session.userId})}">Pending (10)</a></h3>
+									</div>
+									<hr class="no-margin"/>
+									<div class="overflow-h">
+										<h3 class="heading-xs"><a th:href="@{/messages(userId=${session.userId})}">Accepted (2)</a></h3>
+									</div>
+								</div>
+								<div class="tab-pane fade in" id="profile-1">
+									<div class="overflow-h">
+										<h3 class="heading-xs"><a th:href="@{/messages(userId=${session.userId})}">All (1)</a></h3>
+									</div>
+									<hr class="no-margin"/>
+									<div class="overflow-h">
+										<h3 class="heading-xs"><a th:href="@{/messages(userId=${session.userId})}">Awaiting (2)</a></h3>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 sky-form noborder" id="sky-form">
+						<div class="">
+							<div class="profile-bio no-padding margin-bottom-20">
+								<div class="row sky-form">
+									<!--Alert-->
+									<div class=" sm-margin-bottom-30">
+										<div class="panel panel-profile">
+											<div class="panel-heading overflow-h">
+												<h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Latest Updates</h2>
+												<span class="floatright">Last updated at 10:45 am</span>
+											</div>
+											<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
+												<div class="alert-blocks  alert-dismissable">
+													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+													<img class="rounded-x" src="img/user.jpg" alt="" />
+													<div class="overflow-h">
+														<a th:href="@{/profileView(userId=${session.userId})}" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
+														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
+													</div>
+												</div>
+												<div class="alert-blocks  alert-dismissable">
+													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+													<img class="rounded-x" src="img/user.jpg" alt="" />
+													<div class="overflow-h">
+														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Is interested in your profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
+														<p><a class="send-interest" href="#">Start Conversation</a> | <a class="send-interest" href="#">View Profile</a></p>
+													</div>
+												</div>
+												<div class="alert-blocks  alert-dismissable">
+													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+													<img class="rounded-x" src="img/user.jpg" alt="" />
+													<div class="overflow-h">
+														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has just been added	<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
+														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
+													</div>
+												</div>
+												<div class="alert-blocks  alert-dismissable">
+													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+													<img class="rounded-x" src="img/user.jpg" alt="" />
+													<div class="overflow-h">
+														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
+														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
+													</div>
+												</div>
+												<div class="alert-blocks alert-dismissable">
+													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+													<img class="rounded-x" src="img/user.jpg" alt="" />
+													<div class="overflow-h">
+														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
+														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
+													</div>
+												</div>
+												<div class="alert-blocks  alert-dismissable">
+													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+													<img class="rounded-x" src="img/user.jpg" alt="" />
+													<div class="overflow-h">
+														<a href="profile-view.html" class="send-interest" style="color:#666 !important"><strong>M0156743</strong></a> (34 Yrs, 5Ft 10In) Has viewed your Profile<small class="pull-right"><em>Mar 10 at 10:00 am</em></small>
+														<p><a class="send-interest" href="#">Send Interest</a> | <a class="send-interest" href="#">View Profile</a></p>
+													</div>
+												</div>
+											</div>
+											<div class="panel-heading1 overflow-h">
+												<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All</h4></a>
+												
+											</div>
+										</div>
+									</div>
+									<!--End Alert-->
+									
+								</div>
+							</div>
+						</div>
+						<div class="row sky-form margin-bottom-20">
+							<div class=" sm-margin-bottom-30">
+								<div class="panel panel-profile">
+									<div class="panel-heading overflow-h">
+										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> New Matches</h2>
+										<!--<span class="floatright">Last updated at 10:45 am</span>-->
+									</div>
+									<div class="owl-carousel-v2 owl-carousel-style-v2 margin-bottom-40 topmargin-40	" id="a1">
+										
+										<div class="owl-slider-v12">
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+										</div>
+
+										<div class="owl-navigation" id="a1">
+											<div class="customNavigation">
+												<a class="owl-btn prev-v12"><i class="fa fa-angle-left"></i></a>
+												<a class="owl-btn next-v12"><i class="fa fa-angle-right"></i></a>
+											</div>
+										</div><!--/navigation-->
+									</div>
+									<div class="panel-heading1 overflow-h">
+										<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All</h4></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+						<div class="row sky-form margin-bottom-20">
+							<div class=" sm-margin-bottom-30">
+								<div class="panel panel-profile">
+									<div class="panel-heading overflow-h">
+										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Profiles you might also be interested in</h2>
+										<!--<span class="floatright">Last updated at 10:45 am</span>-->
+									</div>
+									<div class="owl-carousel-v2 owl-carousel-style-v2 margin-bottom-40 topmargin-40	" id="a2">
+										
+										<div class="owl-slider-v2">
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+										</div>
+
+										<div class="owl-navigation" id="a1">
+											<div class="customNavigation">
+												<a class="owl-btn prev-v2"><i class="fa fa-angle-left"></i></a>
+												<a class="owl-btn next-v2"><i class="fa fa-angle-right"></i></a>
+											</div>
+										</div><!--/navigation-->
+									</div>
+									<div class="panel-heading1 overflow-h">
+										<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All</h4></a>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row sky-form margin-bottom-20">
+							<div class=" sm-margin-bottom-30">
+								<div class="panel panel-profile">
+									<div class="panel-heading overflow-h">
+										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Who viewed your profile</h2>
+										<!--<span class="floatright">Last updated at 10:45 am</span>-->
+									</div>
+									<div class="owl-carousel-v2 owl-carousel-style-v2 margin-bottom-40 topmargin-40	" >
+										
+										<div class="owl-slider-v22" >
+											<div class="item txt-center" th:each="member : ${vistors}">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong><label th:text="${member.memberId}"></label></strong>
+												<span th:text="${member.age} + ' years' +' ' + ${member.personalDetails.height} + ' cm'"  class="row">
+												</span>
+												&nbsp;&nbsp;&nbsp;<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											</div>
+										
+										
+										<div class="owl-navigation">
+											<div class="customNavigation">
+												<a class="owl-btn prev-v22"><i class="fa fa-angle-left"></i></a>
+												<a class="owl-btn next-v22"><i class="fa fa-angle-right"></i></a>
+											</div>
+										</div><!--/navigation-->
+									</div>
+									<div class="panel-heading1 overflow-h">
+										<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All</h4></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row sky-form margin-bottom-20">
+							<div class=" sm-margin-bottom-30">
+								<div class="panel panel-profile">
+									<div class="panel-heading overflow-h">
+										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-send"></i> Who viewed your profile</h2>
+										<!--<span class="floatright">Last updated at 10:45 am</span>-->
+									</div>
+									<div class="owl-carousel-v2 owl-carousel-style-v2 margin-bottom-40 topmargin-40	">
+										
+										<div class="owl-slider-v32">
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+											<div class="item txt-center">
+												<img class="img-responsive margin-bottom-10" src="img/user1.jpg" width="130px" alt="" />
+												<strong>M234987</strong><br/>
+												<span>29 Yrs, 5Ft 9In</span><br/>
+												<a class="edit-2-button"><span>Send Interest</span></a>
+											</div>
+										</div>
+
+										<div class="owl-navigation">
+											<div class="customNavigation">
+												<a class="owl-btn prev-v32"><i class="fa fa-angle-left"></i></a>
+												<a class="owl-btn next-v32"><i class="fa fa-angle-right"></i></a>
+											</div>
+										</div><!--/navigation-->
+									</div>
+									<div class="panel-heading1 overflow-h">
+										<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All</h4></a>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-3">
+						<div class="panel-group acc-v1" id="accordion-1">
+							<div class="panel panel-default">
+								<div class="panel-heading no-padding">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-One">
+											Prefered Location
+										</a>
+									</h4>
+								</div>
+								<div id="collapse-One" class="panel-collapse collapse in">
+									<div class="panel-body" style="padding:0px 15px">
+										<div class="row">
+											<div class="col-md-12 no-padding">
+												<div class="profile-bio no-padding">
+													<div class="panel panel-profile">
+														<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+														</div>
+														<div class="panel-heading1 overflow-h">
+															<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All (7)</h4></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading no-padding">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-Two">
+											Prefered Profession
+										</a>
+									</h4>
+								</div>
+								<div id="collapse-Two" class="panel-collapse collapse">
+									<div class="panel-body"  style="padding:0px 15px">
+										<div class="row">
+											<div class="col-md-12 no-padding">
+												<div class="profile-bio no-padding">
+													<div class="panel panel-profile">
+														<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+														</div>
+														<div class="panel-heading1 overflow-h">
+															<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All (7)</h4></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading no-padding">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-Three">
+											Prefered Education
+										</a>
+									</h4>
+								</div>
+								<div id="collapse-Three" class="panel-collapse collapse">
+									<div class="panel-body"  style="padding:0px 15px">
+										<div class="row">
+											<div class="col-md-12 no-padding">
+												<div class="profile-bio no-padding">
+													<div class="panel panel-profile">
+														<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+														</div>
+														<div class="panel-heading1 overflow-h">
+															<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All (7)</h4></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading no-padding">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-1" href="#collapse-Four">
+											Family Values
+										</a>
+									</h4>
+								</div>
+								<div id="collapse-Four" class="panel-collapse collapse">
+									<div class="panel-body" style="padding:0px 15px">
+										<div class="row">
+											<div class="col-md-12 no-padding">
+												<div class="profile-bio no-padding">
+													<div class="panel panel-profile">
+														<div id="scrollbar3" class="panel-body no-padding mCustomScrollbar" data-mcs-theme="minimal-dark">
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+															<div class="alert-blocks  alert-dismissable">
+																<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+																<img class="rounded-x" src="img/user.jpg" alt="" />
+																<div class="overflow-h">
+																	<strong>M5178743</strong> <br/>(34 Yrs, 5Ft 10In)<br/>Aurangabad
+																	<p><a class="send-interest" href="#">Send Interest</a> </p>
+																</div>
+															</div>
+														</div>
+														<div class="panel-heading1 overflow-h">
+															<a class="send-interest" href="#"><h4 class="panel-title heading-sm pull-center">View All (7)</h4></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+					
+				</div>
+					
+			</div>
+		</div>
+		<!--=== End Content ===-->
+
+		<!--=== Footer Version 1 ===-->
+		<div th:replace="common :: footer"></div>
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
+	
+	<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="plugins/smoothScroll.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
+	<!--Form Scripts-->
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery.form.min.js"></script>
+	<script type="text/javascript" src="js/plugins/datepicker.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	
+	<!--Caseroul Scripts-->
+	<script type="text/javascript" src="plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+	<script type="text/javascript" src="js/plugins/owl-carousel.js"></script>
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			Datepicker.initDatepicker();
+			OwlCarousel.initOwlCarousel();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+  <script src="assets/plugins/html5shiv.js"></script>
+  <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+  <![endif]-->
+
+</body>
+</html>

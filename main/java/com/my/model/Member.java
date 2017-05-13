@@ -1,17 +1,16 @@
 package com.my.model;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -46,7 +45,12 @@ public class Member {
 	private String country;
 	private String mobile;
 	private int countryCode;
-	
+	private boolean profilePic;
+	private Date createdOn;
+	private Date updatedOn;
+	private Date lastOnline;
+	private String type; // Convert to ENUMS if appropriate
+
 	//@OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
 	//@PrimaryKeyJoinColumn
 	@OneToOne(mappedBy="member")
@@ -54,6 +58,9 @@ public class Member {
 	
 	@OneToOne(mappedBy="member")
 	private Preferences preferences;
+	
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="member")
+	private List<Photo> photos;
 
 	public Member(long id,String firstName, String lastName, int age, String gender) {
 		this.memberId = id;
@@ -220,7 +227,65 @@ public class Member {
 		this.preferences = preferences;
 	}
 
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+
+	public boolean isProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(boolean profilePic) {
+		this.profilePic = profilePic;
+	}
+
+	public Date getCreatedOn() {
+		return createdOn;
+	}
+
+	public Date getUpdatedOn() {
+		return updatedOn;
+	}
+
+	public void setCreatedOn(Date createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public void setUpdatedOn(Date updatedOn) {
+		this.updatedOn = updatedOn;
+	}
+
+	public Date getLastOnline() {
+		return lastOnline;
+	}
+
+	public void setLastOnline(Date lastOnline) {
+		this.lastOnline = lastOnline;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	
+	@OneToOne(mappedBy="member")
+	private Lifestyle lifestyle;
 	
+	public Lifestyle getLifestyle() {
+		return lifestyle;
+	}
+
+	public void setLifestyle(Lifestyle lifestyle) {
+		this.lifestyle = lifestyle;
+	}
+
 	
 }

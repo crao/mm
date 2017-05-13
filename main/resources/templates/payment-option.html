@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+	<title>Maratha Matrimony Match</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<meta name="description" content=""></meta>
+	<meta name="author" content=""></meta>
+
+	<!-- Favicon 
+	<link rel="shortcut icon" href="favicon.ico">-->
+
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="css/style.css"></link>
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="css/header-v6.css"></link>
+	<link rel="stylesheet" href="css/footer-v1.css"></link>
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="css/profile.css"></link>
+	<link rel="stylesheet" href="plugins/animate.css"></link>
+	<link rel="stylesheet" href="plugins/line-icons/line-icons.css"></link>
+	<link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"></link>
+	<link rel="stylesheet" href="css/sky-forms.css"></link>
+	<link rel="stylesheet" href="css/custom-sky-forms.css"></link>
+	<link rel="stylesheet" href="css/page_pricing.css"></link>
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="css/orange.css" id="style_color"></link>
+	<link rel="stylesheet" href="css/dark.css"></link>
+
+	<!-- CSS Customization -->
+	<link rel="stylesheet" href="css/custom.css"></link>
+	
+	<!--onclick radio-->
+	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('input[type="radio"]').click(function(){
+			var inputValue = $(this).attr("value");
+			var targetBox = $("." + inputValue);
+			$(".box").not(targetBox).hide();
+			$(targetBox).show();
+		});
+	});
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("select").change(function(){
+				$(this).find("option:selected").each(function(){
+					var optionValue = $(this).attr("value");
+					if(optionValue){
+						$(".box").not("." + optionValue).hide();
+						$("." + optionValue).show();
+					} else{
+						$(".box").hide();
+					}
+				});
+			}).change();
+		});
+	</script>
+	<script>
+	window.onload = monthSelect(month, monthID);
+	
+	/*function monthSelect() {
+		var x = document.getElementById("selectMonth").value;
+		document.getElementById("price").innerHTML = "Rs." + x;
+	}*/	
+	function monthSelect(month, monthID) {
+		//var x = document.getElementById("selectMonth").value;
+		document.getElementById(monthID).innerHTML = "Rs." + month;
+	}
+	</script>
+	
+</head>
+
+<body class="header-fixed header-fixed-space">
+	<div class="wrapper">
+		<!--=== Header v6 ===-->
+		<div th:replace="common :: topNav"></div>
+		<!--=== End Header v6 ===-->
+		<!--=== Breadcrumbs ===-->
+		<div class="breadcrumbs">
+			<div class="container">
+				<h1 class="pull-left">Payment Option</h1>
+				<ul class="pull-right breadcrumb">
+					<li><a href="index.html">Home </a></li>
+					<li class="active">Payment Option</li>
+				</ul>
+			</div><!--/container-->
+		</div><!--/breadcrumbs-->
+		<!--=== End Breadcrumbs ===-->
+		<!--=== Content ===-->
+		<div class="content-md">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					<br/>
+						
+						<br/>
+						<!-- Tab v2 -->
+						<div class="tab-v2">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#home-1" data-toggle="tab">Classic Packages</a></li>
+								<li><a href="#profile-1" data-toggle="tab">Personalised Packages</a></li>
+							</ul>
+							<div class="tab-content col-md-12">
+								<div class="tab-pane fade in active" id="home-1" >
+									<!-- Pricing -->
+									<form class="sky-form">
+									<div class=" margin-bottom-40 topmargin-40 ">
+										<div class="col-md-3 col-sm-6 no-padding">
+											<div class="pricing hover-effect">
+												<label class="one">
+													<div class="pricing-head">
+														<h3><span><input type="radio" value="basic" id="b1"	name="classic" /></span>Basic<span>Plan</span></h3>
+														<div class="col-md-12 padding-all">
+															<label class="select">
+																<select  name="selectMonth" id="selectMonth" th:feild="*{}" onchange="monthSelect(this.value, 'price')" >
+																	<option value="1200">1 Month</option>
+																	<option value="3000" selected="selected">3 Months</option>
+																	<option value="5000">6 Months</option>
+																</select>
+																<i></i>
+															</label>
+														</div>
+														<h4><i id="price"></i> <span>Per Month</span></h4>
+														
+													</div>
+													<div class="pricing-footer">
+														<a class="btn-u" href="#"><i class="fa fa-shopping-cart"></i> Make Payment</a>
+													</div>
+												</label>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6 no-padding">
+											<div class="pricing hover-effect">
+												<label class="one">
+													<div class="pricing-head">
+														
+														<h3>
+															<span><input type="radio" value="advance" name="classic" /></span>
+															Advance
+															<span>Plan</span>
+														</h3>
+														<div class="col-md-12 padding-all">
+																<label class="select">
+																	<select  name="selectAdvMonth" id="selectAdvMonth" th:feild="*{}" onchange="monthSelect(this.value, 'Advprice')">
+																		<option value="1200">1 Month</option>
+																		<option value="3000" selected="selected">3 Months</option>
+																		<option value="5000">6 Months</option>
+																	</select>
+																	<i></i>
+																</label>
+															</div>
+														<h4><i id="Advprice"></i> <span>Per Month</span></h4>
+													</div>
+													
+													<div class="pricing-footer">
+														<a class="btn-u" href="#"><i class="fa fa-shopping-cart"></i> Make payment</a>
+													</div>
+												</label>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6 no-padding">
+											<div class="pricing hover-effect">
+												<label class="one">
+													<div class="pricing-head">
+														<h3><span><input type="radio" value="premium" name="classic" /></span>Premium <span>Plan </span></h3>
+														
+															<div class="col-md-12 padding-all">
+																<label class="select">
+																	<select  name="selectAdvMonth" id="selectAdvMonth" th:feild="*{}" onchange="monthSelect(this.value, 'preprice')">
+																		<option value="1200">1 Month</option>
+																		<option value="3000" selected="selected">3 Months</option>
+																		<option value="5000">6 Months</option>
+																	</select>
+																	<i></i>
+																</label>
+															</div>	
+														
+														<h4><i id="preprice"></i> <span>Per Month</span></h4>
+													</div>
+													
+													<div class="pricing-footer">
+														<a class="btn-u" href="#"><i class="fa fa-shopping-cart"></i> Make payment</a>
+													</div>
+												</label>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-6 no-padding">
+											<div class="pricing hover-effect">
+												<label class="one">
+													<div class="pricing-head">
+														<h3><span><input type="radio" value="marry" name="classic" /></span>Till You Marry<span>Plan</span></h3>
+														<div class="col-md-12 padding-all">
+															<label class="select">
+																<select  name="selectAdvMonth" id="selectAdvMonth" th:feild="*{}" onchange="monthSelect(this.value, 'tillprice')">
+																	<option value="1200">1 Month</option>
+																	<option value="3000" selected="selected">3 Months</option>
+																	<option value="5000">6 Months</option>
+																</select>
+																<i></i>
+															</label>
+														</div>
+														<h4><i id="tillprice"></i><span>Per Month</span></h4>
+													</div>
+													<div class="pricing-footer">
+														<a class="btn-u" href="#"><i class="fa fa-shopping-cart"></i> Make payment</a>
+													</div>
+												</label>
+											</div>
+										</div>
+									</div><!--/row-->
+									
+									<div class="col-md-12 basic box">
+										<div class="service-block-v1 md-margin-bottom-50 bg-grey">
+											<i class="rounded-x icon-rocket"></i>
+											<h3 class="title-v3-bg text-uppercase">Benifits for <strong>Basic</strong> Plan</h3>
+											<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non tincidunt neque.</p>-->
+											<a class="text-uppercase" href="#">Read More</a>
+										</div>
+									</div>
+									<div class="col-md-12 advance box">
+										<div class="service-block-v1 md-margin-bottom-50 bg-grey">
+											<i class="rounded-x icon-rocket"></i>
+											<h3 class="title-v3-bg text-uppercase">Benifits for <strong>Advance </strong>Plan</h3>
+											<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non tincidunt neque.</p>-->
+											<a class="text-uppercase" href="#">Read More</a>
+										</div>
+									</div>
+									<div class="col-md-12 premium box">
+										<div class="service-block-v1 md-margin-bottom-50 bg-grey">
+											<i class="rounded-x icon-rocket"></i>
+											<h3 class="title-v3-bg text-uppercase">Benifits for <strong>Premium </strong>Plan</h3>
+											<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non tincidunt neque.</p>-->
+											<a class="text-uppercase" href="#">Read More</a>
+										</div>
+									</div>
+									<div class="col-md-12 marry box">
+										<div class="service-block-v1 md-margin-bottom-50 bg-grey">
+											<i class="rounded-x icon-rocket"></i>
+											<h3 class="title-v3-bg text-uppercase">Benifits for <strong>Till You Marry</strong> Plan</h3>
+											<!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non tincidunt neque.</p>-->
+											<a class="text-uppercase" href="#">Read More</a>
+										</div>
+									</div>
+									
+									</form>
+									<!-- End Pricing -->
+									
+									
+								</div>
+								
+								<div class="tab-pane fade in" id="profile-1">
+									<h4>Photo Privacy</h4>
+									<form class="sky-form">
+										<fieldset>
+											<div class="row">
+												
+												<section class="col col-12">
+													
+													
+												</section>
+												
+											</div>
+										</fieldset>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- End Tab v2 -->
+
+					</div>
+					
+				</div>
+				<br/><br/>
+				<div class="row tab-v3">
+					<div class="col-sm-3">
+						<ul class="nav nav-pills nav-stacked">
+							<li class="active"><a href="#creditdebit" data-toggle="tab"><i class="fa fa-home"></i> Credit / Debit Card</a></li>
+							<li><a href="#netbanking" data-toggle="tab"><i class="fa fa-cloud"></i> Net Banking</a></li>
+							<li><a href="#doorstep" data-toggle="tab"><i class="fa fa-comments"></i> Door Step Collection</a></li>
+							<li><a href="#branches" data-toggle="tab"><i class="fa fa-gear"></i> Our Branches</a></li>
+							<li><a href="#rtgs" data-toggle="tab"><i class="fa fa-gear"></i> RTGS / NEFT</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-6">
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="creditdebit">
+								<form action="#" id="sky-form" class="sky-form">
+									<header  style="padding-bottom:10px">Pay Using Credit / Debit Card
+										<div class="floatright">
+											<img src="img/visacard.gif" class="" style="margin-right:0" />
+											<img src="img/mastercard.gif" />&nbsp;<img src="img/maestro.gif" />&nbsp;<img src="img/rupay.gif" />
+										</div>
+									</header>
+
+									
+
+									<fieldset>
+										<section>
+											<div class="inline-group">
+												<label class="radio"><input type="radio" name="radio-inline" checked="checked" /><i class="rounded-x"></i>Visa</label>
+												<label class="radio"><input type="radio" name="radio-inline" /><i class="rounded-x"></i>MasterCard</label>
+											</div>
+										</section>
+
+										<section>
+											<label class="input">
+												<input type="text" name="name" placeholder="Name on card" />
+											</label>
+										</section>
+
+										<div class="row">
+											<section class="col col-10">
+												<label class="input">
+													<input type="text" name="card" id="card" placeholder="Card number" />
+												</label>
+											</section>
+											<section class="col col-2">
+												<label class="input">
+													<input type="text" name="cvv" id="cvv" placeholder="CVV2" />
+												</label>
+											</section>
+										</div>
+
+										<div class="row">
+											<label class="label col col-4">Expiration date</label>
+											<section class="col col-5">
+												<label class="select">
+													<select name="month">
+														<option value="0" selected="selected" disabled="disabled">Month</option>
+														<option value="1">January</option>
+														<option value="1">February</option>
+														<option value="3">March</option>
+														<option value="4">April</option>
+														<option value="5">May</option>
+														<option value="6">June</option>
+														<option value="7">July</option>
+														<option value="8">August</option>
+														<option value="9">September</option>
+														<option value="10">October</option>
+														<option value="11">November</option>
+														<option value="12">December</option>
+													</select>
+													<i></i>
+												</label>
+											</section>
+											<section class="col col-3">
+												<label class="input">
+													<input type="text" name="year" id="year" placeholder="Year" />
+												</label>
+											</section>
+										</div>
+									</fieldset>
+
+									<footer>
+										<button type="submit" class="btn-u">Continue</button>
+									</footer>
+								</form>
+								<!-- End Checkout-Form -->		
+							</div>
+							<div class="tab-pane fade in" id="netbanking">
+								<form action="#" id="sky-form" class="sky-form">
+									<header>Pay Using Net Banking</header>
+
+									
+
+									<fieldset>
+										<div class="row">
+											<label class="label col col-3">Select Bank</label>
+											<section class="col col-5">
+												<label class="select">
+													<select name="month">
+														<option value="0" selected="selected" disabled="disabled">Select Bank</option>
+														<option value="HDFC">HDFC Bank</option>
+														<option value="ICICI">ICICI Bank</option>
+														<option value="Canara">Canara Bank</option>
+														<option value="Maharashtra">Maharashtra Bank</option>
+														<option value="SBI">SBI Bank</option>
+														<option value="TJSB">TJSB Bank</option>
+														<option value="Punjab National">Punjab National Bank</option>
+														<option value="IDBI">IDBI Bank</option>
+														<option value="Sarawat">Sarawat bank</option>
+														<option value="BOI">BOI Bank</option>
+													</select>
+													<i></i>
+												</label>
+											</section>
+											<section class="col col-2">
+												
+											</section>
+										</div>
+									</fieldset>
+
+									<footer>
+										<button type="submit" class="btn-u">Continue</button>
+									</footer>
+								</form>
+							</div>
+							<div class="tab-pane fade in" id="doorstep">
+								<form action="#" id="sky-form" class="sky-form">
+									<header>Pay Using Net Banking</header>
+									
+									<fieldset>
+										<div class="row">
+											<label class="label col col-3">Name:</label>
+											<section class="col col-9">
+												<label class="input">
+													<input type="text" name="doorStepName" id="doorStepName" placeholder="Please Enter your Name" />
+												</label>
+											</section>
+										</div>
+										<div class="row">
+											<label class="label col col-3">Contact Number:</label>
+											<section class="col col-9">
+												<label class="input">
+													<input type="text" name="code" id="doorStepNumber" placeholder="Please Enter your Contact Number" />
+												</label>
+											</section>
+										</div>
+										<div class="row">
+											<label class="label col col-3">Address:</label>
+											<section class="col col-9">
+												<label class="textarea">
+													<textarea rows="3" name="info" placeholder="Additional info"></textarea>
+												</label>
+											</section>
+										</div>
+										<div class="row">
+											<label class="label col col-3"></label>
+											
+												<label class="label col col-9">Submit your details to get confirmation call from us.</label>
+											
+										</div>
+									</fieldset>
+
+									<footer>
+										<button type="submit" class="btn-u">Submit</button>
+									</footer>
+								</form>	
+							</div>
+							
+							<div class="tab-pane fade in" id="branches">
+								<form action="#" id="sky-form" class="sky-form">
+									<header>Pay Visiting Our Branches</header>
+									<fieldset>
+										<div class="row">
+											<label class="label col col-3">Select Bank</label>
+											<section class="col col-5">
+												<label class="select">
+													<select name="month">
+														<option value="0" selected="selected" disabled="disabled">Select City</option>
+														<option value="Aurangabad">Aurangabad</option>
+														<option value="Pune">Pune</option>
+														<option value="Navi-Mumbai">Navi Mumbai</option>
+														<option value="Thane">Thane</option>
+														<option value="Amravati">Amravati</option>
+														<option value="Nasik">Nasik</option>
+														<option value="Nanded">Nanded</option>
+														<option value="Nagpur">Nagpur</option>
+														<option value="Solapur">Solapur</option>
+													</select>
+													<i></i>
+												</label>
+											</section>
+										</div>
+									</fieldset>
+									
+									<fieldset>
+										<div class="row Aurangabad box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;61, New RH Colony, Amarpreet Square, Aurangabad, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+										<div class="row Pune box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;06, New Vihan gardens, High Square, Pune, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+										<div class="row Navi-Mumbai box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;06, New Heights,Airoli, Navi-Mumbai, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+										<div class="row Thane box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;06, Arnav Heights, Near to Station Thane, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+										<div class="row Amravati box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;06, New Vihan gardens, High Square, Amravati, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+										<div class="row Nasik box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;21, Arihant Society, CBS Bus Stand, Nasik, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+										<div class="row Nanded box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;2, Everygreen Complex, Gymkhana, Nanded, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+										<div class="row Nagpur box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;New Heights, 8th Floor, Nagpur, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+										<div class="row Solapur box">
+											<label class="label col col-12"><i class="fa fa-home" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;06, ABC, High Square, Solapur, Maharashtra 431001.</label>
+											<label class="label col col-10"><i class="fa fa-phone" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;9890009945 / 9890009945 / 9890009945</label>
+											<label class="label col col-10"><i class="fa fa-envelope" style="font-size:18px"></i> &nbsp; &nbsp; &nbsp;admin@mymarathimatch.com</label>
+										</div>
+									</fieldset>
+
+									<footer>
+										<section class="col col-8">
+											<label class="label">Recieve this Information By &nbsp; &nbsp;
+											<button type="submit" class="btn-u">SMS</button>
+											<button type="submit" class="btn-u">Email</button></label>
+										</section>
+									</footer>
+									
+								</form>	
+							</div>
+							
+							<div class="tab-pane fade in" id="rtgs">
+								<form action="#" id="sky-form" class="sky-form">
+									<header>Transder your funds Using RTGS / NEFT</header>
+									
+									<fieldset>
+										<section><img src="img/hdfcbank.gif" /></section>
+										<div class="row">
+											<label class="label col col-3">A/C No :</label>
+											<label class="label col col-9">030999499021</label>
+										</div>
+										<div class="row">
+											<label class="label col col-3">A/C Name :</label>
+											<label class="label col col-9">My Maratha Match Pvt. Ltd.</label>
+										</div>
+										<div class="row">
+											<label class="label col col-3">IFSC Code :</label>
+											<label class="label col col-9">HDFC0001123</label>
+										</div>
+									</fieldset>
+
+									<footer>
+										
+										<section class="col col-8">
+											<label class="label">Recieve this Information By &nbsp; &nbsp;
+											<button type="submit" class="btn-u">SMS</button>
+											<button type="submit" class="btn-u">Email</button></label>
+										</section>
+									</footer>
+								</form>	
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<!--=== End Content ===-->
+
+		<!--=== Footer Version 1 ===-->
+		<div th:replace="common :: footer"></div>
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+
+	<!-- JS Global Compulsory -->
+	
+	<script type="text/javascript" src="plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="plugins/smoothScroll.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/plugins/style-switcher.js"></script>
+	<!--Form Scripts-->
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery.form.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/checkout.js"></script>
+	
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			App.init();
+			CheckoutForm.initCheckoutForm();
+			StyleSwitcher.initStyleSwitcher();
+		});
+	</script>
+<!--[if lt IE 9]>
+  <script src="assets/plugins/respond.js"></script>
+  <script src="assets/plugins/html5shiv.js"></script>
+  <script src="assets/plugins/placeholder-IE-fixes.js"></script>
+  <![endif]-->
+
+</body>
+</html>

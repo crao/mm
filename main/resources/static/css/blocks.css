@@ -720,9 +720,10 @@
 ------------------------------------*/
 .service-block-v1 {
   margin-top: 20px;
-  text-align: center;
+  /*text-align: center;*/
   position: relative;
-  padding: 45px 20px 20px;
+  /*padding: 45px 20px 20px;*/
+  padding: 20px 50px 20px;
   border: 1px solid #f2f2f2;
 }
 
@@ -4914,6 +4915,18 @@
   margin-bottom: 20px;
 }
 
+.owl-carousel-v2 .owl-slider-v12 {
+  margin-bottom: 20px;
+}
+
+.owl-carousel-v2 .owl-slider-v22 {
+  margin-bottom: 20px;
+}
+
+.owl-carousel-v2 .owl-slider-v32 {
+  margin-bottom: 20px;
+}
+
 .owl-carousel-v2 .item {
   margin: 0 15px;
 }
@@ -6477,7 +6490,8 @@
 
 /*Footer Logo*/
 .footer-logo {
-	margin: 17px 0 20px;
+	/*margin: 17px 0 20px;*/
+	height:90px;
 }
 
 /*Latest List*/

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 
 
-/** This is the boot strap class for the project **/
+/** This is the boot strap class for the project .test**/
 @SpringBootApplication(scanBasePackages = { "com.my" })
 
 public class WebsiteApplication {
