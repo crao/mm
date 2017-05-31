@@ -46,8 +46,9 @@ public class SearchDao {
 		 Root<Member> m = q.from(Member.class);		
 		 ParameterExpression<String> gender = cb.parameter(String.class);
 		 ParameterExpression<Integer> age = cb.parameter(Integer.class);
+	
 		 
-		 if(searchBinding.getShowProfileCondition1()==null || searchBinding.getShowProfileCondition2()==null)
+		 if(searchBinding.getShowProfileCondition1()==null && searchBinding.getShowProfileCondition2()==null)
 			{
 			 
 			 Join<Member, PersonalDetails> pds = m.join("personalDetails");		
@@ -57,18 +58,40 @@ public class SearchDao {
 					 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight())
 					 );
 		
-		    }
-		 else if(searchBinding.getShowProfileCondition1().contains("With  Photo"))
+		    }			
+		 else if(searchBinding.getShowProfileCondition1()==null && searchBinding.getShowProfileCondition2().equals("ViewedProfiles"))
+		   {
+			    Join<Member, PersonalDetails> pds = m.join("personalDetails");
+			    Join<PersonalDetails,Visit> pho = m.join("visit");
+			    q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),			    		
+						 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),
+						 cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
+						 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight()));
+		  }			 
+		 else if(searchBinding.getShowProfileCondition1().equals("WithPhoto") && searchBinding.getShowProfileCondition2()==null)
 		   {
 			   Join<Member, PersonalDetails> pds = m.join("personalDetails");
 			    Join<PersonalDetails, Photo> pho = m.join("photos");
-			    q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),
+			    q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),			    	
 					 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),
 					 cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
 					 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight()));
 			 
-		  }		 
-		
+		  }
+		 else if(searchBinding.getShowProfileCondition1().equals("WithPhoto") && searchBinding.getShowProfileCondition2().equals("ViewedProfiles"))
+		   {
+			   Join<Member, PersonalDetails> pds = m.join("personalDetails");
+			    Join<PersonalDetails, Photo> pho = m.join("photos");
+			    Join<Photo,Visit> pho1 = m.join("visit");
+			    q.select(m).where(cb.notEqual(m.get("gender"), member.getGender()),			    	
+					 cb.between(m.get("age"), searchBinding.getFromAge(), searchBinding.getToAge()),
+					 cb.equal(pds.get("maritalStatus"), searchBinding.getMaritalStatus()),
+					 cb.between(pds.get("height"), searchBinding.getFromHeight(), searchBinding.getToHeight()));
+			 
+		  }	
+		 
+		 
+		 
 		 TypedQuery<Member> tq = em.createQuery(q);		 
 		 List<Member> results = em.createQuery(q).getResultList();
 		 return results;
