@@ -19,3 +19,32 @@
 			document.getElementById(id).value = res;
 			}
 		
+
+		
+		function cmsToFt(str) {
+			var cm = parseFloat(str)
+			var ft = cm*0.0328084
+			var a = Math.trunc(ft)	
+			var b = ft - Math.floor(ft)	
+			var inc = Math.round(b*11)
+			var res = ""+a+" ft "+inc + " in"
+			return res;
+			}
+		
+
+//		function setValuesInModal(mname,mid,nameStr,midStr){
+//			span = document.getElementById(mname);
+//			name = document.createTextNode(nameStr);
+//			span.innerText = name.textContent;
+//			
+//			span = document.getElementById(mid);
+//			name = document.createTextNode(midStr);
+//			span.innerText = name.textContent;
+//		}
+
+		function setValuesInModal(str)
+		{ 	
+			document.getElementById("mname").innerText = str
+		
+
+		}

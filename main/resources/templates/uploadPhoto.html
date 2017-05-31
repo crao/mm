@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Photo Upload</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+   <link rel="stylesheet" href="css/bootstrap.min.css"/>    
+	<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+	<script type="text/javascript" th:src="@{js/main.js}"></script>
+
+</head>
+<body>
+<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+ 
+ 	<input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+ 	<input type="hidden" name="userId" th:value="${#httpServletRequest.getParameter('userId')}"/>
+ 	<input type="hidden" name="main" th:value="${#httpServletRequest.getParameter('main')}"/>
+    <input type="file" name="file"/><br/><br/>
+    
+ 
+    <input type="submit" value="Submit" id="btnSubmit"/>
+</form>
+
+<h1>Ajax Post Result</h1>
+<pre>
+    <span id="result"></span>
+</pre>
+
+
+<!-- <form method="GET"  enctype="application/x-www-form-urlencoded" id="sl">
+ 
+ 	<input type="hidden" name="userId" id="uid" value="TTT"/>
+	<input type="hidden" name="slId" id="sid" value="TTT"/>
+	<input  type="submit" value="Short List" id="btnSl"/>
+    
+ 
+  
+</form>
+
+<a href="/shortList" title="sl1">Short List </a> 
+
+<h1>Ajax GET Result</h1>
+<pre>
+    <span id="result1"></span>
+</pre>
+
+<script type="text/javascript" th:src="@{js/main.js}"></script> -->
+
+</body>
+</html>

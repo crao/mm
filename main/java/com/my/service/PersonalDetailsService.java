@@ -14,9 +14,10 @@ public class PersonalDetailsService {
 	PersonalDetailsDao personalDetailsDao;
 	
 	
-	public Long savePersonalDetails(PersonalDetails personalDetails){
-		return personalDetailsDao.save(personalDetails).getId();		
+	public PersonalDetails savePersonalDetails(PersonalDetails personalDetails){
+		return personalDetailsDao.save(personalDetails);		
 	}
+
 
 	public PersonalDetails getPersonalDetailsByMemberId(long memberId){
 		return personalDetailsDao.findByUserId(memberId);

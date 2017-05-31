@@ -15,20 +15,20 @@ import com.my.binding.SearchBinding;
 @Controller
 public class DailyMatchesController {
 	
-	@RequestMapping(value="/dailymatches",method=RequestMethod.GET)
+	@RequestMapping(value="/dailyMatches",method=RequestMethod.GET)
 	public String start(Model model){
-		return "dailymatches";
+		return "dailyMatches";
 	}
 	
 	
-	@RequestMapping(value="/dailymatches",method=RequestMethod.POST)
+	@RequestMapping(value="/dailyMatches",method=RequestMethod.POST)
 	public String show(@ModelAttribute PreferencesBinding preferencesBinding,
 			BindingResult bindingResult,
 			Model model,
 			HttpSession httpSession){
 		
 		model.addAttribute("search", new SearchBinding());
-		return "dailymatches";
+		return "dailyMatches";
 	}
 
 }

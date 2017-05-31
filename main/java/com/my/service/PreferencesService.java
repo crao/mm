@@ -13,8 +13,8 @@ public class PreferencesService {
 	@Autowired
 	private PreferencesDao preferencesDao;
 
-	public long savePreferences(Preferences preferences) {
-		return preferencesDao.save(preferences).getId();		
+	public Preferences savePreferences(Preferences preferences) {
+		return preferencesDao.save(preferences);		
 	}
 	
 	public Preferences getPreferencesByMember(Member member){

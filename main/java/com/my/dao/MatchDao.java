@@ -43,8 +43,8 @@ public class MatchDao {
 				+ "and pd.citizenship =:citizenship"				
 				);
 		
-		q.setParameter("minAge", preferences.getMinAge());
-		q.setParameter("maxAge", preferences.getMaxAge());
+		q.setParameter("minAge", preferences.getFromAge());
+		q.setParameter("maxAge", preferences.getToAge());
 		q.setParameter("gender", member.getGender());
 		q.setParameter("fromHeight", preferences.getFromHeight());
 		q.setParameter("toHeight", preferences.getToHeight());

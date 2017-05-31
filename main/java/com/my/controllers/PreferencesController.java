@@ -41,14 +41,14 @@ public class PreferencesController {
 	
 	
 	@RequestMapping(value="/preferences",method=RequestMethod.GET)
-	public String start(Model model,@RequestParam(value="status",required=false)String status,HttpSession session){
+	public String start(Model model,@RequestParam(value="status",required=false)String status,@RequestParam(value="userId",required=false)String userId,HttpSession session){
 		if(status==null)
 			return "preferences";
 		else{
 			model.addAttribute("member",session.getAttribute("member"));
 			model.addAttribute("personalDetails",session.getAttribute("personalDetails"));
 			model.addAttribute("preferences", session.getAttribute("preferences"));
-			return "profile";
+			return "lifestyle";
 		}
 	}
 	
@@ -58,15 +58,24 @@ public class PreferencesController {
 			Model model,
 			HttpSession httpSession){
 		String status=null;
-		Preferences preferences = new Preferences();
+		
+		Long userId = (Long)httpSession.getAttribute("userId");
 		//Member member = memberService.getMemberById(preferencesBinding.getMemberId());
 		Object memberObj = httpSession.getAttribute("member");
-		Member member=null;
-		if(memberObj!=null)
+		Member member= memberService.getMemberById(userId);
+		if(memberObj!=null&& member==null)
 			member = (Member) memberObj;
+		
+		Preferences preferences = preferencesService.getPreferencesByMember(member);
+
+		if(preferences!=null){
+			return "redirect:/preferences?status="+status+"?userId="+userId;
+		}
+				
+		preferences = new Preferences();		
 		preferences.setMember(member);
-		preferences.setMinAge(preferencesBinding.getMinAge());
-		preferences.setMaxAge(preferencesBinding.getMaxAge());
+		preferences.setFromAge(preferencesBinding.getFromAge());
+		preferences.setToAge(preferencesBinding.getToAge());
 		preferences.setFromHeight(preferencesBinding.getFromHeight());
 		preferences.setToHeight(preferencesBinding.getToHeight());
 		preferences.setHaveChildren(preferencesBinding.getHaveChildren());
@@ -89,12 +98,14 @@ public class PreferencesController {
 		preferences.setCountryP(preferencesBinding.getCountryP());
 		preferences.setResidingstateP(preferencesBinding.getResidingstateP());
 		preferences.setResidingCityP(preferencesBinding.getResidingCityP());
+		preferences.setCitizenship(preferencesBinding.getCitizenship());
+		preferences.setGothra(preferencesBinding.getGothra());
 		
-		long preferencesSave = preferencesService.savePreferences(preferences);
-		if(preferencesSave>=1)
+		Preferences preferencesSave = preferencesService.savePreferences(preferences);
+		if(preferencesSave!=null)
 			status="success";
+		member.setPreferences(preferencesSave);
 		
-		long memberId = member.getMemberId();
 		List<Object[]> results = matchDao.matches(member,preferences);
 		
 		for(Object[] result:results){
@@ -119,7 +130,7 @@ public class PreferencesController {
 		model.addAttribute("matchList", personalDetails);
 		
 		
-		return "redirect:/preferences?status="+status;
+		return "redirect:/preferences?status="+status+"?userId="+userId;
 		
 	}
 	
